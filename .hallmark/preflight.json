@@ -1,0 +1,11 @@
+{
+  "date": "2026-09-21",
+  "newApplication": true,
+  "visualReference": "https://www.nathanpannell.com/",
+  "sourceTokens": "C:/repo/portfolio-2026-workspace/tokens.css",
+  "fonts": ["Strichpunkt Sans Variable", "Ysabeau Variable", "Caveat Variable"],
+  "palette": "Parkdex lime, forest ink, fog paper",
+  "framework": "Vite and TypeScript",
+  "motion": "cut, except short button press feedback",
+  "scope": "Independent static landing application with serverless waitlist"
+}
