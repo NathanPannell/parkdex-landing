@@ -108,7 +108,17 @@
       <footer class="footer">
         <div class="founder-note"><span class="founder-sign">See you out there,</span><a href="https://www.nathanpannell.com/parkdex/">Nathan</a><span class="founder-place">Built in Victoria, for this island.</span></div>
         <div class="footer-meta">
-          <details class="privacy"><summary>About your email</summary><div id="privacy-note" class="privacy-content"><p>Your email is saved only to let you know when Parkdex for Android launches. No newsletter. No account needed.</p><p>To leave the list, email <a href="mailto:contact@nathanpannell.com">contact@nathanpannell.com</a>.</p></div></details>
+          <details class="privacy"><summary>About your email</summary><div class="privacy-content">
+            <p id="privacy-note">Your email is saved only to let you know when Parkdex for Android launches. No newsletter. No account needed.</p>
+            <form id="remove-form" novalidate>
+              <label for="remove-email">Leave the waitlist</label>
+              <input id="remove-email" name="email" type="email" inputmode="email" autocomplete="email" placeholder="Your email address" required maxlength="254" aria-describedby="remove-message" />
+              <div class="bot-field" aria-hidden="true"><label for="remove-company">Company</label><input id="remove-company" name="company" tabindex="-1" autocomplete="off" /></div>
+              <button id="remove-button" class="remove-button" type="submit">Remove my email</button>
+              <p id="remove-message" class="form-message" role="status" aria-live="polite">You can join again whenever you like.</p>
+            </form>
+            <noscript><p>Enable JavaScript to remove your email here, or email <a href="mailto:contact@nathanpannell.com">contact@nathanpannell.com</a>.</p></noscript>
+          </div></details>
           <span class="attribution">Map © <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors</span>
           <span class="photo-credit">East Sooke photo: <a href="https://commons.wikimedia.org/wiki/File:East_Sooke_Park_BC.jpg">Brandon Godfrey</a> · <a href="https://creativecommons.org/licenses/by-sa/2.0/">CC BY-SA 2.0</a> · cropped for layout</span>
         </div>

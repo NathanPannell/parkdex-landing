@@ -14,6 +14,13 @@ const handle = createWaitlistHandler({
               VALUES (${email})
               ON CONFLICT (email_normalized) DO NOTHING`;
   },
+  async removeSignup(email) {
+    const url = process.env.DATABASE_URL;
+    if (!url) throw new Error("DATABASE_URL is not configured");
+    const sql = neon(url, { fetchOptions: { signal: AbortSignal.timeout(8000) } });
+    await sql`DELETE FROM waitlist_signups
+              WHERE email_normalized = ${email}`;
+  },
 });
 
 export default {

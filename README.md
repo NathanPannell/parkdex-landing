@@ -23,3 +23,8 @@ Each normalized email is saved once, with its creation timestamp. Only a launch 
 The photo-led opening uses the East Sooke coastline, Nathan's portfolio typography and a matte phone showing the supplied badge reward. The landscape, phone and waitlist action remain visible in the first mobile viewport. The next section pairs the full signup form with a screenshot gallery covering exploration, badges, park categories, wishlist and progress.
 
 Real app captures are used without recreating their contents. Screenshot provenance is recorded in assets/provenance. The user supplied the signed-in states; the desktop exploration map was captured from staging. The hero photograph credit and license are recorded in public/images/PHOTO-CREDIT.md and linked on the page. DESIGN.md and the surface brief describe the current visual system and composition.
+# Design comparison
+
+The unlinked `/mockups/` route compares two candidate directions in desktop and phone viewports. `/mockups/field-guide.html` emphasizes the app journey; `/mockups/poster.html` explores an outdoor poster composition. Both are design previews with inert email forms and `noindex`. The main page retains its current visual design until a direction is selected. Device frames in these candidates are placeholders pending the requested asset research.
+
+The main page's **About your email** disclosure includes direct removal from the Android waitlist. Removal uses the existing same-origin `POST /api/waitlist` endpoint with `action: "remove"`; join remains the default. Both operations use generic success responses and the same request-size, origin and WAF protections.

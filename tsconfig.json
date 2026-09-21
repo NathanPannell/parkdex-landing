@@ -10,5 +10,5 @@
     "types": ["vite/client", "node"],
     "allowImportingTsExtensions": true
   },
-  "include": ["src", "api", "lib", "tests"]
+  "include": ["src", "api", "lib", "tests", "mockups", "vite.config.ts"]
 }

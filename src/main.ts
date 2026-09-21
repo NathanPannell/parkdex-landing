@@ -30,17 +30,19 @@ email.addEventListener('input', () => {
   email.setAttribute('aria-invalid', 'false');
   message.textContent = 'One email when the Android app is ready.';
   joinLabel.textContent = 'Join the waitlist';
-  join.disabled = false;
+  join.disabled = removing;
 });
 
 form.addEventListener('submit', async (event) => {
   event.preventDefault();
   if (pending) return;
+  if (removing) { message.textContent = 'Please wait for the email removal to finish.'; return; }
   email.value = email.value.trim();
   touched = true;
   if (!validate()) { email.focus(); return; }
   pending = true;
   join.disabled = true;
+  removeButton.disabled = true;
   email.readOnly = true;
   form.dataset.state = 'loading';
   form.setAttribute('aria-busy', 'true');
@@ -74,7 +76,84 @@ form.addEventListener('submit', async (event) => {
     pending = false;
     email.readOnly = false;
     join.disabled = form.dataset.state === 'success';
+    removeButton.disabled = removeForm.dataset.state === 'success';
     form.removeAttribute('aria-busy');
+  }
+});
+
+const removeForm = document.querySelector<HTMLFormElement>('#remove-form')!;
+const removeEmail = document.querySelector<HTMLInputElement>('#remove-email')!;
+const removeCompany = document.querySelector<HTMLInputElement>('#remove-company')!;
+const removeButton = document.querySelector<HTMLButtonElement>('#remove-button')!;
+const removeMessage = document.querySelector<HTMLParagraphElement>('#remove-message')!;
+let removing = false;
+
+removeEmail.addEventListener('input', () => {
+  if (removing) return;
+  removeForm.dataset.state = 'idle';
+  removeEmail.setAttribute('aria-invalid', 'false');
+  removeButton.textContent = 'Remove my email';
+  removeButton.disabled = pending;
+  removeMessage.textContent = 'You can join again whenever you like.';
+});
+
+removeForm.addEventListener('submit', async event => {
+  event.preventDefault();
+  if (removing) return;
+  if (pending) { removeMessage.textContent = 'Please wait for the signup to finish, then remove your email.'; return; }
+  removeEmail.value = removeEmail.value.trim();
+  if (!removeEmail.validity.valid || !removeEmail.value) {
+    removeForm.dataset.state = 'error';
+    removeEmail.setAttribute('aria-invalid', 'true');
+    removeMessage.textContent = 'Add the email address you used to join, like you@example.com.';
+    removeEmail.focus();
+    return;
+  }
+  removing = true;
+  removeEmail.setAttribute('aria-invalid', 'false');
+  removeEmail.readOnly = true;
+  removeButton.disabled = true;
+  join.disabled = true;
+  removeButton.textContent = 'Removing…';
+  removeForm.dataset.state = 'loading';
+  removeForm.setAttribute('aria-busy', 'true');
+  removeMessage.textContent = 'Removing this address from the waitlist…';
+  const submittedEmail = removeEmail.value;
+  try {
+    const response = await fetch('/api/waitlist', {
+      method: 'POST', headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({ email: submittedEmail, action: 'remove', company: removeCompany.value }),
+      signal: AbortSignal.timeout(15000),
+    });
+    const result = await response.json().catch(() => null);
+    if (!response.ok || result?.ok !== true) {
+      if (result?.error === 'invalid_email') {
+        removeEmail.setAttribute('aria-invalid', 'true');
+        throw new Error('Check your email address and try again.');
+      }
+      if (response.status === 429) throw new Error('A few too many tries. Please try again in a little while.');
+      throw new Error('We couldn’t remove this address. Please try again in a moment.');
+    }
+    removeForm.dataset.state = 'success';
+    removeButton.textContent = 'Done';
+    removeMessage.textContent = 'If this address was on the waitlist, it has been removed. You can join again anytime.';
+    if (email.value.trim().toLowerCase() === submittedEmail.toLowerCase() && !pending) {
+      form.dataset.state = 'idle';
+      joinLabel.textContent = 'Join the waitlist';
+      join.disabled = false;
+      message.textContent = 'One email when the Android app is ready.';
+    }
+  } catch (error) {
+    removeForm.dataset.state = 'error';
+    removeButton.textContent = 'Try again';
+    removeMessage.textContent = error instanceof Error && !['TimeoutError', 'TypeError', 'AbortError'].includes(error.name)
+      ? error.message : 'Couldn’t reach the waitlist. Check your connection and try again.';
+  } finally {
+    removing = false;
+    removeEmail.readOnly = false;
+    removeButton.disabled = removeForm.dataset.state === 'success';
+    join.disabled = form.dataset.state === 'success';
+    removeForm.removeAttribute('aria-busy');
   }
 });
 

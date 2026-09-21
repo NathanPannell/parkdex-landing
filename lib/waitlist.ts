@@ -1,7 +1,9 @@
 export type SaveSignup = (email: string) => Promise<void>;
+export type RemoveSignup = (email: string) => Promise<void>;
 
 export type WaitlistConfig = {
   saveSignup: SaveSignup;
+  removeSignup?: RemoveSignup;
   canonicalOrigin?: string;
   vercelUrl?: string;
 };
@@ -101,12 +103,21 @@ export function createWaitlistHandler(config: WaitlistConfig): (request: Request
       return json({ ok: false, error: "invalid_request" }, 400);
     }
     const fields = payload as Record<string, unknown>;
+    const action = fields.action === undefined ? "join" : fields.action;
+    if (action !== "join" && action !== "remove") {
+      return json({ ok: false, error: "invalid_action" }, 400);
+    }
     if (typeof fields.company === "string" && fields.company.trim()) return json(SUCCESS, 200);
     const email = normalizeEmail(fields.email);
     if (!email) return json({ ok: false, error: "invalid_email" }, 400);
 
     try {
-      await config.saveSignup(email);
+      if (action === "remove") {
+        if (!config.removeSignup) throw new Error("removeSignup is not configured");
+        await config.removeSignup(email);
+      } else {
+        await config.saveSignup(email);
+      }
       return json(SUCCESS, 200);
     } catch {
       return json({ ok: false, error: "unavailable" }, 503);

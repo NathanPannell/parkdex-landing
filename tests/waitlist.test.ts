@@ -12,6 +12,10 @@ function signup(body: unknown, origin = "https://parkdex-landing.vercel.app", he
   });
 }
 
+function remove(body: unknown, origin = "https://parkdex-landing.vercel.app", headers: Record<string, string> = {}): Request {
+  return signup({ action: "remove", ...(body as Record<string, unknown>) }, origin, headers);
+}
+
 test("normalizes ordinary emails and rejects malformed addresses", () => {
   assert.equal(normalizeEmail("  NAME+Tag@Example.COM "), "name+tag@example.com");
   for (const email of ["", "a@b", "a..b@example.com", "a@-example.com", "a@example..com", "a@example.c", "a b@example.com", "x".repeat(65) + "@example.com"]) {
@@ -39,6 +43,51 @@ test("honeypot returns success without storing", async () => {
   const response = await handle(signup({ email: "bot@example.com", company: "spam" }));
   assert.equal(response.status, 200);
   assert.equal(calls, 0);
+});
+
+test("removes normalized emails idempotently with the same generic success", async () => {
+  const saved = new Set(["name@example.com"]);
+  const removed: string[] = [];
+  const handle = createWaitlistHandler({
+    async saveSignup() {},
+    async removeSignup(email) {
+      removed.push(email);
+      saved.delete(email);
+    },
+  });
+  const first = await handle(remove({ email: " NAME@EXAMPLE.COM " }));
+  const second = await handle(remove({ email: "name@example.com" }));
+  assert.equal(first.status, 200);
+  assert.equal(second.status, 200);
+  assert.deepEqual(await first.json(), { ok: true });
+  assert.deepEqual(await second.json(), { ok: true });
+  assert.deepEqual(removed, ["name@example.com", "name@example.com"]);
+  assert.equal(saved.size, 0);
+});
+
+test("validates action and applies the honeypot to removal", async () => {
+  let calls = 0;
+  const handle = createWaitlistHandler({
+    async saveSignup() {},
+    async removeSignup() { calls++; },
+  });
+  const unknown = await handle(signup({ action: "export", email: "a@example.com" }));
+  assert.equal(unknown.status, 400);
+  assert.deepEqual(await unknown.json(), { ok: false, error: "invalid_action" });
+  const bot = await handle(remove({ email: "a@example.com", company: "spam" }));
+  assert.equal(bot.status, 200);
+  assert.deepEqual(await bot.json(), { ok: true });
+  assert.equal(calls, 0);
+});
+
+test("removal database failure is generic and does not claim success", async () => {
+  const handle = createWaitlistHandler({
+    async saveSignup() {},
+    async removeSignup() { throw new Error("secret database detail"); },
+  });
+  const response = await handle(remove({ email: "a@example.com" }));
+  assert.equal(response.status, 503);
+  assert.deepEqual(await response.json(), { ok: false, error: "unavailable" });
 });
 
 test("rejects cross-origin, missing origin, wrong method, invalid content and oversized body", async () => {

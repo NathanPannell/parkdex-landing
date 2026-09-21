@@ -1,0 +1,73 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Parkdex · Field guide direction</title>
+  <meta name="robots" content="noindex, nofollow" />
+  <link rel="icon" href="/favicon.svg" />
+  <link rel="stylesheet" href="./field-guide.css" />
+</head>
+<body class="field-guide">
+  <a class="skip-link" href="#inside">Skip to content</a>
+  <section class="fg-hero" aria-labelledby="hero-title">
+    <img class="fg-landscape" src="/images/island-hero.webp" width="2400" height="1606" alt="The forested coast at East Sooke, Vancouver Island" fetchpriority="high" />
+    <header class="fg-header">
+      <a class="fg-wordmark" href="#"><img src="/favicon.svg" width="36" height="36" alt="" />Parkdex</a>
+      <a class="fg-app" href="https://parkdex.app">Open the web app <span aria-hidden="true">↗</span></a>
+    </header>
+    <div class="fg-opening">
+      <div class="fg-intro">
+        <h1 id="hero-title">Your island.<br />Still full<br class="fg-desktop-break" /> of firsts.</h1>
+        <p>Find your next Vancouver Island park. Save it for later. Keep track of your visits.</p>
+        <a class="fg-primary" href="#signup">Join the Android waitlist <span aria-hidden="true">→</span></a>
+        <a class="fg-secondary" href="#inside">See how Parkdex works <span aria-hidden="true">↓</span></a>
+      </div>
+      <figure class="fg-hero-device">
+        <div class="fg-phone"><img src="/images/badge-reward.webp" width="714" height="1354" alt="River Otter Rookie badge. Collect your first place." /></div>
+        <figcaption>First park. First badge.</figcaption>
+      </figure>
+    </div>
+    <p class="fg-location">East Sooke, Vancouver Island</p>
+  </section>
+  <main>
+    <section id="inside" class="fg-inside" aria-labelledby="inside-title">
+      <div class="fg-section-intro">
+        <h2 id="inside-title">From Sooke<br />to Cape Scott.</h2>
+        <p>National, provincial and regional parks.<br />And the islands in between.</p>
+      </div>
+      <div class="fg-tour">
+        <div class="fg-tour-copy">
+          <div class="fg-choices" aria-label="Choose an app preview">
+            <button data-shot="map" aria-pressed="true">Find a park <span aria-hidden="true">→</span></button>
+            <button data-shot="parks" aria-pressed="false">Browse the places <span aria-hidden="true">→</span></button>
+            <button data-shot="wishlist" aria-pressed="false">Save your next stop <span aria-hidden="true">→</span></button>
+            <button data-shot="progress" aria-pressed="false">See where you’ve been <span aria-hidden="true">→</span></button>
+            <button data-shot="badges" aria-pressed="false">Claim a badge <span aria-hidden="true">→</span></button>
+          </div>
+          <p id="shot-caption" class="fg-caption" aria-live="polite">Parks across Vancouver Island, all in one place.</p>
+          <p class="fg-tour-note">Real screens from Parkdex.<br />Already available on the web.</p>
+        </div>
+        <figure class="fg-stage">
+          <div class="fg-preview fg-laptop" id="preview-device"><div class="fg-screen"><img id="preview-image" src="/images/staging-map.webp" width="1440" height="900" alt="Parks across Vancouver Island in the Parkdex map" /></div><span class="fg-laptop-base" aria-hidden="true"></span></div>
+          <figcaption><a id="original-image" href="/images/staging-map.webp" target="_blank" rel="noopener">Open full-size screenshot <span aria-hidden="true">↗</span></a></figcaption>
+        </figure>
+      </div>
+    </section>
+    <section id="signup" class="fg-signup" aria-labelledby="signup-title">
+      <div><h2 id="signup-title">For your next day out.</h2><p>Parkdex for Android is coming soon.</p></div>
+      <form class="fg-form" data-prototype-form method="dialog">
+        <label for="fg-email">Your email address</label>
+        <div class="fg-form-row"><input type="email" id="fg-email" autocomplete="email" placeholder="you@example.com" required /><button type="submit">Join the waitlist <span aria-hidden="true">→</span></button></div>
+        <p class="fg-form-status" role="status">One email when it’s ready. No newsletter.</p>
+      </form>
+    </section>
+  </main>
+  <footer class="fg-footer">
+    <p class="fg-founder"><span>See you out there, <a href="https://www.nathanpannell.com/parkdex/">Nathan</a></span><br />Built in Victoria, for this island.</p>
+    <details class="fg-privacy"><summary>About your email</summary><div><p>Your email is only used to let you know when Parkdex for Android launches. No account needed.</p><form data-prototype-form method="dialog"><label for="fg-remove">Leave the waitlist</label><input id="fg-remove" type="email" autocomplete="email" placeholder="Your email address" required /><button type="submit">Remove my email</button><p class="fg-form-status" role="status">You can join again whenever you like.</p></form></div></details>
+    <p class="fg-credit">Photo: <a href="https://commons.wikimedia.org/wiki/File:East_Sooke_Park_BC.jpg">Brandon Godfrey</a> · <a href="https://creativecommons.org/licenses/by-sa/2.0/">CC BY-SA 2.0</a> · cropped for layout. Map © <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a></p>
+  </footer>
+  <script type="module" src="./field-guide.ts"></script>
+</body>
+</html>

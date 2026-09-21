@@ -14,6 +14,10 @@
       ]
     },
     {
+      "source": "/mockups/(.*)",
+      "headers": [{ "key": "Content-Security-Policy", "value": "default-src 'self'; script-src 'self'; style-src 'self'; img-src 'self' data:; font-src 'self'; connect-src 'self'; base-uri 'self'; frame-ancestors 'self'; form-action 'self'" }]
+    },
+    {
       "source": "/images/(.*)",
       "headers": [{ "key": "Cache-Control", "value": "public, max-age=3600" }]
     }

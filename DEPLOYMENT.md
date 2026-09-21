@@ -21,6 +21,10 @@ The deployer owns these resources and the journal until the live signup and data
 
 `schema.sql` creates `waitlist_signups`. Email addresses are normalized to lowercase and unique. Duplicate submissions return the same success response. No outbound email is sent, and there is no public list endpoint. The `DATABASE_URL` environment variable belongs to the new Vercel project only.
 
+`POST /api/waitlist` also accepts `action: "remove"`. It deletes only the exact normalized address and returns the same generic success for existing and absent records. This intentionally provides frictionless opt-out without inbox verification. The existing WAF protects both actions; no schema or provider changes are needed. Signup and removal requests are serialized within one page to avoid a pending signup racing an opt-out.
+
+Design-only routes under `/mockups/` use non-submitting prototype forms and are excluded from indexing. Their CSP permits same-origin framing for the comparison page; the main page retains `frame-ancestors 'none'`.
+
 ## Release checks
 
 Run `npm test` and `npm run build`. Verify the exact Vercel deployment URL in a real browser, submit one owned test address, and confirm a single normalized row in the new Neon database. Delete that test row after recording evidence. Check the Vercel Function response and logs, and confirm existing Parkdex resources were not changed.
