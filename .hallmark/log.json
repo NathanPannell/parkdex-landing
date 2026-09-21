@@ -7,7 +7,36 @@
     "footer": "Ft6",
     "enrichment": "Real app screenshots in requested matte device mockups",
     "brief": "Parkdex Android waitlist. One screen. Existing portfolio is visual authority.",
-    "explicitOverrides": ["User requested phone and laptop mockups", "Use personal portfolio typography and palette"],
-    "critique": { "philosophy": 4, "hierarchy": 5, "execution": 4, "specificity": 5, "restraint": 4, "variety": 4 }
+    "explicitOverrides": [
+      "User requested phone and laptop mockups",
+      "Use personal portfolio typography and palette"
+    ],
+    "critique": {
+      "philosophy": 4,
+      "hierarchy": 5,
+      "execution": 4,
+      "specificity": 5,
+      "restraint": 4,
+      "variety": 4
+    }
+  },
+  {
+    "date": "2026-09-21",
+    "macrostructure": "Photographic island opening with paper screenshot gallery",
+    "theme": "portfolio-derived",
+    "brief": "User-directed photo hero and visible phone before scroll",
+    "explicitOverrides": [
+      "Photo background and phone requested by user",
+      "Supplied screenshots for signed-in states"
+    ],
+    "critique": {
+      "execution": 4,
+      "hierarchy": 5,
+      "restraint": 4,
+      "specificity": 5,
+      "variety": 4,
+      "philosophy": 5
+    },
+    "verifiedRuntime": "417835a"
   }
 ]

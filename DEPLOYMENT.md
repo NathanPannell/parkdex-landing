@@ -10,9 +10,9 @@ This is an independent Vercel application with a dedicated Neon database. It doe
 | Neon branch | `br-young-shape-ar1qojbp` (`main`) | Created |
 | Neon database | `app` | `schema.sql` applied; table existence verified |
 | Vercel project | `prj_R7ccAjDhGmhiys542GFXJ67d1k8X` (`parkdex-landing`) | Created; linked locally |
-| Vercel deployment | `F6DSWrwSzLHvbmQSK6xDRNFm3bWZ` | Revision `2bfa26b9a99b2873add32dda5c96016385f77114`, Production, READY |
+| Vercel deployment | `1ArT8BYyWb59GBweLKVtkMsCrt6h` | Photo-hero correction `417835ad12c21330e0e4572c9262cf6d70e2d4f4`, Production, READY |
 | Temporary URL | `https://parkdex-landing.vercel.app` | Public; serves the landing page |
-| Immutable deployment URL | `https://parkdex-landing-4a3vnt5yu-nathanpannells-projects.vercel.app` | Protected by Vercel Authentication |
+| Immutable deployment URL | `https://parkdex-landing-ffq8hae1w-nathanpannells-projects.vercel.app` | Protected by Vercel Authentication |
 | WAF rule | `rule_limit_android_waitlist_submissions_cvRDrf` | Published; POST `/api/waitlist`, 5 requests per 60 seconds per IP |
 
 The deployer owns these resources and the journal until the live signup and database record have been verified. The isolated pooled `DATABASE_URL` is configured as a sensitive Vercel Production variable only. Secrets and connection strings live outside the repository. There is no custom domain assignment in this release. The immutable deployment URL shows Vercel's login screen under the account's default protection; use the public temporary alias for browser verification.
@@ -33,4 +33,8 @@ On the preceding deployment, seven same-IP honeypot POSTs returned 200 for attem
 
 The browser form journey submitted `codex-landing-c0de2026@example.com` and displayed success. The isolated database contained exactly one row for that address; the owned test row was then deleted and its absence verified. The browser also exercised the over-limit response before the rate window reset.
 
-A final mobile form test submitted the same reserved address again. The database contained exactly one row after that submission; it was deleted again, and zero rows were verified. This was a mobile success check, not an offline behavior check.
+A mobile form test submitted the same reserved address again. The database contained exactly one row after that submission; it was deleted again, and zero rows were verified. This was a mobile success check, not an offline behavior check.
+
+The photo-hero revision reused the existing Vercel project, temporary alias, Neon database, and WAF rule. The production build completed, the alias served Parkdex HTML with HTTP 200, the new hero WebP served with HTTP 200, and `GET /api/waitlist` returned the expected HTTP 405. Deployed visual review remains with the page owner.
+
+The photo-hero correction `417835a` passed the production build and updated the same public alias. The page and hero image each served HTTP 200. The mobile form submitted `codex-landing-d00d2026@example.com` successfully; the isolated Neon database showed exactly one row, which was deleted and verified absent. Gallery visual QA remains with the page owner.
