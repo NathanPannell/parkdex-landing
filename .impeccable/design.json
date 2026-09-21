@@ -1,0 +1,118 @@
+{
+  "schemaVersion": 2,
+  "generatedAt": "2026-09-21T13:27:45-07:00",
+  "title": "Design System: Parkdex",
+  "extensions": {
+    "colorMeta": {
+      "paper": { "role": "neutral", "displayName": "Field Paper", "canonical": "#f1f0e8", "tonalRamp": ["oklch(15% .012 105)", "oklch(26% .012 105)", "oklch(38% .012 105)", "oklch(50% .012 105)", "oklch(62% .012 105)", "oklch(74% .012 105)", "oklch(86% .012 105)", "oklch(95% .012 105)"] },
+      "paper-bright": { "role": "neutral", "displayName": "Fresh Paper", "canonical": "#fbfaf4", "tonalRamp": ["oklch(15% .01 105)", "oklch(26% .01 105)", "oklch(38% .01 105)", "oklch(50% .01 105)", "oklch(62% .01 105)", "oklch(74% .01 105)", "oklch(86% .01 105)", "oklch(97% .01 105)"] },
+      "paper-deep": { "role": "neutral", "displayName": "Pressed Paper", "canonical": "#e6e8dd", "tonalRamp": ["oklch(15% .016 120)", "oklch(26% .016 120)", "oklch(38% .016 120)", "oklch(50% .016 120)", "oklch(62% .016 120)", "oklch(74% .016 120)", "oklch(86% .016 120)", "oklch(95% .016 120)"] },
+      "ink": { "role": "neutral", "displayName": "Green Ink", "canonical": "#142d27", "tonalRamp": ["oklch(15% .035 170)", "oklch(26% .035 170)", "oklch(38% .035 170)", "oklch(50% .035 170)", "oklch(62% .035 170)", "oklch(74% .035 170)", "oklch(86% .035 170)", "oklch(95% .035 170)"] },
+      "secondary": { "role": "neutral", "displayName": "Secondary Ink", "canonical": "#40594e", "tonalRamp": ["oklch(15% .04 160)", "oklch(26% .04 160)", "oklch(38% .04 160)", "oklch(50% .04 160)", "oklch(62% .04 160)", "oklch(74% .04 160)", "oklch(86% .04 160)", "oklch(95% .04 160)"] },
+      "muted": { "role": "neutral", "displayName": "Quiet Ink", "canonical": "#546359", "tonalRamp": ["oklch(15% .025 155)", "oklch(26% .025 155)", "oklch(38% .025 155)", "oklch(50% .025 155)", "oklch(62% .025 155)", "oklch(74% .025 155)", "oklch(86% .025 155)", "oklch(95% .025 155)"] },
+      "accent": { "role": "primary", "displayName": "Field Marker", "canonical": "#b8f53d", "tonalRamp": ["oklch(15% .14 125)", "oklch(26% .14 125)", "oklch(38% .14 125)", "oklch(50% .14 125)", "oklch(62% .14 125)", "oklch(74% .14 125)", "oklch(86% .14 125)", "oklch(95% .14 125)"] },
+      "accent-ink": { "role": "neutral", "displayName": "Marker Ink", "canonical": "#142d27", "tonalRamp": ["oklch(15% .035 170)", "oklch(26% .035 170)", "oklch(38% .035 170)", "oklch(50% .035 170)", "oklch(62% .035 170)", "oklch(74% .035 170)", "oklch(86% .035 170)", "oklch(95% .035 170)"] },
+      "accent-hover": { "role": "primary", "displayName": "Pressed Marker", "canonical": "#a6e22d", "tonalRamp": ["oklch(15% .14 125)", "oklch(26% .14 125)", "oklch(38% .14 125)", "oklch(50% .14 125)", "oklch(62% .14 125)", "oklch(74% .14 125)", "oklch(86% .14 125)", "oklch(95% .14 125)"] },
+      "rule": { "role": "neutral", "displayName": "Pencil Rule", "canonical": "#b7c1b0", "tonalRamp": ["oklch(15% .025 140)", "oklch(26% .025 140)", "oklch(38% .025 140)", "oklch(50% .025 140)", "oklch(62% .025 140)", "oklch(74% .025 140)", "oklch(86% .025 140)", "oklch(95% .025 140)"] },
+      "focus": { "role": "primary", "displayName": "Focus Green", "canonical": "#246b56", "tonalRamp": ["oklch(15% .085 166)", "oklch(26% .085 166)", "oklch(38% .085 166)", "oklch(50% .085 166)", "oklch(62% .085 166)", "oklch(74% .085 166)", "oklch(86% .085 166)", "oklch(95% .085 166)"] },
+      "error": { "role": "tertiary", "displayName": "Error Red", "canonical": "#a12c24", "tonalRamp": ["oklch(15% .14 28)", "oklch(26% .14 28)", "oklch(38% .14 28)", "oklch(50% .14 28)", "oklch(62% .14 28)", "oklch(74% .14 28)", "oklch(86% .14 28)", "oklch(95% .14 28)"] },
+      "success": { "role": "secondary", "displayName": "Success Green", "canonical": "#216246", "tonalRamp": ["oklch(15% .085 155)", "oklch(26% .085 155)", "oklch(38% .085 155)", "oklch(50% .085 155)", "oklch(62% .085 155)", "oklch(74% .085 155)", "oklch(86% .085 155)", "oklch(95% .085 155)"] },
+      "transparent": { "role": "neutral", "displayName": "Clear", "canonical": "transparent", "tonalRamp": ["transparent", "transparent", "transparent", "transparent", "transparent", "transparent", "transparent", "transparent"] },
+      "device-shell": { "role": "neutral", "displayName": "Matte Shell", "canonical": "#35413e", "tonalRamp": ["oklch(15% .015 170)", "oklch(26% .015 170)", "oklch(38% .015 170)", "oklch(50% .015 170)", "oklch(62% .015 170)", "oklch(74% .015 170)", "oklch(86% .015 170)", "oklch(95% .015 170)"] },
+      "device-edge": { "role": "neutral", "displayName": "Light-facing Edge", "canonical": "#77817a", "tonalRamp": ["oklch(15% .015 150)", "oklch(26% .015 150)", "oklch(38% .015 150)", "oklch(50% .015 150)", "oklch(62% .015 150)", "oklch(74% .015 150)", "oklch(86% .015 150)", "oklch(95% .015 150)"] },
+      "device-bezel": { "role": "neutral", "displayName": "Screen Recess", "canonical": "#101917", "tonalRamp": ["oklch(15% .014 170)", "oklch(26% .014 170)", "oklch(38% .014 170)", "oklch(50% .014 170)", "oklch(62% .014 170)", "oklch(74% .014 170)", "oklch(86% .014 170)", "oklch(95% .014 170)"] },
+      "device-base": { "role": "neutral", "displayName": "Laptop Foot", "canonical": "#2c3835", "tonalRamp": ["oklch(15% .016 170)", "oklch(26% .016 170)", "oklch(38% .016 170)", "oklch(50% .016 170)", "oklch(62% .016 170)", "oklch(74% .016 170)", "oklch(86% .016 170)", "oklch(95% .016 170)"] },
+      "shadow": { "role": "neutral", "displayName": "Screen Shade", "canonical": "rgb(20 45 39 / 24%)", "tonalRamp": ["oklch(15% .035 170 / .24)", "oklch(26% .035 170 / .24)", "oklch(38% .035 170 / .24)", "oklch(50% .035 170 / .24)", "oklch(62% .035 170 / .24)", "oklch(74% .035 170 / .24)", "oklch(86% .035 170 / .24)", "oklch(95% .035 170 / .24)"] },
+      "backdrop": { "role": "neutral", "displayName": "Inspection Scrim", "canonical": "rgb(13 28 23 / 82%)", "tonalRamp": ["oklch(15% .03 165 / .82)", "oklch(26% .03 165 / .82)", "oklch(38% .03 165 / .82)", "oklch(50% .03 165 / .82)", "oklch(62% .03 165 / .82)", "oklch(74% .03 165 / .82)", "oklch(86% .03 165 / .82)", "oklch(95% .03 165 / .82)"] }
+    },
+    "typographyMeta": {
+      "display": { "displayName": "Display", "purpose": "The compact, high-impact landing headline." },
+      "title": { "displayName": "Title", "purpose": "Waitlist and viewer headings." },
+      "body": { "displayName": "Body", "purpose": "Practical explanation and reading text." },
+      "label": { "displayName": "Label", "purpose": "Explicit form identification." },
+      "hand": { "displayName": "Handwritten", "purpose": "Brief personal annotations only." }
+    },
+    "shadows": [
+      { "name": "laptop-contact", "value": "0 12px 28px var(--color-shadow)", "purpose": "Physical separation under the matte laptop." },
+      { "name": "phone-contact", "value": "0 14px 26px var(--color-shadow)", "purpose": "Physical separation under the two portrait devices." }
+    ],
+    "motion": [
+      { "name": "short", "value": "180ms cubic-bezier(.16, 1, .3, 1)", "purpose": "Brief button press feedback; disabled under reduced motion." },
+      { "name": "long", "value": "360ms cubic-bezier(.16, 1, .3, 1)", "purpose": "Reserved token; no current long animation on this surface." }
+    ],
+    "breakpoints": [
+      { "name": "form-row", "value": "25rem" },
+      { "name": "tablet", "value": "40rem" },
+      { "name": "desktop", "value": "64rem" },
+      { "name": "wide", "value": "85rem" },
+      { "name": "tiny", "value": "max-width: 22rem" },
+      { "name": "short-desktop", "value": "min-width: 64rem and max-height: 53.125rem" }
+    ]
+  },
+  "components": [
+    {
+      "name": "Waitlist Button", "kind": "button", "refersTo": "button-primary",
+      "description": "The one lime primary action, with a precise-pointer hover and brief pressed state.",
+      "html": "<button class=\"ds-join\" type=\"button\">Join the waitlist <span aria-hidden=\"true\">→</span></button>",
+      "css": ".ds-join { display:inline-flex; align-items:center; justify-content:center; gap:.8rem; min-height:54px; padding:.8rem 1.1rem; border:0; border-radius:5px; background:var(--color-accent, #b8f53d); color:var(--color-accent-ink, #142d27); font-family:'Strichpunkt Sans Variable',sans-serif; font-size:.95rem; font-weight:720; letter-spacing:-.02em; cursor:pointer; transition:transform 180ms cubic-bezier(.16,1,.3,1) } .ds-join:focus-visible { outline:3px solid var(--color-focus, #246b56); outline-offset:4px } .ds-join:active { transform:translateY(1px) } @media (hover:hover) and (pointer:fine) { .ds-join:hover { background:var(--color-accent-hover, #a6e22d) } } @media (prefers-reduced-motion:reduce) { .ds-join { transition:none } }"
+    },
+    {
+      "name": "Email Field", "kind": "input", "refersTo": "input-email",
+      "description": "An explicitly labeled fresh-paper field with visible focus, error, and success borders.",
+      "html": "<label class=\"ds-email-label\" for=\"ds-email\">Your email address</label><input class=\"ds-email\" id=\"ds-email\" type=\"email\" placeholder=\"you@example.com\" />",
+      "css": ".ds-email-label { display:block; margin-bottom:.4rem; color:var(--color-ink, #142d27); font-family:'Ysabeau Variable',sans-serif; font-size:.9rem; font-weight:650 } .ds-email { display:block; width:min(100%, 360px); height:54px; padding:.8rem 1rem; border:1px solid var(--color-rule, #b7c1b0); border-radius:5px; background:var(--color-paper-bright, #fbfaf4); color:var(--color-ink, #142d27); font-family:'Ysabeau Variable',sans-serif; font-size:1.05rem; caret-color:var(--color-focus, #246b56) } .ds-email::placeholder { color:var(--color-muted, #546359); opacity:1 } .ds-email:focus-visible { outline:3px solid var(--color-focus, #246b56); outline-offset:4px } .ds-email[aria-invalid=true] { border-color:var(--color-error, #a12c24) } .ds-email[data-success=true] { border-color:var(--color-success, #216246) }"
+    },
+    {
+      "name": "Masthead Navigation", "kind": "nav",
+      "description": "Heavy wordmark with a single underlined external app link.",
+      "html": "<nav class=\"ds-nav\" aria-label=\"Main\"><a class=\"ds-wordmark\" href=\"#\"><svg class=\"ds-mark\" width=\"35\" height=\"35\" viewBox=\"0 0 40 40\" aria-hidden=\"true\"><rect width=\"40\" height=\"40\" rx=\"10\" fill=\"currentColor\"/><g class=\"ds-trees\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"2.1\" stroke-linecap=\"round\" stroke-linejoin=\"round\"><path d=\"M24 29v-6m-2-14 6 7h-3l6 7H19M14 29v-7m-4-2a4.5 4.5 0 0 1-1-8 4 4 0 0 1 8 0 4.5 4.5 0 0 1 1 8Z\"/></g></svg>Parkdex</a><a class=\"ds-app-link\" href=\"#\">Open the web app <span aria-hidden=\"true\">↗</span></a></nav>",
+      "css": ".ds-nav { display:flex; align-items:center; justify-content:space-between; gap:1.5rem; min-height:88px; border-bottom:1px solid var(--color-rule, #b7c1b0); color:var(--color-ink, #142d27) } .ds-wordmark { display:inline-flex; align-items:center; gap:.65rem; color:inherit; font-family:'Strichpunkt Sans Variable',sans-serif; font-size:1.9rem; font-weight:780; letter-spacing:-.04em; text-decoration:none } .ds-mark { width:35px; height:35px; color:var(--color-accent, #b8f53d) } .ds-trees { color:var(--color-ink, #142d27) } .ds-app-link { display:inline-flex; align-items:center; gap:.5rem; min-height:44px; color:inherit; font-family:'Ysabeau Variable',sans-serif; font-size:.95rem; font-weight:700; text-decoration:underline; text-underline-offset:.22em; white-space:nowrap } .ds-nav a:focus-visible { outline:3px solid var(--color-focus, #246b56); outline-offset:4px } @media (hover:hover) and (pointer:fine) { .ds-app-link:hover { text-decoration-thickness:2px } }"
+    },
+    {
+      "name": "Screenshot Choice", "kind": "button", "refersTo": "button-preview",
+      "description": "An underlined, touch-sized manual control for the screenshot viewer.",
+      "html": "<button class=\"ds-preview\" type=\"button\">The map <span aria-hidden=\"true\">↗</span></button>",
+      "css": ".ds-preview { display:inline-flex; align-items:center; gap:.3rem; min-height:44px; padding:0; border:0; background:transparent; color:var(--color-ink, #142d27); font-family:'Ysabeau Variable',sans-serif; font-size:.95rem; text-decoration:underline; text-underline-offset:.22em; cursor:pointer } .ds-preview:focus-visible { outline:3px solid var(--color-focus, #246b56); outline-offset:4px } .ds-preview:active { color:var(--color-secondary, #40594e) } @media (hover:hover) and (pointer:fine) { .ds-preview:hover { text-decoration-thickness:2px } }"
+    },
+    {
+      "name": "Screenshot Tab", "kind": "button",
+      "description": "A compact manual viewer selector whose pressed state gains fresh paper and a pencil border.",
+      "html": "<div class=\"ds-tabs\"><button class=\"ds-tab\" type=\"button\" aria-pressed=\"true\">The map</button><button class=\"ds-tab\" type=\"button\" aria-pressed=\"false\">A park</button></div>",
+      "css": ".ds-tabs { display:flex; gap:.3rem; background:var(--color-paper, #f1f0e8) } .ds-tab { min-height:44px; padding:.65rem .7rem; border:1px solid transparent; border-radius:5px; background:transparent; color:var(--color-ink, #142d27); font-family:'Ysabeau Variable',sans-serif; font-size:.95rem; cursor:pointer } .ds-tab[aria-pressed=true] { border-color:var(--color-secondary, #40594e); background:var(--color-paper-bright, #fbfaf4) } .ds-tab:focus-visible { outline:3px solid var(--color-focus, #246b56); outline-offset:4px } @media (hover:hover) and (pointer:fine) { .ds-tab:hover { background:var(--color-paper-bright, #fbfaf4) } }"
+    },
+    {
+      "name": "Privacy Disclosure", "kind": "custom",
+      "description": "Native details control with an in-flow mobile explanation and a paper popover at tablet widths.",
+      "html": "<details class=\"ds-privacy\"><summary>About your email</summary><div class=\"ds-privacy-content\">Only one email when Android is ready. No newsletter.</div></details>",
+      "css": ".ds-privacy { position:relative; color:var(--color-muted, #546359); font-family:'Ysabeau Variable',sans-serif; font-size:.9rem } .ds-privacy summary { display:flex; align-items:center; min-height:44px; cursor:pointer; text-decoration:underline; text-underline-offset:.22em } .ds-privacy summary:focus-visible { outline:3px solid var(--color-focus, #246b56); outline-offset:4px } .ds-privacy-content { max-width:40ch; padding:0 0 1rem; line-height:1.5 } @media (min-width:40rem) { .ds-privacy-content { position:absolute; bottom:100%; right:0; min-width:310px; padding:1.5rem; border:1px solid var(--color-rule, #b7c1b0); border-radius:6px; background:var(--color-paper-bright, #fbfaf4); color:var(--color-secondary, #40594e) } }"
+    }
+  ],
+  "narrative": {
+    "northStar": "The Open Field Guide",
+    "overview": "Parkdex feels like a useful, personal field guide laid on a lightly textured paper desk. Dense green ink and a candid, heavy headline hold the page together; electric lime behaves like a single marker stroke, not an all-over theme. Real app captures supply the detail and proof.\n\nThe design draws its type, paper, handwriting, and material restraint from Nathan's portfolio. Screens sit in legible, neutral matte hardware. The composition stays compact on desktop, then allows a natural vertical reading order on smaller screens. Its few actions are direct and calm, with visible focus and form feedback.",
+    "keyCharacteristics": [
+      "Paper and ink carry the surface; lime marks the action and one phrase.",
+      "Bold, tightly spaced display type pairs with readable, warmer body type and occasional handwriting.",
+      "Real screenshots remain crisp and large enough to inspect, inside restrained matte devices.",
+      "Thin rules and tonal paper changes organize space; overlays appear only for deliberate inspection."
+    ],
+    "rules": [
+      { "name": "The One Marker Rule", "body": "Keep lime scarce. It identifies a key phrase or action while green ink and paper do the rest.", "section": "colors" },
+      { "name": "The Human Annotation Rule", "body": "Handwriting adds a personal aside around actual product content; it does not carry form labels, navigation, or essential instructions.", "section": "typography" },
+      { "name": "The Matte Hardware Rule", "body": "Preserve a dark chassis and distinct bezel at the smallest shipped size. A light-facing edge can define the silhouette; decorative chrome gradients are outside this material language.", "section": "elevation" },
+      { "name": "The Direct Interaction Rule", "body": "Product previews change only on a visitor's action. Preserve semantic controls, 44px touch targets, visible keyboard focus, and reduced-motion behavior.", "section": "components" }
+    ],
+    "dos": [
+      "Do use real Parkdex captures at legible sizes and retain the matte chassis around any device mockup.",
+      "Do let paper, ink, rules, and spacing establish hierarchy before adding color or shadow.",
+      "Do keep the handwritten voice to short personal annotations and the practical copy in Ysabeau.",
+      "Do preserve explicit validation, loading, network error, success, and focus states for signup."
+    ],
+    "donts": [
+      "Don't spread the lime accent across whole panels or replace the device shell with brand color.",
+      "Don't invent polished chrome, detailed branded hardware, or a decorative gradient around screenshots.",
+      "Don't auto-advance app captures or make core content depend on animation.",
+      "Don't clip a narrow viewport merely to force a one-screen layout."
+    ]
+  }
+}

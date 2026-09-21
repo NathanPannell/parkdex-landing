@@ -10,9 +10,12 @@ This is an independent Vercel application with a dedicated Neon database. It doe
 | Neon branch | `br-young-shape-ar1qojbp` (`main`) | Created |
 | Neon database | `app` | `schema.sql` applied; table existence verified |
 | Vercel project | `prj_R7ccAjDhGmhiys542GFXJ67d1k8X` (`parkdex-landing`) | Created; linked locally |
-| Temporary URL | Pending | Not deployed |
+| Vercel deployment | `F6DSWrwSzLHvbmQSK6xDRNFm3bWZ` | Revision `2bfa26b9a99b2873add32dda5c96016385f77114`, Production, READY |
+| Temporary URL | `https://parkdex-landing.vercel.app` | Public; serves the landing page |
+| Immutable deployment URL | `https://parkdex-landing-4a3vnt5yu-nathanpannells-projects.vercel.app` | Protected by Vercel Authentication |
+| WAF rule | `rule_limit_android_waitlist_submissions_cvRDrf` | Published; POST `/api/waitlist`, 5 requests per 60 seconds per IP |
 
-The deployer owns these resources and the journal until the live signup and database record have been verified. The isolated pooled `DATABASE_URL` is configured as a sensitive Vercel Production variable only. Secrets and connection strings live outside the repository. There is no custom domain assignment in this release.
+The deployer owns these resources and the journal until the live signup and database record have been verified. The isolated pooled `DATABASE_URL` is configured as a sensitive Vercel Production variable only. Secrets and connection strings live outside the repository. There is no custom domain assignment in this release. The immutable deployment URL shows Vercel's login screen under the account's default protection; use the public temporary alias for browser verification.
 
 ## Data contract
 
@@ -23,3 +26,11 @@ The deployer owns these resources and the journal until the live signup and data
 Run `npm test` and `npm run build`. Verify the exact Vercel deployment URL in a real browser, submit one owned test address, and confirm a single normalized row in the new Neon database. Delete that test row after recording evidence. Check the Vercel Function response and logs, and confirm existing Parkdex resources were not changed.
 
 Use an address matching `codex-landing-<8 hex digits>@example.com` for the owned test. After submitting it, `pwsh -File scripts/provider-db-check.ps1 -TestEmail <address>` checks the row, and adding `-DeleteTestEmail` deletes it and verifies its absence. The script obtains Neon credentials from the protected user-only store and prints no connection string.
+
+The first live POST on the public alias returned HTTP 200 with `{ "ok": true }`. The new Neon database contained exactly one row for the owned test address. That row was deleted, and absence was verified. A separate test address is reserved for the browser form journey, and it must be deleted after the UI test. The WAF rule is scoped to this project and can throttle repeated tests from one IP; wait 60 seconds before retesting if HTTP 429 appears.
+
+On the preceding deployment, seven same-IP honeypot POSTs returned 200 for attempts 1–5 and 429 for attempts 6–7. The reserved browser test address had zero rows after those requests, proving the honeypot avoided database insertion while the WAF stopped excess traffic before the Function. The project-level WAF rule remained active through the final deployment.
+
+The browser form journey submitted `codex-landing-c0de2026@example.com` and displayed success. The isolated database contained exactly one row for that address; the owned test row was then deleted and its absence verified. The browser also exercised the over-limit response before the rate window reset.
+
+A final mobile form test submitted the same reserved address again. The database contained exactly one row after that submission; it was deleted again, and zero rows were verified. This was a mobile success check, not an offline behavior check.
