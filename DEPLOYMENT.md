@@ -10,9 +10,9 @@ This is an independent Vercel application with a dedicated Neon database. It doe
 | Neon branch | `br-young-shape-ar1qojbp` (`main`) | Created |
 | Neon database | `app` | `schema.sql` applied; table existence verified |
 | Vercel project | `prj_R7ccAjDhGmhiys542GFXJ67d1k8X` (`parkdex-landing`) | Created; linked locally |
-| Vercel deployment | `1ArT8BYyWb59GBweLKVtkMsCrt6h` | Photo-hero correction `417835ad12c21330e0e4572c9262cf6d70e2d4f4`, Production, READY |
+| Vercel deployment | `6cc7g5FcETCBSbuFNmH5dEmwmFnp` | Removal and mockups, final heading correction `ab61ae259c82cd342843be0ecd8406700f813afe`, Production, READY |
 | Temporary URL | `https://parkdex-landing.vercel.app` | Public; serves the landing page |
-| Immutable deployment URL | `https://parkdex-landing-ffq8hae1w-nathanpannells-projects.vercel.app` | Protected by Vercel Authentication |
+| Immutable deployment URL | `https://parkdex-landing-7li1snjan-nathanpannells-projects.vercel.app` | Protected by Vercel Authentication |
 | WAF rule | `rule_limit_android_waitlist_submissions_cvRDrf` | Published; POST `/api/waitlist`, 5 requests per 60 seconds per IP |
 
 The deployer owns these resources and the journal until the live signup and database record have been verified. The isolated pooled `DATABASE_URL` is configured as a sensitive Vercel Production variable only. Secrets and connection strings live outside the repository. There is no custom domain assignment in this release. The immutable deployment URL shows Vercel's login screen under the account's default protection; use the public temporary alias for browser verification.
@@ -42,3 +42,7 @@ A mobile form test submitted the same reserved address again. The database conta
 The photo-hero revision reused the existing Vercel project, temporary alias, Neon database, and WAF rule. The production build completed, the alias served Parkdex HTML with HTTP 200, the new hero WebP served with HTTP 200, and `GET /api/waitlist` returned the expected HTTP 405. Deployed visual review remains with the page owner.
 
 The photo-hero correction `417835a` passed the production build and updated the same public alias. The page and hero image each served HTTP 200. The mobile form submitted `codex-landing-d00d2026@example.com` successfully; the isolated Neon database showed exactly one row, which was deleted and verified absent. Gallery visual QA remains with the page owner.
+
+The removal and mockup revision `0fac167` was deployed to the same project, followed by the final mockup heading correction `ab61ae2`. The final Vercel production build completed. The public alias served `/`, `/mockups/`, `/mockups/field-guide.html`, and `/mockups/poster.html` with HTTP 200 and expected page titles. The main page response retained `frame-ancestors 'none'`; each mockup route returned `frame-ancestors 'self'`. These checks were read-only. The page owner verifies the live signup and removal journey against the dedicated Neon row.
+
+The removal release was verified in the live mobile browser with `codex-landing-55e12026@example.com`: signup produced exactly one row, removal of the uppercase equivalent through About your email produced generic success, and a read-only database check verified zero rows. The test record was removed by the shipped UI, not an administrative cleanup query.
