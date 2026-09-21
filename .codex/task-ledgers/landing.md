@@ -21,4 +21,4 @@ Root owns design, implementation integration, final browser QA and delivery. Res
 - Responsive inspection across 320 to 1697 pixels. Independent finish review disposition SHIP after header/short-screen corrections. Cropped before/after evidence retained in docs/evidence.
 
 ## Final handoff
-Commit design and deployment documentation, push feature branch, create and attach draft pull request. Keep the Vercel alias available for review.
+Design and deployment documentation committed and pushed. Draft PR: https://github.com/NathanPannell/parkdex-landing/pull/1, attached to this task. Vercel alias retained and opened for review. Owned test records removed; temporary browser overrides reset.
