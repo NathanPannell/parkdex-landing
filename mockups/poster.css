@@ -362,7 +362,7 @@
 
 .poster-map-section {
   display: grid;
-  grid-template-columns: minmax(230px, .52fr) minmax(0, 1.48fr);
+  grid-template-columns: minmax(0, .8fr) minmax(0, 1.2fr);
   align-items: center;
   gap: clamp(2.5rem, 7vw, 9rem);
   background: var(--poster-paper);
@@ -370,6 +370,11 @@
 
 .poster-section-intro {
   position: relative;
+}
+
+.poster-page .poster-map-intro h2 {
+  font-size: clamp(2.5rem, 4.3vw, 4.5rem);
+  overflow-wrap: anywhere;
 }
 
 .poster-section-intro h2,
