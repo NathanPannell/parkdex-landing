@@ -83,9 +83,9 @@ const viewerImage = document.querySelector<HTMLImageElement>('#viewer-image')!;
 const viewerTitle = document.querySelector('#viewer-title')!;
 const viewerDescription = document.querySelector('#viewer-description')!;
 const screenshots = {
-  map: { src: '/images/staging-map.webp', title: 'Explore the island by map.', description: 'See parks, regions, and your next route at a glance.', alt: 'Parkdex map showing parks across Vancouver Island', width: 1440, height: 900 },
+  map: { src: '/images/staging-map.webp', title: 'Explore the island by map.', description: 'Find your next park across Vancouver Island.', alt: 'Parkdex map showing parks across Vancouver Island', width: 1440, height: 900 },
   badges: { src: '/images/badge-reward.webp', title: 'Claim badges for the places you find.', description: 'Collect local wildlife discoveries as you explore.', alt: 'Parkdex badge screen showing a new river otter discovery', width: 714, height: 1354 },
-  parks: { src: '/images/park-search.webp', title: 'Find parks without the guesswork.', description: 'Browse provincial, regional, and island parks.', alt: 'Parkdex places screen listing regional and provincial parks', width: 712, height: 1359 },
+  parks: { src: '/images/park-search.webp', title: 'Find parks without the guesswork.', description: 'Search national, provincial and regional parks, plus islands.', alt: 'Parkdex places screen listing regional and provincial parks', width: 712, height: 1359 },
   wishlist: { src: '/images/park-detail.webp', title: 'Save a wishlist for later.', description: 'Keep the places that caught your eye close.', alt: 'Elk Falls Park detail with a waterfall photo and wishlist controls', width: 828, height: 1276 },
   progress: { src: '/images/island-progress.webp', title: 'Your island, in progress.', description: 'See your visited parks and growing collection.', alt: 'Parkdex map showing visited parks and progress across Vancouver Island', width: 1662, height: 1092 },
 } as const;
