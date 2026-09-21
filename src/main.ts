@@ -30,6 +30,7 @@ email.addEventListener('input', () => {
   email.setAttribute('aria-invalid', 'false');
   message.textContent = 'One email when the Android app is ready.';
   joinLabel.textContent = 'Join the waitlist';
+  join.disabled = false;
 });
 
 form.addEventListener('submit', async (event) => {
@@ -40,6 +41,7 @@ form.addEventListener('submit', async (event) => {
   if (!validate()) { email.focus(); return; }
   pending = true;
   join.disabled = true;
+  email.readOnly = true;
   form.dataset.state = 'loading';
   form.setAttribute('aria-busy', 'true');
   joinLabel.textContent = 'Joining…';
@@ -51,9 +53,9 @@ form.addEventListener('submit', async (event) => {
       body: JSON.stringify({ email: submittedEmail, company: company.value }),
       signal: AbortSignal.timeout(15000),
     });
-    const result = await response.json();
-    if (!response.ok || result.ok !== true) {
-      if (result.error === 'invalid_email') {
+    const result = await response.json().catch(() => null);
+    if (!response.ok || result?.ok !== true) {
+      if (result?.error === 'invalid_email') {
         email.setAttribute('aria-invalid', 'true');
         throw new Error('Check your email address and try again.');
       }
@@ -70,7 +72,8 @@ form.addEventListener('submit', async (event) => {
       ? error.message : 'Couldn’t reach the waitlist. Check your connection and try again.';
   } finally {
     pending = false;
-    join.disabled = false;
+    email.readOnly = false;
+    join.disabled = form.dataset.state === 'success';
     form.removeAttribute('aria-busy');
   }
 });

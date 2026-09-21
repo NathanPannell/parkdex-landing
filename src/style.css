@@ -72,6 +72,8 @@ input::placeholder { color: var(--color-muted); opacity: 1; }
 input[aria-invalid=true] { border-color: var(--color-error); }
 .join-button { display: flex; align-items: center; justify-content: center; gap: .8rem; height: 54px; padding: .8rem 1.1rem; border: 0; border-radius: 5px; background: var(--color-accent); color: var(--color-accent-ink); font-family: var(--font-display); font-weight: 720; font-size: .95rem; letter-spacing: -.02em; transition: transform var(--dur-short) var(--ease-out); }
 .join-button:active { transform: translateY(1px); }
+.join-button:disabled { cursor: default; opacity: 1; }
+form[data-state=loading] .join-button { cursor: progress; opacity: .7; }
 .form-message { min-height: 3em; max-width: 47ch; margin-top: .65rem; font-size: .875rem; line-height: 1.4; color: var(--color-muted); }
 form[data-state=error] .form-message { color: var(--color-error); }
 form[data-state=success] .form-message { color: var(--color-success); }
@@ -136,9 +138,9 @@ form[data-state=loading] .join-button svg { opacity: .3; }
   h1 { font-size: clamp(4.5rem, 6.6vw, 6rem); }
   h1 br:nth-of-type(2) { display: inline; }
   .lede { font-size: 1.2rem; max-width: 40ch; margin-top: 1.65rem; }
-  .showcase { margin-top: 0; align-self: center; }
+  .showcase { margin-top: 0; align-self: center; justify-self: end; width: min(100%, calc((100svh - 280px) * 1.3)); }
   .hand-note { padding-right: 5%; font-size: 1.75rem; }
-  .devices { height: clamp(430px, 37.3vw, 605px); }
+  .devices { height: auto; aspect-ratio: 1.32; }
   .laptop { width: 105%; left: -4%; top: 22%; }
   .phone-visited { top: 3%; left: -2%; width: 23%; }
   .phone-detail { top: 41%; right: 0; width: 29%; }
@@ -157,6 +159,19 @@ form[data-state=loading] .join-button svg { opacity: .3; }
   .join-button { font-size: .95rem; padding-inline: 1.2rem; }
   .signup-heading { display: flex; align-items: baseline; flex-wrap: wrap; column-gap: 1rem; }
   .preview-links { gap: 1.25rem; font-size: .95rem; }
+}
+@media (max-width: 22rem) {
+  .masthead { gap: .5rem; }
+  .wordmark { gap: .45rem; font-size: 1.55rem; }
+  .brand-mark { width: 30px; height: 30px; }
+  .web-link { gap: .25rem; font-size: .84rem; }
+  .web-link svg { width: 14px; height: 14px; }
+}
+@media (min-width: 64rem) and (max-height: 53.125rem) {
+  .masthead, .footer { min-height: 80px; }
+  .field-guide { padding-block: 1.5rem 1.25rem; }
+  h1 { font-size: clamp(3.7rem, 6vw, 5rem); }
+  .signup { margin-top: 1.5rem; }
 }
 @media (hover: hover) and (pointer: fine) {
   .web-link:hover, .preview-links button:hover, .footer a:hover { text-decoration-thickness: 2px; }
