@@ -1,21 +1,19 @@
-# The open field guide
+# Vancouver Island, before the scroll
 
-Mode: Persuade. One compact screen. The user supplied the personal portfolio as visual authority and asked for independent design execution.
+Mode: Persuade. The user revised the opening to a photographic Vancouver Island background with a phone UI visible immediately, while retaining screenshot access in a second section. Existing portfolio fonts, green ink, lime and paper remain the brand.
 
-## Evidence and direction
-The live portfolio's paper, Strichpunkt Sans, Ysabeau, restrained matte device mockups and handwritten captions are retained as brand DNA. A single field-guide spread replaces the portfolio's long photo-to-project story.
+## Opening composition
+A real island landscape fills the hero, including behind its transparent masthead. Warm paper-colored copy and a lime waitlist anchor occupy one clear reading area; a matte phone shows the supplied River Otter badge reward. On phones, compress the headline and supporting copy so the photograph, recognizable phone and primary action appear before scrolling at 320x568. The full signup form follows in the next section. Never place all product imagery after the form again.
 
-Grounded candidates considered: expedition desk, coastal postcard, trailhead notice, ferry day planner, collector's album, foldout field guide, park society circular. Concept-seed da49f922 assigned the sixth, foldout field guide. It fits the requested single screen and device-led product proof.
+Use restrained transparent dark shading only where necessary for text contrast. Do not cover the landscape with an opaque or white wash, or separate its masthead with a divider. Keep the image crop, headline, phone and transition one coherent composition at every breakpoint.
 
-The cloud quarry, film processing, and amber darkroom challengers lose product clarity and audience identification. Their useful disciplines are respectively spatial separation, deliberate sequencing, and restrained highlights. Riso is competitive on character but weakens screenshot clarity. Coffeehouse kraft loses product clarity and repeats generic outdoors branding. Du Bois diagrams would require an unwanted data-story focus. Keep the field-guide world with clear spatial groups, a manual screenshot selector, and restrained accent use. The supplied portfolio remains visual authority over catalog themes.
+## A look inside
+The second section preserves paper and screenshot inspection. Show a fresh full-island staging map, the supplied badge reward, park-category search and island progress screens, plus an existing approved wishlist detail screenshot when staging authentication is unavailable. Record capture provenance honestly. Five manual choices open the native screenshot viewer; no automatic carousel.
 
-## First viewport
-Left: a compact product masthead, substantial candid headline, concrete product description, Android waitlist input with visible label and button. Right: a large real map capture in a matte laptop with two smaller portrait screens showing a park and a visited map. A quiet handwritten caption identifies their role. Bottom: a short founder note and functional privacy disclosure. The signature interaction opens any screenshot in a full-size native dialog with three manual image choices. Visitors can inspect the actual app UI without leaving the page. No automatic cycling or animation is needed.
+Keep the durable Android waitlist form, its visible label, loading/error/success messages and privacy disclosure. Existing API, dedicated storage and throttling remain in place.
 
-On mobile, masthead then headline and signup, then the device composition. Retain information instead of forcing viewport clipping. Desktop fits one screen at normal laptop and desktop sizes; small screens may scroll to retain readable screenshots and touch targets.
+## Materials and behavior
+Real screenshot pixels remain intact inside neutral matte hardware with a visible chassis and one light-facing edge. No chrome gradients or invented branded model details. Hero image has responsive assets and useful alt text; phone screenshots can be enlarged. Reduced motion and keyboard focus remain supported.
 
-## Implementation contract
-Build directly from actual source assets and the live reference. No standing image-generation workflow preference is stored. Core content stays visible without JavaScript; signup has visible loading, validation, network error and success states. Screenshot selection is immediate. Motion is limited to brief button press feedback with reduced-motion support. Do not recreate branded phone model details or chrome gradients. Phone/laptop hardware is explicitly requested by the user.
-
-## Review
-Required viewports: 320, 375, 390, 414, 768, 1280, 1440, and actual browser size. Test screenshot controls and signup on deployed Vercel URL. No current Parkdex domain changes.
+## Acceptance
+Capture the first viewport at 320x568, 375x812, 390x844, 414x896, 768x1024, 1280x800 and 1440x900. Verify photograph, phone and CTA presence as well as overflow and contrast. Inspect second-section gallery and screenshot dialog on mobile and desktop. Test anchors, signup validation, and Back then Scroll on the deployed Vercel alias. Include cropped before/after evidence in PR1. No existing Parkdex app deployment or domain changes.

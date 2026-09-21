@@ -83,27 +83,45 @@ const viewerImage = document.querySelector<HTMLImageElement>('#viewer-image')!;
 const viewerTitle = document.querySelector('#viewer-title')!;
 const viewerDescription = document.querySelector('#viewer-description')!;
 const screenshots = {
-  map: { src: '/images/map-overview.webp', title: 'The whole island, at a glance.', description: 'Find a park for your next day out.', alt: 'Parkdex map showing parks across Vancouver Island', width: 1440, height: 820 },
-  park: { src: '/images/park-detail.webp', title: 'That one goes on the wishlist.', description: 'Look up a park, save it for later, or mark your visit.', alt: 'Elk Falls Park detail with a waterfall photo and wishlist controls', width: 828, height: 1280 },
-  visited: { src: '/images/visited-map.webp', title: 'A growing record of your adventures.', description: 'See the places you’ve visited on your own island map.', alt: 'Vancouver Island map showing visited parks with checkmarks', width: 534, height: 1254 },
+  map: { src: '/images/staging-map.webp', title: 'Explore the island by map.', description: 'See parks, regions, and your next route at a glance.', alt: 'Parkdex map showing parks across Vancouver Island', width: 1440, height: 900 },
+  badges: { src: '/images/badge-reward.webp', title: 'Claim badges for the places you find.', description: 'Collect local wildlife discoveries as you explore.', alt: 'Parkdex badge screen showing a new river otter discovery', width: 714, height: 1354 },
+  parks: { src: '/images/park-search.webp', title: 'Find parks without the guesswork.', description: 'Browse provincial, regional, and island parks.', alt: 'Parkdex places screen listing regional and provincial parks', width: 712, height: 1359 },
+  wishlist: { src: '/images/park-detail.webp', title: 'Save a wishlist for later.', description: 'Keep the places that caught your eye close.', alt: 'Elk Falls Park detail with a waterfall photo and wishlist controls', width: 828, height: 1276 },
+  progress: { src: '/images/island-progress.webp', title: 'Your island, in progress.', description: 'See your visited parks and growing collection.', alt: 'Parkdex map showing visited parks and progress across Vancouver Island', width: 1662, height: 1092 },
 } as const;
 
-function showScreenshot(key: keyof typeof screenshots) {
+type ScreenshotKey = keyof typeof screenshots;
+let lastTrigger: HTMLButtonElement | null = null;
+
+function isScreenshotKey(value: string | undefined): value is ScreenshotKey {
+  return value !== undefined && value in screenshots;
+}
+
+function showScreenshot(key: ScreenshotKey, trigger?: HTMLButtonElement) {
   const shot = screenshots[key];
+  if (trigger && !viewer.contains(trigger)) lastTrigger = trigger;
   viewerTitle.textContent = shot.title;
   viewerDescription.textContent = shot.description;
   viewerImage.src = shot.src;
   viewerImage.alt = shot.alt;
   viewerImage.width = shot.width;
   viewerImage.height = shot.height;
-  viewer.querySelectorAll<HTMLElement>('[data-view]').forEach((button) => button.setAttribute('aria-pressed', String(button.dataset.view === key)));
+  viewer.querySelectorAll<HTMLButtonElement>('[data-view]').forEach((button) => button.setAttribute('aria-pressed', String(button.dataset.view === key)));
   if (!viewer.open) viewer.showModal();
 }
+
 document.querySelectorAll<HTMLButtonElement>('[data-view]').forEach((button) => {
   button.addEventListener('click', () => {
-    const key = button.dataset.view as keyof typeof screenshots;
-    if (key in screenshots) showScreenshot(key);
+    const key = button.dataset.view;
+    if (isScreenshotKey(key)) showScreenshot(key, button);
   });
 });
-viewer.querySelector('.close-viewer')!.addEventListener('click', () => viewer.close());
-viewer.addEventListener('click', (event) => { if (event.target === viewer) { const box = viewer.getBoundingClientRect(); if (event.clientX < box.left || event.clientX > box.right || event.clientY < box.top || event.clientY > box.bottom) viewer.close(); } });
+
+viewer.querySelector<HTMLButtonElement>('.close-viewer')!.addEventListener('click', () => viewer.close());
+viewer.addEventListener('click', (event) => {
+  if (event.target === viewer) {
+    const box = viewer.getBoundingClientRect();
+    if (event.clientX < box.left || event.clientX > box.right || event.clientY < box.top || event.clientY > box.bottom) viewer.close();
+  }
+});
+viewer.addEventListener('close', () => { lastTrigger?.focus(); });

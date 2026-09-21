@@ -20,4 +20,6 @@ Each normalized email is saved once, with its creation timestamp. Only a launch 
 
 ## Design and assets
 
-The page follows Nathan's portfolio typography, paper and restrained device materials. Real app captures are used without recreating their contents. Screenshot provenance is recorded in assets/provenance. The desktop is designed to fit one viewport at ordinary laptop sizes; mobile keeps the signup before the screenshot composition and allows normal scrolling.
+The photo-led opening uses the East Sooke coastline, Nathan's portfolio typography and a matte phone showing the supplied badge reward. The landscape, phone and waitlist action remain visible in the first mobile viewport. The next section pairs the full signup form with a screenshot gallery covering exploration, badges, park categories, wishlist and progress.
+
+Real app captures are used without recreating their contents. Screenshot provenance is recorded in assets/provenance. The user supplied the signed-in states; the desktop exploration map was captured from staging. The hero photograph credit and license are recorded in public/images/PHOTO-CREDIT.md and linked on the page. DESIGN.md and the surface brief describe the current visual system and composition.

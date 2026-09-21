@@ -3,7 +3,7 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover" />
-    <meta name="theme-color" content="#f1f0e8" />
+    <meta name="theme-color" content="#173e35" />
     <meta name="description" content="A field guide for your Vancouver Island adventures. Find parks, save a wishlist, and keep track of where you’ve been. Parkdex for Android is coming soon." />
     <meta property="og:title" content="Parkdex · Your island. Still full of firsts." />
     <meta property="og:description" content="Find your next park on Vancouver Island. Save the places you want to go and collect the ones you’ve visited. Android coming soon." />
@@ -14,58 +14,94 @@
   </head>
   <body>
     <a class="skip-link" href="#main">Skip to content</a>
-    <div class="page">
-      <header class="masthead">
-        <a class="wordmark" href="/" aria-label="Parkdex home">
-          <svg class="brand-mark" width="42" height="42" viewBox="0 0 40 40" aria-hidden="true"><rect width="40" height="40" rx="10" fill="currentColor"/><g class="brand-trees" fill="none" stroke="currentColor" stroke-width="2.1" stroke-linecap="round" stroke-linejoin="round"><path d="M24 29v-6m-2-14 6 7h-3l6 7H19M14 29v-7m-4-2a4.5 4.5 0 0 1-1-8 4 4 0 0 1 8 0 4.5 4.5 0 0 1 1 8Z"/></g></svg>
-          <span>Parkdex</span>
-        </a>
-        <a class="web-link" data-app-link href="https://parkdex.app">Open the web app <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true"><path d="M6 18 18 6M6 6h12v12"/></svg></a>
-      </header>
+    <div class="site-shell">
+      <section class="hero" aria-labelledby="hero-title">
+        <picture class="hero-photo" aria-hidden="true">
+          <source media="(max-width: 40rem)" srcset="/images/island-hero-small.webp" />
+          <img src="/images/island-hero.webp" width="2400" height="1606" fetchpriority="high" alt="" />
+        </picture>
 
-      <main id="main" class="field-guide">
-        <div class="introduction">
-          <h1>Your island.<br />Still full<br /> of <span class="marked-word">firsts.</span></h1>
-          <p class="lede">A field guide for your Vancouver Island adventures. Find your next park, save a wishlist, and keep track of where you’ve been.</p>
+        <header class="masthead">
+          <a class="wordmark" href="/" aria-label="Parkdex home">
+            <svg class="brand-mark" width="42" height="42" viewBox="0 0 40 40" aria-hidden="true"><rect width="40" height="40" rx="10" fill="currentColor"/><g class="brand-trees" fill="none" stroke="currentColor" stroke-width="2.1" stroke-linecap="round" stroke-linejoin="round"><path d="M24 29v-6m-2-14 6 7h-3l6 7H19M14 29v-7m-4-2a4.5 4.5 0 0 1-1-8 4 4 0 0 1 8 0 4.5 4.5 0 0 1 1 8Z"/></g></svg>
+            <span>Parkdex</span>
+          </a>
+          <a class="web-link" data-app-link href="https://parkdex.app">Open the web app <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true"><path d="M6 18 18 6M6 6h12v12"/></svg></a>
+        </header>
+
+        <div class="hero-inner">
+          <div class="hero-copy">
+            <h1 id="hero-title"><span class="title-line">Your island.</span> <span class="title-line">Still full</span> <span class="title-line">of <span class="marked-word">firsts.</span></span></h1>
+            <p class="hero-lede">Find a park, save a wishlist, and keep track of where you’ve been.</p>
+            <div class="hero-actions">
+              <a class="hero-primary" href="#signup">Join the Android waitlist <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true"><path d="M4 12h15m-6-6 6 6-6 6"/></svg></a>
+              <a class="hero-secondary" href="#inside">Take a look inside <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true"><path d="M12 5v14m-6-6 6 6 6-6"/></svg></a>
+            </div>
+          </div>
+
+          <div class="hero-showcase" aria-label="A preview of a Parkdex badge">
+            <button class="hero-phone phone-frame" type="button" data-view="badges" aria-label="Enlarge the Parkdex badge screenshot">
+              <span class="phone-screen"><img src="/images/badge-reward.webp" width="714" height="1354" fetchpriority="high" alt="Parkdex badge screen showing a new river otter discovery" /></span>
+            </button>
+          </div>
         </div>
 
-        <section class="showcase" aria-label="A look inside Parkdex">
-          <p class="hand-note">A little nudge to get out there.</p>
-          <div class="devices">
-            <button class="device laptop" type="button" data-view="map" aria-label="Enlarge the Parkdex map screenshot">
-              <span class="laptop-lid"><span class="laptop-bezel"><img src="/images/map-overview.webp" width="1440" height="820" fetchpriority="high" alt="Parkdex map showing parks across Vancouver Island" /></span></span>
-              <span class="laptop-base" aria-hidden="true"><span></span></span>
-            </button>
-            <button class="device phone phone-visited" type="button" data-view="visited" aria-label="Enlarge the visited parks screenshot">
-              <span class="phone-shell"><img src="/images/visited-map.webp" width="534" height="1254" alt="Visited places marked with checkmarks on the island map" /></span>
-            </button>
-            <button class="device phone phone-detail" type="button" data-view="park" aria-label="Enlarge the Elk Falls Park screenshot">
-              <span class="phone-shell"><img src="/images/park-detail.webp" width="828" height="1280" alt="Elk Falls Park with a waterfall photo and wishlist controls" /></span>
-            </button>
-          </div>
-          <div class="preview-links" aria-label="View app screenshots">
-            <span>Take a closer look</span>
-            <button type="button" data-view="map">The map <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true"><path d="M8 4H4v4m12-4h4v4M4 16v4h4m12-4v4h-4"/></svg></button>
-            <button type="button" data-view="park">A park <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true"><path d="M8 4H4v4h4m8-4h4v4M4 16v4h4m12-4v4h-4"/></svg></button>
-            <button type="button" data-view="visited">Your visits <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true"><path d="M8 4H4v4m12-4h4v4M4 16v4h4m12-4v4h-4"/></svg></button>
-          </div>
-        </section>
+        <p class="hero-caption">East Sooke, Vancouver Island</p>
+      </section>
 
-        <section class="signup" aria-labelledby="signup-title">
-          <div class="signup-heading">
-            <h2 id="signup-title"><svg class="android" width="22" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" aria-hidden="true"><path d="m6 4 2 3m10-3-2 3M4 17a8 8 0 0 1 16 0Z"/><path d="M8 13h.01M16 13h.01" stroke-width="2.8"/></svg> Android coming soon</h2>
-            <span class="release-note">Be there for the first day.</span>
-          </div>
-          <form id="waitlist-form" novalidate>
-            <label for="email">Your email address</label>
-            <div class="form-row">
-              <input id="email" name="email" type="email" inputmode="email" autocomplete="email" placeholder="you@example.com" required maxlength="254" aria-describedby="form-message privacy-note" />
-              <button id="join-button" class="join-button" type="submit"><span>Join the waitlist</span><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true"><path d="M4 12h15m-6-6 6 6-6 6"/></svg></button>
+      <main id="main">
+        <section id="inside" class="inside" aria-labelledby="inside-title">
+          <div class="inside-inner">
+            <div class="inside-heading">
+              <h2 id="inside-title">Make the island your own.</h2>
+              <p>National, provincial and regional parks. Islands, too. Save your next stop, collect your visits, and claim a badge along the way.</p>
             </div>
-            <div class="bot-field" aria-hidden="true"><label for="company">Company</label><input id="company" name="company" tabindex="-1" autocomplete="off" /></div>
-            <p id="form-message" class="form-message" role="status" aria-live="polite">One email when the Android app is ready.</p>
-          </form>
-          <noscript><p class="no-script">Please enable JavaScript to join the waitlist. You can still explore the <a href="https://parkdex.app">web app</a>.</p></noscript>
+
+            <div class="inside-grid">
+              <section id="signup" class="signup" aria-labelledby="signup-title">
+                <div class="signup-heading">
+                  <h3 id="signup-title"><svg class="android" width="22" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" aria-hidden="true"><path d="m6 4 2 3m10-3-2 3M4 17a8 8 0 0 1 16 0Z"/><path d="M8 13h.01M16 13h.01" stroke-width="2.8"/></svg> Android coming soon</h3>
+                  <span class="release-note">Be there for the first day.</span>
+                </div>
+                <form id="waitlist-form" novalidate>
+                  <label for="email">Your email address</label>
+                  <div class="form-row">
+                    <input id="email" name="email" type="email" inputmode="email" autocomplete="email" placeholder="you@example.com" required maxlength="254" aria-describedby="form-message privacy-note" />
+                    <button id="join-button" class="join-button" type="submit"><span>Join the waitlist</span><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true"><path d="M4 12h15m-6-6 6 6-6 6"/></svg></button>
+                  </div>
+                  <div class="bot-field" aria-hidden="true"><label for="company">Company</label><input id="company" name="company" tabindex="-1" autocomplete="off" /></div>
+                  <p id="form-message" class="form-message" role="status" aria-live="polite">One email when the Android app is ready.</p>
+                </form>
+                <noscript><p class="no-script">Please enable JavaScript to join the waitlist. You can still explore the <a href="https://parkdex.app">web app</a>.</p></noscript>
+              </section>
+
+              <section class="gallery" aria-labelledby="gallery-title">
+                <div class="gallery-heading">
+                  <h3 id="gallery-title">A look inside Parkdex</h3>
+                  <p>Tap any screen to see it at full size.</p>
+                </div>
+                <div class="gallery-stage">
+                  <button class="gallery-device gallery-laptop" type="button" data-view="map" aria-label="Enlarge the Parkdex map screenshot">
+                    <span class="laptop-lid"><span class="laptop-bezel"><img src="/images/staging-map.webp" width="1440" height="900" alt="Parkdex map showing parks across Vancouver Island" /></span></span>
+                    <span class="laptop-base" aria-hidden="true"><span></span></span>
+                  </button>
+                  <button class="gallery-device gallery-phone gallery-phone-search" type="button" data-view="parks" aria-label="Enlarge the Parkdex park search screenshot">
+                    <span class="phone-screen"><img src="/images/park-search.webp" width="712" height="1359" alt="Parkdex places screen listing regional and provincial parks" /></span>
+                  </button>
+                  <button class="gallery-device gallery-phone gallery-phone-badge" type="button" data-view="badges" aria-label="Enlarge the Parkdex badge screenshot">
+                    <span class="phone-screen"><img src="/images/badge-reward.webp" width="714" height="1354" alt="Parkdex badge screen showing a new river otter discovery" /></span>
+                  </button>
+                </div>
+                <div class="gallery-choices" aria-label="View app screenshots">
+                  <button type="button" data-view="map">Explore the map <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true"><path d="M8 4H4v4m12-4h4v4M4 16v4h4m12-4v4h-4"/></svg></button>
+                  <button type="button" data-view="badges">Claim badges <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true"><path d="M8 4H4v4m12-4h4v4M4 16v4h4m12-4v4h-4"/></svg></button>
+                  <button type="button" data-view="parks">Find parks <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true"><path d="M8 4H4v4m12-4h4v4M4 16v4h4m12-4v4h-4"/></svg></button>
+                  <button type="button" data-view="wishlist">Save a wishlist <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true"><path d="M8 4H4v4m12-4h4v4M4 16v4h4m12-4v4h-4"/></svg></button>
+                  <button type="button" data-view="progress">Your progress <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true"><path d="M8 4H4v4m12-4h4v4M4 16v4h4m12-4v4h-4"/></svg></button>
+                </div>
+              </section>
+            </div>
+          </div>
         </section>
       </main>
 
@@ -74,14 +110,15 @@
         <div class="footer-meta">
           <details class="privacy"><summary>About your email</summary><div id="privacy-note" class="privacy-content"><p>Your email is saved only to let you know when Parkdex for Android launches. No newsletter. No account needed.</p><p>To leave the list, email <a href="mailto:contact@nathanpannell.com">contact@nathanpannell.com</a>.</p></div></details>
           <span class="attribution">Map © <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors</span>
+          <span class="photo-credit">East Sooke photo: <a href="https://commons.wikimedia.org/wiki/File:East_Sooke_Park_BC.jpg">Brandon Godfrey</a> · <a href="https://creativecommons.org/licenses/by-sa/2.0/">CC BY-SA 2.0</a> · cropped for layout</span>
         </div>
       </footer>
     </div>
 
     <dialog id="screenshot-viewer" class="viewer" aria-labelledby="viewer-title">
-      <div class="viewer-header"><div><h2 id="viewer-title">The whole island, at a glance.</h2><p id="viewer-description">Find a park for your next day out.</p></div><button class="close-viewer" type="button" aria-label="Close screenshot"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true"><path d="m6 6 12 12M6 18 18 6"/></svg></button></div>
-      <div class="viewer-image"><img id="viewer-image" src="/images/map-overview.webp" alt="Parkdex map of Vancouver Island" width="1440" height="820" /></div>
-      <div class="viewer-bottom"><div class="viewer-tabs"><button type="button" data-view="map">The map</button><button type="button" data-view="park">A park</button><button type="button" data-view="visited">Your visits</button></div><a data-app-link href="https://parkdex.app">Explore the web app <span aria-hidden="true">↗</span></a></div>
+      <div class="viewer-header"><div><h2 id="viewer-title">Explore the island by map.</h2><p id="viewer-description">See your visited parks taking shape.</p></div><button class="close-viewer" type="button" aria-label="Close screenshot"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true"><path d="m6 6 12 12M6 18 18 6"/></svg></button></div>
+      <div class="viewer-image"><img id="viewer-image" src="/images/staging-map.webp" alt="Parkdex map showing parks across Vancouver Island" width="1440" height="900" /></div>
+      <div class="viewer-bottom"><div class="viewer-tabs"><button type="button" data-view="map">Explore the map</button><button type="button" data-view="badges">Claim badges</button><button type="button" data-view="parks">Find parks</button><button type="button" data-view="wishlist">Save a wishlist</button><button type="button" data-view="progress">Your progress</button></div><a data-app-link href="https://parkdex.app">Explore the web app <span aria-hidden="true">↗</span></a></div>
     </dialog>
     <script type="module" src="/src/main.ts"></script>
   </body>

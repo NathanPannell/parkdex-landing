@@ -1,4 +1,5 @@
-/* Hallmark: portfolio-derived field guide. All surfaces and type use these tokens. */
+/* Parkdex field guide tokens. The hero adds a coastal photo layer while the
+ * paper, ink, lime, and matte hardware materials remain shared below. */
 :root {
   color-scheme: light;
   --color-paper: #f1f0e8;
@@ -21,6 +22,17 @@
   --color-device-base: #2c3835;
   --color-shadow: rgb(20 45 39 / 24%);
   --color-backdrop: rgb(13 28 23 / 82%);
+  --color-hero-text: #fff8ec;
+  --color-hero-soft: rgb(255 248 236 / 82%);
+  --color-hero-rule: rgb(255 248 236 / 32%);
+  --color-hero-scrim: rgb(9 32 27 / 56%);
+  --color-hero-scrim-soft: rgb(9 32 27 / 10%);
+  --color-shade-28: rgb(9 32 27 / 28%);
+  --color-shade-30: rgb(9 32 27 / 30%);
+  --color-shade-38: rgb(9 32 27 / 38%);
+  --color-shade-40: rgb(9 32 27 / 40%);
+  --color-shade-44: rgb(9 32 27 / 44%);
+  --color-shade-48: rgb(9 32 27 / 48%);
   --font-display: 'Strichpunkt Sans Variable', sans-serif;
   --font-body: 'Ysabeau Variable', sans-serif;
   --font-hand: 'Caveat Variable', cursive;
