@@ -16,6 +16,93 @@ import {
 } from "../src/guest-migration.ts";
 import { createMcpMetadata, rewriteStaticAppLinks } from "../src/mcp-metadata.ts";
 
+function createRecoveryHarness(options: { throwOnPostMessage?: boolean } = {}) {
+  const values = new Map<string, string>([["every-park:collection-key:v1", "guest-progress"]]);
+  const storage = {
+    getItem(key: string) { return values.get(key) ?? null; },
+    removeItem(key: string) { values.delete(key); },
+  };
+  let clickListener: (() => void) | undefined;
+  const button = {
+    disabled: false,
+    addEventListener(type: string, listener: EventListenerOrEventListenerObject) {
+      assert.equal(type, "click");
+      clickListener = listener as () => void;
+    },
+    click() { clickListener?.(); },
+  };
+  const panel = { hidden: true };
+  const status = { textContent: "" };
+  const popups: Array<GuestMigrationPopup & { closed: boolean }> = [];
+  const posted: GuestMigrationTransfer[] = [];
+  const timers = new Map<number, { callback: () => void; delayMs: number }>();
+  let nextTimerId = 0;
+  let messageListener: ((event: GuestMigrationEvent) => void) | undefined;
+  let unsubscribeCount = 0;
+  let openCount = 0;
+  const runtime: GuestMigrationRuntime = {
+    landingOrigin: "https://parkdex.app",
+    getStorage: () => storage,
+    open() {
+      openCount++;
+      const popup: GuestMigrationPopup & { closed: boolean } = {
+        closed: false,
+        postMessage(message) {
+          if (options.throwOnPostMessage) throw new Error("postMessage failure");
+          posted.push(message);
+        },
+      };
+      popups.push(popup);
+      return popup;
+    },
+    subscribe(listener) {
+      let active = true;
+      messageListener = (event) => { if (active) listener(event); };
+      return () => {
+        if (active) {
+          active = false;
+          unsubscribeCount++;
+        }
+      };
+    },
+    schedule(callback, delayMs) {
+      const handle = ++nextTimerId;
+      timers.set(handle, { callback, delayMs });
+      return handle;
+    },
+    cancel(handle) { timers.delete(handle as number); },
+  };
+
+  connectGuestMigration(
+    panel as unknown as HTMLElement,
+    button as unknown as HTMLButtonElement,
+    status as unknown as HTMLElement,
+    runtime,
+  );
+
+  return {
+    button,
+    panel,
+    status,
+    values,
+    popups,
+    posted,
+    timers,
+    get openCount() { return openCount; },
+    get unsubscribeCount() { return unsubscribeCount; },
+    send(data: unknown, popupIndex = popups.length - 1, origin = "https://web.parkdex.app") {
+      messageListener?.({ origin, source: popups[popupIndex], data });
+    },
+    fireTimer(delayMs: number) {
+      const found = [...timers.entries()].find(([, timer]) => timer.delayMs === delayMs);
+      assert.ok(found, `expected a ${delayMs}ms timer`);
+      const [handle, timer] = found;
+      timers.delete(handle);
+      timer.callback();
+    },
+  };
+}
+
 test("production and staging Vercel configs preserve the seven legacy API routes", () => {
   const expectedRoutes = [
     "/mcp",
@@ -163,12 +250,15 @@ test("guest migration opens only on action and sends only allowlisted data to th
   const status = { textContent: "" };
   const posted: Array<{ message: GuestMigrationTransfer; targetOrigin: string }> = [];
   const popup: GuestMigrationPopup = {
+    closed: false,
     postMessage(message, targetOrigin) { posted.push({ message, targetOrigin }); },
   };
   let openedUrl: string | undefined;
   let openedTarget: "_blank" | undefined;
   let listener: ((event: GuestMigrationEvent) => void) | undefined;
   let unsubscribed = false;
+  const timers = new Map<number, { callback: () => void; delayMs: number }>();
+  let nextTimerId = 0;
   const runtime: GuestMigrationRuntime = {
     landingOrigin: "https://parkdex.app",
     getStorage: () => storage,
@@ -181,6 +271,12 @@ test("guest migration opens only on action and sends only allowlisted data to th
       listener = nextListener;
       return () => { unsubscribed = true; };
     },
+    schedule(callback, delayMs) {
+      const handle = ++nextTimerId;
+      timers.set(handle, { callback, delayMs });
+      return handle;
+    },
+    cancel(handle) { timers.delete(handle as number); },
   };
 
   connectGuestMigration(
@@ -229,7 +325,76 @@ test("guest migration opens only on action and sends only allowlisted data to th
   assert.equal(values.get("every-park:visited:v1"), "newer-local-change");
   assert.equal(values.get("every-park:account-token:v1"), "account-secret");
   assert.equal(values.get("every-park:account-snapshot:v1"), "account-snapshot");
+  assert.equal(button.disabled, false, "newer guest changes can be transferred in another attempt");
   assert.equal(status.textContent, "The saved progress was moved. Newer changes on this page remain here.");
+  assert.equal(timers.size, 0, "terminal acknowledgments clear the timeout and popup poll");
+});
+
+test("non-imported migration outcomes clean up and let the user retry", () => {
+  const statuses = ["conflict", "invalid", "oversized", "storage-error"] as const;
+  for (const resultStatus of statuses) {
+    const harness = createRecoveryHarness();
+    harness.button.click();
+    harness.send({ type: "parkdex-guest-migration-ready", version: 1 });
+    harness.send({ type: "parkdex-guest-migration-result", version: 1, status: resultStatus });
+
+    assert.equal(harness.button.disabled, false, `${resultStatus} should re-enable the action`);
+    assert.equal(harness.unsubscribeCount, 1, `${resultStatus} should remove the message listener`);
+    assert.equal(harness.timers.size, 0, `${resultStatus} should clear both timers`);
+    assert.equal(harness.values.get("every-park:collection-key:v1"), "guest-progress");
+
+    harness.button.click();
+    assert.equal(harness.openCount, 2, `${resultStatus} should allow a new attempt`);
+    assert.equal(harness.button.disabled, true);
+    harness.send({ type: "parkdex-guest-migration-ready", version: 1 });
+    harness.send({ type: "parkdex-guest-migration-result", version: 1, status: "imported" });
+    assert.equal(harness.panel.hidden, true);
+    assert.equal(harness.timers.size, 0);
+  }
+});
+
+test("closing the popup or timing out cleans up and restores retry", () => {
+  const harness = createRecoveryHarness();
+  harness.button.click();
+  harness.popups[0].closed = true;
+  harness.fireTimer(500);
+  assert.equal(harness.button.disabled, false);
+  assert.equal(harness.unsubscribeCount, 1);
+  assert.equal(harness.timers.size, 0);
+  assert.match(harness.status.textContent, /tab closed/);
+
+  harness.button.click();
+  assert.equal(harness.openCount, 2);
+  harness.fireTimer(120_000);
+  assert.equal(harness.button.disabled, false);
+  assert.equal(harness.unsubscribeCount, 2);
+  assert.equal(harness.timers.size, 0);
+  assert.match(harness.status.textContent, /did not finish in time/);
+
+  harness.button.click();
+  assert.equal(harness.openCount, 3, "the action remains retryable after timeout");
+  harness.popups[2].closed = true;
+  harness.fireTimer(500);
+});
+
+test("a postMessage exception removes listeners and leaves guest data retryable", () => {
+  const options = { throwOnPostMessage: true };
+  const harness = createRecoveryHarness(options);
+  harness.button.click();
+  harness.send({ type: "parkdex-guest-migration-ready", version: 1 });
+
+  assert.equal(harness.button.disabled, false);
+  assert.equal(harness.unsubscribeCount, 1);
+  assert.equal(harness.timers.size, 0);
+  assert.equal(harness.values.get("every-park:collection-key:v1"), "guest-progress");
+
+  options.throwOnPostMessage = false;
+  harness.button.click();
+  assert.equal(harness.openCount, 2);
+  harness.send({ type: "parkdex-guest-migration-ready", version: 1 });
+  harness.send({ type: "parkdex-guest-migration-result", version: 1, status: "imported" });
+  assert.equal(harness.panel.hidden, true);
+  assert.equal(harness.timers.size, 0);
 });
 
 test("guest transfer filters unknown keys and rejects payloads over 256 KiB", () => {

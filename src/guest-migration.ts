@@ -20,6 +20,8 @@ const READY_TYPE = "parkdex-guest-migration-ready";
 const TRANSFER_TYPE = "parkdex-guest-migration-transfer";
 const RESULT_TYPE = "parkdex-guest-migration-result";
 const RESULT_STATUSES = ["imported", "conflict", "invalid", "oversized", "storage-error"] as const;
+const MIGRATION_TIMEOUT_MS = 120_000;
+const POPUP_CLOSE_POLL_MS = 500;
 
 export type GuestProgressKey = (typeof GUEST_PROGRESS_KEYS)[number];
 export type GuestProgressValues = Partial<Record<GuestProgressKey, string>>;
@@ -37,6 +39,7 @@ export interface GuestMigrationStorage {
 
 export interface GuestMigrationPopup {
   postMessage(message: GuestMigrationTransfer, targetOrigin: string): void;
+  readonly closed: boolean;
 }
 
 export interface GuestMigrationEvent {
@@ -50,6 +53,8 @@ export interface GuestMigrationRuntime {
   getStorage(): GuestMigrationStorage | null;
   open(url: string, target: "_blank"): GuestMigrationPopup | null;
   subscribe(listener: (event: GuestMigrationEvent) => void): () => void;
+  schedule(callback: () => void, delayMs: number): unknown;
+  cancel(handle: unknown): void;
 }
 
 export function collectGuestProgress(storage: GuestMigrationStorage): GuestProgressValues {
@@ -159,11 +164,35 @@ export function connectGuestMigration(
       return;
     }
 
+    flowStarted = true;
+    button.disabled = true;
     let popup: GuestMigrationPopup | null = null;
     let transferSent = false;
     let unsubscribe = () => {};
+    let timeoutHandle: unknown = null;
+    let closePollHandle: unknown = null;
+    let attemptFinished = false;
+    const cleanup = () => {
+      if (attemptFinished) return;
+      attemptFinished = true;
+      unsubscribe();
+      if (timeoutHandle !== null) runtime.cancel(timeoutHandle);
+      if (closePollHandle !== null) runtime.cancel(closePollHandle);
+      timeoutHandle = null;
+      closePollHandle = null;
+    };
+    const allowRetry = () => {
+      flowStarted = false;
+      button.disabled = false;
+    };
+    const finishWithFailure = (message: string) => {
+      if (attemptFinished) return;
+      cleanup();
+      allowRetry();
+      status.textContent = message;
+    };
     const handleMessage = (event: GuestMigrationEvent) => {
-      if (!popup || event.origin !== appOrigin || event.source !== popup) return;
+      if (attemptFinished || !popup || event.origin !== appOrigin || event.source !== popup) return;
 
       if (!transferSent && isGuestMigrationReady(event.data)) {
         transferSent = true;
@@ -171,8 +200,7 @@ export function connectGuestMigration(
           popup.postMessage(transfer, appOrigin);
           status.textContent = "Sending the saved progress to the new app…";
         } catch {
-          status.textContent = "The transfer could not start. Your original data remains here.";
-          unsubscribe();
+          finishWithFailure("The transfer could not start. Your original data remains here. Choose Move guest progress to try again.");
         }
         return;
       }
@@ -180,10 +208,13 @@ export function connectGuestMigration(
       if (!transferSent) return;
       const result = guestMigrationResultStatus(event.data);
       if (!result) return;
-      unsubscribe();
+      cleanup();
       status.textContent = STATUS_COPY[result];
 
-      if (result !== "imported") return;
+      if (result !== "imported") {
+        allowRetry();
+        return;
+      }
       let retained = false;
       for (const [key, sentValue] of Object.entries(transfer.values) as [GuestProgressKey, string][]) {
         try {
@@ -195,6 +226,7 @@ export function connectGuestMigration(
       }
       if (retained) {
         status.textContent = "The saved progress was moved. Newer changes on this page remain here.";
+        allowRetry();
       } else {
         panel.hidden = true;
       }
@@ -204,19 +236,42 @@ export function connectGuestMigration(
       unsubscribe = runtime.subscribe(handleMessage);
       popup = runtime.open(`${appOrigin}/migrate/`, "_blank");
     } catch {
-      unsubscribe();
-      status.textContent = "The new app did not open. Your original data remains here.";
+      finishWithFailure("The new app did not open. Your original data remains here. Choose Move guest progress to try again.");
       return;
     }
     if (!popup) {
-      unsubscribe();
-      status.textContent = "The new app did not open. Allow pop-ups, then choose Move guest progress again.";
+      finishWithFailure("The new app did not open. Allow pop-ups, then choose Move guest progress again.");
       return;
     }
 
-    flowStarted = true;
-    button.disabled = true;
     status.textContent = "Waiting for the new app to connect…";
+    const checkPopup = () => {
+      if (attemptFinished || !popup) return;
+      let popupClosed = false;
+      try {
+        popupClosed = popup.closed;
+      } catch {
+        popupClosed = true;
+      }
+      if (popupClosed) {
+        finishWithFailure("The new app tab closed before progress moved. Your original data is still here. Choose Move guest progress to try again.");
+        return;
+      }
+      try {
+        closePollHandle = runtime.schedule(checkPopup, POPUP_CLOSE_POLL_MS);
+      } catch {
+        finishWithFailure("The transfer could not be monitored. Your original data remains here. Choose Move guest progress to try again.");
+      }
+    };
+    try {
+      timeoutHandle = runtime.schedule(
+        () => finishWithFailure("The new app did not finish in time. Your original data is still here. Choose Move guest progress to try again."),
+        MIGRATION_TIMEOUT_MS,
+      );
+      closePollHandle = runtime.schedule(checkPopup, POPUP_CLOSE_POLL_MS);
+    } catch {
+      finishWithFailure("The transfer could not be monitored. Your original data remains here. Choose Move guest progress to try again.");
+    }
   });
 }
 
@@ -237,6 +292,12 @@ export function browserGuestMigrationRuntime(): GuestMigrationRuntime {
       const handle = (event: MessageEvent) => listener(event);
       window.addEventListener("message", handle);
       return () => window.removeEventListener("message", handle);
+    },
+    schedule(callback, delayMs) {
+      return window.setTimeout(callback, delayMs);
+    },
+    cancel(handle) {
+      window.clearTimeout(handle as number);
     },
   };
 }
