@@ -53,3 +53,8 @@ Continue established paper/ink typography in Read/Operate mode. No new visual id
 - Evidence saved under docs/evidence/privacy-support/draft-*.jpg. These are local draft screenshots, not deployed verification. No support email was sent and no account was deleted during this check.
 - Local preview session 15949 stopped. QA tab closed and temporary viewport reset. Visual reviewer interrupted after its report. No active server, watcher or worker remains.
 - Publication still waits for deletion follow-up staging LIVE and verified manual fulfillment/photo cleanup. Final copy reconciliation, public URL browser QA and final footer PR evidence remain outstanding.
+
+## Accelerated release, 2026-09-22
+- User approved a one-hour staging and signed-Android-build target through the coordinator, with native emulator gate waived. Independent landing temporary Vercel publication is authorized after the app deletion follow-up is LIVE on staging and the manual fulfillment/photo cleanup contract is verified. App production, main domain, and Play upload remain outside this release.
+- Final public copy prepared in source: draft notices/noindex removed, privacy dated September 22, 2026, provider wording states only the confirmed Android test version R2 behavior, and deletion text promises no full completion notice while photo cleanup is pending.
+- This is source preparation only. No new public deployment until the owner sends exact staging live URL/commit and verified deletion/manual cleanup outcome. Existing local responsive QA applies to layout; deployed Chrome QA is required after release.

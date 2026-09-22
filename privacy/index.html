@@ -3,7 +3,6 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <meta name="robots" content="noindex, nofollow" />
     <meta name="description" content="How Parkdex uses account information, location, visits, photos and waitlist email, and how to request deletion." />
     <meta name="theme-color" content="#142d27" />
     <link rel="icon" href="/favicon.ico" sizes="16x16 24x24 32x32 48x48 64x64" />
@@ -25,17 +24,16 @@
       <article class="support-article">
         <h1>Privacy for Parkdex.</h1>
         <p class="support-lede">What you share, what Parkdex keeps, and how to remove it.</p>
-        <p class="support-draft">Draft for factual review. Account deletion and provider retention details are being verified before this policy is published.</p>
+        <p>Last updated September 22, 2026.</p>
 
         <section aria-labelledby="scope-title">
           <h2 id="scope-title">Who this covers</h2>
-          <p>This policy covers the Parkdex web app, the test version being prepared for Android, and this landing page. The location and photo sections describe that test version. These features are not yet part of the production web app.</p>
+          <p>This policy covers the Parkdex web app, the test version being prepared for Android, and this landing page. The location and photo sections describe that test version. These features are not yet part of the current web app.</p>
           <p>Parkdex is made by Nathan Pannell. For privacy questions or help with your data, email <a href="mailto:contact@nathanpannell.com">contact@nathanpannell.com</a>.</p>
         </section>
 
         <section aria-labelledby="data-title">
           <h2 id="data-title">Information you use in Parkdex</h2>
-          <!-- Source inventory and exact current/pending behavior will be reconciled before publication. -->
           <h3>Your account</h3>
           <p>Parkdex stores your email address, an account identifier, account dates and sign-in information. When you use a password, it is stored as a password hash. Session and verification records let you stay signed in, verify your email and recover access.</p>
           <p>If you choose Google sign-in where it is available, Google provides identity information used to connect you to your account.</p>
@@ -56,7 +54,7 @@
         <section aria-labelledby="providers-title">
           <h2 id="providers-title">Services that run Parkdex</h2>
           <p>Vercel hosts the websites, Railway runs the app API, and Neon stores account and collection information. The Android waitlist uses a separate Neon database.</p>
-          <p>Resend delivers account verification and password-recovery emails. Google handles Google sign-in when you choose it. The staging photo service uses private Cloudflare R2 storage, accessed through the Parkdex API. Production photo-storage readiness has not yet been verified.</p>
+          <p>Resend delivers account verification and password-recovery emails. Google handles Google sign-in when you choose it. The Android test version stores visit photos privately with Cloudflare R2 through the Parkdex API.</p>
           <p>The app loads map tiles and map fonts from OpenFreeMap. Those requests reveal your network address and the map areas being loaded to the map service.</p>
           <p><a href="https://openfreemap.org/privacy/">OpenFreeMap’s privacy policy</a> describes anonymized service logs kept indefinitely and temporary IP-address logging during security incidents for up to 30 days. Its service may also use Cloudflare.</p>
           <p>These services process information to provide hosting, storage, email, sign-in and maps. Hosting and storage can be outside Canada. Providers may keep their own operational or security logs.</p>
@@ -67,12 +65,11 @@
           <h2 id="retention-title">Keeping and deleting your data</h2>
           <p>Your account and collection have no automatic expiry. They remain until you remove the relevant information or your account-deletion request is fulfilled. Sign-in and verification tokens have expiry limits, but token expiry is not account deletion.</p>
           <p>You can <a href="/delete-account/">request account deletion</a> without installing the Android app. Nathan handles account-access or deletion requests that the automated flow cannot complete.</p>
-          <p>When your request is fulfilled, Parkdex deletes your account and its associated visits, collections, authentication records and photo references. Photo files are deleted from private storage. If a storage deletion fails, a deletion record remains so the failed operation can be retried.</p>
+          <p>Account deletion removes your account and its associated visits, collections, authentication records and photo references. Photo files are deleted from private storage. If storage deletion fails, a deletion record remains for manual cleanup. Nathan will not confirm full completion until that cleanup is verified.</p>
           <p>Deletion does not erase a separate guest history, files you downloaded or copies you shared elsewhere. Account-owned local data is cleared on the device completing the in-app deletion. Copies on an offline device cannot be erased remotely while it is offline; you can clear that device’s app data.</p>
           <p>Network-level abuse counters and service-provider logs or backups may remain separately from the active account. Deleting the active account does not immediately erase every provider copy.</p>
           <p>The app database is configured with a six-hour restore-history window. Railway’s current plan provides seven days of application log access and two days of audit log access. These are restore or access windows, not guarantees about when providers erase every internal copy.</p>
           <p>Account deletion and waitlist removal are separate. Use the waitlist controls below if you also want to remove your launch email.</p>
-          <!-- Final account cascade/manual fulfillment and staging release must be verified before publication. -->
         </section>
 
         <section id="waitlist" aria-labelledby="waitlist-title">
