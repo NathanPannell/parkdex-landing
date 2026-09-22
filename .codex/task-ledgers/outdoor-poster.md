@@ -6,7 +6,7 @@ Four steps: discover map, save places, visit/photo/postcard, growing exploration
 
 Do not build until Sealed owner confirms Android gate completion. Then one production build, independent review, responsive deployed QA and cropped before/after PR evidence. Temporary Vercel alias only.
 
-Status: implementation underway. Main imports new composition and frame CSS. Photo review/postcard copied unchanged. Footer attribution pending integration.
+Current status: selected poster implemented, independently reviewed and deployed. Source298cecc contains the full design/icon; CSS-only96dace4 scopes status colors. Final deployed contrast screenshot passed. Release review and cropped PR evidence are complete. Historical checkpoints below preserve the pause/resume record.
 
 Root first visual batch found phone/form overlap at320/390, missing secondary button styling, reset specificity suppressing copy spacing, and low-contrast error copy. Fixed together in consolidated stylesheet. Recheck320/390 has complete phone and both actions visible. TypeScript/Vite build and all9 API tests passed. Independent visual and technical review running. Vite session77815 remains owned by root.
 
@@ -74,3 +74,12 @@ Authorized orchestrator relayed Resume the agents. Rechecked HEAD/status: unchan
 
 Resume release state: canonical camas icon source and four web exports verified against package SHA256 manifest, copied unchanged and linked in head. Final TypeScript/Vite build passed including reviewed CSS, fragment compatibility and favicon integration. Source ready to commit and deploy to temporary landing project. Independent reviews retained; API tests remain9 passing with no API logic changes since test run.
 
+
+## Completed release, 2026-09-21
+- Runtime96dace41e2d6edeb1074156f8f639ef0622da449 is live on https://parkdex-landing.vercel.app, deployment4gADeHFhoB8wwJLVHo2PBozZcn7Z. Immutable https://parkdex-landing-dhgmn3y35-nathanpannells-projects.vercel.app. Cloud/local builds passed.
+- Canonical approved Camas icon integrated unchanged; export-owner independent audit passed.
+- Deployed signup/removal validation, seven viewer states, Escape/close focus return, web-app destination then Back and Scroll passed. Additional375/414 hero and320 short-phone dialog inspected. No horizontal overflow or clipped screenshot content.
+- Owned codex-landing-b628179e@example.com signup produced1 row; uppercase UI removal produced0, independently verified using bounded Neon HTTP reads. No residual record. Direct psql timed out; no app or provider correction was needed.
+- Live review caught lime success text on cream; scope corrected and independently checked at6.33:1. Final deployed error and success screenshot passed; already-absent removal returned generic success.
+- PR1 remains draft with cropped before/after evidence and final release details. Documentation/evidence changes after runtime commit do not need a redeploy.
+- Browser viewport reset and final landing retained in user's in-app browser. No local watcher/server or root database process remains. Main app, domains, database schema and WAF unchanged.

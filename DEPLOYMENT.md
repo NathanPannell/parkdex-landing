@@ -10,9 +10,9 @@ This is an independent Vercel application with a dedicated Neon database. It doe
 | Neon branch | `br-young-shape-ar1qojbp` (`main`) | Created |
 | Neon database | `app` | `schema.sql` applied; table existence verified |
 | Vercel project | `prj_R7ccAjDhGmhiys542GFXJ67d1k8X` (`parkdex-landing`) | Created; linked locally |
-| Vercel deployment | `6cc7g5FcETCBSbuFNmH5dEmwmFnp` | Removal and mockups, final heading correction `ab61ae259c82cd342843be0ecd8406700f813afe`, Production, READY |
+| Vercel deployment | `4gADeHFhoB8wwJLVHo2PBozZcn7Z` | Outdoor Poster removal-feedback contrast correction `96dace41e2d6edeb1074156f8f639ef0622da449`, Production, READY |
 | Temporary URL | `https://parkdex-landing.vercel.app` | Public; serves the landing page |
-| Immutable deployment URL | `https://parkdex-landing-7li1snjan-nathanpannells-projects.vercel.app` | Protected by Vercel Authentication |
+| Immutable deployment URL | `https://parkdex-landing-dhgmn3y35-nathanpannells-projects.vercel.app` | Protected by Vercel Authentication |
 | WAF rule | `rule_limit_android_waitlist_submissions_cvRDrf` | Published; POST `/api/waitlist`, 5 requests per 60 seconds per IP |
 
 The deployer owns these resources and the journal until the live signup and database record have been verified. The isolated pooled `DATABASE_URL` is configured as a sensitive Vercel Production variable only. Secrets and connection strings live outside the repository. There is no custom domain assignment in this release. The immutable deployment URL shows Vercel's login screen under the account's default protection; use the public temporary alias for browser verification.
@@ -46,3 +46,9 @@ The photo-hero correction `417835a` passed the production build and updated the 
 The removal and mockup revision `0fac167` was deployed to the same project, followed by the final mockup heading correction `ab61ae2`. The final Vercel production build completed. The public alias served `/`, `/mockups/`, `/mockups/field-guide.html`, and `/mockups/poster.html` with HTTP 200 and expected page titles. The main page response retained `frame-ancestors 'none'`; each mockup route returned `frame-ancestors 'self'`. These checks were read-only. The page owner verifies the live signup and removal journey against the dedicated Neon row.
 
 The removal release was verified in the live mobile browser with `codex-landing-55e12026@example.com`: signup produced exactly one row, removal of the uppercase equivalent through About your email produced generic success, and a read-only database check verified zero rows. The test record was removed by the shipped UI, not an administrative cleanup query.
+
+The selected Outdoor Poster release `298cecc` reused the same Vercel project, temporary alias, isolated Neon database, and WAF rule. The Vercel production build completed. The public alias returned HTTP 200 for `/`, `/mockups/`, `/mockups/field-guide.html`, and `/mockups/poster.html`; the main page title is `Parkdex · Find a park. Keep the firsts.`. The main page retains `frame-ancestors 'none'`, while each mockup route returns `frame-ancestors 'self'`. The four canonical camas exports used by the main page, `/favicon.ico`, `/favicon-32x32.png`, `/favicon-64x64.png`, and `/apple-touch-icon.png`, returned HTTP 200 with appropriate image content types. The earlier `/favicon.svg` also returned HTTP 200, but remains a legacy asset referenced by the design mockups, not by the main page. These checks were read-only; the page owner handles live browser and waitlist verification.
+
+The live Outdoor Poster browser journey submitted `codex-landing-b628179e@example.com`, and an isolated Neon HTTP read found exactly one row. The page then removed the uppercase equivalent through the shipped opt-out UI; a second read of the same normalized address found zero rows. Both verification queries were read-only, and no administrative deletion was used.
+
+The CSS-only feedback contrast correction `96dace4` passed the Vercel production build and updated the same temporary alias. The alias maps to deployment `4gADeHFhoB8wwJLVHo2PBozZcn7Z`. The main page, comparison page, both mockups, and all four canonical camas icon files returned HTTP 200. The main page retained `frame-ancestors 'none'`, and the mockups retained `frame-ancestors 'self'`. No API or database schema changed in this correction.
