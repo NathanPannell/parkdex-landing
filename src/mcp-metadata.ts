@@ -3,6 +3,13 @@ const ISSUER_BY_APP_URL: Readonly<Record<string, string>> = {
   "https://staging.web.parkdex.app": "https://staging.parkdex.app",
 };
 
+export function rewriteStaticAppLinks(html: string, appUrl: string): string {
+  if (!Object.hasOwn(ISSUER_BY_APP_URL, appUrl)) {
+    throw new Error(`Unsupported VITE_APP_URL for landing links: ${appUrl}`);
+  }
+  return html.replaceAll("https://web.parkdex.app", appUrl);
+}
+
 export function createMcpMetadata(appUrl: string) {
   // The app URL selects production or staging; existing MCP issuer/resource IDs stay on the apex.
   const issuer = ISSUER_BY_APP_URL[appUrl];

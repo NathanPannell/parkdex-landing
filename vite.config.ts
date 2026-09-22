@@ -1,7 +1,7 @@
 import { defineConfig, loadEnv } from 'vite';
 import { mkdir, writeFile } from 'node:fs/promises';
 import { resolve } from 'node:path';
-import { createMcpMetadata } from './src/mcp-metadata';
+import { createMcpMetadata, rewriteStaticAppLinks } from './src/mcp-metadata';
 
 export default defineConfig(({ mode }) => {
   const env = loadEnv(mode, process.cwd(), 'VITE_');
@@ -12,6 +12,9 @@ export default defineConfig(({ mode }) => {
   return {
     plugins: [{
       name: 'parkdex-mcp-metadata',
+      transformIndexHtml(html) {
+        return rewriteStaticAppLinks(html, appUrl);
+      },
       configResolved(config) {
         outputDirectory = resolve(config.root, config.build.outDir);
       },

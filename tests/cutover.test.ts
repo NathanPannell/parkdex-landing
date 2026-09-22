@@ -14,7 +14,7 @@ import {
   type GuestMigrationTransfer,
   type GuestProgressKey,
 } from "../src/guest-migration.ts";
-import { createMcpMetadata } from "../src/mcp-metadata.ts";
+import { createMcpMetadata, rewriteStaticAppLinks } from "../src/mcp-metadata.ts";
 
 test("production and staging Vercel configs preserve the seven legacy API routes", () => {
   const expectedRoutes = [
@@ -95,6 +95,16 @@ test("generated MCP metadata matches the current production and staging issuers"
     },
   });
   assert.throws(() => createMcpMetadata("https://attacker.example"), /Unsupported VITE_APP_URL/);
+});
+
+test("static app links use only the matching production or staging app host", () => {
+  const source = '<a href="https://web.parkdex.app">Open Parkdex</a>';
+  assert.equal(rewriteStaticAppLinks(source, "https://web.parkdex.app"), source);
+  assert.equal(
+    rewriteStaticAppLinks(source, "https://staging.web.parkdex.app"),
+    '<a href="https://staging.web.parkdex.app">Open Parkdex</a>',
+  );
+  assert.throws(() => rewriteStaticAppLinks(source, "https://attacker.example"), /Unsupported VITE_APP_URL/);
 });
 
 test("only exact reset and verification fragments move to the matching web app", () => {
