@@ -1,0 +1,39 @@
+# Public privacy, deletion and support
+
+Started 2026-09-21. Explicit user-authorized beta scope delegated by appointed coordinator01a0c60f. No main app release or domain migration authorized. Landing deployment to existing temporary Vercel project allowed after factual verification.
+
+## Ownership
+- Root: privacy page, footer/build integration, factual reconciliation, deployed QA and release.
+- privacy_inventory (Luna): read-only app data/provider/retention source inventory.
+- support_routes (Luna): additive support/deletion route shells and shared typography/styles. No unowned submission form.
+- App task01a0c5bc: actual authenticated account/data/photo/local-state deletion and browser route contract.
+- Release task01a0c5fb: Play listing/Data safety preparation; receive verified public URLs.
+
+## Planned URLs
+- https://parkdex-landing.vercel.app/privacy
+- https://parkdex-landing.vercel.app/delete-account
+- https://parkdex-landing.vercel.app/support
+
+All draft and unpublished at start. Approved landing composition preserved; additive footer links only.
+
+## Required facts
+- Exact operator/privacy/support contact and operational ownership. Existing noscript uses contact@nathanpannell.com, verification underway.
+- Actual current/pending data inventory: accounts/auth, location, visits, photos, storage, integrations, diagnostics.
+- Browser deletion route, identity verification, dependent data/storage/local cleanup and exceptional failure handling.
+- Configured backup/log retention and operational cleanup expectations, without invented deadlines.
+
+## External requirements consulted
+Google's official account deletion guidance requires an accessible, app-named external pathway that allows a deletion request without reinstalling the app. Sign-in/browser deletion is acceptable if functional. Associated data and any retention must be explained. This is a product policy draft, not a legal-compliance certification.
+Source: https://support.google.com/googleplay/android-developer/answer/13327111?hl=en
+
+## Design
+Continue established paper/ink typography in Read/Operate mode. No new visual identity, hero changes or speculative features. Shared route navigation and clear action hierarchy. Existing Impeccable context already loaded in this session; new-work and craft-floor read before additive UI changes.
+
+## Source draft checkpoint, 2026-09-21
+- All three additive routes now exist. Shared src/support.css/ts, footer links and /#email-privacy disclosure handling wired into source/build entries. Draft/noindex notices remain; nothing new deployed.
+- Contact and Nathan's operational ownership confirmed by user through coordinator. Email is primary deletion entry. No guessed browser endpoint is exposed.
+- App owner agrees same transaction/photo outbox service for manual fulfillment; source docs/account-deletion.md and backend/app/account_delete.py now exist in pending app branch. Exact tested staging release still required. Requested explicit ownership-verification steps in owner runbook.
+- Data inventory complete: docs/privacy-data-inventory.md. Landing metadata in docs/landing-provider-retention.md; app metadata copied to docs/app-provider-retention.md. Resend bothenvs, R2stagingonly, precise claim evidence retained, JPEG metadata removed separately. No invented provider-erasure timing.
+- Independent static content/accessibility review assigned technical_audit. Support scaffolding and research agents finished. Root consolidated support CSS and shortened copy, omitting future browserflow technical slots and generic card scaffolding.
+- Sealed owner reserved15-25min quiet window for114 Android gate. No root build/server/watcher/test/deploy running. Build and browser review wait window release; public functional deletion QA/publication also waits deletion followup stagingLIVE per coordinator.
+- User authorized agreed staging sequence113(done),114,115,deletionfollowup,releaseconfig. Main app production/domain hold remains. Existing temporary independentlandingdeployallowedafterfacts/tests.
