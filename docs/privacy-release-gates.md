@@ -20,3 +20,5 @@ Independent static review found no broken local links or markup accessibility bl
 
 The Google Play guidance used for scope is https://support.google.com/googleplay/android-developer/answer/13327111?hl=en. This implementation does not claim legal certification or store approval.
 
+Local UI verification completed on 2026-09-22: build passed; all three routes reviewed at 320/375/414/768/1440 pixels, with no horizontal overflow or material visual findings. Lower content, keyboard focus, footer links, retention anchor and waitlist disclosure navigation checked. Back and subsequent scrolling work. Draft screenshots are in `docs/evidence/privacy-support/`. This does not satisfy the pending deployed deletion/fulfillment or public URL checks.
+

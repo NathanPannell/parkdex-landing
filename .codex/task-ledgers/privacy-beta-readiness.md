@@ -45,3 +45,11 @@ Continue established paper/ink typography in Read/Operate mode. No new visual id
 - OpenFreeMap policy read directly: anonymized logs retained indefinitely, incident IP logs up to30days, possible Cloudflare delivery. Public draft links that policy; no universal no-logs claim or inferred end-user age restriction.
 - All completed subagents explicitly interrupted after handoff at coordinator/user request. Results retained; no active worker, build, server, watcher or deployment.
 - Quiet window extended by114 owner for bounded native-gate diagnosis. Source/static review only so far. Build/browser QA and final publication remain pending the release gates.
+
+## Local verification, 2026-09-22
+- Quiet window released by PR114 owner and coordinator. `npm run build` passed, including TypeScript and all three static entries.
+- One browser review batch at 320, 375, 414, 768 and 1440 pixels for all three routes. No horizontal overflow detected. Independent Sol visual review found no material first-viewport issues; root checked lower-page copy/footer at 320 pixels.
+- Support to About your email opens the disclosure with removal controls. Footer to Delete account and retention anchor navigation work. Back preserves the disclosure; scrolling remains functional. Visible skip-link keyboard focus checked. No console errors or warnings in the QA tab.
+- Evidence saved under docs/evidence/privacy-support/draft-*.jpg. These are local draft screenshots, not deployed verification. No support email was sent and no account was deleted during this check.
+- Local preview session 15949 stopped. QA tab closed and temporary viewport reset. Visual reviewer interrupted after its report. No active server, watcher or worker remains.
+- Publication still waits for deletion follow-up staging LIVE and verified manual fulfillment/photo cleanup. Final copy reconciliation, public URL browser QA and final footer PR evidence remain outstanding.
