@@ -16,6 +16,7 @@ The public routes are additive to the approved landing. They must not advertise 
 
 Before publish: finish source inventory, validate claims against deletion code/runbook, remove draft labels only when accurate, browser-test public navigation and deletion entry on a deployed URL, and retain evidence. Do not publish a dead automated deletion button simply because its route is agreed.
 
-Independent static review found no broken local links or markup accessibility blocker. It flagged beta availability and deletion outcomes as publication gates. Copy now identifies a test version being prepared for Android and staging-only R2, without asserting a published beta. Footer links must not be deployed while the target routes remain factual drafts; noindex is not an access control.
+Independent static review found no broken local links or markup accessibility blocker. It flagged beta availability and deletion outcomes as publication gates. Copy now identifies a test version being prepared for Android and confirmed staging R2 and unverified production readiness, without asserting a published beta. Footer links must not be deployed while the target routes remain factual drafts; noindex is not an access control.
 
 The Google Play guidance used for scope is https://support.google.com/googleplay/android-developer/answer/13327111?hl=en. This implementation does not claim legal certification or store approval.
+

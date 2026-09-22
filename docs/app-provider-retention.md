@@ -36,3 +36,6 @@ Checked read-only at `2026-09-22T05:14Z`. Scope was the Parkdex app providers on
 ## Unknowns and privacy conclusion
 
 The exact provider internal erasure schedules for Neon history/backups, Railway application/audit logs, and R2 objects are unknown from the accessible metadata. Do not present `6 hours`, `7 days`, `2 days`, or the documented `24 hours` as a guaranteed deletion time. For source photos, the documented control remains an immediate delete attempt after the database tombstone with a durable manual retry outbox; provider-side completion time is not guaranteed.
+
+## Scope correction
+The production variable read above covered allowlisted service variables, not an exhaustive merged view of inherited/effective configuration. Missing fields in that response are not proof that production R2 is unconfigured. Production photo-storage readiness remains unverified; staging R2 is confirmed. No provider configuration was changed.

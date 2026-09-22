@@ -33,7 +33,15 @@ Continue established paper/ink typography in Read/Operate mode. No new visual id
 - All three additive routes now exist. Shared src/support.css/ts, footer links and /#email-privacy disclosure handling wired into source/build entries. Draft/noindex notices remain; nothing new deployed.
 - Contact and Nathan's operational ownership confirmed by user through coordinator. Email is primary deletion entry. No guessed browser endpoint is exposed.
 - App owner agrees same transaction/photo outbox service for manual fulfillment; source docs/account-deletion.md and backend/app/account_delete.py now exist in pending app branch. Exact tested staging release still required. Requested explicit ownership-verification steps in owner runbook.
-- Data inventory complete: docs/privacy-data-inventory.md. Landing metadata in docs/landing-provider-retention.md; app metadata copied to docs/app-provider-retention.md. Resend bothenvs, R2stagingonly, precise claim evidence retained, JPEG metadata removed separately. No invented provider-erasure timing.
+- Data inventory complete: docs/privacy-data-inventory.md. Landing metadata in docs/landing-provider-retention.md; app metadata copied to docs/app-provider-retention.md. Resend bothenvs, R2confirmedinstagingwithproductionreadinessunverified, precise claim evidence retained, JPEG metadata removed separately. No invented provider-erasure timing.
 - Independent static content/accessibility review assigned technical_audit. Support scaffolding and research agents finished. Root consolidated support CSS and shortened copy, omitting future browserflow technical slots and generic card scaffolding.
 - Sealed owner reserved15-25min quiet window for114 Android gate. No root build/server/watcher/test/deploy running. Build and browser review wait window release; public functional deletion QA/publication also waits deletion followup stagingLIVE per coordinator.
 - User authorized agreed staging sequence113(done),114,115,deletionfollowup,releaseconfig. Main app production/domain hold remains. Existing temporary independentlandingdeployallowedafterfacts/tests.
+
+
+## Checkpoint correction
+- Draft source pushed as75e32ac; no deployment triggered (Git auto-deploy disabled).
+- Corrected over-inference from missing production service-only R2 fields: inherited/effective variables were not exhaustively inspected. Production photo-storage readiness is unverified, not established as unconfigured. All local inventory/draft wording corrected.
+- OpenFreeMap policy read directly: anonymized logs retained indefinitely, incident IP logs up to30days, possible Cloudflare delivery. Public draft links that policy; no universal no-logs claim or inferred end-user age restriction.
+- All completed subagents explicitly interrupted after handoff at coordinator/user request. Results retained; no active worker, build, server, watcher or deployment.
+- Quiet window extended by114 owner for bounded native-gate diagnosis. Source/static review only so far. Build/browser QA and final publication remain pending the release gates.
