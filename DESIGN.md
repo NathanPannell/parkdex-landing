@@ -1,6 +1,6 @@
 ---
 name: Parkdex
-description: A real Vancouver Island landscape opens a paper field guide.
+description: An Outdoor Poster for Parkdex on Vancouver Island.
 colors:
   paper: "#f1f0e8"
   paper-bright: "#fbfaf4"
@@ -33,32 +33,42 @@ colors:
   shade-44: "rgb(9 32 27 / 44%)"
   shade-48: "rgb(9 32 27 / 48%)"
 typography:
+  brand:
+    fontFamily: "Strichpunkt Sans Variable, sans-serif"
+    fontSize: "clamp(5rem, 15.5vw, 15rem)"
+    fontWeight: 780
+    lineHeight: 0.7
+    letterSpacing: "-.04em"
   display:
     fontFamily: "Strichpunkt Sans Variable, sans-serif"
-    fontSize: "clamp(2.05rem, 10.4vw, 2.65rem)"
+    fontSize: "clamp(3.4rem, 6.5vw, 6rem)"
     fontWeight: 780
-    lineHeight: 0.94
-    letterSpacing: "-.04em"
+    lineHeight: 0.86
+    letterSpacing: "-.035em"
+  headline:
+    fontFamily: "Strichpunkt Sans Variable, sans-serif"
+    fontSize: "clamp(3rem, 6vw, 6rem)"
+    fontWeight: 780
+    lineHeight: 0.87
+    letterSpacing: "-.035em"
   title:
     fontFamily: "Strichpunkt Sans Variable, sans-serif"
-    fontSize: "1.12rem"
+    fontSize: "clamp(1.25rem, 2.5vw, 1.6rem)"
     fontWeight: 720
-    letterSpacing: "-.02em"
+    letterSpacing: "-.03em"
   body:
     fontFamily: "Ysabeau Variable, sans-serif"
     fontSize: "1.125rem"
     fontWeight: 400
-    lineHeight: 1.5
   label:
     fontFamily: "Ysabeau Variable, sans-serif"
-    fontSize: ".9rem"
+    fontSize: ".95rem"
     fontWeight: 650
   hand:
     fontFamily: "Caveat Variable, cursive"
-    fontSize: "1.6rem"
+    fontSize: "clamp(2.2rem, 4vw, 3.6rem)"
 rounded:
   field: "5px"
-  disclosure: "6px"
   dialog: "12px"
   circle: "50%"
 spacing:
@@ -68,22 +78,16 @@ spacing:
   lg: "1.5rem"
   xl: "2.5rem"
   2xl: "4rem"
-  gutter: "clamp(1.25rem, 4.4vw, 5rem)"
+  gutter: "clamp(1.25rem, 4.5vw, 5rem)"
 components:
-  button-hero-primary:
-    backgroundColor: "{colors.accent}"
-    textColor: "{colors.accent-ink}"
-    rounded: "{rounded.field}"
-    padding: ".72rem 1rem"
-  button-hero-secondary:
+  link-web:
     backgroundColor: "{colors.transparent}"
     textColor: "{colors.hero-text}"
   button-primary:
     backgroundColor: "{colors.accent}"
     textColor: "{colors.accent-ink}"
     rounded: "{rounded.field}"
-    padding: ".8rem 1.1rem"
-    height: "54px"
+    padding: ".8rem 1rem"
   button-primary-hover:
     backgroundColor: "{colors.accent-hover}"
     textColor: "{colors.accent-ink}"
@@ -92,12 +96,11 @@ components:
     textColor: "{colors.ink}"
     rounded: "{rounded.field}"
     padding: ".8rem 1rem"
-    height: "54px"
-  button-preview:
+  button-remove:
     backgroundColor: "{colors.transparent}"
     textColor: "{colors.ink}"
     rounded: "{rounded.field}"
-    padding: ".5rem .65rem"
+    padding: ".55rem .8rem"
   button-dialog-close:
     backgroundColor: "{colors.paper-bright}"
     textColor: "{colors.ink}"
@@ -109,52 +112,52 @@ components:
 
 ## Overview
 
-**Creative North Star: "Vancouver Island, Before the Scroll"**
+**Creative North Star: "Outdoor Poster"**
 
-Parkdex opens with a real East Sooke landscape. Warm off-white type, a sparing lime action, and an immediately visible matte phone make the island and the product clear in the first viewport. Transparent coastal shading supports legibility while leaving the photograph recognizable. There is no masthead divider or opaque wash over the scene.
+Parkdex opens like a large outdoor poster laid over a real East Sooke photograph. An oversized Parkdex wordmark, a compressed two-line promise, and a River Otter badge phone make the place and product apparent immediately. The waitlist form is part of this opening, with a quieter web-app link beneath it. There is no small masthead, navigation band, hand-drawn annotation, or scroll-only signup call to action.
 
-The second section returns to the portfolio-derived paper field guide: green ink, bold Strichpunkt type, Ysabeau body copy, a short Caveat sign-off, and real app screenshots in restrained matte hardware. The hero action leads to the full Android waitlist below. Screenshot inspection remains manual and direct, with visible focus and form feedback.
+Four full-width product stories follow the photo: map, saved places, visit/photo/postcard, and collection progress. Warm paper alternates with pressed paper before the last story turns deep green. Large Strichpunkt headlines, practical Ysabeau copy, uncropped screen captures, and matte device frames carry the sequence. The upcoming Android visit screens are labeled as previews with demonstration photos. A short Caveat sign-off closes the page. Product screenshots open in a native viewer on request.
 
 **Key Characteristics:**
 
-- A real Vancouver Island photograph is the opening surface, including behind the masthead.
-- Warm photo text and one lime action lead to a recognizable badge phone before scrolling.
-- Paper and green ink carry the gallery, waitlist, and footer below.
-- Real screenshots remain legible inside restrained matte devices and a manual viewer.
+- East Sooke remains a recognizable photographic surface beneath transparent contrast shading.
+- The giant wordmark, inline waitlist, web-app link, and badge phone belong to one opening composition.
+- Four spacious story sections alternate warm paper, pressed paper, and deep green.
+- Complete screenshot content sits inside legible hardware and opens in a seven-view manual dialog.
 
 ## Colors
 
-The palette moves from a naturally colored coastal photograph with warm white copy to warm paper and deep coastal green below. Lime remains the one vivid marker.
+The palette starts with natural coastal color and warm photo copy, then moves through paper and deep green. Lime is the poster's one vivid mark.
 
 ### Primary
 
-- **Field Marker** (`accent`): The highlighted hero word, brand mark, hero anchor, waitlist button, and selection. Its darker hover variant (`accent-hover`) is limited to precise-pointer interaction.
-- **Green Ink** (`ink`, also `accent-ink`): Paper-section headlines, controls, brand trees, and copy on lime.
+- **Field Marker** (`accent`): The wordmark period, second hero headline line, waitlist action, and selection. Its darker hover variant (`accent-hover`) is limited to precise-pointer interaction.
+- **Green Ink** (`ink`, also `accent-ink`): Paper-section headlines, the dark collection story, controls, and copy on lime.
 
 ### Neutral
 
-- **Field Paper** (`paper`): The page and screenshot dialog, under a low-opacity paper texture.
-- **Fresh Paper** (`paper-bright`): Input, close control, active screenshot tab, and disclosure panel.
-- **Pressed Paper** (`paper-deep`): Screenshot viewer image well.
-- **Secondary Ink** (`secondary`): Explanatory copy, release note, and disclosure text.
-- **Quiet Ink** (`muted`): Supporting labels, placeholder, status text, and footer metadata.
-- **Pencil Rule** (`rule`): Hairline dividers, field border, and close control outline.
-- **Matte Hardware** (`device-shell`, `device-edge`, `device-bezel`, `device-base`): Chassis, light-facing rim, black screen recess, and laptop foot. These colors belong to device mockups, not generic cards.
-- **Screen Shade** (`shadow`, `backdrop`): The soft device shadow and modal scrim.
+- **Field Paper** (`paper`): Map and visit stories, footer, and screenshot dialog, under a faint paper texture.
+- **Fresh Paper** (`paper-bright`): Email fields, close control, and active screenshot tab.
+- **Pressed Paper** (`paper-deep`): Saved-places story and screenshot viewer image well.
+- **Secondary Ink** (`secondary`): Explanatory story copy and footer metadata.
+- **Quiet Ink** (`muted`): Placeholders and subdued form or preview notes.
+- **Pencil Rule** (`rule`): Hairline section dividers, fields, and dialog controls.
+- **Matte Hardware** (`device-shell`, `device-edge`, `device-bezel`, `device-base`): Dark chassis, one light-facing edge, screen mat, and laptop hardware. These colors belong to devices, not generic cards.
+- **Screen Shade** (`shadow`, `backdrop`): Device separation and the viewer scrim.
 
 ### Photographic Overlay
 
 - **Warm Photo Text** (`hero-text`, `hero-soft`): Main hero lettering and quieter supporting copy over the landscape.
-- **Coastal Scrim** (`hero-scrim`, `hero-scrim-soft`, `shade-28`, `shade-30`, `shade-38`, `shade-40`, `shade-44`, `shade-48`): Transparent green-dark values used in directional overlays and small text or hardware shadows. The photograph remains the base surface.
+- **Coastal Scrim** (`hero-scrim`, `hero-scrim-soft`, `shade-28`, `shade-30`, `shade-38`, `shade-40`, `shade-44`, `shade-48`): Transparent green-dark values for directional photo contrast. The photograph remains the base surface.
 
 ### State Colors
 
 - **Focus Green** (`focus`): Visible keyboard outline and text caret.
-- **Error Red** (`error`): Invalid field border and actionable failure text.
-- **Success Green** (`success`): Saved email feedback and field border.
+- **Error Red** (`error`): Shared error token; the hero puts warm-white error copy on a solid ink status surface for contrast on the photo.
+- **Success Green** (`success`): Shared success token; hero confirmation text uses lime for contrast on the photo.
 - **Clear** (`transparent`): Link-like and screenshot controls that preserve the paper surface.
 
-**The One Marker Rule.** Keep lime scarce. It identifies a key phrase or action while the landscape, green ink, and paper do the rest.
+**The One Marker Rule.** Keep lime concentrated in the giant brand punctuation, headline, and primary action while the landscape, green ink, and paper do the rest.
 
 **The Clear Landscape Rule.** Darken the real photograph only enough to read the text. Preserve the image and its crop as the opening material.
 
@@ -164,69 +167,73 @@ The palette moves from a naturally colored coastal photograph with warm white co
 **Body Font:** Ysabeau Variable, with sans-serif fallback.
 **Handwritten Font:** Caveat Variable, with cursive fallback.
 
-**Character:** The compressed, confident display face gives the field guide its personality. Ysabeau carries the practical instructions and explanatory copy. Caveat reads like a small human annotation, never a substitute for core information.
+**Character:** Strichpunkt makes the page feel like a printed outdoor poster, especially in the oversized wordmark and tightly set story headlines. Ysabeau handles reading and form text. Caveat appears only in the closing sign-off.
 
 ### Hierarchy
 
-- **Display** (780, mobile clamp from 2.05rem to 2.65rem, .94 line-height, tight tracking): Warm-white hero headline. It scales to 5.8rem at tablet widths and up to 6rem at desktop. The line grouping compresses on phones so the phone and CTA fit with the photograph.
-- **Section headline** (780, clamp from 2.1rem to 3.5rem, .98 line-height): Green-ink introduction to the paper field-guide section.
-- **Title** (720, 1.12rem, tight tracking): Android waitlist and gallery headings. Dialog titles scale from 1.25rem to 1.6rem.
-- **Body** (regular, 1.125rem base): Reading text. The hero lede starts at 1rem with a 34ch maximum and short line-height; the paper-section introduction can reach 1.3rem and 65ch.
-- **Label** (650, .9rem): Explicit form label. Utility links and preview actions are around .95rem with clear underlines or action affordances.
-- **Hand** (1.6rem): The short founder sign-off below the paper section.
+- **Brand** (780, desktop clamp from 5rem to 15rem, .7 line-height, tight tracking): A single huge Parkdex wordmark and lime period on the photograph. Phone layouts use a smaller fluid range so the mark stays whole.
+- **Display** (780, desktop clamp from 3.4rem to 6rem, .86 line-height): Two-line warm-white and lime hero statement. It scales down to 2rem in the narrowest phone rule.
+- **Headline** (780, desktop clamp from 3rem to 6rem, .87 line-height): Four short product-story headings. The dark collection section reverses them to warm white.
+- **Title** (720, 1.25rem to 1.6rem): Screenshot viewer heading.
+- **Body** (regular, 1.125rem base): Hero lede reaches 1.3rem within 35ch; story paragraphs reach 1.3rem within 34ch and use a calmer 1.42 line-height.
+- **Label** (650, .95rem in the hero): An explicit waitlist email label. The footer removal form uses .9rem labels.
+- **Hand** (2.2rem to 3.6rem): Only the closing “See you out there.”
 
-**The Human Annotation Rule.** Handwriting adds a personal aside around actual product content; it does not carry form labels, navigation, or essential instructions.
+**The Sign-off Rule.** Handwriting closes the story once; it does not carry form labels, navigation, or essential instructions.
 
 ## Layout
 
-The page has a centered maximum width of 1800px and a fluid horizontal gutter (`gutter`). The photographic hero fills at least one small viewport height, with a 700px floor on larger screens. Its transparent masthead sits directly on the photo. On phones, headline, lede, action, and one badge phone stack within the opening. At 64rem the hero becomes a two-column composition with copy at left and the phone at right. The hero image uses responsive source assets and an `object-fit: cover` crop; its crop, shading, copy, phone, and section transition must be assessed together.
+The page is a centered 1800px maximum-width shell. The first region is a full photographic poster, with no separate header. Its inner layout sets copy and the badge phone in two columns on desktop; on phones the wordmark spans the opening, the phone sits beside the headline and supporting line, and the full-width form follows below both. The hero uses responsive East Sooke assets, a deliberate cover crop, and transparent shading. Its minimum height is the larger of 700px and one small viewport height on larger screens, with a full-viewport phone composition. The poster uses its own fluid gutter (`gutter` in frontmatter) and tightens copy and phone sizing again at 22rem.
 
-The paper field-guide section follows the hero. Its introduction leads into a waitlist and screenshot gallery. At 64rem these form two columns, with the gallery wider; on phones they stack and may scroll. The compact spacing vocabulary runs from `xs` through `2xl`. The email field and submit action form a single row from 25rem; below that they stack. At 40rem type, device space, masthead, and footer expand. At 22rem and below the wordmark and app link contract without shrinking the targets.
+Four spacious full-width sections create the scroll sequence. Each uses a large heading and short explanation beside substantial product imagery on desktop, then stacks copy before imagery at 40rem and below. The map introduces discovery, paired phones show search and wishlist, paired Android previews show review and postcard, and the final deep-green section combines progress with the badge. The warm paper, pressed-paper, warm paper, and deep-green backgrounds make each step legible without extra cards. Thin rules separate the stories. The footer returns to paper for the handwritten sign-off, privacy disclosure, removal form, and credits.
 
-The gallery overlaps a broad laptop map and two portrait phones in a 1.45-ratio stage, changing to 1.05 on phones. Five manual screenshot choices begin 1rem below it. At desktop, those choices share a five-column row; at tablet they use three columns, and on small screens they wrap in an adaptive grid. The hero phone remains separate, immediate product proof. Do not promote these exact page placements into a system-wide template. Preserve the content-first approach and legible device silhouette when using hardware elsewhere.
+The hero waitlist field and action share a row above 40rem and stack on phones; the secondary web-app link sits below, never behind a menu. Device imagery remains large, with paired phones staggered on wide screens and placed in a single column on phones. The collection section sets the laptop and smaller badge phone together. These are this page's story compositions, not general-purpose grids.
 
 ## Elevation & Depth
 
-The hero uses the actual East Sooke image as its surface, with transparent directional dark overlays for readable copy and a light phone shadow for separation. The paper section is almost flat: low-opacity grain, thin dividers, and three nearby paper tones organize it. Gallery device shadows give mockups physical weight. The screenshot dialog uses a dark green scrim and a pressed-paper image well. Generic content has no card shadow.
+The real East Sooke image is the hero surface. Two transparent green-dark gradients support warm text without replacing the photograph. Below, paper grain is faint and the story sequence relies on broad tonal blocks. The final collection story uses deep green as a full section, while screens retain their dark hardware silhouettes. The screenshot dialog uses a dark green scrim and a pressed-paper image well. Generic content has no floating-card shadow.
 
 ### Shadow Vocabulary
 
-- **Laptop contact** (`0 12px 28px var(--color-shadow)`): A soft shadow under matte laptop hardware.
-- **Phone contact** (`0 14px 26px var(--color-shadow)`): A similar small-device shadow.
-- **Hero phone contact** (`0 18px 34px var(--color-shade-40)`): Separation from the landscape without altering the phone's matte base.
+- **Device contact** (`0 12px 28px var(--color-shadow)`): Soft hardware separation where laptop framing uses the shared hardware style.
 - **Inspection scrim** (`var(--color-backdrop)`): Behind the native screenshot dialog.
 
-**The Matte Hardware Rule.** Preserve a dark chassis and distinct bezel at the smallest shipped size. A light-facing edge can define the silhouette; decorative chrome gradients are outside this material language.
+**The Complete Screen Rule.** The device frame is a physical border around an uncropped capture. Keep the camera area outside screenshot content with a screen mat; use `object-fit: contain` so the supplied interface is not stretched or cropped.
 
 ## Shapes
 
-The hero has no visible frame or masthead rule; the photograph runs edge to edge within the site shell. Fields, actions, gallery choices, tabs, and image wells use a small 5px corner; disclosure uses 6px; the dialog uses 12px; its close control is circular. Device radii are proportional to their screen dimensions and follow the hardware silhouette, with a subtle laptop hinge/base. Paper-section borders are usually one-pixel pencil rules. The hero underline is an irregular, slightly rotated lime stroke, not a pill or a badge.
+The hero has no visible frame or header rule; the photograph runs edge to edge within the site shell. The brand mark is a lime period, not an illustrated logo. Email fields, primary and removal actions, viewer tabs, and image wells use small 5px corners; the dialog uses 12px and its close control is circular. The established licensed phone-frame SVG supplies the camera and hardware silhouette. Its visible side rails and separate screen mat matter more than small decorative detail. Each story is a broad open surface rather than a boxed card.
 
 ## Components
 
 ### Buttons
 
-- **Hero primary:** A 44px minimum-height lime anchor with green display lettering and 5px corners. It scrolls to the waitlist below and becomes full-width up to 18rem on small phones.
-- **Waitlist primary:** A 54px high lime submit action with green display lettering, 5px corners, and compact horizontal padding. Both lime actions darken on precise-pointer hover and press down 1px on active.
-- **Hero secondary:** A warm-white underlined anchor to the paper section. It keeps a 44px target and sits below the primary action on phones.
-- **Gallery choices:** Five paper-surface buttons, each at least 44px high, with a one-pixel pencil border, small corners, left-aligned labels, and a right-aligned expand icon. On hover they take a fresh-paper fill.
+- **Waitlist primary:** The actual submit control is lime with green Strichpunkt lettering, 5px corners, and at least 54px height on desktop. It sits inline with the email field, then stacks at 40rem and below. On phones both controls use at least 48px height. Hover darkens only on precise pointers; active presses down 1px.
+- **Web-app link:** A quieter outlined warm-white button beneath the hero form, with a small outward arrow and at least 44px height. The map story repeats the link in green ink. On precise-pointer hover the arrow nudges diagonally.
+- **Removal action:** A quiet, outlined paper-section button inside the privacy disclosure, with at least 44px height. It has distinct disabled and loading states.
 - **Dialog close:** A 44px circular fresh-paper control with a one-pixel rule and visible focus outline.
 
 ### Inputs / Fields
 
-The email field has a visible label, 54px height, fresh-paper fill, 1px rule, and 5px corners. Placeholder text is quiet ink. Focus uses the shared 3px green outline. Invalid and successful submissions change the field border and adjacent message to their respective state colors. Loading reduces button emphasis and the form communicates progress; a successful button becomes disabled.
+The hero email field has a visible warm-white label, fresh-paper fill, a 1px pencil rule, and 5px corners. The field and primary action have at least 54px height on desktop and 46px on phones. Placeholder text is quiet ink. Keyboard focus uses a 3px green outline at a 4px offset. The hero form uses a solid ink status surface for readable error feedback and lime for success; loading and completed states change button text and availability. A second labeled email field lives in the footer's removal form, with its own loading, error, and completion feedback.
 
 ### Navigation
 
-The transparent masthead sits on the photograph, pairing a warm-white bold wordmark and lime tree mark with a warm-white external app link. Both remain direct links. There is no divider or hidden mobile menu. Keyboard focus is prominent, and precise-pointer hover strengthens underlines.
+There is no masthead or navigation menu. The giant wordmark is display text, while the hero web-app link and map-section link are the direct route into the product. A fixed skip link becomes visible on focus. The footer contains only the privacy control and required credits.
 
 ### Screenshot Devices and Viewer
 
-The hero phone shows a real River Otter badge reward and opens the native screenshot viewer. Below, a full-island map, park search, and badge reward appear in the laptop and two gallery phones. Five choices also expose the wishlist detail and island progress captures. Device and choice controls open the same native dialog, where five manual tabs switch title, description, image, dimensions, alt text, and pressed state. The active tab has a pencil border and fresh-paper fill. The modal closes by its visible control or the outside area, then restores focus to the originating control. There is no automatic cycling.
+The River Otter badge phone is immediate product proof in the hero. The map, park search, Elk Falls wishlist detail, visit review, visit postcard, island progress, and badge captures carry the four stories. Each framed screen is a button that opens the same native dialog. Its seven manual choices update title, description, image, dimensions, alt text, and pressed state. The active choice has a pencil border and fresh-paper fill. Closing by the visible control or outside click restores focus to the originating device button. There is no automatic cycling.
+
+The hero phone uses an established licensed iPhone 16 Max SVG hardware overlay. The camera island lives above a reserved top screen mat, with matching bottom safe space to protect the complete image rectangle from rounded corners. The media layer contains the full screenshot within the remaining display using `object-fit: contain`. Treat this as a device framing rule, not permission to add chrome gradients or alter screenshot pixels.
+
+### Android Preview Labels
+
+The visit-review and postcard images depict an upcoming Android flow with demonstration photos. The story copy, image alt text, and viewer descriptions identify them as previews. Keep that distinction visible wherever these captures appear.
 
 ### Footer Disclosure
 
-The privacy explanation uses native `details` and `summary`. On narrow screens it stays in flow; from 40rem it opens as a fresh-paper panel above the footer, with a thin rule and small radius.
+The privacy explanation uses native `details` and `summary` in the footer. It stays in document flow at all sizes and includes a labeled form for leaving the waitlist. It shares the page's paper surface and focus language rather than becoming a floating popover.
 
 **The Direct Interaction Rule.** Product previews change only on a visitor's action. Preserve semantic controls, 44px touch targets, visible keyboard focus, and reduced-motion behavior.
 
@@ -234,16 +241,16 @@ The privacy explanation uses native `details` and `summary`. On narrow screens i
 
 ### Do:
 
-- **Do** show a recognizable phone and primary action over the real island photograph before scrolling on phones.
-- **Do** use real Parkdex captures at legible sizes and retain the matte chassis around any device mockup.
-- **Do** let paper, ink, rules, and spacing establish hierarchy before adding color or shadow.
-- **Do** keep the handwritten voice to short personal annotations and the practical copy in Ysabeau.
-- **Do** preserve explicit validation, loading, network error, success, and focus states for signup.
+- **Do** keep the giant wordmark, inline Android form, quieter web-app link, and badge phone in one photographic opening.
+- **Do** preserve real screenshot content, including its full edges, within a visible matte chassis and a reserved camera area.
+- **Do** make the four product stories readable as map, saved places, visit/photo/postcard, and collection progress.
+- **Do** label the upcoming Android visit images as previews with demonstration photos.
+- **Do** keep essential reading in Ysabeau, reserve Caveat for the closing sign-off, and preserve clear form and focus states.
 
 ### Don't:
 
-- **Don't** spread the lime accent across whole panels or replace the device shell with brand color.
-- **Don't** wash the hero photograph in opaque white, add a masthead divider over it, or hide the phone below the waitlist form.
-- **Don't** invent polished chrome, detailed branded hardware, or a decorative gradient around screenshots.
-- **Don't** auto-advance app captures or make core content depend on animation.
-- **Don't** clip gallery or waitlist content merely to force a one-screen layout.
+- **Don't** add a small masthead, divider, or decorative hero annotations around the wordmark.
+- **Don't** wash the East Sooke photograph in opaque white or make lime a whole-panel fill.
+- **Don't** crop, stretch, or tuck screenshot content beneath the phone's camera island.
+- **Don't** represent the Android demonstration photos as captured user visits or a shipped feature.
+- **Don't** auto-advance app captures, bury the real signup behind a scroll-only action, or clip story content to force a one-screen page.

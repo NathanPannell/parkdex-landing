@@ -1,4 +1,6 @@
-import './style.css';
+import './shared-base.css';
+import './poster-page.css';
+import './device-frame.css';
 
 const appUrl = import.meta.env.VITE_APP_URL || 'https://parkdex.app';
 document.querySelectorAll<HTMLAnchorElement>('[data-app-link]').forEach((link) => { link.href = appUrl; });
@@ -29,7 +31,7 @@ email.addEventListener('input', () => {
   form.dataset.state = 'idle';
   email.setAttribute('aria-invalid', 'false');
   message.textContent = 'One email when the Android app is ready.';
-  joinLabel.textContent = 'Join the waitlist';
+  joinLabel.textContent = 'Join the Android waitlist';
   join.disabled = removing;
 });
 
@@ -139,7 +141,7 @@ removeForm.addEventListener('submit', async event => {
     removeMessage.textContent = 'If this address was on the waitlist, it has been removed. You can join again anytime.';
     if (email.value.trim().toLowerCase() === submittedEmail.toLowerCase() && !pending) {
       form.dataset.state = 'idle';
-      joinLabel.textContent = 'Join the waitlist';
+      joinLabel.textContent = 'Join the Android waitlist';
       join.disabled = false;
       message.textContent = 'One email when the Android app is ready.';
     }
@@ -162,6 +164,8 @@ const viewerImage = document.querySelector<HTMLImageElement>('#viewer-image')!;
 const viewerTitle = document.querySelector('#viewer-title')!;
 const viewerDescription = document.querySelector('#viewer-description')!;
 const screenshots = {
+  review: { src: '/images/visit-review.png', title: 'Keep a photo from your visit.', description: 'Android preview. Demonstration photo in the upcoming visit flow.', alt: 'Android photo review with Keep this one and Save my visit controls', width: 375, height: 844 },
+  postcard: { src: '/images/visit-postcard.png', title: 'A little proof you were there.', description: 'Android preview. Demonstration photo in a private visit postcard.', alt: 'Parkdex visit saved as a photograph postcard with Back to map and See my collection actions', width: 375, height: 844 },
   map: { src: '/images/staging-map.webp', title: 'Explore the island by map.', description: 'Find your next park across Vancouver Island.', alt: 'Parkdex map showing parks across Vancouver Island', width: 1440, height: 900 },
   badges: { src: '/images/badge-reward.webp', title: 'Claim badges for the places you find.', description: 'Collect local wildlife discoveries as you explore.', alt: 'Parkdex badge screen showing a new river otter discovery', width: 714, height: 1354 },
   parks: { src: '/images/park-search.webp', title: 'Find parks without the guesswork.', description: 'Search national, provincial and regional parks, plus islands.', alt: 'Parkdex places screen listing regional and provincial parks', width: 712, height: 1359 },

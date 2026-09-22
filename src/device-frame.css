@@ -1,0 +1,104 @@
+/*
+ * Reusable Parkdex device frame contract.
+ *
+ * Markup:
+ * <div class="device-frame device-frame--iphone-16-max">
+ *   <div class="device-frame__screen">
+ *     <div class="device-frame__media">
+ *       <img src="/images/badge-reward.webp" width="714" height="1354"
+ *         alt="..." />
+ *     </div>
+ *   </div>
+ *   <span class="device-frame__hardware" aria-hidden="true">
+ *     <img src="/frames/iphone-16-max.svg" alt="" />
+ *   </span>
+ * </div>
+ *
+ * The source image belongs in __media. Keep it as an <img> for intrinsic
+ * dimensions and accessibility. The frame SVG is a visual overlay and must
+ * stay above the screen layer.
+ */
+
+.device-frame {
+  --device-frame-width: min(100%, 260px);
+  --device-screen-mat: var(--color-device-bezel);
+  --device-screen-top-inset: 7%;
+  position: relative;
+  display: block;
+  width: var(--device-frame-width);
+  max-width: 100%;
+  aspect-ratio: 415 / 843;
+  isolation: isolate;
+}
+
+.device-frame--iphone-16-max {
+  aspect-ratio: 415 / 843;
+}
+
+.device-frame__screen {
+  position: absolute;
+  inset: 1.32% 3.4%;
+  overflow: hidden;
+  /* Equivalent to the upstream width-based radius at this slot's aspect. */
+  border-radius: 13.1037% / 6.1752%;
+  background: var(--device-screen-mat);
+  z-index: 0;
+}
+
+/*
+ * The upstream frame's Dynamic Island occupies y=24..55 in the 415x843
+ * viewBox, while the screenshot slot begins at y=11.1. A top media inset
+ * reserves that overlap as letterbox/mat so even a tall 375x844 source cannot
+ * place content beneath the island. The matching bottom inset keeps the full
+ * screenshot rectangle inside the rounded display corners. The remaining
+ * media area still contains all supplied Parkdex captures without distortion
+ * or cropping.
+ */
+.device-frame__media {
+  position: absolute;
+  inset: var(--device-screen-top-inset) 0 var(--device-screen-top-inset);
+  display: grid;
+  place-items: center;
+  overflow: hidden;
+}
+
+.device-frame__media > img,
+.device-frame__media > video,
+.device-frame__media > iframe {
+  display: block;
+  width: 100%;
+  height: 100%;
+  min-width: 0;
+  min-height: 0;
+  border: 0;
+  object-fit: contain;
+  object-position: center;
+}
+
+.device-frame__hardware {
+  position: absolute;
+  inset: 0;
+  display: block;
+  width: 100%;
+  height: 100%;
+  pointer-events: none;
+  user-select: none;
+  z-index: 1;
+}
+
+/* The contract permits a wrapper so the decorative asset remains explicitly
+ * aria-hidden while the SVG keeps its intrinsic source dimensions. */
+.device-frame__hardware > img,
+.device-frame__hardware > svg {
+  display: block;
+  width: 100%;
+  height: 100%;
+  pointer-events: none;
+  user-select: none;
+}
+
+@media (min-width: 40rem) {
+  .device-frame {
+    --device-frame-width: min(100%, 300px);
+  }
+}

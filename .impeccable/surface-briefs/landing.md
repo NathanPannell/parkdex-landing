@@ -1,19 +1,13 @@
-# Vancouver Island, before the scroll
+# Outdoor Poster
 
-Mode: Persuade. The user revised the opening to a photographic Vancouver Island background with a phone UI visible immediately, while retaining screenshot access in a second section. Existing portfolio fonts, green ink, lime and paper remain the brand.
+Mode: Persuade. User selected Outdoor Poster. Preserve personal fonts, forest ink, lime, East Sooke photograph and substantial app imagery. Huge Parkdex wordmark opens without a small masthead or decorative annotations.
 
-## Opening composition
-A real island landscape fills the hero, including behind its transparent masthead. Warm paper-colored copy and a lime waitlist anchor occupy one clear reading area; a matte phone shows the supplied River Otter badge reward. On phones, compress the headline and supporting copy so the photograph, recognizable phone and primary action appear before scrolling at 320x568. The full signup form follows in the next section. Never place all product imagery after the form again.
+Hero contains actual Android waitlist form and secondary Open the web app button beneath. No scroll-only CTA. Photograph, recognizable phone and primary action visible immediately, including narrow phones. Transparent dark contrast shading permitted; no opaque or white photo wash.
 
-Use restrained transparent dark shading only where necessary for text contrast. Do not cover the landscape with an opaque or white wash, or separate its masthead with a divider. Keep the image crop, headline, phone and transition one coherent composition at every breakpoint.
+Four product steps: Everything starts with a map; Keep the good ones close; visit/photo/postcard; growing exploration and progress. Real screenshots remain complete and enlarge in native dialog. Upcoming Android postcard images marked preview with demonstration photos. Saved collections support outings, not promised routing.
 
-## A look inside
-The second section preserves paper and screenshot inspection. Show a fresh full-island staging map, the supplied badge reward, park-category search and island progress screens, plus an existing approved wishlist detail screenshot when staging authentication is unavailable. Record capture provenance honestly. Five manual choices open the native screenshot viewer; no automatic carousel.
+Use researched upstream device frame with side hardware and camera. Reserve camera area outside screenshot; contain without cropping/stretching. Matte chassis legible at smallest size. No hand-drawn model details.
 
-Keep the durable Android waitlist form, its visible label, loading/error/success messages and privacy disclosure. Existing API, dedicated storage and throttling remain in place.
+End See you out there. Retain About your email and functional removal, necessary photo/map credits. No portfolio link. Existing API, dedicated storage and throttling remain.
 
-## Materials and behavior
-Real screenshot pixels remain intact inside neutral matte hardware with a visible chassis and one light-facing edge. No chrome gradients or invented branded model details. Hero image has responsive assets and useful alt text; phone screenshots can be enlarged. Reduced motion and keyboard focus remain supported.
-
-## Acceptance
-Capture the first viewport at 320x568, 375x812, 390x844, 414x896, 768x1024, 1280x800 and 1440x900. Verify photograph, phone and CTA presence as well as overflow and contrast. Inspect second-section gallery and screenshot dialog on mobile and desktop. Test anchors, signup validation, and Back then Scroll on the deployed Vercel alias. Include cropped before/after evidence in PR1. No existing Parkdex app deployment or domain changes.
+Verify phone, tablet, laptop and wide desktop in batched review. Confirm screenshot dialogs, keyboard, signup/removal and Back then Scroll on deployed temporary Vercel URL. Record before/after in PR1. No app or domain changes.
