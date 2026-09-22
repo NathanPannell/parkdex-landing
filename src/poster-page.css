@@ -274,7 +274,7 @@
   border-radius: 5px;
 }
 
-.outdoor-page form[data-state="success"] .outdoor-form-message {
+.outdoor-page .outdoor-waitlist[data-state="success"] .outdoor-form-message {
   color: var(--outdoor-lime);
 }
 
@@ -614,6 +614,14 @@
 .outdoor-page .privacy-content .outdoor-form-message {
   min-height: 2.8em;
   color: var(--outdoor-muted);
+}
+
+.outdoor-page .privacy-content form[data-state="success"] .outdoor-form-message {
+  color: var(--color-success);
+}
+
+.outdoor-page .privacy-content form[data-state="error"] .outdoor-form-message {
+  color: var(--color-error);
 }
 
 .outdoor-page .viewer {
