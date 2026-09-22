@@ -10,9 +10,9 @@ This is an independent Vercel application with a dedicated Neon database. It doe
 | Neon branch | `br-young-shape-ar1qojbp` (`main`) | Created |
 | Neon database | `app` | `schema.sql` applied; table existence verified |
 | Vercel project | `prj_R7ccAjDhGmhiys542GFXJ67d1k8X` (`parkdex-landing`) | Created; linked locally |
-| Vercel deployment | `4gADeHFhoB8wwJLVHo2PBozZcn7Z` | Outdoor Poster removal-feedback contrast correction `96dace41e2d6edeb1074156f8f639ef0622da449`, Production, READY |
+| Vercel deployment | `dpl_9pYCt7vD1DThEofQ6GJoNGrMg49e` | Public privacy, deletion and support routes from `0417b7b66ee22b333c62e579cede85cbe1cefbab`, Production, READY |
 | Temporary URL | `https://parkdex-landing.vercel.app` | Public; serves the landing page |
-| Immutable deployment URL | `https://parkdex-landing-dhgmn3y35-nathanpannells-projects.vercel.app` | Protected by Vercel Authentication |
+| Immutable deployment URL | `https://parkdex-landing-dgz9mzcmv-nathanpannells-projects.vercel.app` | Protected by Vercel Authentication |
 | WAF rule | `rule_limit_android_waitlist_submissions_cvRDrf` | Published; POST `/api/waitlist`, 5 requests per 60 seconds per IP |
 
 The deployer owns these resources and the journal until the live signup and database record have been verified. The isolated pooled `DATABASE_URL` is configured as a sensitive Vercel Production variable only. Secrets and connection strings live outside the repository. There is no custom domain assignment in this release. The immutable deployment URL shows Vercel's login screen under the account's default protection; use the public temporary alias for browser verification.
@@ -52,3 +52,5 @@ The selected Outdoor Poster release `298cecc` reused the same Vercel project, te
 The live Outdoor Poster browser journey submitted `codex-landing-b628179e@example.com`, and an isolated Neon HTTP read found exactly one row. The page then removed the uppercase equivalent through the shipped opt-out UI; a second read of the same normalized address found zero rows. Both verification queries were read-only, and no administrative deletion was used.
 
 The CSS-only feedback contrast correction `96dace4` passed the Vercel production build and updated the same temporary alias. The alias maps to deployment `4gADeHFhoB8wwJLVHo2PBozZcn7Z`. The main page, comparison page, both mockups, and all four canonical camas icon files returned HTTP 200. The main page retained `frame-ancestors 'none'`, and the mockups retained `frame-ancestors 'self'`. No API or database schema changed in this correction.
+
+The public information release `0417b7b` reused the same landing project, alias, dedicated database and WAF rule. Vercel production deployment `dpl_9pYCt7vD1DThEofQ6GJoNGrMg49e` is READY and aliased to `https://parkdex-landing.vercel.app`. Chrome verified `/privacy/`, `/delete-account/` and `/support/` on that alias, with correct titles, navigation and no horizontal overflow at 320, 375, 414, 768 and 1692 pixels. The support link to `/#email-privacy` opened the waitlist removal controls. Removing disposable absent address `codex-landing-260922a1@example.com` returned the generic success response, and the dedicated Neon read showed zero rows. Footer navigation, Back then scroll, and the deletion page retention anchor were checked. No account was deleted by this landing release. The app owner separately verified account deletion on staging release `1b9b4b5da8ff428d493722047a182c331b9c87ce`; physical R2 object deletion was not exercised in that staging test.
