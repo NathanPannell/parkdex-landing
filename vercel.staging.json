@@ -1,0 +1,63 @@
+{
+  "framework": "vite",
+  "buildCommand": "npm run build",
+  "outputDirectory": "dist",
+  "git": { "deploymentEnabled": false },
+  "redirects": [
+    {
+      "source": "/auth/google/callback",
+      "destination": "https://staging.web.parkdex.app/auth/google/callback",
+      "permanent": false
+    }
+  ],
+  "rewrites": [
+    { "source": "/mcp", "destination": "https://api-staging-882c.up.railway.app/mcp" },
+    { "source": "/mcp/:path*", "destination": "https://api-staging-882c.up.railway.app/mcp/:path*" },
+    { "source": "/authorize", "destination": "https://api-staging-882c.up.railway.app/authorize" },
+    { "source": "/token", "destination": "https://api-staging-882c.up.railway.app/token" },
+    { "source": "/register", "destination": "https://api-staging-882c.up.railway.app/register" },
+    { "source": "/revoke", "destination": "https://api-staging-882c.up.railway.app/revoke" },
+    { "source": "/oauth/consent", "destination": "https://api-staging-882c.up.railway.app/oauth/consent" }
+  ],
+  "headers": [
+    {
+      "source": "/.well-known/oauth-authorization-server",
+      "headers": [
+        { "key": "Access-Control-Allow-Origin", "value": "*" },
+        { "key": "Access-Control-Allow-Headers", "value": "Authorization, Content-Type" },
+        { "key": "Access-Control-Allow-Methods", "value": "GET, OPTIONS" },
+        { "key": "Access-Control-Max-Age", "value": "86400" },
+        { "key": "Cache-Control", "value": "no-store" },
+        { "key": "Content-Type", "value": "application/json" }
+      ]
+    },
+    {
+      "source": "/.well-known/oauth-protected-resource/mcp",
+      "headers": [
+        { "key": "Access-Control-Allow-Origin", "value": "*" },
+        { "key": "Access-Control-Allow-Headers", "value": "Authorization, Content-Type" },
+        { "key": "Access-Control-Allow-Methods", "value": "GET, OPTIONS" },
+        { "key": "Access-Control-Max-Age", "value": "86400" },
+        { "key": "Cache-Control", "value": "no-store" },
+        { "key": "Content-Type", "value": "application/json" }
+      ]
+    },
+    {
+      "source": "/:path((?!mcp(?:/.*)?$|authorize$|token$|register$|revoke$|oauth/consent$|\\.well-known/oauth-authorization-server$|\\.well-known/oauth-protected-resource/mcp$|auth/google/callback$).*)",
+      "headers": [
+        { "key": "X-Content-Type-Options", "value": "nosniff" },
+        { "key": "Referrer-Policy", "value": "strict-origin-when-cross-origin" },
+        { "key": "Permissions-Policy", "value": "camera=(), microphone=(), geolocation=()" },
+        { "key": "Content-Security-Policy", "value": "default-src 'self'; script-src 'self'; style-src 'self'; img-src 'self' data:; font-src 'self'; connect-src 'self'; base-uri 'self'; frame-ancestors 'none'; form-action 'self'" }
+      ]
+    },
+    {
+      "source": "/mockups/(.*)",
+      "headers": [{ "key": "Content-Security-Policy", "value": "default-src 'self'; script-src 'self'; style-src 'self'; img-src 'self' data:; font-src 'self'; connect-src 'self'; base-uri 'self'; frame-ancestors 'self'; form-action 'self'" }]
+    },
+    {
+      "source": "/images/(.*)",
+      "headers": [{ "key": "Cache-Control", "value": "public, max-age=3600" }]
+    }
+  ]
+}
