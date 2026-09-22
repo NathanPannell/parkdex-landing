@@ -1,0 +1,144 @@
+{
+  "schemaVersion": 2,
+  "generatedAt": "2026-09-21T14:09:08-07:00",
+  "title": "Design System: Parkdex",
+  "extensions": {
+    "colorMeta": {
+      "paper": { "role": "neutral", "displayName": "Field Paper", "canonical": "#f1f0e8", "tonalRamp": ["oklch(15% .012 105)", "oklch(26% .012 105)", "oklch(38% .012 105)", "oklch(50% .012 105)", "oklch(62% .012 105)", "oklch(74% .012 105)", "oklch(86% .012 105)", "oklch(95% .012 105)"] },
+      "paper-bright": { "role": "neutral", "displayName": "Fresh Paper", "canonical": "#fbfaf4", "tonalRamp": ["oklch(15% .01 105)", "oklch(26% .01 105)", "oklch(38% .01 105)", "oklch(50% .01 105)", "oklch(62% .01 105)", "oklch(74% .01 105)", "oklch(86% .01 105)", "oklch(97% .01 105)"] },
+      "paper-deep": { "role": "neutral", "displayName": "Pressed Paper", "canonical": "#e6e8dd", "tonalRamp": ["oklch(15% .016 120)", "oklch(26% .016 120)", "oklch(38% .016 120)", "oklch(50% .016 120)", "oklch(62% .016 120)", "oklch(74% .016 120)", "oklch(86% .016 120)", "oklch(95% .016 120)"] },
+      "ink": { "role": "neutral", "displayName": "Green Ink", "canonical": "#142d27", "tonalRamp": ["oklch(15% .035 170)", "oklch(26% .035 170)", "oklch(38% .035 170)", "oklch(50% .035 170)", "oklch(62% .035 170)", "oklch(74% .035 170)", "oklch(86% .035 170)", "oklch(95% .035 170)"] },
+      "secondary": { "role": "neutral", "displayName": "Secondary Ink", "canonical": "#40594e", "tonalRamp": ["oklch(15% .04 160)", "oklch(26% .04 160)", "oklch(38% .04 160)", "oklch(50% .04 160)", "oklch(62% .04 160)", "oklch(74% .04 160)", "oklch(86% .04 160)", "oklch(95% .04 160)"] },
+      "muted": { "role": "neutral", "displayName": "Quiet Ink", "canonical": "#546359", "tonalRamp": ["oklch(15% .025 155)", "oklch(26% .025 155)", "oklch(38% .025 155)", "oklch(50% .025 155)", "oklch(62% .025 155)", "oklch(74% .025 155)", "oklch(86% .025 155)", "oklch(95% .025 155)"] },
+      "accent": { "role": "primary", "displayName": "Field Marker", "canonical": "#b8f53d", "tonalRamp": ["oklch(15% .14 125)", "oklch(26% .14 125)", "oklch(38% .14 125)", "oklch(50% .14 125)", "oklch(62% .14 125)", "oklch(74% .14 125)", "oklch(86% .14 125)", "oklch(95% .14 125)"] },
+      "accent-ink": { "role": "neutral", "displayName": "Marker Ink", "canonical": "#142d27", "tonalRamp": ["oklch(15% .035 170)", "oklch(26% .035 170)", "oklch(38% .035 170)", "oklch(50% .035 170)", "oklch(62% .035 170)", "oklch(74% .035 170)", "oklch(86% .035 170)", "oklch(95% .035 170)"] },
+      "accent-hover": { "role": "primary", "displayName": "Pressed Marker", "canonical": "#a6e22d", "tonalRamp": ["oklch(15% .14 125)", "oklch(26% .14 125)", "oklch(38% .14 125)", "oklch(50% .14 125)", "oklch(62% .14 125)", "oklch(74% .14 125)", "oklch(86% .14 125)", "oklch(95% .14 125)"] },
+      "rule": { "role": "neutral", "displayName": "Pencil Rule", "canonical": "#b7c1b0", "tonalRamp": ["oklch(15% .025 140)", "oklch(26% .025 140)", "oklch(38% .025 140)", "oklch(50% .025 140)", "oklch(62% .025 140)", "oklch(74% .025 140)", "oklch(86% .025 140)", "oklch(95% .025 140)"] },
+      "focus": { "role": "primary", "displayName": "Focus Green", "canonical": "#246b56", "tonalRamp": ["oklch(15% .085 166)", "oklch(26% .085 166)", "oklch(38% .085 166)", "oklch(50% .085 166)", "oklch(62% .085 166)", "oklch(74% .085 166)", "oklch(86% .085 166)", "oklch(95% .085 166)"] },
+      "error": { "role": "tertiary", "displayName": "Error Red", "canonical": "#a12c24", "tonalRamp": ["oklch(15% .14 28)", "oklch(26% .14 28)", "oklch(38% .14 28)", "oklch(50% .14 28)", "oklch(62% .14 28)", "oklch(74% .14 28)", "oklch(86% .14 28)", "oklch(95% .14 28)"] },
+      "success": { "role": "secondary", "displayName": "Success Green", "canonical": "#216246", "tonalRamp": ["oklch(15% .085 155)", "oklch(26% .085 155)", "oklch(38% .085 155)", "oklch(50% .085 155)", "oklch(62% .085 155)", "oklch(74% .085 155)", "oklch(86% .085 155)", "oklch(95% .085 155)"] },
+      "transparent": { "role": "neutral", "displayName": "Clear", "canonical": "transparent", "tonalRamp": ["transparent", "transparent", "transparent", "transparent", "transparent", "transparent", "transparent", "transparent"] },
+      "device-shell": { "role": "neutral", "displayName": "Matte Shell", "canonical": "#35413e", "tonalRamp": ["oklch(15% .015 170)", "oklch(26% .015 170)", "oklch(38% .015 170)", "oklch(50% .015 170)", "oklch(62% .015 170)", "oklch(74% .015 170)", "oklch(86% .015 170)", "oklch(95% .015 170)"] },
+      "device-edge": { "role": "neutral", "displayName": "Light-facing Edge", "canonical": "#77817a", "tonalRamp": ["oklch(15% .015 150)", "oklch(26% .015 150)", "oklch(38% .015 150)", "oklch(50% .015 150)", "oklch(62% .015 150)", "oklch(74% .015 150)", "oklch(86% .015 150)", "oklch(95% .015 150)"] },
+      "device-bezel": { "role": "neutral", "displayName": "Screen Recess", "canonical": "#101917", "tonalRamp": ["oklch(15% .014 170)", "oklch(26% .014 170)", "oklch(38% .014 170)", "oklch(50% .014 170)", "oklch(62% .014 170)", "oklch(74% .014 170)", "oklch(86% .014 170)", "oklch(95% .014 170)"] },
+      "device-base": { "role": "neutral", "displayName": "Laptop Foot", "canonical": "#2c3835", "tonalRamp": ["oklch(15% .016 170)", "oklch(26% .016 170)", "oklch(38% .016 170)", "oklch(50% .016 170)", "oklch(62% .016 170)", "oklch(74% .016 170)", "oklch(86% .016 170)", "oklch(95% .016 170)"] },
+      "shadow": { "role": "neutral", "displayName": "Screen Shade", "canonical": "rgb(20 45 39 / 24%)", "tonalRamp": ["oklch(15% .035 170 / .24)", "oklch(26% .035 170 / .24)", "oklch(38% .035 170 / .24)", "oklch(50% .035 170 / .24)", "oklch(62% .035 170 / .24)", "oklch(74% .035 170 / .24)", "oklch(86% .035 170 / .24)", "oklch(95% .035 170 / .24)"] },
+      "backdrop": { "role": "neutral", "displayName": "Inspection Scrim", "canonical": "rgb(13 28 23 / 82%)", "tonalRamp": ["oklch(15% .03 165 / .82)", "oklch(26% .03 165 / .82)", "oklch(38% .03 165 / .82)", "oklch(50% .03 165 / .82)", "oklch(62% .03 165 / .82)", "oklch(74% .03 165 / .82)", "oklch(86% .03 165 / .82)", "oklch(95% .03 165 / .82)"] },
+      "hero-text": { "role": "neutral", "displayName": "Warm Photo Text", "canonical": "#fff8ec", "tonalRamp": ["oklch(15% .02 85)", "oklch(26% .02 85)", "oklch(38% .02 85)", "oklch(50% .02 85)", "oklch(62% .02 85)", "oklch(74% .02 85)", "oklch(86% .02 85)", "oklch(97% .02 85)"] },
+      "hero-soft": { "role": "neutral", "displayName": "Soft Photo Text", "canonical": "rgb(255 248 236 / 82%)", "tonalRamp": ["oklch(15% .02 85 / .82)", "oklch(26% .02 85 / .82)", "oklch(38% .02 85 / .82)", "oklch(50% .02 85 / .82)", "oklch(62% .02 85 / .82)", "oklch(74% .02 85 / .82)", "oklch(86% .02 85 / .82)", "oklch(97% .02 85 / .82)"] },
+      "hero-scrim": { "role": "neutral", "displayName": "Coastal Scrim", "canonical": "rgb(9 32 27 / 56%)", "tonalRamp": ["oklch(15% .03 165 / .56)", "oklch(26% .03 165 / .56)", "oklch(38% .03 165 / .56)", "oklch(50% .03 165 / .56)", "oklch(62% .03 165 / .56)", "oklch(74% .03 165 / .56)", "oklch(86% .03 165 / .56)", "oklch(95% .03 165 / .56)"] },
+      "hero-scrim-soft": { "role": "neutral", "displayName": "Soft Coastal Scrim", "canonical": "rgb(9 32 27 / 10%)", "tonalRamp": ["oklch(15% .03 165 / .10)", "oklch(26% .03 165 / .10)", "oklch(38% .03 165 / .10)", "oklch(50% .03 165 / .10)", "oklch(62% .03 165 / .10)", "oklch(74% .03 165 / .10)", "oklch(86% .03 165 / .10)", "oklch(95% .03 165 / .10)"] },
+      "shade-28": { "role": "neutral", "displayName": "Coastal Shade 28", "canonical": "rgb(9 32 27 / 28%)", "tonalRamp": ["oklch(15% .03 165 / .28)", "oklch(26% .03 165 / .28)", "oklch(38% .03 165 / .28)", "oklch(50% .03 165 / .28)", "oklch(62% .03 165 / .28)", "oklch(74% .03 165 / .28)", "oklch(86% .03 165 / .28)", "oklch(95% .03 165 / .28)"] },
+      "shade-30": { "role": "neutral", "displayName": "Coastal Shade 30", "canonical": "rgb(9 32 27 / 30%)", "tonalRamp": ["oklch(15% .03 165 / .30)", "oklch(26% .03 165 / .30)", "oklch(38% .03 165 / .30)", "oklch(50% .03 165 / .30)", "oklch(62% .03 165 / .30)", "oklch(74% .03 165 / .30)", "oklch(86% .03 165 / .30)", "oklch(95% .03 165 / .30)"] },
+      "shade-38": { "role": "neutral", "displayName": "Coastal Shade 38", "canonical": "rgb(9 32 27 / 38%)", "tonalRamp": ["oklch(15% .03 165 / .38)", "oklch(26% .03 165 / .38)", "oklch(38% .03 165 / .38)", "oklch(50% .03 165 / .38)", "oklch(62% .03 165 / .38)", "oklch(74% .03 165 / .38)", "oklch(86% .03 165 / .38)", "oklch(95% .03 165 / .38)"] },
+      "shade-40": { "role": "neutral", "displayName": "Coastal Shade 40", "canonical": "rgb(9 32 27 / 40%)", "tonalRamp": ["oklch(15% .03 165 / .40)", "oklch(26% .03 165 / .40)", "oklch(38% .03 165 / .40)", "oklch(50% .03 165 / .40)", "oklch(62% .03 165 / .40)", "oklch(74% .03 165 / .40)", "oklch(86% .03 165 / .40)", "oklch(95% .03 165 / .40)"] },
+      "shade-44": { "role": "neutral", "displayName": "Coastal Shade 44", "canonical": "rgb(9 32 27 / 44%)", "tonalRamp": ["oklch(15% .03 165 / .44)", "oklch(26% .03 165 / .44)", "oklch(38% .03 165 / .44)", "oklch(50% .03 165 / .44)", "oklch(62% .03 165 / .44)", "oklch(74% .03 165 / .44)", "oklch(86% .03 165 / .44)", "oklch(95% .03 165 / .44)"] },
+      "shade-48": { "role": "neutral", "displayName": "Coastal Shade 48", "canonical": "rgb(9 32 27 / 48%)", "tonalRamp": ["oklch(15% .03 165 / .48)", "oklch(26% .03 165 / .48)", "oklch(38% .03 165 / .48)", "oklch(50% .03 165 / .48)", "oklch(62% .03 165 / .48)", "oklch(74% .03 165 / .48)", "oklch(86% .03 165 / .48)", "oklch(95% .03 165 / .48)"] }
+    },
+    "typographyMeta": {
+      "display": { "displayName": "Display", "purpose": "The compact, high-impact landing headline." },
+      "title": { "displayName": "Title", "purpose": "Waitlist and viewer headings." },
+      "body": { "displayName": "Body", "purpose": "Practical explanation and reading text." },
+      "label": { "displayName": "Label", "purpose": "Explicit form identification." },
+      "hand": { "displayName": "Handwritten", "purpose": "Brief personal annotations only." }
+    },
+    "shadows": [
+      { "name": "laptop-contact", "value": "0 12px 28px var(--color-shadow)", "purpose": "Physical separation under the matte laptop." },
+      { "name": "phone-contact", "value": "0 14px 26px var(--color-shadow)", "purpose": "Physical separation under the two portrait devices." },
+      { "name": "hero-phone-contact", "value": "0 18px 34px var(--color-shade-40)", "purpose": "Separates the matte badge phone from the landscape." }
+    ],
+    "motion": [
+      { "name": "short", "value": "180ms cubic-bezier(.16, 1, .3, 1)", "purpose": "Brief action state feedback; disabled under reduced motion." },
+      { "name": "long", "value": "360ms cubic-bezier(.16, 1, .3, 1)", "purpose": "Reserved token; no current long animation on this surface." }
+    ],
+    "breakpoints": [
+      { "name": "form-row", "value": "25rem" },
+      { "name": "tablet", "value": "40rem" },
+      { "name": "desktop", "value": "64rem" },
+      { "name": "wide", "value": "85rem" },
+      { "name": "phone-layout", "value": "max-width: 39.99rem" },
+      { "name": "tiny", "value": "max-width: 22rem" }
+    ]
+  },
+  "components": [
+    {
+      "name": "Hero Waitlist Link", "kind": "button", "refersTo": "button-hero-primary",
+      "description": "The lime opening action anchors to the full Android form in the paper section.",
+      "html": "<a class=\"ds-hero-primary\" href=\"#signup\">Join the Android waitlist <svg width=\"20\" height=\"20\" viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"1.8\" aria-hidden=\"true\"><path d=\"M4 12h15m-6-6 6 6-6 6\"/></svg></a>",
+      "css": ".ds-hero-primary { display:inline-flex; align-items:center; justify-content:center; gap:.6rem; min-height:44px; padding:.72rem 1rem; border-radius:5px; background:var(--color-accent, #b8f53d); color:var(--color-accent-ink, #142d27); font-family:'Strichpunkt Sans Variable',sans-serif; font-size:.92rem; font-weight:720; letter-spacing:-.02em; text-decoration:none; transition:background 180ms cubic-bezier(.16,1,.3,1),transform 180ms cubic-bezier(.16,1,.3,1) } .ds-hero-primary:focus-visible { outline:3px solid var(--color-focus, #246b56); outline-offset:4px } .ds-hero-primary:active { transform:translateY(1px) } @media (hover:hover) and (pointer:fine) { .ds-hero-primary:hover { background:var(--color-accent-hover, #a6e22d) } } @media (prefers-reduced-motion:reduce) { .ds-hero-primary { transition:none } }"
+    },
+    {
+      "name": "Hero Inside Link", "kind": "button", "refersTo": "button-hero-secondary",
+      "description": "The warm-white secondary anchor leads from the photograph to the paper field guide.",
+      "html": "<a class=\"ds-hero-secondary\" href=\"#inside\">Take a look inside <svg width=\"18\" height=\"18\" viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"1.8\" aria-hidden=\"true\"><path d=\"M12 5v14m-6-6 6 6 6-6\"/></svg></a>",
+      "css": ".ds-hero-secondary { display:inline-flex; align-items:center; justify-content:center; gap:.6rem; min-height:44px; padding-inline:.1rem; color:var(--color-hero-text, #fff8ec); font-family:'Ysabeau Variable',sans-serif; font-size:.98rem; text-decoration:underline; text-decoration-thickness:1px; text-underline-offset:.22em; text-shadow:0 2px 14px var(--color-shade-40, rgb(9 32 27 / 40%)); background:var(--color-ink, #142d27) } .ds-hero-secondary:focus-visible { outline:3px solid var(--color-focus, #246b56); outline-offset:4px } @media (hover:hover) and (pointer:fine) { .ds-hero-secondary:hover { text-decoration-thickness:2px } }"
+    },
+    {
+      "name": "Waitlist Button", "kind": "button", "refersTo": "button-primary",
+      "description": "The paper-section submit action, with precise-pointer hover and brief pressed feedback.",
+      "html": "<button class=\"ds-join\" type=\"button\">Join the waitlist <svg width=\"20\" height=\"20\" viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"1.8\" aria-hidden=\"true\"><path d=\"M4 12h15m-6-6 6 6-6 6\"/></svg></button>",
+      "css": ".ds-join { display:inline-flex; align-items:center; justify-content:center; gap:.8rem; min-height:54px; padding:.8rem 1.1rem; border:0; border-radius:5px; background:var(--color-accent, #b8f53d); color:var(--color-accent-ink, #142d27); font-family:'Strichpunkt Sans Variable',sans-serif; font-size:.95rem; font-weight:720; letter-spacing:-.02em; cursor:pointer; transition:transform 180ms cubic-bezier(.16,1,.3,1) } .ds-join:focus-visible { outline:3px solid var(--color-focus, #246b56); outline-offset:4px } .ds-join:active { transform:translateY(1px) } @media (hover:hover) and (pointer:fine) { .ds-join:hover { background:var(--color-accent-hover, #a6e22d) } } @media (prefers-reduced-motion:reduce) { .ds-join { transition:none } }"
+    },
+    {
+      "name": "Email Field", "kind": "input", "refersTo": "input-email",
+      "description": "An explicitly labeled fresh-paper field with visible focus, error, and success borders.",
+      "html": "<label class=\"ds-email-label\" for=\"ds-email\">Your email address</label><input class=\"ds-email\" id=\"ds-email\" type=\"email\" placeholder=\"you@example.com\" />",
+      "css": ".ds-email-label { display:block; margin-bottom:.4rem; color:var(--color-ink, #142d27); font-family:'Ysabeau Variable',sans-serif; font-size:.9rem; font-weight:650 } .ds-email { display:block; width:min(100%, 360px); height:54px; padding:.8rem 1rem; border:1px solid var(--color-rule, #b7c1b0); border-radius:5px; background:var(--color-paper-bright, #fbfaf4); color:var(--color-ink, #142d27); font-family:'Ysabeau Variable',sans-serif; font-size:1.05rem; caret-color:var(--color-focus, #246b56) } .ds-email::placeholder { color:var(--color-muted, #546359); opacity:1 } .ds-email:focus-visible { outline:3px solid var(--color-focus, #246b56); outline-offset:4px } .ds-email[aria-invalid=true] { border-color:var(--color-error, #a12c24) } .ds-email[data-success=true] { border-color:var(--color-success, #216246) }"
+    },
+    {
+      "name": "Masthead Navigation", "kind": "nav",
+      "description": "A transparent masthead over the landscape with a warm-white wordmark and external app link.",
+      "html": "<div class=\"ds-photo-context\"><nav class=\"ds-nav\" aria-label=\"Main\"><a class=\"ds-wordmark\" href=\"#\"><svg class=\"ds-mark\" width=\"35\" height=\"35\" viewBox=\"0 0 40 40\" aria-hidden=\"true\"><rect width=\"40\" height=\"40\" rx=\"10\" fill=\"currentColor\"/><g class=\"ds-trees\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"2.1\" stroke-linecap=\"round\" stroke-linejoin=\"round\"><path d=\"M24 29v-6m-2-14 6 7h-3l6 7H19M14 29v-7m-4-2a4.5 4.5 0 0 1-1-8 4 4 0 0 1 8 0 4.5 4.5 0 0 1 1 8Z\"/></g></svg>Parkdex</a><a class=\"ds-app-link\" href=\"#\">Open the web app <svg width=\"18\" height=\"18\" viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"1.8\" aria-hidden=\"true\"><path d=\"M6 18 18 6M6 6h12v12\"/></svg></a></nav></div>",
+      "css": ".ds-photo-context { background:linear-gradient(105deg,var(--color-hero-scrim, rgb(9 32 27 / 56%)),var(--color-ink, #142d27)); } .ds-nav { display:flex; align-items:center; justify-content:space-between; gap:1.5rem; min-height:70px; padding-inline:1.25rem; color:var(--color-hero-text, #fff8ec); background:transparent } .ds-wordmark { display:inline-flex; align-items:center; gap:.65rem; color:inherit; font-family:'Strichpunkt Sans Variable',sans-serif; font-size:1.9rem; font-weight:780; letter-spacing:-.04em; text-decoration:none } .ds-mark { width:35px; height:35px; color:var(--color-accent, #b8f53d) } .ds-trees { color:var(--color-ink, #142d27) } .ds-app-link { display:inline-flex; align-items:center; gap:.5rem; min-height:44px; color:inherit; font-family:'Ysabeau Variable',sans-serif; font-size:.95rem; font-weight:700; text-decoration:underline; text-underline-offset:.22em; white-space:nowrap; text-shadow:0 1px 10px var(--color-shade-38, rgb(9 32 27 / 38%)) } .ds-nav a:focus-visible { outline:3px solid var(--color-focus, #246b56); outline-offset:4px } @media (hover:hover) and (pointer:fine) { .ds-app-link:hover { text-decoration-thickness:2px } }"
+    },
+    {
+      "name": "Screenshot Choice", "kind": "button", "refersTo": "button-preview",
+      "description": "A paper-surface, touch-sized manual control for one of five gallery screenshots.",
+      "html": "<button class=\"ds-preview\" type=\"button\">Explore the map <svg width=\"14\" height=\"14\" viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"1.8\" aria-hidden=\"true\"><path d=\"M8 4H4v4m12-4h4v4M4 16v4h4m12-4v4h-4\"/></svg></button>",
+      "css": ".ds-preview { display:inline-flex; align-items:center; justify-content:space-between; gap:.45rem; min-height:44px; min-width:9.5rem; padding:.5rem .65rem; border:1px solid var(--color-rule, #b7c1b0); border-radius:5px; background:transparent; color:var(--color-ink, #142d27); font-family:'Ysabeau Variable',sans-serif; font-size:.93rem; text-align:left; cursor:pointer } .ds-preview svg { color:var(--color-secondary, #40594e) } .ds-preview:focus-visible { outline:3px solid var(--color-focus, #246b56); outline-offset:4px } .ds-preview:active { background:var(--color-paper-deep, #e6e8dd) } @media (hover:hover) and (pointer:fine) { .ds-preview:hover { background:var(--color-paper-bright, #fbfaf4) } }"
+    },
+    {
+      "name": "Screenshot Tab", "kind": "button",
+      "description": "A compact manual viewer selector whose pressed state gains fresh paper and a pencil border.",
+      "html": "<div class=\"ds-tabs\"><button class=\"ds-tab\" type=\"button\" aria-pressed=\"true\">Explore the map</button><button class=\"ds-tab\" type=\"button\" aria-pressed=\"false\">Claim badges</button><button class=\"ds-tab\" type=\"button\" aria-pressed=\"false\">Find parks</button><button class=\"ds-tab\" type=\"button\" aria-pressed=\"false\">Save a wishlist</button><button class=\"ds-tab\" type=\"button\" aria-pressed=\"false\">Your progress</button></div>",
+      "css": ".ds-tabs { display:flex; flex-wrap:wrap; gap:.3rem; max-width:100%; background:var(--color-paper, #f1f0e8) } .ds-tab { min-height:44px; padding:.55rem .7rem; border:1px solid transparent; border-radius:5px; background:transparent; color:var(--color-ink, #142d27); font-family:'Ysabeau Variable',sans-serif; font-size:.95rem; text-align:left; cursor:pointer } .ds-tab[aria-pressed=true] { border-color:var(--color-secondary, #40594e); background:var(--color-paper-bright, #fbfaf4) } .ds-tab:focus-visible { outline:3px solid var(--color-focus, #246b56); outline-offset:4px } @media (hover:hover) and (pointer:fine) { .ds-tab:hover { background:var(--color-paper-bright, #fbfaf4) } }"
+    },
+    {
+      "name": "Privacy Disclosure", "kind": "custom",
+      "description": "Native details control with an in-flow mobile explanation and a paper popover at tablet widths.",
+      "html": "<details class=\"ds-privacy\"><summary>About your email</summary><div class=\"ds-privacy-content\">Only one email when Android is ready. No newsletter.</div></details>",
+      "css": ".ds-privacy { position:relative; color:var(--color-muted, #546359); font-family:'Ysabeau Variable',sans-serif; font-size:.9rem } .ds-privacy summary { display:flex; align-items:center; min-height:44px; cursor:pointer; text-decoration:underline; text-underline-offset:.22em } .ds-privacy summary:focus-visible { outline:3px solid var(--color-focus, #246b56); outline-offset:4px } .ds-privacy-content { max-width:40ch; padding:0 0 1rem; line-height:1.5 } @media (min-width:40rem) { .ds-privacy-content { position:absolute; bottom:100%; right:0; min-width:310px; padding:1.5rem; border:1px solid var(--color-rule, #b7c1b0); border-radius:6px; background:var(--color-paper-bright, #fbfaf4); color:var(--color-secondary, #40594e) } }"
+    }
+  ],
+  "narrative": {
+    "northStar": "Vancouver Island, Before the Scroll",
+    "overview": "Parkdex opens with a real East Sooke landscape. Warm off-white type, a sparing lime action, and an immediately visible matte phone make the island and the product clear in the first viewport. Transparent coastal shading supports legibility while leaving the photograph recognizable. There is no masthead divider or opaque wash over the scene.\n\nThe second section returns to the portfolio-derived paper field guide: green ink, bold Strichpunkt type, Ysabeau body copy, a short Caveat sign-off, and real app screenshots in restrained matte hardware. The hero action leads to the full Android waitlist below. Screenshot inspection remains manual and direct, with visible focus and form feedback.",
+    "keyCharacteristics": [
+      "A real Vancouver Island photograph is the opening surface, including behind the masthead.",
+      "Warm photo text and one lime action lead to a recognizable badge phone before scrolling.",
+      "Paper and green ink carry the gallery, waitlist, and footer below.",
+      "Real screenshots remain legible inside restrained matte devices and a manual viewer."
+    ],
+    "rules": [
+      { "name": "The One Marker Rule", "body": "Keep lime scarce. It identifies a key phrase or action while the landscape, green ink, and paper do the rest.", "section": "colors" },
+      { "name": "The Clear Landscape Rule", "body": "Darken the real photograph only enough to read the text. Preserve the image and its crop as the opening material.", "section": "colors" },
+      { "name": "The Human Annotation Rule", "body": "Handwriting adds a personal aside around actual product content; it does not carry form labels, navigation, or essential instructions.", "section": "typography" },
+      { "name": "The Matte Hardware Rule", "body": "Preserve a dark chassis and distinct bezel at the smallest shipped size. A light-facing edge can define the silhouette; decorative chrome gradients are outside this material language.", "section": "elevation" },
+      { "name": "The Direct Interaction Rule", "body": "Product previews change only on a visitor's action. Preserve semantic controls, 44px touch targets, visible keyboard focus, and reduced-motion behavior.", "section": "components" }
+    ],
+    "dos": [
+      "Do show a recognizable phone and primary action over the real island photograph before scrolling on phones.",
+      "Do use real Parkdex captures at legible sizes and retain the matte chassis around any device mockup.",
+      "Do let paper, ink, rules, and spacing establish hierarchy before adding color or shadow.",
+      "Do keep the handwritten voice to short personal annotations and the practical copy in Ysabeau.",
+      "Do preserve explicit validation, loading, network error, success, and focus states for signup."
+    ],
+    "donts": [
+      "Don't spread the lime accent across whole panels or replace the device shell with brand color.",
+      "Don't wash the hero photograph in opaque white, add a masthead divider over it, or hide the phone below the waitlist form.",
+      "Don't invent polished chrome, detailed branded hardware, or a decorative gradient around screenshots.",
+      "Don't auto-advance app captures or make core content depend on animation.",
+      "Don't clip gallery or waitlist content merely to force a one-screen layout."
+    ]
+  }
+}

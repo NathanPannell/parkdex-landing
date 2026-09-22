@@ -1,0 +1,46 @@
+@import './shared-base.css';
+
+/* Hallmark · pre-emit critique: P4 H5 E4 S5 R5 V4 */
+.support-page { min-height: 100svh; background: var(--color-paper); color: var(--color-ink); }
+.support-shell { display: flex; flex-direction: column; min-height: 100svh; }
+.support-page a { overflow-wrap: anywhere; white-space: normal; }
+.support-page h1, .support-page h2, .support-page h3 { font-family: var(--font-display); font-weight: 780; font-style: normal; letter-spacing: -.03em; line-height: 1.05; }
+.support-page p, .support-page li, .support-page dd { line-height: 1.6; }
+.support-header, .support-main, .support-footer { width: min(1120px, calc(100% - 2 * var(--gutter))); margin-inline: auto; }
+.support-header { display: flex; align-items: center; justify-content: space-between; gap: 1rem; padding-block: 1.5rem; border-bottom: 1px solid var(--color-rule); }
+.support-brand { display: inline-flex; align-items: center; min-height: 44px; font-family: var(--font-display); font-size: 2rem; font-weight: 780; letter-spacing: -.04em; text-decoration: none; }
+.support-brand-mark { color: var(--color-accent); }
+.support-nav, .support-footer-nav { display: flex; flex-wrap: wrap; gap: .25rem 1.25rem; }
+.support-nav a, .support-footer a { display: inline-flex; align-items: center; min-height: 44px; white-space: nowrap; color: var(--color-secondary); }
+.support-nav { font-size: 1rem; }
+.support-nav a[aria-current='page'] { color: var(--color-ink); font-weight: 700; text-decoration-thickness: 2px; }
+.support-main { padding-block: clamp(2.75rem, 6vw, 5.5rem) clamp(4rem, 8vw, 7rem); }
+.support-article, .support-intro, .support-content { max-width: 68ch; }
+.support-article h1, .support-intro h1 { max-width: 15ch; font-size: clamp(2.75rem, 7vw, 5.5rem); letter-spacing: -.04em; text-wrap: balance; }
+.support-lede { max-width: 52ch; margin-top: 1.4rem; color: var(--color-secondary); font-size: clamp(1.2rem, 2vw, 1.4rem); }
+.support-content { margin-top: 2.5rem; }
+.support-section, .support-article section { margin-top: 3.25rem; scroll-margin-top: 2rem; }
+.support-section h2, .support-article h2 { font-size: clamp(1.8rem, 3.4vw, 2.7rem); }
+.support-section h3, .support-article h3 { margin-top: 1.8rem; font-size: 1.35rem; }
+.support-section p, .support-article p { margin-top: 1rem; color: var(--color-secondary); }
+.support-section a, .support-article a { color: var(--color-ink); }
+.support-section ul, .support-article ul { padding-left: 1.25rem; color: var(--color-secondary); }
+.support-section li + li, .support-article li + li { margin-top: .65rem; }
+.support-link-list { display: grid; gap: 1.4rem; margin-top: 1.5rem; padding: 0 !important; list-style: none; }
+.support-link-list h3 { margin-top: 0; }
+.support-link-list p { margin-top: .35rem; }
+.support-details { display: grid; gap: 1.4rem; margin-top: 1.5rem; }
+.support-details dt { font-family: var(--font-display); font-weight: 700; }
+.support-details dd { margin: .35rem 0 0; color: var(--color-secondary); }
+.support-steps { margin-top: 1.5rem; padding-left: 1.35rem; color: var(--color-secondary); }
+.support-steps li { padding-left: .4rem; }
+.support-steps li + li { margin-top: 1rem; }
+.support-steps strong { color: var(--color-ink); }
+.support-actions { display: flex; flex-wrap: wrap; gap: 1rem; margin-top: 1.5rem; }
+.support-page .support-button { display: inline-flex; align-items: center; justify-content: center; min-height: 48px; padding: .8rem 1rem; border-radius: 5px; background: var(--color-accent); color: var(--color-accent-ink); font-family: var(--font-display); font-size: .95rem; font-weight: 720; text-decoration: none; white-space: nowrap; transition: background var(--dur-short) var(--ease-out); }
+.support-button:active { transform: translateY(1px); }
+.support-footer { display: flex; flex-wrap: wrap; justify-content: space-between; align-items: center; gap: .5rem 2rem; margin-top: auto; padding-block: 1rem 1.5rem; border-top: 1px solid var(--color-rule); color: var(--color-muted); font-size: .95rem; }
+@media (hover: hover) and (pointer: fine) { .support-page .support-button:hover { background: var(--color-accent-hover); } .support-page a:hover { text-decoration-thickness: 2px; } }
+@media (max-width: 39.99rem) { .support-header { align-items: flex-start; flex-direction: column; gap: .5rem; padding-block: 1rem; } .support-nav { gap: .25rem 1rem; } }
+@media (max-width: 22rem) { .support-header, .support-main, .support-footer { width: calc(100% - 2rem); } }
+@media (prefers-reduced-motion: reduce) { .support-page .support-button { transition: none; } }

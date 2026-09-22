@@ -1,0 +1,91 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="description" content="How Parkdex uses account information, location, visits, photos and waitlist email, and how to request deletion." />
+    <meta name="theme-color" content="#142d27" />
+    <link rel="icon" href="/favicon.ico" sizes="16x16 24x24 32x32 48x48 64x64" />
+    <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png" />
+    <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png" />
+    <title>Privacy · Parkdex</title>
+  </head>
+  <body class="support-page">
+    <a class="skip-link" href="#main">Skip to content</a>
+    <header class="support-header">
+      <a class="support-brand" href="/" aria-label="Parkdex home"><span class="support-brand-name">Parkdex<span class="support-brand-mark" aria-hidden="true">.</span></span></a>
+      <nav class="support-nav" aria-label="Privacy and support">
+        <a href="/privacy/" aria-current="page">Privacy</a>
+        <a href="/delete-account/">Delete account</a>
+        <a href="/support/">Support</a>
+      </nav>
+    </header>
+    <main id="main" class="support-main">
+      <article class="support-article">
+        <h1>Privacy for Parkdex.</h1>
+        <p class="support-lede">What you share, what Parkdex keeps, and how to remove it.</p>
+        <p>Last updated September 22, 2026.</p>
+
+        <section aria-labelledby="scope-title">
+          <h2 id="scope-title">Who this covers</h2>
+          <p>This policy covers the Parkdex web app, the test version being prepared for Android, and this landing page. The location and photo sections describe that test version. These features are not yet part of the current web app.</p>
+          <p>Parkdex is made by Nathan Pannell. For privacy questions or help with your data, email <a href="mailto:contact@nathanpannell.com">contact@nathanpannell.com</a>.</p>
+        </section>
+
+        <section aria-labelledby="data-title">
+          <h2 id="data-title">Information you use in Parkdex</h2>
+          <h3>Your account</h3>
+          <p>Parkdex stores your email address, an account identifier, account dates and sign-in information. When you use a password, it is stored as a password hash. Session and verification records let you stay signed in, verify your email and recover access.</p>
+          <p>If you choose Google sign-in where it is available, Google provides identity information used to connect you to your account.</p>
+          <h3>Your places and visits</h3>
+          <p>Parkdex stores the places you save, your collections, visit dates and trail completions so you can return to your collection and see your exploration progress.</p>
+          <h3>Location and photos</h3>
+          <p>When you ask Parkdex to verify a visit, it sends your location coordinates, the sample time and its reported accuracy to check which park you are in. A verified visit stores that location evidence with the place and visit time. Location evidence is separate from any photo you choose to save.</p>
+          <p>When you save a visit photo, Parkdex creates a resized JPEG for your postcard. The stored JPEG is re-encoded without the original embedded photo metadata. Your verified visit still retains its separately recorded location and time.</p>
+          <p>Android requests foreground location access. You can change location permission in your device settings; doing so does not delete location evidence already saved with a visit.</p>
+          <h3>Information on your device</h3>
+          <p>Parkdex keeps sign-in information, your journal, preferences and pending uploads in browser or app-private storage. Guest progress uses a separate collection key. Pending photo copies let you retry an interrupted upload and are cleared after upload or sign-out.</p>
+          <h3>Connections you authorize</h3>
+          <p>If you connect an assistant or other client through Parkdex’s MCP integration, that client can use its authorized access to read and change your collections and wishlist. Information returned to the client is also handled under that client’s privacy practices.</p>
+          <h3>Support messages</h3>
+          <p>If you email Nathan, your email address, message and any attachments are used to respond to your request. Send only the information needed to explain the issue, and never send your password.</p>
+        </section>
+
+        <section aria-labelledby="providers-title">
+          <h2 id="providers-title">Services that run Parkdex</h2>
+          <p>Vercel hosts the websites, Railway runs the app API, and Neon stores account and collection information. The Android waitlist uses a separate Neon database.</p>
+          <p>Resend delivers account verification and password-recovery emails. Google handles Google sign-in when you choose it. The Android test version stores visit photos privately with Cloudflare R2 through the Parkdex API.</p>
+          <p>The app loads map tiles and map fonts from OpenFreeMap. Those requests reveal your network address and the map areas being loaded to the map service.</p>
+          <p><a href="https://openfreemap.org/privacy/">OpenFreeMap’s privacy policy</a> describes anonymized service logs kept indefinitely and temporary IP-address logging during security incidents for up to 30 days. Its service may also use Cloudflare.</p>
+          <p>These services process information to provide hosting, storage, email, sign-in and maps. Hosting and storage can be outside Canada. Providers may keep their own operational or security logs.</p>
+          <p>The current app does not include advertising or marketing analytics SDKs. Parkdex still records limited operational and security events to diagnose failures and protect account access.</p>
+        </section>
+
+        <section aria-labelledby="retention-title">
+          <h2 id="retention-title">Keeping and deleting your data</h2>
+          <p>Your account and collection have no automatic expiry. They remain until you remove the relevant information or your account-deletion request is fulfilled. Sign-in and verification tokens have expiry limits, but token expiry is not account deletion.</p>
+          <p>You can <a href="/delete-account/">request account deletion</a> without installing the Android app. Nathan handles account-access or deletion requests that the automated flow cannot complete.</p>
+          <p>Account deletion removes your account and its associated visits, collections, authentication records and photo references. Photo files are deleted from private storage. If storage deletion fails, a deletion record remains for manual cleanup. Nathan will not confirm full completion until that cleanup is verified.</p>
+          <p>Deletion does not erase a separate guest history, files you downloaded or copies you shared elsewhere. Account-owned local data is cleared on the device completing the in-app deletion. Copies on an offline device cannot be erased remotely while it is offline; you can clear that device’s app data.</p>
+          <p>Network-level abuse counters and service-provider logs or backups may remain separately from the active account. Deleting the active account does not immediately erase every provider copy.</p>
+          <p>The app database is configured with a six-hour restore-history window. Railway’s current plan provides seven days of application log access and two days of audit log access. These are restore or access windows, not guarantees about when providers erase every internal copy.</p>
+          <p>Account deletion and waitlist removal are separate. Use the waitlist controls below if you also want to remove your launch email.</p>
+        </section>
+
+        <section id="waitlist" aria-labelledby="waitlist-title">
+          <h2 id="waitlist-title">The Android waitlist</h2>
+          <p>Joining the waitlist saves your email address and signup time to send one email when Parkdex for Android is ready. It does not create a Parkdex account.</p>
+          <p>You can <a href="/#email-privacy">remove your waitlist email</a> from the landing page. This deletes the address from the active waitlist database. It does not delete a Parkdex account.</p>
+          <p>The landing database has a 24-hour restore-history setting. That setting is not a promise that every provider backup or operational log is erased within 24 hours.</p>
+        </section>
+
+        <section aria-labelledby="contact-title">
+          <h2 id="contact-title">Questions or a request</h2>
+          <p>Email <a href="mailto:contact@nathanpannell.com">contact@nathanpannell.com</a> to ask about your information, report a privacy concern, or request help deleting your account. Do not send your password.</p>
+        </section>
+      </article>
+    </main>
+    <footer class="support-footer"><a href="/">Back to Parkdex</a><a href="/support/">Get support</a></footer>
+    <script type="module" src="/src/support.ts"></script>
+  </body>
+</html>
