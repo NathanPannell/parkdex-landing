@@ -29,4 +29,8 @@ The unlinked `/mockups/` route compares two candidate directions in desktop and 
 
 The main page's **About your email** disclosure includes direct removal from the Android waitlist. Removal uses the existing same-origin `POST /api/waitlist` endpoint with `action: "remove"`; join remains the default. Both operations use generic success responses and the same request-size, origin and WAF protections.
 
+## Public information pages
+
+`/privacy/`, `/delete-account/`, and `/support/` are static pages in this landing project. Account deletion requests go to Nathan at `contact@nathanpannell.com` and are fulfilled through the Parkdex app's verified owner-run process. The landing has no account-deletion API, request database, or inbox automation. Waitlist removal stays in **About your email** and is separate from account deletion. Update the public privacy copy when the app's data flow or provider configuration changes; source evidence and release gates are in `docs/privacy-data-inventory.md` and `docs/privacy-release-gates.md`.
+
 Upcoming Android visit/postcard captures show actual PR114 components with demonstration photographs, labeled as previews. Their provenance and photo credits are in public/images/PHOTO-CREDIT.md. Production styles enter through src/shared-base.css, poster-page.css and device-frame.css; the older style.css is retained only by comparison routes.
