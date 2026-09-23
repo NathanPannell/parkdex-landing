@@ -773,12 +773,25 @@
 
 .outdoor-footer {
   display: flex;
+  flex-wrap: wrap;
   align-items: center;
   justify-content: space-between;
-  gap: 1.5rem 3rem;
+  gap: 1rem 3rem;
   padding: 1.45rem max(var(--outdoor-gutter), calc((100% - 1440px) / 2));
   border-top: 1px solid var(--outdoor-rule);
   background: var(--outdoor-paper);
+}
+
+.outdoor-footer-cta {
+  display: flex;
+  flex: 1 0 100%;
+  justify-content: center;
+}
+
+.outdoor-page .outdoor-footer-join {
+  min-width: 220px;
+  color: var(--outdoor-ink);
+  text-decoration: none;
 }
 
 .outdoor-footer-signoff {
@@ -786,6 +799,11 @@
   flex: 0 0 auto;
   font-size: clamp(2.2rem, 3vw, 2.8rem);
   line-height: .95;
+}
+
+.outdoor-footer-signoff a {
+  text-decoration-thickness: .05em;
+  text-underline-offset: .12em;
 }
 
 .outdoor-footer-meta {
@@ -1161,6 +1179,7 @@
     display: block;
     padding: 3.2rem 1.25rem 2rem;
   }
+  .outdoor-footer-signoff { font-size: clamp(1.8rem, 9vw, 2.2rem); }
 
   .outdoor-footer-meta {
     flex-wrap: wrap;
@@ -1168,6 +1187,8 @@
     margin-top: 1.2rem;
   }
   .outdoor-policy-links { flex-wrap: wrap; gap: .15rem 1.2rem; }
+  .outdoor-footer-cta { margin-bottom: 1.2rem; }
+  .outdoor-page .outdoor-footer-join { width: 100%; }
 }
 
 @media (prefers-reduced-motion: reduce) {

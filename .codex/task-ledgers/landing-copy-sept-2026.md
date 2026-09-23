@@ -25,6 +25,7 @@ Revise the production landing page to the operator's five visible sections: hero
 - Capture the live desktop Field Guide map with all pins for both laptop previews. Add a live mobile List view with filters to the unified map section. Keep the River Otter badge in the Dex section; use a mobile map capture in the hero phone.
 - Make the handwritten hero number heavier with a real solid underline and spacing before “parks”. Remove “only” from the hero lede. Link the beta action directly to https://web.parkdex.app/.
 - Use a compact desktop footer row and native modal dialogs for About your email and Credits.
+- Add a filled Join the waitlist link above all footer content, returning to the hero email field. Sign the footer “See you out there. -Nathan” and link Nathan to https://www.nathanpannell.com/.
 - Show every story device at one height on desktop. Hide the map and Dex laptops on phone widths and keep the four story phones at one size.
 
 ## Work
@@ -43,3 +44,5 @@ Revise the production landing page to the operator's five visible sections: hero
 The existing Git worktree began clean on `main`.
 
 Preview deployment `dpl_C4j54BqLJF79tt5cMCpHnXHVtqPJ` was built from this worktree and reached READY at `https://parkdex-landing-l7yzpz9fk-nathanpannells-projects.vercel.app/`. Chrome verified the category tooltips, equal-height desktop devices, mobile laptop removal, and email dialog. Promotion rebuilt the preview for Production as `dpl_2hqgjXpAsRj42jJuFYZD3EuGtomd`, serving `https://parkdex.app/` and `https://parkdex-landing.vercel.app/`. A disposable live signup and uppercase opt-out succeeded; the dedicated Neon read found zero remaining rows.
+
+The footer CTA and linked Nathan signature are staged in Preview `dpl_B8SFWEqGeqjmsY56FVNM2oNc2pdr` at `https://parkdex-landing-i1zm4ndpl-nathanpannells-projects.vercel.app/`. Its button sits above every other footer item, links to `#email`, and focuses the hero email field at phone width. Chrome checked the 1440px and 320px layouts. Production remains on the previous deployment, per operator request.
