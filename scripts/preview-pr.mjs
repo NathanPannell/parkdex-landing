@@ -28,7 +28,7 @@ function toolEnv() {
   return env;
 }
 
-function command(executable, args, { cwd = root, env = process.env, input } = {}) {
+function command(executable, args, { cwd = root, env = process.env, input, includeStderr = false } = {}) {
   // Windows npm and Vercel shims are shell scripts. Invoke their JS entry points
   // directly so the database URI never enters a shell command string.
   if (process.platform === "win32" && executable === "vercel") {
@@ -46,12 +46,13 @@ function command(executable, args, { cwd = root, env = process.env, input } = {}
       .trim().slice(-1000);
     throw new Error(`${executable} failed: ${result.error?.message || diagnostic || `exit ${result.status}`}`);
   }
-  return result.stdout.trim();
+  return (includeStderr ? `${result.stdout}\n${result.stderr}` : result.stdout).trim();
 }
 
 function git(...args) { return command("git", args, { env: { ...toolEnv(), SSH_AUTH_SOCK: process.env.SSH_AUTH_SOCK } }); }
 function gh(...args) { return command("gh", args, { env: { ...toolEnv(), GH_TOKEN: process.env.GH_TOKEN, GITHUB_TOKEN: process.env.GITHUB_TOKEN } }); }
 function vercel(...args) { return command("vercel", [...args, "--token", required("VERCEL_TOKEN"), "--scope", required("VERCEL_ORG_ID")], { env: toolEnv() }); }
+function vercelWithStderr(...args) { return command("vercel", [...args, "--token", required("VERCEL_TOKEN"), "--scope", required("VERCEL_ORG_ID")], { env: toolEnv(), includeStderr: true }); }
 
 async function neonApi(path, { method = "GET", body, query } = {}) {
   const url = new URL(`${baseUrl}${path}`);
@@ -210,7 +211,7 @@ async function create(pr) {
     const sql = neon(connection.uri);
     await sql.query(readFileSync(join(directory, "schema.sql"), "utf8"));
     bindVercel(directory);
-    const previewEnv = vercel("env", "ls", "preview", "--cwd", directory, "--no-color");
+    const previewEnv = vercelWithStderr("env", "ls", "preview", "--cwd", directory, "--no-color");
     if (!/No Environment Variables found/i.test(previewEnv)) throw new Error("The Vercel Preview environment must contain no persistent variables");
     state.intent.vercel = { projectId: required("VERCEL_PREVIEW_PROJECT_ID"), headSha: pull.headRefOid, releaseId };
     state.status = "vercel-creating";
@@ -239,7 +240,7 @@ async function create(pr) {
     throw error;
   } finally {
     if (candidateDir) {
-      try { git("worktree", "remove", "--force", candidateDir); } finally { rmSync(candidateDir, { recursive: true, force: true }); git("worktree", "prune"); }
+      try { git("worktree", "remove", "--force", candidateDir); } finally { rmSync(candidateDir, { recursive: true, force: true, maxRetries: 10, retryDelay: 500 }); git("worktree", "prune"); }
     }
   }
 }
