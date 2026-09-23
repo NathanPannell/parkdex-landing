@@ -13,6 +13,7 @@ Keep Vercel Git deployment disabled in both projects because the GitHub push wor
 
 - Separate team-scoped deployment secrets: `VERCEL_STAGING_TOKEN` for the staging caller and `VERCEL_PRODUCTION_TOKEN` for the production caller. Scope each token to the Vercel team and give it an expiration and rotation owner. The current Vercel CLI calls `/v2/user` before deployment, which returns 404 for a project-scoped token even when that token can read its project. Each token is passed to the reusable workflow as `VERCEL_DEPLOY_TOKEN`; the staging job never receives the production token. Keep `VERCEL_STAGING_PROJECT_ID` and `VERCEL_PRODUCTION_PROJECT_ID` distinct, and confirm those IDs before each release.
 - Repository variables: `VERCEL_ORG_ID`, `VERCEL_STAGING_PROJECT_ID`, and `VERCEL_PRODUCTION_PROJECT_ID`.
+- The reusable workflow exports the selected project as `VERCEL_PROJECT_ID` before invoking Vercel CLI. The CLI requires this variable when `VERCEL_ORG_ID` is set, even with a matching `.vercel/project.json`.
 - GitHub environments: `staging` and `production`, with any desired protection rules.
 
 The staging and production Vercel projects must each have their own persistent `DATABASE_URL` for the waitlist serverless function. The projects must have matching `WAITLIST_ALLOWED_ORIGIN` values if this optional variable is set. The staging project's **Preview** environment must have no persistent variables. The preview script injects one isolated Neon branch database URL per deployment. Keep production and staging database credentials out of Preview.

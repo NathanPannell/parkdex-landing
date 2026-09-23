@@ -99,6 +99,7 @@ jobs:
           fi
           [[ "$VERCEL_ORG_ID" =~ ^team_[A-Za-z0-9]+$ ]]
           [[ "$project_id" =~ ^prj_[A-Za-z0-9]+$ ]]
+          export VERCEL_PROJECT_ID="$project_id"
           mkdir -p .vercel
           printf '{"orgId":"%s","projectId":"%s","projectName":"%s"}\n' \
             "$VERCEL_ORG_ID" "$project_id" "$project_name" > .vercel/project.json
