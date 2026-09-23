@@ -10,7 +10,7 @@ Use Node 22 or 24. Run `npm ci`, then `npm run dev`. The static page is served a
 
 ## Runtime configuration
 
-`DATABASE_URL` is server-only and points to the landing application's dedicated database. Never use the main Parkdex database. The beta web-app link points to https://web.parkdex.app/.
+`DATABASE_URL` is server-only and points to the landing application's dedicated waitlist database. Never use the main Parkdex database. `VITE_APP_URL` is a public build variable for the beta web-app link. It defaults to `https://web.parkdex.app`; staging uses `https://staging.web.parkdex.app`.
 
 The landing deploys only to its separate Vercel project. No Git deployment integration, cron, polling service, or Railway service is needed. Read DEPLOYMENT.md for the temporary URL and provider ownership.
 

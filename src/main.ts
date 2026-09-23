@@ -26,6 +26,9 @@ revealLinkedDialog();
 window.addEventListener('hashchange', revealLinkedDialog);
 window.addEventListener('pageshow', revealLinkedDialog);
 
+const appUrl = import.meta.env.VITE_APP_URL || 'https://web.parkdex.app';
+document.querySelectorAll<HTMLAnchorElement>('[data-app-link]').forEach((link) => { link.href = appUrl; });
+
 const form = document.querySelector<HTMLFormElement>('#waitlist-form')!;
 const email = document.querySelector<HTMLInputElement>('#email')!;
 const company = document.querySelector<HTMLInputElement>('#company')!;

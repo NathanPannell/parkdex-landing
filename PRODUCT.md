@@ -18,7 +18,7 @@ Introduce Parkdex with a photographic opening and three product stories: one map
 Parkdex is a field guide and collection game for Vancouver Island. Its map, saved places, visit journal, and local wildlife badges make exploration a growing personal collection.
 
 ## Capabilities and Constraints
-Use real app screenshots in phone and laptop mockups. Android is coming soon, with no promised launch date. Keep the landing application independent of the current Parkdex app. Future routing is landing at parkdex.app and app at web.parkdex.app. Do not change either domain in this task. Store signup email durably and do not wake the existing app database.
+Use real app screenshots in phone and laptop mockups. Android is coming soon, with no promised launch date. Keep the landing application independent of the current Parkdex app. The cutover target is landing at `parkdex.app` with the production app at `web.parkdex.app`, and landing at `staging.parkdex.app` with the staging app at `staging.web.parkdex.app`. Store signup email durably in the landing environment's own database and do not wake the existing app database.
 
 ## Brand Commitments
 Distinct, personal, interesting, and informed by Nathan's own website at www.nathanpannell.com. Short, credible copy. Real app content in the user-selected Outdoor Poster composition. Oversized typography, full photography, paper story sections, a handwritten sign-off and researched device assets carry the page. The hero uses the operator-selected 198 figure with a breakdown of 2 national parks, 117 provincial parks, 55 regional parks, and 24 islands. No decorative eyebrows or small navigation header.
