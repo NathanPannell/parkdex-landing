@@ -14,6 +14,7 @@
     <link rel="icon" type="image/png" sizes="64x64" href="/favicon-64x64.png" />
     <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png" />
     <title>Parkdex · Find a park. Keep the firsts.</title>
+    <script type="module" src="/src/auth-token-redirect-entry.ts"></script>
   </head>
   <body class="outdoor-page">
     <a class="outdoor-skip" href="#main">Skip to content</a>
@@ -43,7 +44,13 @@
               </form>
               <noscript><p class="outdoor-noscript">Please enable JavaScript to join the waitlist. You can still explore Parkdex.</p></noscript>
 
-              <a class="outdoor-web-link" data-app-link href="https://parkdex.app">Open the web app <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true"><path d="M6 18 18 6M6 6h12v12" /></svg></a>
+              <a class="outdoor-web-link" data-app-link href="https://web.parkdex.app">Open the web app <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true"><path d="M6 18 18 6M6 6h12v12" /></svg></a>
+              <section id="guest-migration" class="outdoor-guest-migration" hidden aria-labelledby="guest-migration-title">
+                <h2 id="guest-migration-title">Keep your saved progress.</h2>
+                <p>Move guest progress saved in this browser to the new Parkdex app.</p>
+                <button id="move-guest-progress" type="button">Move guest progress</button>
+                <p id="guest-migration-status" role="status" aria-live="polite"></p>
+              </section>
             </div>
 
             <figure class="outdoor-device outdoor-device--hero">
@@ -61,7 +68,7 @@
           <div class="outdoor-section-copy">
             <h2 id="map-title">Everything starts with a map.</h2>
             <p>National, provincial, and regional parks. Islands, too. Keep the next place in view until you’re ready to go.</p>
-            <a class="outdoor-section-link" data-app-link href="https://parkdex.app">Explore the web app <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true"><path d="M6 18 18 6M6 6h12v12" /></svg></a>
+            <a class="outdoor-section-link" data-app-link href="https://web.parkdex.app">Explore the web app <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true"><path d="M6 18 18 6M6 6h12v12" /></svg></a>
           </div>
           <figure class="outdoor-laptop-stage">
             <button class="outdoor-device-trigger" type="button" data-view="map" aria-label="Enlarge the Parkdex map preview">
@@ -194,7 +201,7 @@
           <button type="button" data-view="progress">Your progress</button>
           <button type="button" data-view="badges">Claim badges</button>
         </div>
-        <a data-app-link href="https://parkdex.app">Explore the web app <span aria-hidden="true">↗</span></a>
+        <a data-app-link href="https://web.parkdex.app">Explore the web app <span aria-hidden="true">↗</span></a>
       </div>
     </dialog>
     <script type="module" src="/src/main.ts"></script>

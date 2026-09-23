@@ -1,6 +1,18 @@
 import './shared-base.css';
 import './poster-page.css';
 import './device-frame.css';
+import { authTokenRedirectTarget } from './auth-token-redirect';
+import { browserGuestMigrationRuntime, connectGuestMigration } from './guest-migration';
+
+const authRedirect = authTokenRedirectTarget(window.location.origin, window.location.hash);
+if (!authRedirect) {
+  const panel = document.querySelector<HTMLElement>('#guest-migration');
+  const moveButton = document.querySelector<HTMLButtonElement>('#move-guest-progress');
+  const migrationStatus = document.querySelector<HTMLElement>('#guest-migration-status');
+  if (panel && moveButton && migrationStatus) {
+    connectGuestMigration(panel, moveButton, migrationStatus, browserGuestMigrationRuntime());
+  }
+}
 
 const emailPrivacy = document.querySelector<HTMLDetailsElement>('#email-privacy');
 function revealEmailPrivacy() {
@@ -10,7 +22,7 @@ revealEmailPrivacy();
 window.addEventListener('hashchange', revealEmailPrivacy);
 window.addEventListener('pageshow', revealEmailPrivacy);
 
-const appUrl = import.meta.env.VITE_APP_URL || 'https://parkdex.app';
+const appUrl = import.meta.env.VITE_APP_URL || 'https://web.parkdex.app';
 document.querySelectorAll<HTMLAnchorElement>('[data-app-link]').forEach((link) => { link.href = appUrl; });
 
 const form = document.querySelector<HTMLFormElement>('#waitlist-form')!;
