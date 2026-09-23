@@ -5,6 +5,7 @@
   --outdoor-paper: var(--color-paper);
   --outdoor-paper-bright: var(--color-paper-bright);
   --outdoor-paper-deep: var(--color-paper-deep);
+  --outdoor-visit-paper: #dce8d7;
   --outdoor-ink: var(--color-ink);
   --outdoor-secondary: var(--color-secondary);
   --outdoor-muted: var(--color-muted);
@@ -20,6 +21,14 @@
   --outdoor-photo-copy: var(--color-hero-text);
   --outdoor-photo-soft: var(--color-hero-soft);
   --outdoor-photo-scrim: var(--color-hero-scrim);
+  --park-national: #7c4dff;
+  --park-provincial: #d84a3a;
+  --park-regional: #d97706;
+  --park-islands: #247ba0;
+  --park-national-ink: #633ecc;
+  --park-provincial-ink: #ad3b2e;
+  --park-regional-ink: #a35905;
+  --park-islands-ink: #1d6280;
 }
 
 .outdoor-page {
@@ -40,6 +49,17 @@
 
 .outdoor-page :where(h1, h2, h3, p, figure) {
   margin: 0;
+}
+
+.outdoor-sr-only {
+  position: absolute !important;
+  width: 1px !important;
+  height: 1px !important;
+  padding: 0 !important;
+  overflow: hidden !important;
+  clip: rect(0, 0, 0, 0) !important;
+  white-space: nowrap !important;
+  border: 0 !important;
 }
 
 .outdoor-page h1,
@@ -109,7 +129,7 @@
 .outdoor-hero {
   position: relative;
   isolation: isolate;
-  min-height: max(700px, 100svh);
+  min-height: max(640px, 100svh);
   overflow: clip;
   background: var(--outdoor-ink);
   color: var(--outdoor-photo-copy);
@@ -146,8 +166,8 @@
   grid-template-columns: minmax(0, 1fr) minmax(280px, .56fr);
   align-items: center;
   gap: clamp(2rem, 7vw, 9rem);
-  min-height: max(700px, 100svh);
-  padding: clamp(5rem, 11vh, 8rem) var(--outdoor-gutter) clamp(3rem, 7vh, 5rem);
+  min-height: max(640px, 100svh);
+  padding: clamp(1.75rem, 4vh, 3rem) var(--outdoor-gutter) clamp(1.5rem, 3vh, 2.5rem);
 }
 
 .outdoor-hero-copy {
@@ -159,7 +179,7 @@
 .outdoor-wordmark {
   color: var(--outdoor-photo-copy);
   font-family: var(--font-display), sans-serif;
-  font-size: clamp(5rem, 15.5vw, 15rem);
+  font-size: clamp(5rem, 12vw, 11rem);
   font-weight: 780;
   letter-spacing: -.04em;
   line-height: .7;
@@ -172,9 +192,9 @@
 
 .outdoor-hero h1 {
   max-width: 17ch;
-  margin-top: clamp(2.5rem, 5vw, 5rem);
+  margin-top: clamp(1.5rem, 2.5vw, 2.5rem);
   color: var(--outdoor-photo-copy);
-  font-size: clamp(3.4rem, 6.5vw, 6rem);
+  font-size: clamp(2.5rem, 4vw, 4.3rem);
   line-height: .86;
 }
 
@@ -182,17 +202,46 @@
   color: var(--outdoor-lime);
 }
 
+.outdoor-page .outdoor-count-trigger {
+  display: inline-block;
+  width: auto;
+  margin-right: .13em;
+  padding: 0;
+  border: 0;
+  background: transparent;
+  color: var(--outdoor-photo-copy);
+  font: inherit;
+  font-family: var(--font-hand), cursive;
+  font-size: 1.2em;
+  font-variant-numeric: tabular-nums;
+  font-weight: 800;
+  -webkit-text-stroke: .018em currentColor;
+  letter-spacing: -.04em;
+  line-height: inherit;
+  text-decoration-line: underline;
+  text-decoration-style: solid;
+  text-decoration-thickness: .055em;
+  text-underline-offset: .08em;
+  text-decoration-skip-ink: none;
+  white-space: nowrap;
+}
+
 .outdoor-hero-lede {
-  max-width: 35ch;
-  margin-top: 1.5rem;
+  max-width: 100%;
+  margin-top: 1rem;
   color: var(--outdoor-photo-soft);
   font-size: clamp(1.08rem, 1.55vw, 1.3rem);
   line-height: 1.34;
 }
 
+@media (min-width: 64rem) {
+  .outdoor-hero h1,
+  .outdoor-hero-lede { white-space: nowrap; }
+}
+
 .outdoor-waitlist {
   max-width: 670px;
-  margin-top: 1.5rem;
+  margin-top: 1rem;
 }
 
 .outdoor-waitlist label {
@@ -266,6 +315,8 @@
   line-height: 1.4;
   overflow-wrap: anywhere;
 }
+
+.outdoor-form-message:empty { display: none; }
 
 .outdoor-page .outdoor-waitlist[data-state="error"] .outdoor-form-message {
   color: var(--outdoor-photo-copy);
@@ -364,24 +415,182 @@
 }
 
 .outdoor-section {
+  --story-device-height: clamp(280px, 26vw, 440px);
   display: grid;
   grid-template-columns: minmax(0, .7fr) minmax(0, 1.3fr);
   align-items: center;
-  gap: clamp(2.5rem, 7vw, 9rem);
-  padding: clamp(5rem, 10vw, 9rem) var(--outdoor-gutter);
+  gap: clamp(2.5rem, 4vw, 5.5rem);
+  padding: clamp(4rem, 6vw, 6.5rem) max(var(--outdoor-gutter), calc((100% - 1440px) / 2));
   background: var(--outdoor-paper);
 }
 
 .outdoor-section-copy {
   max-width: 38ch;
+  position: relative;
 }
 
+.outdoor-category-trigger {
+  display: inline;
+  position: relative;
+  padding: 0;
+  border: 0;
+  background: transparent;
+  color: var(--category-color);
+  font: inherit;
+  line-height: inherit;
+  text-decoration: underline;
+  text-decoration-thickness: .075em;
+  text-underline-offset: .17em;
+}
+
+.outdoor-category-token { white-space: nowrap; }
+
+.outdoor-category-trigger[data-category="national"] { --category-color: var(--park-national-ink); }
+.outdoor-category-trigger[data-category="provincial"] { --category-color: var(--park-provincial-ink); }
+.outdoor-category-trigger[data-category="regional"] { --category-color: var(--park-regional-ink); }
+.outdoor-category-trigger[data-category="islands"] { --category-color: var(--park-islands-ink); }
+
+.outdoor-category-preview[hidden],
+.outdoor-count-popover[hidden] { display: none; }
+.outdoor-category-preview {
+  position: absolute;
+  z-index: 30;
+  display: grid;
+  grid-template-columns: 94px minmax(0, 1fr);
+  width: min(320px, calc(100vw - 1rem));
+  min-height: 112px;
+  overflow: hidden;
+  border-top: 3px solid var(--tooltip-color, var(--outdoor-ink));
+  border-radius: 5px;
+  background: var(--outdoor-paper-bright) url('/images/paper.webp') center / 900px auto;
+  box-shadow: 0 12px 28px var(--outdoor-shadow);
+}
+.outdoor-category-preview[data-category="national"] { --tooltip-color: var(--park-national); }
+.outdoor-category-preview[data-category="provincial"] { --tooltip-color: var(--park-provincial); }
+.outdoor-category-preview[data-category="regional"] { --tooltip-color: var(--park-regional); }
+.outdoor-category-preview[data-category="islands"] { --tooltip-color: var(--park-islands); }
+.outdoor-category-preview > img {
+  width: 94px;
+  height: 100%;
+  min-height: 112px;
+  object-fit: cover;
+}
+.outdoor-category-preview > div { align-self: center; padding: .65rem .75rem; }
+.outdoor-category-preview h3 { font-size: 1.05rem; line-height: 1.1; }
+.outdoor-category-preview p { max-width: none; margin-top: .35rem; color: var(--outdoor-secondary); font-size: .86rem; line-height: 1.28; }
+
+.outdoor-icon-close {
+  display: grid;
+  place-items: center;
+  width: 44px;
+  height: 44px;
+  padding: 0;
+  border: 0;
+  border-radius: 50%;
+  background: var(--outdoor-paper-bright);
+  color: var(--outdoor-ink);
+}
+.outdoor-count-popover {
+  position: absolute;
+  z-index: 20;
+  width: min(280px, calc(100vw - 1.5rem));
+  padding: .4rem .85rem;
+  border-top: 3px solid var(--outdoor-lime);
+  border-radius: 5px;
+  background: var(--outdoor-paper-bright) url('/images/paper.webp') center / 1000px auto;
+  color: var(--outdoor-ink);
+  box-shadow: 0 10px 26px var(--outdoor-shadow);
+}
+.outdoor-count-popover dl { margin: 0; }
+.outdoor-count-popover dl > div {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) auto;
+  align-items: center;
+  gap: .7rem;
+  min-height: 2.55rem;
+  padding: .3rem 0;
+  border-top: 1px solid color-mix(in srgb, var(--row-color) 32%, var(--outdoor-paper-bright));
+  color: var(--row-ink);
+}
+.outdoor-count-popover dl > div:first-child { border-top: 0; }
+.outdoor-count-popover dt,
+.outdoor-count-popover dd { margin: 0; font-family: var(--font-display), sans-serif; line-height: 1; }
+.outdoor-count-popover dt {
+  display: flex;
+  align-items: center;
+  gap: .5rem;
+  font-size: 1rem;
+  font-weight: 720;
+}
+.outdoor-count-popover dt::before {
+  content: '';
+  flex: 0 0 .5rem;
+  width: .5rem;
+  height: .5rem;
+  border-radius: 50%;
+  background: var(--row-color);
+}
+.outdoor-count-popover dd {
+  min-width: 3ch;
+  font-size: 1.35rem;
+  font-weight: 780;
+  font-variant-numeric: tabular-nums;
+  text-align: right;
+}
+.outdoor-count-popover [data-category="national"] { --row-color: var(--park-national); --row-ink: var(--park-national-ink); }
+.outdoor-count-popover [data-category="provincial"] { --row-color: var(--park-provincial); --row-ink: var(--park-provincial-ink); }
+.outdoor-count-popover [data-category="regional"] { --row-color: var(--park-regional); --row-ink: var(--park-regional-ink); }
+.outdoor-count-popover [data-category="islands"] { --row-color: var(--park-islands); --row-ink: var(--park-islands-ink); }
+
+.outdoor-visit-gallery {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, calc(var(--story-device-height) * .4808)));
+  align-items: center;
+  justify-content: space-evenly;
+  gap: clamp(2rem, 5vw, 5rem);
+  width: 100%;
+}
+.outdoor-visit-gallery .device-frame {
+  --device-frame-width: min(100%, calc(var(--story-device-height) * .4808));
+  margin-inline: auto;
+}
+.outdoor-visit-gallery .outdoor-device:first-child { transform: rotate(-2deg); }
+.outdoor-visit-gallery .outdoor-device:last-child { transform: rotate(2deg); }
+
 .outdoor-section--map {
-  grid-template-columns: minmax(0, .82fr) minmax(0, 1.18fr);
+  position: relative;
+  grid-template-columns: minmax(0, .55fr) minmax(0, 1.45fr);
+}
+
+.outdoor-map-visuals {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: clamp(.75rem, 1.5vw, 1.25rem);
+  width: 100%;
+}
+
+.outdoor-map-visuals .outdoor-laptop-stage,
+.outdoor-collection-stage .outdoor-laptop-stage {
+  flex: 0 1 calc(var(--story-device-height) * 1.7226);
+  width: calc(var(--story-device-height) * 1.7226);
+  min-width: 0;
+}
+
+.outdoor-device--map-list,
+.outdoor-device--collection-badge {
+  flex: 0 1 calc(var(--story-device-height) * .4808);
+  width: calc(var(--story-device-height) * .4808);
+  min-width: 0;
+}
+
+.outdoor-device--map-list .device-frame,
+.outdoor-device--collection-badge .device-frame {
+  --device-frame-width: 100%;
 }
 
 .outdoor-section-copy h2 {
-  max-width: 10ch;
+  max-width: 12ch;
   font-size: clamp(2.7rem, 5.3vw, 5rem);
   line-height: .87;
 }
@@ -392,11 +601,11 @@
 }
 
 .outdoor-section-copy p {
-  max-width: 34ch;
+  max-width: 38ch;
   margin-top: 1.6rem;
   color: var(--outdoor-secondary);
-  font-size: clamp(1.1rem, 1.45vw, 1.3rem);
-  line-height: 1.42;
+  font-size: clamp(1.15rem, 1.55vw, 1.4rem);
+  line-height: 1.38;
 }
 
 .outdoor-section-link {
@@ -470,7 +679,7 @@
 }
 
 .outdoor-section--visit {
-  background: var(--outdoor-paper);
+  background: var(--outdoor-visit-paper);
 }
 
 .outdoor-preview-note {
@@ -493,7 +702,7 @@
 }
 
 .outdoor-section--collection {
-  grid-template-columns: minmax(220px, .58fr) minmax(0, 1.42fr);
+  grid-template-columns: minmax(0, .55fr) minmax(0, 1.45fr);
   background: var(--outdoor-ink);
   color: var(--outdoor-photo-copy);
 }
@@ -507,10 +716,10 @@
 }
 
 .outdoor-collection-stage {
-  display: grid;
-  grid-template-columns: minmax(0, 1fr) minmax(130px, .3fr);
-  align-items: end;
-  gap: clamp(1rem, 4vw, 4rem);
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: clamp(.75rem, 1.5vw, 1.25rem);
 }
 
 .outdoor-laptop-stage--collection {
@@ -529,53 +738,100 @@
   transform: rotate(4deg);
 }
 
-.outdoor-device--collection-badge .device-frame {
-  --device-frame-width: min(100%, 220px);
-}
 
 .outdoor-footer {
-  display: grid;
-  grid-template-columns: minmax(220px, .55fr) minmax(0, 1.45fr);
-  gap: 2rem clamp(2rem, 7vw, 9rem);
-  padding: clamp(3rem, 6vw, 5rem) var(--outdoor-gutter) 2.5rem;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1.5rem 3rem;
+  padding: 1.45rem max(var(--outdoor-gutter), calc((100% - 1440px) / 2));
   border-top: 1px solid var(--outdoor-rule);
   background: var(--outdoor-paper);
 }
 
 .outdoor-footer-signoff {
   font-family: var(--font-hand), cursive;
-  font-size: clamp(2.2rem, 4vw, 3.6rem);
+  flex: 0 0 auto;
+  font-size: clamp(2.2rem, 3vw, 2.8rem);
   line-height: .95;
 }
 
 .outdoor-footer-meta {
-  display: grid;
-  gap: 1rem;
-  color: var(--outdoor-secondary);
-  font-size: .83rem;
-}
-
-.outdoor-footer-meta .attribution,
-.outdoor-footer-meta .photo-credit {
-  max-width: 75ch;
-}
-
-.outdoor-page .privacy summary {
   display: flex;
   align-items: center;
-  min-height: 44px;
-  width: fit-content;
-  cursor: pointer;
-  color: var(--outdoor-ink);
-  font-family: var(--font-display), sans-serif;
+  justify-content: flex-end;
+  gap: clamp(1rem, 2vw, 2rem);
+  color: var(--outdoor-secondary);
   font-size: 1rem;
-  font-weight: 720;
 }
+
+.outdoor-footer-action {
+  min-height: 44px;
+  padding: 0;
+  border: 0;
+  background: transparent;
+  color: var(--outdoor-ink);
+  cursor: pointer;
+  font: 720 1rem var(--font-display), sans-serif;
+  text-decoration: underline;
+  text-underline-offset: .22em;
+  white-space: nowrap;
+}
+
+.outdoor-dialog {
+  width: min(92vw, 36rem);
+  max-width: none;
+  max-height: min(82dvh, 46rem);
+  margin: auto;
+  padding: clamp(1.3rem, 3vw, 2rem);
+  overflow: auto;
+  border: 1px solid var(--outdoor-rule);
+  border-radius: 1rem;
+  background: var(--outdoor-paper-bright);
+  box-shadow: 0 28px 80px var(--outdoor-shadow);
+  color: var(--outdoor-ink);
+}
+
+.outdoor-dialog::backdrop {
+  background: rgb(9 27 23 / 64%);
+  backdrop-filter: blur(4px);
+}
+
+#credits-dialog { width: min(92vw, 42rem); }
+
+.outdoor-dialog-head {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1rem;
+}
+
+.outdoor-dialog-head h2 {
+  font-size: clamp(1.7rem, 4vw, 2.2rem);
+  line-height: 1.1;
+}
+
+.outdoor-dialog-close {
+  display: grid;
+  flex: 0 0 2.5rem;
+  place-items: center;
+  width: 2.5rem;
+  height: 2.5rem;
+  padding: 0;
+  border: 1px solid var(--outdoor-rule);
+  border-radius: 50%;
+  background: transparent;
+  color: var(--outdoor-ink);
+  cursor: pointer;
+  font: 1.6rem/1 var(--font-display), sans-serif;
+}
+.outdoor-credits-content { max-width: 65ch; padding-block: 1rem 0; line-height: 1.5; }
+.outdoor-credits-content p + p { margin-top: .6rem; }
+.outdoor-credits-content p { overflow-wrap: anywhere; }
 
 .outdoor-policy-links {
   display: flex;
-  flex-wrap: wrap;
-  gap: .25rem 1.5rem;
+  gap: clamp(1rem, 2vw, 2rem);
   color: var(--outdoor-ink);
   font-size: 1rem;
 }
@@ -584,6 +840,7 @@
   display: inline-flex;
   align-items: center;
   min-height: 44px;
+  white-space: nowrap;
 }
 
 .outdoor-page .privacy-content {
@@ -661,19 +918,23 @@
     background: var(--outdoor-lime-hover);
   }
 
-  .outdoor-page .outdoor-device-trigger:hover .device-frame {
-    filter: brightness(1.035);
-  }
 }
 
 @media (min-width: 64rem) {
   .outdoor-section--places,
   .outdoor-section--visit {
-    grid-template-columns: minmax(220px, .52fr) minmax(0, 1.48fr);
+    grid-template-columns: minmax(220px, .7fr) minmax(0, 1.3fr);
   }
 }
 
 @media (max-width: 63.99rem) {
+  .outdoor-section { --story-device-height: clamp(230px, 36vw, 280px); }
+  .outdoor-section--map,
+  .outdoor-section--collection { display: block; }
+  .outdoor-map-visuals,
+  .outdoor-collection-stage { margin-top: 2.8rem; }
+  .outdoor-footer { flex-wrap: wrap; }
+  .outdoor-footer-meta { justify-content: flex-start; }
   .outdoor-hero-inner {
     grid-template-columns: minmax(0, .92fr) minmax(210px, .46fr);
     gap: 2rem;
@@ -693,6 +954,9 @@
 }
 
 @media (max-width: 40rem) {
+  .outdoor-section { --mobile-story-phone-width: min(72vw, 250px); }
+  .outdoor-section--map .outdoor-laptop-stage,
+  .outdoor-section--collection .outdoor-laptop-stage { display: none; }
   .outdoor-hero, .outdoor-hero-inner { min-height: 100svh; }
   .outdoor-hero-photo img { object-position: 57% 45%; }
   .outdoor-hero-scrim {
@@ -765,9 +1029,9 @@
   }
 
   .outdoor-section-copy p {
-    max-width: 31ch;
+    max-width: 34ch;
     margin-top: 1.15rem;
-    font-size: 1.08rem;
+    font-size: 1.15rem;
   }
 
   .outdoor-section-link {
@@ -776,6 +1040,19 @@
 
   .outdoor-laptop-stage {
     margin-top: 2.8rem;
+  }
+
+  .outdoor-map-visuals {
+    display: block;
+    grid-template-columns: 1fr;
+    margin-top: 2.8rem;
+  }
+
+  .outdoor-map-visuals .outdoor-laptop-stage { margin-top: 0; }
+
+  .outdoor-device--map-list {
+    width: var(--mobile-story-phone-width);
+    margin: 0 auto;
   }
 
   .outdoor-laptop-screen {
@@ -796,6 +1073,19 @@
     grid-template-columns: 1fr;
     gap: 3rem;
     margin-top: 2.8rem;
+  }
+
+  .outdoor-visit-gallery {
+    grid-template-columns: 1fr;
+    gap: 3rem;
+    margin-top: 2.8rem;
+  }
+  .outdoor-visit-gallery .device-frame { --device-frame-width: var(--mobile-story-phone-width); }
+  .outdoor-visit-gallery .outdoor-device:last-child { margin-top: 0; }
+  .outdoor-category-trigger::after {
+    content: '';
+    position: absolute;
+    inset: -.65rem -.1rem;
   }
 
   .outdoor-device-pair .device-frame {
@@ -830,8 +1120,8 @@
   }
 
   .outdoor-device--collection-badge {
-    width: min(44vw, 170px);
-    margin: 2rem 1rem 0 auto;
+    width: var(--mobile-story-phone-width);
+    margin: 0 auto;
   }
 
   .outdoor-footer {
@@ -840,12 +1130,11 @@
   }
 
   .outdoor-footer-meta {
-    margin-top: 2.2rem;
+    flex-wrap: wrap;
+    gap: .15rem 1.2rem;
+    margin-top: 1.2rem;
   }
-
-  .outdoor-footer-meta .photo-credit {
-    max-width: 42ch;
-  }
+  .outdoor-policy-links { flex-wrap: wrap; gap: .15rem 1.2rem; }
 }
 
 @media (prefers-reduced-motion: reduce) {
@@ -856,4 +1145,9 @@
     transition: none !important;
     scroll-behavior: auto !important;
   }
+}
+
+@media (max-width: 22.5rem) {
+  .outdoor-hero-inner { padding-block: .7rem; }
+  .outdoor-hero-lede { font-size: 1rem; }
 }

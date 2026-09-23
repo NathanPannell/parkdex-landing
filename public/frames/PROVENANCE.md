@@ -1,27 +1,18 @@
-# iPhone 16 Max frame
+# Device frame assets
 
-`iphone-16-max.svg` is the unmodified SVG extracted from the upstream
-`@sneas/telephone` package's `packages/telephone/src/iphone-16-max.html.ts`
-template. The package is MIT licensed by Dimah Snisarenko.
+These replacement device frames were requested in [parkdex-landing issue #4](https://github.com/NathanPannell/parkdex-landing/issues/4) and supplied by the repository owner in a comment on [portfolio-2026 issue #5](https://github.com/NathanPannell/portfolio-2026/issues/5#issuecomment-5789804979).
 
-- Upstream repository: https://github.com/sneas/telephone
-- Upstream source: https://github.com/sneas/telephone/blob/main/packages/telephone/src/iphone-16-max.html.ts
-- Package version reviewed: `@sneas/telephone` `1.1.2`
-- Pinned package tarball: https://registry.npmjs.org/@sneas/telephone/-/telephone-1.1.2.tgz
-- Tarball SHA-1: `8b0aea6b96ddc6565dff43d649d501b10aee4b2d`
-- Tarball Subresource Integrity: `sha512-qgW84VqFqiFcEa9M23dwwgfM/P0RPRVkFt4gn5q4m6zLdoFVxLBir1d59CdcH1NOHQBzyj4bRx6ZaaPErp8cZg==`
-- Upstream git commit: `cdbbe2681e9425903f8dd0cfb47890a3f297699f`
-- Source SVG viewBox: `0 0 415 843`
-- Upstream screen slot: left/right `3.4%`, top/bottom `1.32%`
-- Upstream screen corner radius: `calc(width * 0.122126436781609)`
-- Hardware details: left volume/action buttons, right side button, Dynamic Island, camera and sensor details
+| Local asset | Source attachment | Processing | Output dimensions |
+| --- | --- | --- | --- |
+| `parkdex-laptop-frame.webp` | [Laptop frame](https://github.com/user-attachments/assets/8c34a1ae-2e88-4845-afc7-bbf794981c8d) | Resized from 4608 × 2675; transparency preserved; encoded as lossless WebP. | 2600 × 1509 |
+| `parkdex-phone-frame.webp` | [Phone frame](https://github.com/user-attachments/assets/f767709a-3b7a-4cf8-adbf-53985c02a357) | Cropped the transparent canvas to the phone silhouette at `(1460, 329)–(3547, 4670)`, then resized; transparency preserved; encoded as lossless WebP. | 1252 × 2604 |
 
-The SVG is retained as a visual overlay. Parkdex screenshot content is rendered
-in the separate `device-frame__media` layer, with `object-fit: contain` and
-matching 7% top and bottom mat insets. This keeps the complete source image
-visible, including the `714x1354`, `712x1359`, and `375x844` captures, while
-keeping the Dynamic Island above the screenshot content and the image rectangle
-inside the rounded display corners.
+Both images are transparent frame overlays. The phone frame uses a display aperture aspect ratio of about 0.461. Screens inside it use `object-fit: cover`; inspect each screenshot for critical content near its top and bottom edges.
 
-The local CSS wrapper and this provenance file are Parkdex additions. Preserve
-the MIT notice in `public/frames/LICENSE` when the asset is redistributed.
+## Phone screen captures
+
+| Local asset | Source | Processing | Output dimensions |
+| --- | --- | --- | --- |
+| `../images/hero-map-mobile.webp` | [Parkdex live map](https://web.parkdex.app/?view=map&mode=discover) | Captured in Chrome at a 409 × 888 mobile viewport with All selected and Progress off; encoded as lossless WebP. | 409 × 888 |
+| `../images/sealed-arrival-after.png` | Owner-selected after screen from the [Sealed Impressions evidence](https://github.com/NathanPannell/parkdex/tree/staging/docs/pr-evidence/sealed-impressions) | Source capture retained. Centered `object-fit: cover` trims about 15 px from the top and bottom to fill the phone aperture. The Parkdex header, park details, and Claim + photo action remain visible. | 375 × 843 |
+| `../images/sealed-collection-after.png` | Owner-selected after screen from the [Sealed Impressions evidence](https://github.com/NathanPannell/parkdex/tree/staging/docs/pr-evidence/sealed-impressions) | Source capture retained. Centered `object-fit: cover` trims about 15 px from the top and bottom to fill the phone aperture. The collection heading and latest postcard remain visible. | 367 × 825 |

@@ -1,3 +1,5 @@
+@import './replacement-frame.css';
+
 /*
  * Reusable Parkdex device frame contract.
  *
@@ -10,12 +12,12 @@
  *     </div>
  *   </div>
  *   <span class="device-frame__hardware" aria-hidden="true">
- *     <img src="/frames/iphone-16-max.svg" alt="" />
+ *     <img src="/frames/parkdex-phone-frame.webp" alt="" />
  *   </span>
  * </div>
  *
  * The source image belongs in __media. Keep it as an <img> for intrinsic
- * dimensions and accessibility. The frame SVG is a visual overlay and must
+ * dimensions and accessibility. The frame image is a visual overlay and must
  * stay above the screen layer.
  */
 
