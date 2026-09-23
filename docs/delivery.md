@@ -11,7 +11,7 @@ The landing page has two persistent Vercel projects and a Neon waitlist database
 
 Keep Vercel Git deployment disabled in both projects because the GitHub push workflows own persistent deployment requests. Configure these GitHub Actions values in `NathanPannell/parkdex-landing`:
 
-- Project-scoped deployment secrets: `VERCEL_STAGING_TOKEN` for the staging caller and `VERCEL_PRODUCTION_TOKEN` for the production caller. Each token is passed to the reusable workflow as `VERCEL_DEPLOY_TOKEN`; the staging job never receives the production token.
+- Separate team-scoped deployment secrets: `VERCEL_STAGING_TOKEN` for the staging caller and `VERCEL_PRODUCTION_TOKEN` for the production caller. Scope each token to the Vercel team and give it an expiration and rotation owner. The current Vercel CLI calls `/v2/user` before deployment, which returns 404 for a project-scoped token even when that token can read its project. Each token is passed to the reusable workflow as `VERCEL_DEPLOY_TOKEN`; the staging job never receives the production token. Keep `VERCEL_STAGING_PROJECT_ID` and `VERCEL_PRODUCTION_PROJECT_ID` distinct, and confirm those IDs before each release.
 - Repository variables: `VERCEL_ORG_ID`, `VERCEL_STAGING_PROJECT_ID`, and `VERCEL_PRODUCTION_PROJECT_ID`.
 - GitHub environments: `staging` and `production`, with any desired protection rules.
 
