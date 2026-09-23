@@ -1,0 +1,79 @@
+/* Replacement device art uses transparent PNG-derived WebP overlays. */
+
+.device-frame.device-frame--parkdex-asset {
+  aspect-ratio: 2087 / 4341;
+  --device-screen-top-inset: 0;
+}
+
+.device-frame--parkdex-asset .device-frame__screen {
+  inset: 1.8% 3.4% 1.7% 4%;
+  overflow: hidden;
+  border-radius: 11% / 4%;
+}
+
+.device-frame--parkdex-asset .device-frame__media {
+  inset: 0;
+  overflow: hidden;
+}
+
+.device-frame--parkdex-asset .device-frame__media > img {
+  object-fit: cover;
+}
+
+.outdoor-page .device-frame--parkdex-asset .device-frame__hardware > img {
+  object-fit: fill;
+}
+
+.outdoor-page .outdoor-laptop-frame.outdoor-laptop-frame--asset {
+  position: relative;
+  aspect-ratio: 4608 / 2675;
+  isolation: isolate;
+}
+
+.outdoor-page .outdoor-laptop-frame--asset .outdoor-laptop-screen--asset {
+  position: absolute;
+  inset: 1.9% 10.5% 11.514% 10.5%;
+  display: grid;
+  place-items: center;
+  overflow: hidden;
+  padding: 0;
+  border: 0;
+  border-radius: 1.8% / 1.7%;
+  background: var(--color-device-bezel);
+  box-shadow: none;
+  z-index: 0;
+}
+
+.outdoor-page .outdoor-section--map .outdoor-laptop-frame--asset .outdoor-laptop-screen--asset {
+  bottom: 11.2%;
+  border-radius: 0;
+}
+
+.outdoor-page .outdoor-laptop-frame--asset .outdoor-laptop-screen--asset > img {
+  display: block;
+  width: 100%;
+  height: 100%;
+  border: 0;
+  border-radius: 0;
+  background: transparent;
+  object-fit: cover;
+  object-position: center;
+}
+
+.outdoor-page .outdoor-laptop-frame--asset .outdoor-laptop-hardware--asset {
+  position: absolute;
+  inset: 0;
+  display: block;
+  pointer-events: none;
+  user-select: none;
+  z-index: 1;
+}
+
+.outdoor-page .outdoor-laptop-frame--asset .outdoor-laptop-hardware--asset > img {
+  display: block;
+  width: 100%;
+  height: 100%;
+  object-fit: fill;
+  pointer-events: none;
+  user-select: none;
+}
