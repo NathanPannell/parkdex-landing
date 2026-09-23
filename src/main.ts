@@ -1,6 +1,7 @@
 import './shared-base.css';
 import './poster-page.css';
 import './device-frame.css';
+import { browserGuestMigrationRuntime, connectGuestMigration } from './guest-migration';
 
 const dialogs = [...document.querySelectorAll<HTMLDialogElement>('.outdoor-dialog')];
 function revealLinkedDialog() {
@@ -28,6 +29,12 @@ window.addEventListener('pageshow', revealLinkedDialog);
 
 const appUrl = import.meta.env.VITE_APP_URL || 'https://web.parkdex.app';
 document.querySelectorAll<HTMLAnchorElement>('[data-app-link]').forEach((link) => { link.href = appUrl; });
+const guestMigrationPanel = document.querySelector<HTMLElement>('#guest-migration');
+const guestMigrationButton = document.querySelector<HTMLButtonElement>('#move-guest-progress');
+const guestMigrationStatus = document.querySelector<HTMLElement>('#guest-migration-status');
+if (guestMigrationPanel && guestMigrationButton && guestMigrationStatus) {
+  connectGuestMigration(guestMigrationPanel, guestMigrationButton, guestMigrationStatus, browserGuestMigrationRuntime());
+}
 
 const form = document.querySelector<HTMLFormElement>('#waitlist-form')!;
 const email = document.querySelector<HTMLInputElement>('#email')!;
