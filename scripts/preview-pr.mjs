@@ -185,10 +185,10 @@ async function create(pr) {
     command("npm", ["run", "build"], { cwd: directory, env: toolEnv() });
     const project = required("NEON_PROJECT_ID");
     const [parentMatches, existing] = await Promise.all([
-      listNeonBranches(project, process.env.NEON_PARENT_BRANCH || "main"),
+      listNeonBranches(project, process.env.NEON_PARENT_BRANCH || "staging"),
       listNeonBranches(project, branchName),
     ]);
-    const parent = parentMatches.filter((item) => item.name === (process.env.NEON_PARENT_BRANCH || "main"));
+    const parent = parentMatches.filter((item) => item.name === (process.env.NEON_PARENT_BRANCH || "staging"));
     if (parent.length !== 1 || existing.some((item) => item.name === branchName)) throw new Error("Neon staging parent is missing or preview branch already exists");
     const expiresAt = new Date(Date.now() + 72 * 60 * 60 * 1000).toISOString();
     state.intent.neon = { projectId: project, branchName, parentId: parent[0].id };
@@ -203,8 +203,8 @@ async function create(pr) {
     state.resources.neonBranchId = branch.id;
     state.status = "neon-created";
     save(path, state);
-    const database = process.env.NEON_DATABASE_NAME || "parkdex_landing_staging";
-    const role = process.env.NEON_ROLE_NAME || "parkdex_landing_staging_owner";
+    const database = process.env.NEON_DATABASE_NAME || "app";
+    const role = process.env.NEON_ROLE_NAME || "app_owner";
     const connection = await neonApi(`/projects/${project}/connection_uri`, { query: { branch_id: branch.id, database_name: database, role_name: role, pooled: true } });
     const uri = new URL(connection.uri);
     if (!/\.neon\.tech$/.test(uri.hostname) || uri.pathname !== `/${database}`) throw new Error("Neon preview database URI did not match the owned branch");
@@ -267,6 +267,7 @@ async function teardown(pr) {
     throw new Error("Teardown requires verified staging, PREVIEW_ABANDONED=1 for a closed PR, PREVIEW_ABORTED=1 for a failed draft preview, or PREVIEW_SUPERSEDED=1 after the PR head changes");
   }
   const project = required("NEON_PROJECT_ID");
+  if (state.intent.neon && state.intent.neon.projectId !== project) throw new Error("NEON_PROJECT_ID does not match the preview journal project");
   if (!state.resources.vercelDeploymentId && state.intent.vercel) {
     const matches = ownedVercelDeployments(state);
     if (matches.length > 1) throw new Error("Multiple Vercel deployments match preview metadata");
