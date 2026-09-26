@@ -2,7 +2,7 @@
 // Agent-run, same-repository draft PR preview. No GitHub trigger creates previews.
 import { spawnSync } from "node:child_process";
 import { randomUUID } from "node:crypto";
-import { closeSync, existsSync, mkdirSync, mkdtempSync, openSync, readFileSync, renameSync, rmSync, writeFileSync } from "node:fs";
+import { closeSync, existsSync, mkdirSync, mkdtempSync, openSync, readFileSync, readdirSync, renameSync, rmSync, writeFileSync } from "node:fs";
 import { tmpdir } from "node:os";
 import { dirname, join, resolve } from "node:path";
 import { fileURLToPath } from "node:url";
@@ -51,8 +51,9 @@ function command(executable, args, { cwd = root, env = process.env, input, inclu
 
 function git(...args) { return command("git", args, { env: { ...toolEnv(), SSH_AUTH_SOCK: process.env.SSH_AUTH_SOCK } }); }
 function gh(...args) { return command("gh", args, { env: { ...toolEnv(), GH_TOKEN: process.env.GH_TOKEN, GITHUB_TOKEN: process.env.GITHUB_TOKEN } }); }
-function vercel(...args) { return command("vercel", [...args, "--token", required("VERCEL_TOKEN"), "--scope", required("VERCEL_ORG_ID")], { env: toolEnv() }); }
-function vercelWithStderr(...args) { return command("vercel", [...args, "--token", required("VERCEL_TOKEN"), "--scope", required("VERCEL_ORG_ID")], { env: toolEnv(), includeStderr: true }); }
+function vercelEnv() { return { ...toolEnv(), VERCEL_ORG_ID: required("VERCEL_ORG_ID"), VERCEL_PROJECT_ID: required("VERCEL_PREVIEW_PROJECT_ID") }; }
+function vercel(...args) { return command("vercel", [...args, "--token", required("VERCEL_TOKEN"), "--scope", required("VERCEL_ORG_ID")], { env: vercelEnv() }); }
+function vercelWithStderr(...args) { return command("vercel", [...args, "--token", required("VERCEL_TOKEN"), "--scope", required("VERCEL_ORG_ID")], { env: vercelEnv(), includeStderr: true }); }
 
 async function neonApi(path, { method = "GET", body, query } = {}) {
   const url = new URL(`${baseUrl}${path}`);
@@ -240,7 +241,14 @@ async function create(pr) {
     throw error;
   } finally {
     if (candidateDir) {
-      try { git("worktree", "remove", "--force", candidateDir); } finally { rmSync(candidateDir, { recursive: true, force: true, maxRetries: 10, retryDelay: 500 }); git("worktree", "prune"); }
+      try { git("worktree", "remove", "--force", candidateDir); } finally {
+        try { rmSync(candidateDir, { recursive: true, force: true, maxRetries: 10, retryDelay: 500 }); }
+        catch (error) {
+          if (error.code !== "EPERM" || !existsSync(candidateDir) || readdirSync(candidateDir).length) throw error;
+          console.warn(`Windows retained an empty temporary candidate directory: ${candidateDir}`);
+        }
+        git("worktree", "prune");
+      }
     }
   }
 }
