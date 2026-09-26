@@ -9,7 +9,6 @@
 .fg-hero::before { content: ''; position: absolute; inset: 0; z-index: -1; background: linear-gradient(90deg, var(--color-hero-scrim), var(--color-hero-scrim-soft)); }
 .fg-header { padding: 1.5rem var(--gutter); display: flex; align-items: center; justify-content: space-between; gap: 1rem; }
 .fg-wordmark { display: flex; align-items: center; gap: .6rem; font: 780 2rem var(--font-display); letter-spacing: -.04em; text-decoration: none; }
-.fg-app { display: flex; align-items: center; gap: .7rem; min-height: 44px; font-size: 1rem; font-weight: 650; }
 .fg-opening { width: 100%; max-width: 1480px; padding: 2rem var(--gutter) 4rem; margin: auto; display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, .7fr); align-items: center; gap: 4rem; }
 .fg-intro h1 { font: 780 clamp(4rem, 6.5vw, 6rem)/.97 var(--font-display); letter-spacing: -.04em; }
 .fg-intro > p { max-width: 34ch; margin-top: 1.4rem; font-size: 1.25rem; line-height: 1.4; color: var(--color-hero-text); }
@@ -78,7 +77,6 @@
   .fg-header { padding: 1rem 1.25rem; }
   .fg-wordmark { font-size: 1.6rem; gap: .4rem; }
   .fg-wordmark img { width: 31px; height: 31px; }
-  .fg-app { font-size: .86rem; gap: .3rem; }
   .fg-landscape { object-position: 55% center; }
   .fg-opening { display: flex; flex-direction: column; align-items: stretch; gap: 1rem; padding: .6rem 1.25rem 3rem; margin: 0; }
   .fg-intro h1 { font-size: clamp(2.25rem, 10vw, 3rem); line-height: .99; }

@@ -26,8 +26,6 @@ revealLinkedDialog();
 window.addEventListener('hashchange', revealLinkedDialog);
 window.addEventListener('pageshow', revealLinkedDialog);
 
-const appUrl = import.meta.env.VITE_APP_URL || 'https://web.parkdex.app';
-document.querySelectorAll<HTMLAnchorElement>('[data-app-link]').forEach((link) => { link.href = appUrl; });
 const signupForms = [...document.querySelectorAll<HTMLFormElement>('.outdoor-waitlist')].map((form) => ({
   form,
   email: form.querySelector<HTMLInputElement>('input[name="email"]')!,

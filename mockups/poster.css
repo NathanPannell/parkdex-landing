@@ -120,8 +120,7 @@
   color: var(--poster-paper-bright);
 }
 
-.poster-brand,
-.poster-nav-link {
+.poster-brand {
   display: inline-flex;
   align-items: center;
   min-height: 44px;
@@ -138,16 +137,6 @@
 
 .poster-brand-mark {
   color: var(--poster-lime);
-}
-
-.poster-nav-link {
-  gap: .5rem;
-  font-size: .93rem;
-}
-
-.poster-nav-link span {
-  font-size: 1.25rem;
-  line-height: 1;
 }
 
 .poster-hero {
@@ -390,22 +379,6 @@
   color: var(--poster-secondary);
   font-size: clamp(1.08rem, 1.6vw, 1.32rem);
   line-height: 1.38;
-}
-
-.poster-text-link {
-  display: inline-flex;
-  align-items: center;
-  gap: .45rem;
-  min-height: 44px;
-  margin-top: 1.5rem;
-  color: var(--poster-ink);
-  font-family: var(--font-display), sans-serif;
-  font-weight: 720;
-  text-decoration: none;
-}
-
-.poster-text-link span {
-  font-size: 1.25rem;
 }
 
 .poster-laptop {
@@ -669,10 +642,8 @@
   }
 
   .poster-page .poster-brand:hover,
-  .poster-page .poster-nav-link:hover,
   .poster-page .poster-hero-cta:hover,
-  .poster-page .poster-hero-secondary:hover,
-  .poster-page .poster-text-link:hover {
+  .poster-page .poster-hero-secondary:hover {
     text-decoration: none;
   }
 
@@ -719,10 +690,6 @@
   .poster-brand-mark {
     width: 30px;
     height: 30px;
-  }
-
-  .poster-nav-link {
-    font-size: .82rem;
   }
 
   .poster-hero {
@@ -838,10 +805,6 @@
     font-size: 1.08rem;
   }
 
-  .poster-text-link {
-    margin-top: 1.15rem;
-  }
-
   .poster-laptop {
     width: 100%;
     margin-top: 2.8rem;
@@ -945,13 +908,6 @@
 }
 
 @media (max-width: 22rem) {
-  .poster-nav-link {
-    max-width: none;
-    text-align: right;
-    white-space: nowrap;
-    font-size: .78rem;
-  }
-
   .poster-hero {
     min-height: 760px;
   }

@@ -34,6 +34,6 @@ The preview script does not auto-clean a failed partial deployment. Its journal 
 
 ## Production promotion
 
-Create a PR from `staging` to `main` after staging acceptance. Review and merge it. The `Deploy landing production` push workflow queues the exact main commit on the production Vercel project with domain assignment skipped. Once READY, verify the commit and release ID, assign `www.parkdex.app` and `parkdex.app`, then browser-test both domains, redirects, the web app link, and the waitlist function. Confirm staging still points to its prior deployment.
+Create a PR from `staging` to `main` after staging acceptance. Review and merge it. The `Deploy landing production` push workflow queues the exact main commit on the production Vercel project with domain assignment skipped. Once READY, verify the commit and release ID, assign `www.parkdex.app` and `parkdex.app`, then browser-test both domains, redirects, the absence of promotional web-app links, and the waitlist function. Confirm staging still points to its prior deployment.
 
 The reusable `deploy-release.yml` follows Parkdex's thin caller and SHA-guarded, push-only pattern. The landing app has one owned deployable service, so the workflow queues its Vercel upload without waiting for provider readiness. If another independent service is added later, queue its request in parallel and wait only for each provider CLI to accept the request. Keep readiness, aliases, and browser acceptance in the agent-controlled release step.

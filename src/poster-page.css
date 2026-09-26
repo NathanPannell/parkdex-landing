@@ -356,7 +356,6 @@
   font-size: .9rem;
 }
 
-.outdoor-web-link,
 .outdoor-section-link {
   display: inline-flex;
   align-items: center;
@@ -368,16 +367,6 @@
   text-decoration: none;
 }
 
-.outdoor-web-link {
-  width: fit-content;
-  padding: .65rem 1rem;
-  border: 1px solid var(--color-hero-rule);
-  border-radius: 5px;
-  color: var(--outdoor-photo-copy);
-  background: var(--color-shade-28);
-}
-
-.outdoor-web-link svg,
 .outdoor-section-link svg {
   transition: transform var(--dur-short) var(--ease-out);
 }
@@ -925,12 +914,10 @@
     text-decoration-thickness: 2px;
   }
 
-  .outdoor-page .outdoor-web-link:hover,
   .outdoor-page .outdoor-section-link:hover {
     text-decoration: none;
   }
 
-  .outdoor-page .outdoor-web-link:hover svg,
   .outdoor-page .outdoor-section-link:hover svg {
     transform: translate(2px, -2px);
   }
@@ -1033,12 +1020,6 @@
   .outdoor-page #email, .outdoor-primary { min-height: 46px; height: 46px; }
   .outdoor-form-row .outdoor-primary { min-height: 46px; font-size: .95rem; }
   .outdoor-form-message { margin-top: .45rem; font-size: .95rem; }
-  .outdoor-web-link {
-    grid-column: 1 / -1;
-    grid-row: 5;
-    margin-top: .55rem;
-    font-size: 1rem;
-  }
   .outdoor-section,
   .outdoor-section--collection {
     display: block;

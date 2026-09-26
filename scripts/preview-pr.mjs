@@ -51,8 +51,9 @@ function command(executable, args, { cwd = root, env = process.env, input, inclu
 
 function git(...args) { return command("git", args, { env: { ...toolEnv(), SSH_AUTH_SOCK: process.env.SSH_AUTH_SOCK } }); }
 function gh(...args) { return command("gh", args, { env: { ...toolEnv(), GH_TOKEN: process.env.GH_TOKEN, GITHUB_TOKEN: process.env.GITHUB_TOKEN } }); }
-function vercel(...args) { return command("vercel", [...args, "--token", required("VERCEL_TOKEN"), "--scope", required("VERCEL_ORG_ID")], { env: toolEnv() }); }
-function vercelWithStderr(...args) { return command("vercel", [...args, "--token", required("VERCEL_TOKEN"), "--scope", required("VERCEL_ORG_ID")], { env: toolEnv(), includeStderr: true }); }
+function vercelEnv() { return { ...toolEnv(), VERCEL_PROJECT_ID: required("VERCEL_PREVIEW_PROJECT_ID") }; }
+function vercel(...args) { return command("vercel", [...args, "--token", required("VERCEL_TOKEN"), "--scope", required("VERCEL_ORG_ID")], { env: vercelEnv() }); }
+function vercelWithStderr(...args) { return command("vercel", [...args, "--token", required("VERCEL_TOKEN"), "--scope", required("VERCEL_ORG_ID")], { env: vercelEnv(), includeStderr: true }); }
 
 async function neonApi(path, { method = "GET", body, query } = {}) {
   const url = new URL(`${baseUrl}${path}`);
