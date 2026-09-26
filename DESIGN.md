@@ -114,14 +114,14 @@ components:
 
 **Creative North Star: "Outdoor Poster"**
 
-Parkdex opens like a large outdoor poster laid over a real East Sooke photograph. An oversized Parkdex wordmark, the operator's 198-park statement, and a mobile map phone make the place and product apparent immediately. The underlined count opens a four-category breakdown. The waitlist form is part of this opening, with a quieter beta web-app link beneath it. There is no small masthead, navigation band, hand-drawn annotation, or scroll-only signup call to action.
+Parkdex opens like a large outdoor poster laid over a real East Sooke photograph. An oversized Parkdex wordmark, the operator's 198-park statement, and a mobile map phone make the place and product apparent immediately. The underlined count opens a four-category breakdown. The waitlist form is part of this opening. There is no small masthead, navigation band, hand-drawn annotation, or scroll-only signup call to action.
 
 Three full-width product stories follow the photo: the unified map, on-site visit and private postcard previews, and Dex progress. Category words in the map copy open real place examples with photographs and descriptions. Large Strichpunkt headlines, practical Ysabeau copy, real app captures fitted to matte device frames, and a live mobile list view carry the sequence. The upcoming Android section uses the arrival and collection after captures from Sealed Impressions. A short Caveat sign-off closes the page. About your email and Credits open in dialogs.
 
 **Key Characteristics:**
 
 - East Sooke remains a recognizable photographic surface beneath transparent contrast shading.
-- The giant wordmark, inline waitlist, web-app link, and map phone belong to one opening composition.
+- The giant wordmark, inline waitlist, and map phone belong to one opening composition.
 - Three spacious story sections alternate warm paper, soft sage, and deep green.
 - Complete screenshot content sits inside legible hardware. Device screens are not interactive.
 
@@ -184,11 +184,11 @@ The palette starts with natural coastal color and warm photo copy, then moves th
 
 ## Layout
 
-The page is a centered 1800px maximum-width shell. The first region is a full photographic poster, with no separate header. Its inner layout sets copy and the map phone in two columns on desktop; on phones the wordmark spans the opening, the phone sits beside the headline and supporting line, and the full-width form follows below both. The hero uses responsive East Sooke assets, a deliberate cover crop, and transparent shading. Its headline and spacing keep both actions visible in the opening viewport. The poster uses its own fluid gutter (`gutter` in frontmatter) and tightens copy and phone sizing again at 22rem.
+The page is a centered 1800px maximum-width shell. The first region is a full photographic poster, with no separate header. Its inner layout sets copy and the map phone in two columns on desktop; on phones the wordmark spans the opening, the phone sits beside the headline and supporting line, and the full-width form follows below both. The hero uses responsive East Sooke assets, a deliberate cover crop, and transparent shading. Its headline and spacing keep the waitlist action visible in the opening viewport. The poster uses its own fluid gutter (`gutter` in frontmatter) and tightens copy and phone sizing again at 22rem.
 
 Three full-width color sections create the scroll sequence, with their content held to about 1440px on large screens. Each uses a large heading and slightly larger supporting copy beside substantial product imagery on desktop, then stacks copy before imagery at 40rem and below. The map introduces four colored, underlined categories with example place tooltips, a laptop map with all pins, and a mobile list with filters. Paired Android previews show on-site arrival and the private postcard collection. The final deep-green section combines the map with the River Otter badge. The footer returns to paper with a filled waitlist link above a compact sign-off and link row. The Nathan signature links to his site; email and credits details open in dialogs.
 
-The hero waitlist field and action share a row above 40rem and stack on phones; the secondary web-app link sits below, never behind a menu. Device imagery remains large, with the two Android phones side by side on wide screens and stacked on phones. The collection section sets the laptop and smaller badge phone together. These are this page's story compositions, not general-purpose grids.
+The hero waitlist field and action share a row above 40rem and stack on phones. Device imagery remains large, with the two Android phones side by side on wide screens and stacked on phones. The collection section sets the laptop and smaller badge phone together. These are this page's story compositions, not general-purpose grids.
 
 ## Elevation & Depth
 
@@ -210,7 +210,6 @@ The hero has no visible frame or header rule; the photograph runs edge to edge w
 ### Buttons
 
 - **Waitlist primary:** The actual submit control is lime with green Strichpunkt lettering, 5px corners, and at least 54px height on desktop. It sits inline with the email field, then stacks at 40rem and below. On phones both controls use at least 48px height. Hover darkens only on precise pointers; active presses down 1px.
-- **Web-app link:** A quieter outlined warm-white button labeled “Check out the web app (beta)” beneath the hero form, with at least 44px height.
 - **Removal action:** A quiet, outlined paper-section button inside the privacy disclosure, with at least 44px height. It has distinct disabled and loading states.
 
 ### Inputs / Fields
@@ -219,7 +218,7 @@ The hero email field has an accessible label and visible email placeholder, fres
 
 ### Navigation
 
-There is no masthead or navigation menu. The giant wordmark is display text, while the hero web-app link is the direct route into the product. A fixed skip link becomes visible on focus. The footer contains email and Credits disclosures plus policy and support links.
+There is no masthead or navigation menu. The giant wordmark is display text. A fixed skip link becomes visible on focus. The footer contains email and Credits disclosures plus policy and support links.
 
 ### Screenshot Devices and Place Examples
 
@@ -241,7 +240,7 @@ The privacy explanation and Credits each use a native modal dialog. The privacy 
 
 ### Do:
 
-- **Do** keep the giant wordmark, inline Android form, quieter web-app link, and map phone in one photographic opening.
+- **Do** keep the giant wordmark, inline Android form, and map phone in one photographic opening.
 - **Do** preserve real screenshot content, including its full edges, within a visible matte chassis and a reserved camera area.
 - **Do** make the three product stories readable as unified map, on-site visit and private postcard, and Dex progress.
 - **Do** keep the demonstration-photo status in accessible text and Credits while preserving the operator's exact visible story copy.

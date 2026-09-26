@@ -2,7 +2,7 @@
 // Agent-run, same-repository draft PR preview. No GitHub trigger creates previews.
 import { spawnSync } from "node:child_process";
 import { randomUUID } from "node:crypto";
-import { closeSync, existsSync, mkdirSync, mkdtempSync, openSync, readFileSync, renameSync, rmSync, writeFileSync } from "node:fs";
+import { closeSync, existsSync, mkdirSync, mkdtempSync, openSync, readFileSync, readdirSync, renameSync, rmSync, writeFileSync } from "node:fs";
 import { tmpdir } from "node:os";
 import { dirname, join, resolve } from "node:path";
 import { fileURLToPath } from "node:url";
@@ -51,8 +51,9 @@ function command(executable, args, { cwd = root, env = process.env, input, inclu
 
 function git(...args) { return command("git", args, { env: { ...toolEnv(), SSH_AUTH_SOCK: process.env.SSH_AUTH_SOCK } }); }
 function gh(...args) { return command("gh", args, { env: { ...toolEnv(), GH_TOKEN: process.env.GH_TOKEN, GITHUB_TOKEN: process.env.GITHUB_TOKEN } }); }
-function vercel(...args) { return command("vercel", [...args, "--token", required("VERCEL_TOKEN"), "--scope", required("VERCEL_ORG_ID")], { env: toolEnv() }); }
-function vercelWithStderr(...args) { return command("vercel", [...args, "--token", required("VERCEL_TOKEN"), "--scope", required("VERCEL_ORG_ID")], { env: toolEnv(), includeStderr: true }); }
+function vercelEnv() { return { ...toolEnv(), VERCEL_ORG_ID: required("VERCEL_ORG_ID"), VERCEL_PROJECT_ID: required("VERCEL_PREVIEW_PROJECT_ID") }; }
+function vercel(...args) { return command("vercel", [...args, "--token", required("VERCEL_TOKEN"), "--scope", required("VERCEL_ORG_ID")], { env: vercelEnv() }); }
+function vercelWithStderr(...args) { return command("vercel", [...args, "--token", required("VERCEL_TOKEN"), "--scope", required("VERCEL_ORG_ID")], { env: vercelEnv(), includeStderr: true }); }
 
 async function neonApi(path, { method = "GET", body, query } = {}) {
   const url = new URL(`${baseUrl}${path}`);
@@ -185,10 +186,10 @@ async function create(pr) {
     command("npm", ["run", "build"], { cwd: directory, env: toolEnv() });
     const project = required("NEON_PROJECT_ID");
     const [parentMatches, existing] = await Promise.all([
-      listNeonBranches(project, process.env.NEON_PARENT_BRANCH || "main"),
+      listNeonBranches(project, process.env.NEON_PARENT_BRANCH || "staging"),
       listNeonBranches(project, branchName),
     ]);
-    const parent = parentMatches.filter((item) => item.name === (process.env.NEON_PARENT_BRANCH || "main"));
+    const parent = parentMatches.filter((item) => item.name === (process.env.NEON_PARENT_BRANCH || "staging"));
     if (parent.length !== 1 || existing.some((item) => item.name === branchName)) throw new Error("Neon staging parent is missing or preview branch already exists");
     const expiresAt = new Date(Date.now() + 72 * 60 * 60 * 1000).toISOString();
     state.intent.neon = { projectId: project, branchName, parentId: parent[0].id };
@@ -203,8 +204,8 @@ async function create(pr) {
     state.resources.neonBranchId = branch.id;
     state.status = "neon-created";
     save(path, state);
-    const database = process.env.NEON_DATABASE_NAME || "parkdex_landing_staging";
-    const role = process.env.NEON_ROLE_NAME || "parkdex_landing_staging_owner";
+    const database = process.env.NEON_DATABASE_NAME || "app";
+    const role = process.env.NEON_ROLE_NAME || "app_owner";
     const connection = await neonApi(`/projects/${project}/connection_uri`, { query: { branch_id: branch.id, database_name: database, role_name: role, pooled: true } });
     const uri = new URL(connection.uri);
     if (!/\.neon\.tech$/.test(uri.hostname) || uri.pathname !== `/${database}`) throw new Error("Neon preview database URI did not match the owned branch");
@@ -240,7 +241,14 @@ async function create(pr) {
     throw error;
   } finally {
     if (candidateDir) {
-      try { git("worktree", "remove", "--force", candidateDir); } finally { rmSync(candidateDir, { recursive: true, force: true, maxRetries: 10, retryDelay: 500 }); git("worktree", "prune"); }
+      try { git("worktree", "remove", "--force", candidateDir); } finally {
+        try { rmSync(candidateDir, { recursive: true, force: true, maxRetries: 10, retryDelay: 500 }); }
+        catch (error) {
+          if (error.code !== "EPERM" || !existsSync(candidateDir) || readdirSync(candidateDir).length) throw error;
+          console.warn(`Windows retained an empty temporary candidate directory: ${candidateDir}`);
+        }
+        git("worktree", "prune");
+      }
     }
   }
 }
@@ -267,6 +275,7 @@ async function teardown(pr) {
     throw new Error("Teardown requires verified staging, PREVIEW_ABANDONED=1 for a closed PR, PREVIEW_ABORTED=1 for a failed draft preview, or PREVIEW_SUPERSEDED=1 after the PR head changes");
   }
   const project = required("NEON_PROJECT_ID");
+  if (state.intent.neon && state.intent.neon.projectId !== project) throw new Error("NEON_PROJECT_ID does not match the preview journal project");
   if (!state.resources.vercelDeploymentId && state.intent.vercel) {
     const matches = ownedVercelDeployments(state);
     if (matches.length > 1) throw new Error("Multiple Vercel deployments match preview metadata");

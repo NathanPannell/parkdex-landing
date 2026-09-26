@@ -12,7 +12,7 @@ Delegated. A standalone static web application with one Vercel serverless signup
 People exploring Vancouver Island and nearby islands who want to discover parks and keep a record of visits.
 
 ## Product Purpose
-Introduce Parkdex with a photographic opening and three product stories: one map, on-site visit proof, and Dex progress. Register email addresses for the coming Android app, offer the current web app, and allow direct waitlist removal.
+Introduce Parkdex with a photographic opening and three product stories: one map, on-site visit proof, and Dex progress. Register email addresses for the coming Android app and allow direct waitlist removal.
 
 ## Positioning
 Parkdex is a field guide and collection game for Vancouver Island. Its map, saved places, visit journal, and local wildlife badges make exploration a growing personal collection.

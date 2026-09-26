@@ -1,11 +1,11 @@
 # Landing delivery
 
-The landing page has two persistent Vercel projects and a Neon waitlist database. It does not own a Railway service. The Parkdex web app and API are separate releases. Landing links and rewrites point to their matching staging or production environments.
+The landing page has two persistent Vercel projects and one Neon waitlist project, `noisy-smoke-89213665`. Its `main` and `staging` branches have independent database state. It does not own a Railway service. The Parkdex web app and API use their own Neon project and are separate releases. Landing links and rewrites point to their matching staging or production environments.
 
-| Target | Git branch | Vercel project | Stable landing domains | Web app |
-| --- | --- | --- | --- | --- |
-| Staging | `staging` | `parkdex-landing-staging` | `staging.parkdex.app` | `staging.web.parkdex.app` |
-| Production | `main` | `parkdex-landing` | `parkdex.app`, `www.parkdex.app` | `web.parkdex.app` |
+| Target | Git branch | Neon branch | Vercel project | Stable landing domains | Web app |
+| --- | --- | --- | --- | --- | --- |
+| Staging | `staging` | `staging` (`br-royal-mode-arzi4hg3`) | `parkdex-landing-staging` | `staging.parkdex.app` | `staging.web.parkdex.app` |
+| Production | `main` | `main` (`br-young-shape-ar1qojbp`) | `parkdex-landing` | `parkdex.app`, `www.parkdex.app` | `web.parkdex.app` |
 
 ## One-time provider configuration
 
@@ -18,13 +18,13 @@ Keep Vercel Git deployment disabled in both projects because the GitHub push wor
 
 The staging and production Vercel projects must each have their own persistent `DATABASE_URL` for the waitlist serverless function. The projects must have matching `WAITLIST_ALLOWED_ORIGIN` values if this optional variable is set. The staging project's **Preview** environment must have no persistent variables. The preview script injects one isolated Neon branch database URL per deployment. Keep production and staging database credentials out of Preview.
 
-The separate landing staging Neon project (`twilight-heart-20114456`) has `main` as its parent branch, database `parkdex_landing_staging`, and owner role `parkdex_landing_staging_owner`. Supply its exact project ID with `NEON_PROJECT_ID` when creating previews. Set `NEON_PARENT_BRANCH`, `NEON_DATABASE_NAME`, or `NEON_ROLE_NAME` only if that project changes.
+Both persistent Neon branches have database `app` and owner role `app_owner`. The staging branch was created from the production branch's schema only, so production waitlist addresses were not copied. Supply `NEON_PROJECT_ID=noisy-smoke-89213665` when creating previews. The preview script defaults to `NEON_PARENT_BRANCH=staging`, `NEON_DATABASE_NAME=app`, and `NEON_ROLE_NAME=app_owner`; set these explicitly only if the project structure changes. Its previews also use schema-only branches. Keep the two Vercel Production `DATABASE_URL` values branch-specific, and leave the production value on `main` when rotating staging to its new branch.
 
 ## Draft PR to staging
 
 1. Start a new same-repository branch from the current `staging` branch. For the first staging release, create `staging` at the current `main` commit, then branch from that same commit and bring the reviewed landing work onto it. Create a draft PR targeting `staging`. Review the diff and check that Vercel Git deployment is still disabled. A branch push or PR event must not create a provider preview.
 2. In a clean checkout at the exact current `origin/staging` revision, set `NEON_API_KEY`, `NEON_PROJECT_ID`, `VERCEL_TOKEN`, `VERCEL_ORG_ID`, and `VERCEL_PREVIEW_PROJECT_ID` in the process environment. `VERCEL_PREVIEW_PROJECT_ID` must be the staging Vercel project. Set `VERCEL_PREVIEW_PROJECT_NAME=parkdex-landing-staging` if needed. For the first PR that introduces this script, run the reviewed script from its feature checkout with `PREVIEW_HARNESS_ROOT` set to the clean staging checkout path. The script will operate on that staging checkout and validate its exact SHA.
-3. Run `node scripts/preview-pr.mjs create <PR_NUMBER>`. It builds and tests the exact synthetic merge candidate, creates an annotated Neon branch from the landing staging project, runs `schema.sql`, and manually deploys to a Vercel Preview URL. The durable journal is outside the checkout at `%LOCALAPPDATA%/Parkdex/landing-preview-pr/journals/pr-<PR_NUMBER>.json` on Windows.
+3. Run `node scripts/preview-pr.mjs create <PR_NUMBER>`. It builds and tests the exact synthetic merge candidate, creates an annotated schema-only Neon branch from the canonical project's `staging` branch, runs `schema.sql`, and manually deploys to a Vercel Preview URL. The durable journal is outside the checkout at `%LOCALAPPDATA%/Parkdex/landing-preview-pr/journals/pr-<PR_NUMBER>.json` on Windows.
 4. Test the exact preview URL in a real browser. Exercise signup, deletion, and the changed journey. Check function responses and the preview Neon branch. Add cropped before and after screenshots to the PR thread for UI changes. Keep the preview and its journal through merge and staging verification.
 5. Mark the PR ready, merge into `staging`, and observe the `Deploy landing staging` push workflow. It guards the exact branch SHA and queues a Vercel Production deployment with domain assignment skipped. It returns after Vercel accepts the request. It does not wait for provider build completion.
 6. Confirm the queued deployment reaches READY, verify its source commit and release ID, assign only `staging.parkdex.app`, then browser-test the stable staging URL and its waitlist API. Record the staging commit and evidence before calling it ready in staging.
@@ -34,6 +34,6 @@ The preview script does not auto-clean a failed partial deployment. Its journal 
 
 ## Production promotion
 
-Create a PR from `staging` to `main` after staging acceptance. Review and merge it. The `Deploy landing production` push workflow queues the exact main commit on the production Vercel project with domain assignment skipped. Once READY, verify the commit and release ID, assign `www.parkdex.app` and `parkdex.app`, then browser-test both domains, redirects, the web app link, and the waitlist function. Confirm staging still points to its prior deployment.
+Create a PR from `staging` to `main` after staging acceptance. Review and merge it. The `Deploy landing production` push workflow queues the exact main commit on the production Vercel project with domain assignment skipped. Once READY, verify the commit and release ID, assign `www.parkdex.app` and `parkdex.app`, then browser-test both domains, redirects, the absence of promotional web-app links, and the waitlist function. Confirm staging still points to its prior deployment.
 
 The reusable `deploy-release.yml` follows Parkdex's thin caller and SHA-guarded, push-only pattern. The landing app has one owned deployable service, so the workflow queues its Vercel upload without waiting for provider readiness. If another independent service is added later, queue its request in parallel and wait only for each provider CLI to accept the request. Keep readiness, aliases, and browser acceptance in the agent-controlled release step.
