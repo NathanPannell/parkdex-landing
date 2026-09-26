@@ -2,7 +2,7 @@
 // Agent-run, same-repository draft PR preview. No GitHub trigger creates previews.
 import { spawnSync } from "node:child_process";
 import { randomUUID } from "node:crypto";
-import { closeSync, existsSync, mkdirSync, mkdtempSync, openSync, readFileSync, renameSync, rmSync, writeFileSync } from "node:fs";
+import { closeSync, existsSync, mkdirSync, mkdtempSync, openSync, readFileSync, readdirSync, renameSync, rmSync, writeFileSync } from "node:fs";
 import { tmpdir } from "node:os";
 import { dirname, join, resolve } from "node:path";
 import { fileURLToPath } from "node:url";
@@ -241,7 +241,14 @@ async function create(pr) {
     throw error;
   } finally {
     if (candidateDir) {
-      try { git("worktree", "remove", "--force", candidateDir); } finally { rmSync(candidateDir, { recursive: true, force: true, maxRetries: 10, retryDelay: 500 }); git("worktree", "prune"); }
+      try { git("worktree", "remove", "--force", candidateDir); } finally {
+        try { rmSync(candidateDir, { recursive: true, force: true, maxRetries: 10, retryDelay: 500 }); }
+        catch (error) {
+          if (error.code !== "EPERM" || !existsSync(candidateDir) || readdirSync(candidateDir).length) throw error;
+          console.warn(`Windows retained an empty temporary candidate directory: ${candidateDir}`);
+        }
+        git("worktree", "prune");
+      }
     }
   }
 }
