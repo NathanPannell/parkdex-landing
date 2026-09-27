@@ -11,7 +11,7 @@ test("schema is one statement so the preview script and Neon HTTP driver can run
 
 test("schema creates both signup lists and keeps the legacy list", () => {
   for (const table of ["waitlist_signups", "android_beta_signups", "app_store_waitlist_signups"]) {
-    assert.match(schema, new RegExp(`CREATE TABLE IF NOT EXISTS ${table} \(`));
+    assert.match(schema, new RegExp(`CREATE TABLE IF NOT EXISTS ${table} [(]`));
   }
   assert.doesNotMatch(schema, /\b(DROP|TRUNCATE|DELETE|INSERT)\b/i);
 });
