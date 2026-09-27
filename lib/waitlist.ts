@@ -1,4 +1,6 @@
-export type SaveSignup = (email: string) => Promise<void>;
+export const WAITLIST_LISTS = ["android_beta", "app_store"] as const;
+export type WaitlistList = (typeof WAITLIST_LISTS)[number];
+export type SaveSignup = (email: string, list: WaitlistList) => Promise<void>;
 export type RemoveSignup = (email: string) => Promise<void>;
 
 export type WaitlistConfig = {
@@ -107,6 +109,11 @@ export function createWaitlistHandler(config: WaitlistConfig): (request: Request
     if (action !== "join" && action !== "remove") {
       return json({ ok: false, error: "invalid_action" }, 400);
     }
+    // Pages cached before the App Store list existed send no list; they offered Android only.
+    const list = fields.list === undefined ? "android_beta" : fields.list;
+    if (action === "join" && !WAITLIST_LISTS.includes(list as WaitlistList)) {
+      return json({ ok: false, error: "invalid_list" }, 400);
+    }
     if (typeof fields.company === "string" && fields.company.trim()) return json(SUCCESS, 200);
     const email = normalizeEmail(fields.email);
     if (!email) return json({ ok: false, error: "invalid_email" }, 400);
@@ -116,7 +123,7 @@ export function createWaitlistHandler(config: WaitlistConfig): (request: Request
         if (!config.removeSignup) throw new Error("removeSignup is not configured");
         await config.removeSignup(email);
       } else {
-        await config.saveSignup(email);
+        await config.saveSignup(email, list as WaitlistList);
       }
       return json(SUCCESS, 200);
     } catch {

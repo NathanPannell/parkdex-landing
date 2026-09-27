@@ -1,6 +1,6 @@
 # Parkdex landing
 
-The independent Parkdex introduction and Android launch waitlist. A static Vite page with a Vercel Function and its own Neon database.
+The independent Parkdex introduction with separate Android beta and App Store waitlists. A static Vite page with a Vercel Function and its own Neon database.
 
 ## Development
 
@@ -16,18 +16,18 @@ The landing deploys only to its separate Vercel project. No Git deployment integ
 
 ## Signup data
 
-Each normalized email is saved once, with its creation timestamp. Only a launch notification is promised. There is no public list or export endpoint and no email is sent automatically. The operator can export or delete registrations directly in the dedicated Neon database. Test addresses are removed after verification.
+Each signup names a list. Android beta requests go to `android_beta_signups` and App Store requests go to `app_store_waitlist_signups`; each normalized email is saved once per list with its creation timestamp. A request without a list is treated as the Android beta so cached pages keep working. The earlier `waitlist_signups` table keeps its Android launch signups under their original consent and receives no new rows. Only a beta invitation or an App Store launch notification is promised. There is no public list or export endpoint and no email is sent automatically. The operator can export or delete registrations directly in the dedicated Neon database. Test addresses are removed after verification.
 
 ## Design and assets
 
-The selected Outdoor Poster opens with the East Sooke coastline, oversized portfolio typography, a directly usable Android waitlist and a mobile map phone. The whole phone and both actions remain visible on narrow screens. Three product stories follow: one unified map with desktop pins, a mobile list and four anchored place tooltips; on-site visit and private postcard previews; and growing Dex progress beside a River Otter badge. The saved places section has been removed. Supporting copy and device imagery sit inside a centered content width on large screens; the map, visit, and Dex sections use distinct backgrounds. Story phones and laptops share one displayed height on desktop. On phone widths, the laptop mockups are hidden and the four story phones share one width and height. The footer begins with a waitlist button that returns to the hero email field. Its linked Nathan sign-off and supporting links stay in one compact desktop row, with modal About your email and Credits details.
+The selected Outdoor Poster opens with the East Sooke coastline, oversized portfolio typography, "Get access to Android beta" and "Join App Store waitlist" buttons, and a mobile map phone. Neither button shows an email field on the page; each opens a full-screen sign-up modal with Kip and that list preselected. The whole phone and both actions remain visible on narrow screens. Kip the oystercatcher, the field app's mascot, stands large beside the hero phone with a "Hi, I'm Kip!" bubble, and again beside the footer sign-off. Three two-phone product stories follow: picking a park, with three anchored place tooltips; arriving and claiming a badge; and the badge case and share card. The saved places section has been removed. Supporting copy and device imagery sit inside a centered content width on large screens; the map, visit, and Dex sections use distinct backgrounds. Story phones share one displayed height on desktop and one width on phones. The footer begins with a waitlist button that returns to the hero email field. Its linked Nathan sign-off and supporting links stay in one compact desktop row, with modal About your email and Credits details.
 
-Real app captures are used without recreating their contents. The desktop map and mobile list were captured from the live web app; the Android visit screens come from the staging Sealed Impressions evidence. Screenshot provenance and the hero photograph credit are recorded in public/images/PHOTO-CREDIT.md. DESIGN.md and the surface brief describe the current visual system and composition.
+Real app captures are used without recreating their contents. All phone screens and Kip come from the Parkdex field app (`../parkdex-badge-mockup`), the offline Android app for 122 Vancouver Island parks. `/og-image.jpg` is the share card rendered from `social/og-card.html`; see social/README.md. Screenshot provenance and the hero photograph credit are recorded in public/images/PHOTO-CREDIT.md. DESIGN.md and the surface brief describe the current visual system and composition.
 ## Design comparison
 
 The unlinked `/mockups/` route compares two candidate directions in desktop and phone viewports. `/mockups/field-guide.html` emphasizes the app journey; `/mockups/poster.html` explores an outdoor poster composition. Both are design previews with inert email forms and `noindex`. The user selected Outdoor Poster for the production page. Comparison routes retain the earlier concepts and provisional frames. Production uses the owner-supplied transparent laptop and phone frames documented in public/frames/PROVENANCE.md.
 
-The main page's **About your email** disclosure includes direct removal from the Android waitlist. Removal uses the existing same-origin `POST /api/waitlist` endpoint with `action: "remove"`; join remains the default. Both operations use generic success responses and the same request-size, origin and WAF protections.
+The main page's **About your email** disclosure includes direct removal from both waitlists and the earlier Android launch list. Removal uses the same-origin `POST /api/waitlist` endpoint with `action: "remove"`; join remains the default and takes `list: "android_beta" | "app_store"`. Both operations use generic success responses and the same request-size, origin and WAF protections.
 
 ## Public information pages
 
