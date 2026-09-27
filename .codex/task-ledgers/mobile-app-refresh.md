@@ -56,3 +56,6 @@ Awaiting explicit authorization to deploy. Then: preview create for PR #20 from 
 
 - Repository secret `STAGING_DATABASE_URL` set from Neon `staging` (pooled). Variable `VERCEL_PROJECT_ID=prj_R7ccAjDhGmhiys542GFXJ67d1k8X` set. Old project-ID variables remain until verification.
 - The `parkdex-landing` firewall rule (path and method only) covers every host.
+- PR #25 merged as `8114faa`. Staging deployment `dpl_9gqzzafu1aBtEcXoi3RVANdUeUWe` is a Preview-target deployment of `parkdex-landing`. `staging.parkdex.app` moved from the retired project to `parkdex-landing` and aliased. Browser-verified: staging signups wrote only to Neon `staging`, production signups only to `main`; all test rows removed.
+- Deleted Vercel `parkdex-landing-staging` (`prj_te8EwQf0rmVvmUgwpzB366IDEaoK`, HTTP 204) and Neon `twilight-heart-20114456` (0 rows, HTTP 200) with user approval. Three consecutive observations: both 404; only `parkdex-landing` and `noisy-smoke-89213665` remain.
+- Next: promote the workflow change to `main`, then remove the `VERCEL_STAGING_PROJECT_ID` and `VERCEL_PRODUCTION_PROJECT_ID` variables.
