@@ -1,7 +1,7 @@
 import { defineConfig, loadEnv } from 'vite';
 import { mkdir, writeFile } from 'node:fs/promises';
 import { resolve } from 'node:path';
-import { createMcpMetadata, rewriteStaticAppLinks } from './src/mcp-metadata';
+import { createMcpMetadata, createRobotsTxt, createSitemapXml, rewriteStaticAppLinks } from './src/mcp-metadata';
 
 export default defineConfig(({ mode }) => {
   const env = loadEnv(mode, process.cwd(), 'VITE_');
@@ -28,6 +28,8 @@ export default defineConfig(({ mode }) => {
         await Promise.all([
           writeFile(resolve(metadataDirectory, 'oauth-authorization-server'), `${JSON.stringify(mcpMetadata.authorizationServer, null, 2)}\n`),
           writeFile(resolve(resourceMetadataDirectory, 'mcp'), `${JSON.stringify(mcpMetadata.protectedResource, null, 2)}\n`),
+          writeFile(resolve(outputDirectory, 'robots.txt'), createRobotsTxt(appUrl)),
+          writeFile(resolve(outputDirectory, 'sitemap.xml'), createSitemapXml(appUrl)),
         ]);
       },
     }],

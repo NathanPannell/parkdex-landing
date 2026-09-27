@@ -1,0 +1,103 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="robots" content="noindex" />
+    <title>Parkdex share card source</title>
+    <!-- Source for public/og-image.png. Render it at 1200x630; see social/README.md. -->
+    <script type="module">import '../src/shared-base.css';</script>
+    <style>
+      html, body { margin: 0; }
+      .card {
+        position: relative;
+        width: 1200px;
+        height: 630px;
+        overflow: hidden;
+        background: var(--color-ink);
+        color: var(--color-hero-text);
+      }
+      .photo {
+        position: absolute;
+        inset: 0;
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+        object-position: 50% 45%;
+      }
+      .scrim {
+        position: absolute;
+        inset: 0;
+        background: linear-gradient(100deg, var(--color-shade-48) 0%, var(--color-shade-38) 45%, var(--color-hero-scrim-soft) 75%);
+      }
+      .copy {
+        position: absolute;
+        left: 64px;
+        top: 70px;
+        width: 640px;
+      }
+      .wordmark {
+        margin: 0;
+        font-family: var(--font-display), sans-serif;
+        font-size: 150px;
+        font-weight: 780;
+        line-height: .78;
+        letter-spacing: -.045em;
+      }
+      .wordmark span { color: var(--color-accent); }
+      .headline {
+        margin: 42px 0 0;
+        font-family: var(--font-display), sans-serif;
+        font-size: 60px;
+        font-weight: 780;
+        line-height: .9;
+        letter-spacing: -.035em;
+      }
+      .headline span { display: block; color: var(--color-accent); }
+      .lede {
+        margin: 26px 0 0;
+        font-family: var(--font-body), sans-serif;
+        font-size: 27px;
+        color: var(--color-hero-soft);
+      }
+      .phone {
+        position: absolute;
+        right: 92px;
+        top: 46px;
+        width: 262px;
+        transform: rotate(4deg);
+      }
+      .phone .screen {
+        position: absolute;
+        inset: 1.9% 4.3% 1.9% 4.3%;
+        overflow: hidden;
+        border-radius: 34px;
+        background: var(--color-device-bezel);
+      }
+      .phone .screen img { width: 100%; height: 100%; object-fit: cover; object-position: top; }
+      .phone .frame { position: relative; display: block; width: 100%; }
+      .kip {
+        position: absolute;
+        right: 330px;
+        bottom: 18px;
+        width: 210px;
+        transform: rotate(-6deg);
+      }
+    </style>
+  </head>
+  <body>
+    <div class="card">
+      <img class="photo" src="/images/island-hero.webp" alt="" />
+      <div class="scrim"></div>
+      <div class="copy">
+        <p class="wordmark">Parkdex<span>.</span></p>
+        <p class="headline">122 parks on Vancouver Island. <span>Go out and explore them.</span></p>
+        <p class="lede">Android beta and App Store waitlist at parkdex.app</p>
+      </div>
+      <div class="phone">
+        <div class="screen"><img src="/images/field-map.webp" alt="" /></div>
+        <img class="frame" src="/frames/parkdex-phone-frame.webp" alt="" />
+      </div>
+      <img class="kip" src="/images/kip/kip-wave.webp" alt="" />
+    </div>
+  </body>
+</html>
