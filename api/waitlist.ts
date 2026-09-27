@@ -27,11 +27,10 @@ const handle = createWaitlistHandler({
   },
   async removeSignup(email) {
     const sql = database();
-    // Removal is a full opt-out, including the original Android launch list.
+    // Removal is a full opt-out from both lists.
     await sql.transaction([
       sql`DELETE FROM android_beta_signups WHERE email_normalized = ${email}`,
       sql`DELETE FROM app_store_waitlist_signups WHERE email_normalized = ${email}`,
-      sql`DELETE FROM waitlist_signups WHERE email_normalized = ${email}`,
     ]);
   },
 });
