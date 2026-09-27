@@ -48,3 +48,13 @@ test("only production is crawlable and lists its sitemap", () => {
   assert.match(sitemap, /<loc>https:\/\/parkdex.app\/<\/loc>/);
   assert.doesNotMatch(sitemap, /mockups/);
 });
+
+test("policy pages carry canonical and share tags for their own URL", async () => {
+  for (const path of ["privacy", "support", "delete-account"]) {
+    const html = await readFile(new URL(`../${path}/index.html`, import.meta.url), "utf8");
+    assert.match(html, new RegExp(`<link rel="canonical" href="https://parkdex.app/${path}/" />`), path);
+    assert.match(html, new RegExp(`<meta property="og:url" content="https://parkdex.app/${path}/" />`), path);
+    assert.match(html, /<meta property="og:image" content="https:\/\/parkdex.app\/og-image.jpg" \/>/, path);
+    assert.match(html, /<meta name="twitter:card" content="summary_large_image" \/>/, path);
+  }
+});

@@ -245,12 +245,12 @@
   .outdoor-hero-after-location { display: none; }
 }
 
-.outdoor-waitlist {
+.outdoor-cta {
   max-width: 670px;
   margin-top: 1rem;
 }
 
-.outdoor-waitlist label {
+.outdoor-cta label {
   display: block;
   margin-bottom: .45rem;
   color: var(--outdoor-photo-copy);
@@ -258,17 +258,13 @@
   font-weight: 650;
 }
 
-.outdoor-form-row {
+.outdoor-cta-row {
   display: grid;
   grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
   gap: .55rem;
 }
 
-/* The email spans both list actions so each button reads as a separate choice. */
-.outdoor-form-row input { grid-column: 1 / -1; }
 
-.outdoor-form-row input,
-.outdoor-page #email,
 .outdoor-page #remove-email {
   min-width: 0;
   width: 100%;
@@ -281,14 +277,13 @@
   caret-color: var(--outdoor-focus);
 }
 
-.outdoor-form-row input::placeholder,
 .outdoor-page #remove-email::placeholder {
   color: var(--outdoor-muted);
   opacity: 1;
 }
 
 .outdoor-primary,
-.outdoor-form-row .outdoor-primary {
+.outdoor-cta-row .outdoor-primary {
   display: inline-flex;
   align-items: center;
   justify-content: center;
@@ -308,7 +303,7 @@
 }
 
 .outdoor-secondary,
-.outdoor-form-row .outdoor-secondary {
+.outdoor-cta-row .outdoor-secondary {
   display: inline-flex;
   align-items: center;
   justify-content: center;
@@ -351,20 +346,18 @@
 
 .outdoor-form-message:empty { display: none; }
 
-.outdoor-page .outdoor-waitlist[data-state="error"] .outdoor-form-message {
+.outdoor-page .outdoor-cta[data-state="error"] .outdoor-form-message {
   color: var(--outdoor-photo-copy);
   background: var(--outdoor-ink);
   padding: .4rem .6rem;
   border-radius: 5px;
 }
 
-.outdoor-page .outdoor-waitlist[data-state="success"] .outdoor-form-message {
+.outdoor-page .outdoor-cta[data-state="success"] .outdoor-form-message {
   color: var(--outdoor-photo-copy);
   font-weight: 650;
 }
 
-.outdoor-page form[data-state="error"] #email,
-.outdoor-page form[data-state="error"] #collection-email,
 .outdoor-page form[data-state="error"] #remove-email {
   border-color: var(--color-error);
 }
@@ -763,7 +756,7 @@
   transform: rotate(4deg);
 }
 
-.outdoor-collection-waitlist {
+.outdoor-collection-cta {
   grid-column: 1 / -1;
   justify-self: center;
   width: min(100%, 670px);
@@ -771,50 +764,10 @@
 }
 
 
-.outdoor-footer {
-  display: flex;
-  flex-wrap: wrap;
-  align-items: center;
-  justify-content: space-between;
-  gap: 1rem 3rem;
-  padding: 1.45rem max(var(--outdoor-gutter), calc((100% - 1440px) / 2));
-  border-top: 1px solid var(--outdoor-rule);
-  background: var(--outdoor-paper);
-}
 
-.outdoor-footer-signoff {
-  font-family: var(--font-hand), cursive;
-  flex: 0 0 auto;
-  font-size: clamp(2.2rem, 3vw, 2.8rem);
-  line-height: .95;
-}
 
-.outdoor-footer-signoff a {
-  text-decoration-thickness: .05em;
-  text-underline-offset: .12em;
-}
 
-.outdoor-footer-meta {
-  display: flex;
-  align-items: center;
-  justify-content: flex-end;
-  gap: clamp(1rem, 2vw, 2rem);
-  color: var(--outdoor-secondary);
-  font-size: 1rem;
-}
 
-.outdoor-footer-action {
-  min-height: 44px;
-  padding: 0;
-  border: 0;
-  background: transparent;
-  color: var(--outdoor-ink);
-  cursor: pointer;
-  font: 720 1rem var(--font-display), sans-serif;
-  text-decoration: underline;
-  text-underline-offset: .22em;
-  white-space: nowrap;
-}
 
 .outdoor-dialog {
   width: min(92vw, 36rem);
@@ -867,19 +820,7 @@
 .outdoor-credits-content p + p { margin-top: .6rem; }
 .outdoor-credits-content p { overflow-wrap: anywhere; }
 
-.outdoor-policy-links {
-  display: flex;
-  gap: clamp(1rem, 2vw, 2rem);
-  color: var(--outdoor-ink);
-  font-size: 1rem;
-}
 
-.outdoor-policy-links a {
-  display: inline-flex;
-  align-items: center;
-  min-height: 44px;
-  white-space: nowrap;
-}
 
 .outdoor-page .privacy-content {
   max-width: 48rem;
@@ -971,9 +912,7 @@
   .outdoor-section--map,
   .outdoor-section--collection { display: block; }
   .outdoor-phone-gallery { margin-top: 2.8rem; }
-  .outdoor-collection-waitlist { margin-top: clamp(4rem, 6vw, 6.5rem); }
-  .outdoor-footer { flex-wrap: wrap; }
-  .outdoor-footer-meta { justify-content: flex-start; }
+  .outdoor-collection-cta { margin-top: clamp(4rem, 6vw, 6.5rem); }
   .outdoor-hero-inner {
     grid-template-columns: minmax(0, .92fr) minmax(210px, .46fr);
     gap: 2rem;
@@ -1039,23 +978,23 @@
     transform: rotate(3deg);
   }
   .outdoor-device--hero .device-frame { --device-frame-width: 100%; }
-  .outdoor-waitlist {
+  .outdoor-cta {
     grid-column: 1 / -1;
     grid-row: 4;
     max-width: none;
     margin-top: 1.1rem;
   }
-  .outdoor-waitlist label { font-size: 1rem; }
-  .outdoor-form-row { grid-template-columns: minmax(0, 1fr); gap: .45rem; }
-  .outdoor-page #email, .outdoor-primary, .outdoor-secondary { min-height: 46px; height: 46px; }
-  .outdoor-form-row .outdoor-primary { min-height: 46px; font-size: .95rem; }
+  .outdoor-cta label { font-size: 1rem; }
+  .outdoor-cta-row { grid-template-columns: minmax(0, 1fr); gap: .45rem; }
+  .outdoor-primary, .outdoor-secondary { min-height: 46px; height: 46px; }
+  .outdoor-cta-row .outdoor-primary { min-height: 46px; font-size: .95rem; }
   .outdoor-form-message { margin-top: .45rem; font-size: .95rem; }
   .outdoor-section,
   .outdoor-section--collection {
     display: block;
     padding: 4.6rem 1.25rem;
   }
-  .outdoor-collection-waitlist { margin-top: 4.6rem; }
+  .outdoor-collection-cta { margin-top: 4.6rem; }
 
   .outdoor-section-copy h2 {
     max-width: 100%;
@@ -1158,18 +1097,6 @@
     margin: 0 auto;
   }
 
-  .outdoor-footer {
-    display: block;
-    padding: 3.2rem 1.25rem 2rem;
-  }
-  .outdoor-footer-signoff { font-size: clamp(1.8rem, 9vw, 2.2rem); }
-
-  .outdoor-footer-meta {
-    flex-wrap: wrap;
-    gap: .15rem 1.2rem;
-    margin-top: 1.2rem;
-  }
-  .outdoor-policy-links { flex-wrap: wrap; gap: .15rem 1.2rem; }
 }
 
 @media (prefers-reduced-motion: reduce) {
@@ -1196,24 +1123,5 @@
 
 .outdoor-device--hero { position: relative; }
 
-.outdoor-kip--hero {
-  position: absolute;
-  z-index: 3;
-  left: -40%;
-  bottom: -3%;
-  width: 52%;
-  height: auto;
-  transform: rotate(-6deg);
-}
 
-.outdoor-kip--footer {
-  display: inline-block;
-  width: 1.6em;
-  height: auto;
-  margin-right: .15em;
-  vertical-align: -.35em;
-}
 
-@media (max-width: 40rem) {
-  .outdoor-kip--hero { left: auto; right: -14%; bottom: -12%; width: 38%; transform: scaleX(-1) rotate(6deg); }
-}

@@ -188,7 +188,7 @@ The page is a centered 1800px maximum-width shell. The first region is a full ph
 
 Three full-width color sections create the scroll sequence, with their content held to about 1440px on large screens. Each uses a large heading and slightly larger supporting copy beside substantial product imagery on desktop, then stacks copy before imagery at 40rem and below. The map introduces four colored, underlined categories with example place tooltips, a laptop map with all pins, and a mobile list with filters. Paired Android previews show on-site arrival and the private postcard collection. The final deep-green section combines the map with the River Otter badge. The footer returns to paper with a filled waitlist link above a compact sign-off and link row. The Nathan signature links to his site; email and credits details open in dialogs.
 
-The hero email field spans the row above the two list actions, which sit side by side above 40rem; all three stack on phones. Device imagery remains large, with the two Android phones side by side on wide screens and stacked on phones. The collection section sets the laptop and smaller badge phone together. These are this page's story compositions, not general-purpose grids.
+The hero has no email field. Its two list actions sit side by side above 40rem and stack on phones; each opens the full-screen sign-up modal (deep green, large Kip, a two-option list switch, one email field). The collection section repeats the two actions. Device imagery remains large, with the two Android phones side by side on wide screens and stacked on phones. The collection section sets the laptop and smaller badge phone together. These are this page's story compositions, not general-purpose grids.
 
 ## Elevation & Depth
 
@@ -232,9 +232,9 @@ The hero phone and story devices use the owner-supplied transparent frame overla
 
 The arrival and collection after images depict an upcoming Android flow with demonstration photos. The story note identifies them as coming to Android, while accessible image text and collapsed Credits identify the photos as demonstrations.
 
-### Footer Disclosure
+### Footer
 
-The privacy explanation and Credits each use a native modal dialog. The privacy dialog includes a labeled form for leaving the waitlist. Opening either dialog keeps the compact footer row unchanged.
+The footer opens with Kip cheering beside the large Caveat "See you out there. -Nathan" sign-off. Below it, three labeled link groups (Get Parkdex, Help, About) sit in a left-aligned grid that becomes two columns on phones, followed by a single fine-print line. About your email and Credits still open native modal dialogs.
 
 **The Direct Interaction Rule.** Place examples change on hover, focus, or click; opening a preview never blocks the other category controls. Preserve semantic controls, 44px touch targets, visible keyboard focus, and reduced-motion behavior.
 

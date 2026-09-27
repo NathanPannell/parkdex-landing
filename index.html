@@ -71,17 +71,12 @@
               <h1 id="hero-title">There are <button id="park-count-trigger" class="outdoor-count-trigger" type="button" data-count="122" aria-label="122" aria-controls="park-count-popover" aria-expanded="false">000</button> parks<span class="outdoor-hero-location"> on Vancouver Island.</span><br class="outdoor-hero-after-location" /> <span>Go out and explore them.</span></h1>
               <p class="outdoor-hero-lede">Find a park, go there, and claim its badge.</p>
 
-              <form id="waitlist-form" class="outdoor-waitlist" method="dialog" novalidate>
-                <label class="outdoor-sr-only" for="email">Your email address</label>
-                <div class="outdoor-form-row">
-                  <input id="email" name="email" type="email" inputmode="email" autocomplete="email" placeholder="you@example.com" required maxlength="254" aria-describedby="form-message privacy-note" />
-                  <button id="android-beta-button" class="outdoor-primary" type="submit" data-list="android_beta"><span>Get access to Android beta</span></button>
-                  <button id="app-store-button" class="outdoor-secondary" type="submit" data-list="app_store"><span>Join App Store waitlist</span></button>
+              <div class="outdoor-cta">
+                <div class="outdoor-cta-row">
+                  <button class="outdoor-primary" type="button" data-signup-open="android_beta"><span>Get access to Android beta</span></button>
+                  <button class="outdoor-secondary" type="button" data-signup-open="app_store"><span>Join App Store waitlist</span></button>
                 </div>
-                <div class="outdoor-bot-field" aria-hidden="true"><label for="company">Company</label><input id="company" name="company" tabindex="-1" autocomplete="off" /></div>
-                <p id="form-message" class="outdoor-form-message" role="status" aria-live="polite"></p>
-              </form>
-              <noscript><p class="outdoor-noscript">Please enable JavaScript to join the Android beta or App Store waitlist. You can still read about Parkdex.</p></noscript>
+              </div>
 
             </div>
 
@@ -100,7 +95,7 @@
                   <span class="device-frame__hardware" aria-hidden="true"><img src="/frames/parkdex-phone-frame.webp" width="1252" height="2604" alt="" /></span>
                 </span>
               </div>
-              <img class="outdoor-kip outdoor-kip--hero" src="/images/kip/kip-wave.webp" width="512" height="512" alt="Kip the oystercatcher, the Parkdex mascot, waving" />
+              <div class="outdoor-kip-hero"><p class="outdoor-kip-bubble" aria-hidden="true">Hi, I’m Kip!</p><img class="outdoor-kip outdoor-kip--hero" src="/images/kip/kip-wave.webp" width="512" height="512" alt="Kip the oystercatcher, the Parkdex mascot, waving" /></div>
             </figure>
           </div>
         </section>
@@ -112,8 +107,8 @@
             <p>Tap a pin to see the badge you’ll earn and how long the drive takes. The map works offline, so no signal is needed.</p>
           </div>
           <div class="outdoor-phone-gallery" role="group" aria-label="Parkdex map screens">
-            <figure class="outdoor-device"><div class="outdoor-device-trigger"><span class="device-frame device-frame--iphone-16-max device-frame--parkdex-asset"><span class="device-frame__screen"><span class="device-frame__media"><img src="/images/field-park-sheet.webp" width="780" height="1688" loading="lazy" alt="Parkdex park sheet for Gonzales Hill Regional Park showing its badge, 5 km road distance, 12 minute drive and a Let’s go button" /></span></span><span class="device-frame__hardware" aria-hidden="true"><img src="/frames/parkdex-phone-frame.webp" width="1252" height="2604" alt="" /></span></span></div></figure>
             <figure class="outdoor-device"><div class="outdoor-device-trigger"><span class="device-frame device-frame--iphone-16-max device-frame--parkdex-asset"><span class="device-frame__screen"><span class="device-frame__media"><img src="/images/field-nearby.webp" width="780" height="1688" loading="lazy" alt="Parkdex map with a Badges near you row listing nearby parks and drive times" /></span></span><span class="device-frame__hardware" aria-hidden="true"><img src="/frames/parkdex-phone-frame.webp" width="1252" height="2604" alt="" /></span></span></div></figure>
+            <figure class="outdoor-device"><div class="outdoor-device-trigger"><span class="device-frame device-frame--iphone-16-max device-frame--parkdex-asset"><span class="device-frame__screen"><span class="device-frame__media"><img src="/images/field-park-sheet.webp" width="780" height="1688" loading="lazy" alt="Parkdex park sheet for Gonzales Hill Regional Park showing its badge, 5 km road distance, 12 minute drive and a Let’s go button" /></span></span><span class="device-frame__hardware" aria-hidden="true"><img src="/frames/parkdex-phone-frame.webp" width="1252" height="2604" alt="" /></span></span></div></figure>
           </div>
           <div id="category-preview" class="outdoor-category-preview" role="tooltip" hidden>
             <img id="category-preview-image" src="/images/pacific-rim.webp" alt="" width="960" height="640" />
@@ -126,7 +121,6 @@
             <h2 id="visit-title">Prove you were there.</h2>
             <p>Step inside the park boundary and Kip lets you know you made it. Check in and snap a photo to claim the badge.</p>
             <p>Your visits and photos stay on your phone.</p>
-            <p class="outdoor-preview-note">(Demonstration photos)</p>
           </div>
           <div class="outdoor-phone-gallery" role="group" aria-label="Parkdex check-in screens">
             <figure class="outdoor-device"><div class="outdoor-device-trigger"><span class="device-frame device-frame--iphone-16-max device-frame--parkdex-asset"><span class="device-frame__screen"><span class="device-frame__media"><img src="/images/field-arrival.webp" width="780" height="1688" loading="lazy" alt="Parkdex arrival screen inside the Gonzales Hill boundary with Kip saying KLEEP, you made it, and a Check in and snap button" /></span></span><span class="device-frame__hardware" aria-hidden="true"><img src="/frames/parkdex-phone-frame.webp" width="1252" height="2604" alt="" /></span></span></div></figure>
@@ -144,30 +138,68 @@
             <figure class="outdoor-device"><div class="outdoor-device-trigger"><span class="device-frame device-frame--iphone-16-max device-frame--parkdex-asset"><span class="device-frame__screen"><span class="device-frame__media"><img src="/images/field-case.webp" width="780" height="1688" loading="lazy" alt="Parkdex case showing 1 of 20 badges collected with rarity filters" /></span></span><span class="device-frame__hardware" aria-hidden="true"><img src="/frames/parkdex-phone-frame.webp" width="1252" height="2604" alt="" /></span></span></div></figure>
             <figure class="outdoor-device"><div class="outdoor-device-trigger"><span class="device-frame device-frame--iphone-16-max device-frame--parkdex-asset"><span class="device-frame__screen"><span class="device-frame__media"><img src="/images/field-share.webp" width="780" height="1688" loading="lazy" alt="Parkdex share card for a collected Gonzales Hill badge with Share to story and Save image buttons" /></span></span><span class="device-frame__hardware" aria-hidden="true"><img src="/frames/parkdex-phone-frame.webp" width="1252" height="2604" alt="" /></span></span></div></figure>
           </div>
-          <form id="collection-waitlist-form" class="outdoor-waitlist outdoor-collection-waitlist" method="dialog" novalidate>
-            <label class="outdoor-sr-only" for="collection-email">Your email address</label>
-            <div class="outdoor-form-row">
-              <input id="collection-email" name="email" type="email" inputmode="email" autocomplete="email" placeholder="you@example.com" required maxlength="254" aria-describedby="collection-form-message privacy-note" />
-              <button id="collection-android-beta-button" class="outdoor-primary" type="submit" data-list="android_beta"><span>Get access to Android beta</span></button>
-              <button id="collection-app-store-button" class="outdoor-secondary" type="submit" data-list="app_store"><span>Join App Store waitlist</span></button>
-            </div>
-            <div class="outdoor-bot-field" aria-hidden="true"><label for="collection-company">Company</label><input id="collection-company" name="company" tabindex="-1" autocomplete="off" /></div>
-            <p id="collection-form-message" class="outdoor-form-message" role="status" aria-live="polite"></p>
-          </form>
+          <div class="outdoor-cta outdoor-collection-cta">
+                <div class="outdoor-cta-row">
+                  <button class="outdoor-primary" type="button" data-signup-open="android_beta"><span>Get access to Android beta</span></button>
+                  <button class="outdoor-secondary" type="button" data-signup-open="app_store"><span>Join App Store waitlist</span></button>
+                </div>
+              </div>
         </section>
       </main>
 
-      <footer class="outdoor-footer">
-        <p class="outdoor-footer-signoff"><img class="outdoor-kip outdoor-kip--footer" src="/images/kip/kip-cheer.webp" width="512" height="512" alt="" />See you out there. <a href="https://www.nathanpannell.com/">-Nathan</a></p>
-        <div class="outdoor-footer-meta">
-          <button class="outdoor-footer-action" type="button" data-dialog-open="email-privacy">About your email</button>
-          <nav class="outdoor-policy-links" aria-label="Privacy and support">
-            <a href="/privacy/">Privacy</a>
-            <a href="/delete-account/">Delete account</a>
-            <a href="/support/">Support</a>
-          </nav>
-          <button class="outdoor-footer-action" type="button" data-dialog-open="credits-dialog">Credits</button>
+      <dialog id="signup-dialog" class="outdoor-signup" aria-labelledby="signup-title">
+        <button class="outdoor-signup-close" type="button" data-dialog-close aria-label="Close sign-up">×</button>
+        <div class="outdoor-signup-inner">
+          <img class="outdoor-signup-kip" src="/images/kip/kip-wave.webp" data-kip-idle="/images/kip/kip-wave.webp" data-kip-done="/images/kip/kip-cheer.webp" width="512" height="512" alt="Kip the oystercatcher" />
+          <form id="signup-form" class="outdoor-signup-form" method="dialog" novalidate>
+            <h2 id="signup-title">Get access to the Android beta</h2>
+            <fieldset class="outdoor-signup-lists">
+              <legend class="outdoor-sr-only">Choose a list</legend>
+              <label><input type="radio" name="list" value="android_beta" checked /><span>Android beta</span></label>
+              <label><input type="radio" name="list" value="app_store" /><span>App Store waitlist</span></label>
+            </fieldset>
+            <p id="signup-lede" class="outdoor-signup-lede">I’ll email you when a beta spot opens.</p>
+            <label class="outdoor-sr-only" for="signup-email">Your email address</label>
+            <input id="signup-email" name="email" type="email" inputmode="email" autocomplete="email" placeholder="you@example.com" required maxlength="254" aria-describedby="signup-message privacy-note" />
+            <div class="outdoor-bot-field" aria-hidden="true"><label for="signup-company">Company</label><input id="signup-company" name="company" tabindex="-1" autocomplete="off" /></div>
+            <button id="signup-submit" class="outdoor-primary" type="submit"><span>Join the Android beta list</span></button>
+            <p id="signup-message" class="outdoor-form-message" role="status" aria-live="polite"></p>
+            <p class="outdoor-signup-fine">No newsletter. <button class="outdoor-link-button" type="button" data-dialog-open="email-privacy">About your email</button></p>
+          </form>
         </div>
+      </dialog>
+
+      <footer class="outdoor-footer">
+        <div class="outdoor-footer-sign">
+          <img class="outdoor-footer-kip" src="/images/kip/kip-cheer.webp" width="512" height="512" alt="" />
+          <p class="outdoor-footer-signoff">See you out there. <a href="https://www.nathanpannell.com/">-Nathan</a></p>
+        </div>
+        <div class="outdoor-footer-grid">
+          <section aria-labelledby="footer-app">
+            <h2 id="footer-app">Get Parkdex</h2>
+            <ul>
+              <li><button class="outdoor-link-button" type="button" data-signup-open="android_beta">Android beta</button></li>
+              <li><button class="outdoor-link-button" type="button" data-signup-open="app_store">App Store waitlist</button></li>
+            </ul>
+          </section>
+          <nav aria-labelledby="footer-help">
+            <h2 id="footer-help">Help</h2>
+            <ul>
+              <li><a href="/support/">Support</a></li>
+              <li><button class="outdoor-link-button" type="button" data-dialog-open="email-privacy">About your email</button></li>
+              <li><a href="/delete-account/">Delete account</a></li>
+            </ul>
+          </nav>
+          <section aria-labelledby="footer-about">
+            <h2 id="footer-about">About</h2>
+            <ul>
+              <li><a href="/privacy/">Privacy</a></li>
+              <li><button class="outdoor-link-button" type="button" data-dialog-open="credits-dialog">Credits</button></li>
+              <li><a href="https://www.nathanpannell.com/">Nathan Pannell</a></li>
+            </ul>
+          </section>
+        </div>
+        <p class="outdoor-footer-fine">Parkdex · Made on Vancouver Island, BC</p>
         <dialog id="email-privacy" class="outdoor-dialog" aria-labelledby="email-privacy-title">
           <div class="outdoor-dialog-head"><h2 id="email-privacy-title">About your email</h2><button class="outdoor-dialog-close" type="button" data-dialog-close aria-label="Close about your email">×</button></div>
             <div class="privacy-content">
