@@ -1,6 +1,8 @@
 param(
   [Parameter(Mandatory = $true)]
-  [ValidateSet("staging", "production")]
+  # Staging releases go through the Deploy landing staging workflow, which supplies the
+  # deployment-scoped staging database URL for the shared project.
+  [ValidateSet("production")]
   [string]$Target,
   [Parameter(Mandatory = $true)]
   [string]$ExpectedCommit
@@ -8,8 +10,8 @@ param(
 
 $ErrorActionPreference = "Stop"
 $repoRoot = (Resolve-Path (Join-Path $PSScriptRoot "..")).Path
-$expectedProject = if ($Target -eq "staging") { "parkdex-landing-staging" } else { "parkdex-landing" }
-$appUrl = if ($Target -eq "staging") { "https://staging.web.parkdex.app" } else { "https://web.parkdex.app" }
+$expectedProject = "parkdex-landing"
+$appUrl = "https://web.parkdex.app"
 
 if ($ExpectedCommit -notmatch "\A[0-9a-fA-F]{40}\z") {
   throw "ExpectedCommit must be a full 40-character Git SHA."
@@ -35,13 +37,6 @@ if ($linkedProject.projectName -ne $expectedProject) {
   throw "Target '$Target' requires linked project '$expectedProject'; this checkout is linked to '$($linkedProject.projectName)'."
 }
 
-$configArgs = @()
-if ($Target -eq "staging") {
-  $stagingConfig = Join-Path $repoRoot "vercel.staging.json"
-  if (-not (Test-Path -LiteralPath $stagingConfig)) { throw "Staging Vercel config is missing." }
-  $configArgs = @("--local-config", $stagingConfig)
-}
-
 Write-Output "Deploying $Target landing build for $actualCommit with app destination $appUrl."
 Write-Output "Vercel project: $expectedProject. Automatic domain assignment is disabled."
 
@@ -54,5 +49,5 @@ $deployArgs = @(
   "--no-color"
 )
 
-& vercel @deployArgs --cwd $repoRoot @configArgs
+& vercel @deployArgs --cwd $repoRoot
 if ($LASTEXITCODE -ne 0) { throw "Vercel deployment failed with exit code $LASTEXITCODE." }

@@ -2,6 +2,10 @@
 
 This is an independent Vercel application with a dedicated Neon database. It does not use the Parkdex application API, Railway services, or database. Static page requests perform no database query. Only `POST /api/waitlist` accesses the landing database.
 
+## Current topology
+
+Since September 27, 2026 the landing uses one Vercel project (`parkdex-landing`) and one Neon project (`noisy-smoke-89213665`). Production is the Vercel Production target on Neon `main`; staging is a Preview-target deployment aliased to `staging.parkdex.app` on Neon `staging`. `docs/delivery.md` is the operating procedure. The rows below are the historical resource journal.
+
 ## Resource journal
 
 | Resource | Identity | Status |
@@ -12,9 +16,9 @@ This is an independent Vercel application with a dedicated Neon database. It doe
 | Vercel project | `prj_R7ccAjDhGmhiys542GFXJ67d1k8X` (`parkdex-landing`) | Created; linked locally |
 | Vercel deployment | `dpl_9pYCt7vD1DThEofQ6GJoNGrMg49e` | Public privacy, deletion and support routes from `0417b7b66ee22b333c62e579cede85cbe1cefbab`, Production, READY |
 | Canonical staging Neon branch | `br-royal-mode-arzi4hg3` (`staging`) in project `noisy-smoke-89213665` | Created from `main` with schema only; database `app`, zero initial waitlist rows; staging Vercel `DATABASE_URL` rotated to this branch |
-| Former staging Neon project | `twilight-heart-20114456` (`parkdex-landing-staging`) | Historical initial staging backend; retirement pending after stable staging verification |
-| Staging Vercel project | `prj_te8EwQf0rmVvmUgwpzB366IDEaoK` (`parkdex-landing-staging`) | Created; isolated from the production waitlist database |
-| Staging WAF rule | `rule_limit_parkdex_landing_staging_waitlist_OwTuIT` | Published; POST `/api/waitlist`, 5 requests per 60 seconds per IP, then HTTP 429 |
+| Former staging Neon project | `twilight-heart-20114456` (`parkdex-landing-staging`) | Retired by the single-project migration on 2026-09-27 (0 rows); deleted after staging verification |
+| Staging Vercel project | `prj_te8EwQf0rmVvmUgwpzB366IDEaoK` (`parkdex-landing-staging`) | Retired by the single-project migration on 2026-09-27; `staging.parkdex.app` moved to `parkdex-landing`, then the project was deleted |
+| Staging WAF rule | `rule_limit_parkdex_landing_staging_waitlist_OwTuIT` | Retired with the staging project; the `parkdex-landing` rule now covers staging |
 | Temporary URL | `https://parkdex-landing.vercel.app` | Public; serves the landing page |
 | Immutable deployment URL | `https://parkdex-landing-dgz9mzcmv-nathanpannells-projects.vercel.app` | Protected by Vercel Authentication |
 | WAF rule | `rule_limit_android_waitlist_submissions_cvRDrf` | Published; POST `/api/waitlist`, 5 requests per 60 seconds per IP |
@@ -29,7 +33,7 @@ The linked `parkdex-landing` project currently has only a Production `DATABASE_U
 
 The staging waitlist began in a separate Neon project `parkdex-landing-staging` (`twilight-heart-20114456`, `us-west-2`) to avoid copying production waitlist addresses. On September 23, 2026, the canonical landing project `noisy-smoke-89213665` gained a `staging` branch (`br-royal-mode-arzi4hg3`) from `main` with `init_source: parent-schema`. The new branch has the same schema, database `app`, role `app_owner`, and zero initial waitlist rows. The separate Vercel project `parkdex-landing-staging` now has its Production `DATABASE_URL` set to this branch. Production Vercel remains on the canonical project's `main` branch. Keep the staging WAF on `POST /api/waitlist` at five requests per 60 seconds per client IP, returning HTTP 429 after the limit. Do not create a data-copy branch from production because that would copy waitlist addresses. Keep Git auto-deployments disabled in both Vercel projects. Retire the former staging Neon project only after the new stable staging deployment and waitlist journey are verified.
 
-Link a clean checkout of the reviewed landing commit to `parkdex-landing-staging`, then run `pwsh -File scripts/deploy-cutover.ps1 -Target staging -ExpectedCommit <40-character-sha>`. The script checks the clean checkout, exact SHA, and linked project, then uses Vercel `--prod --skip-domain` with `VITE_APP_URL=https://staging.web.parkdex.app`. It leaves custom domains unchanged and prints the immutable deployment URL. Before assigning `staging.parkdex.app`, verify both discovery URLs return the exact staging issuer/resource JSON, `application/json`, wildcard CORS, and `Cache-Control: no-store`; verify their OPTIONS responses preserve wildcard CORS and no-store. If Vercel does not serve either static well-known file or provide the required OPTIONS behavior, keep the apex domain on the app and report the blocker. Then browser-test the public routes, legacy auth-link handoff, and a disposable waitlist signup and removal against the staging database.
+Staging releases use the `Deploy landing staging` workflow only; `scripts/deploy-cutover.ps1` is production-only.
 
 For production, link the reviewed production checkout to the existing `parkdex-landing` project and run `pwsh -File scripts/deploy-cutover.ps1 -Target production -ExpectedCommit <40-character-sha>`. It uses `VITE_APP_URL=https://web.parkdex.app` and also skips automatic domain assignment. Verify the immutable deployment and its production waitlist behavior, then assign `parkdex.app` to that exact deployment only after the app's `web.parkdex.app` routes and legacy endpoint handling are ready. Keep the staging alias on the verified staging deployment.
 

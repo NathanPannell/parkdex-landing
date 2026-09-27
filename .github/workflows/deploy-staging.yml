@@ -16,3 +16,4 @@ jobs:
       source_sha: ${{ github.sha }}
     secrets:
       VERCEL_DEPLOY_TOKEN: ${{ secrets.VERCEL_STAGING_TOKEN }}
+      STAGING_DATABASE_URL: ${{ secrets.STAGING_DATABASE_URL }}

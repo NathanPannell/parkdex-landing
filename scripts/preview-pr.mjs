@@ -126,11 +126,11 @@ function makeCandidate(headSha, baseSha) {
 function bindVercel(directory) {
   const project = join(directory, ".vercel");
   mkdirSync(project, { recursive: true });
-  writeFileSync(join(project, "project.json"), `${JSON.stringify({ orgId: required("VERCEL_ORG_ID"), projectId: required("VERCEL_PREVIEW_PROJECT_ID"), projectName: process.env.VERCEL_PREVIEW_PROJECT_NAME || "parkdex-landing-staging" })}\n`, { mode: 0o600 });
+  writeFileSync(join(project, "project.json"), `${JSON.stringify({ orgId: required("VERCEL_ORG_ID"), projectId: required("VERCEL_PREVIEW_PROJECT_ID"), projectName: process.env.VERCEL_PREVIEW_PROJECT_NAME || "parkdex-landing" })}\n`, { mode: 0o600 });
 }
 
 function verifyVercelProject() {
-  const name = process.env.VERCEL_PREVIEW_PROJECT_NAME || "parkdex-landing-staging";
+  const name = process.env.VERCEL_PREVIEW_PROJECT_NAME || "parkdex-landing";
   const id = required("VERCEL_PREVIEW_PROJECT_ID");
   const listing = JSON.parse(vercel("project", "ls", "--json"));
   const matches = (listing.projects || []).filter((project) => project.id === id && project.name === name);
@@ -143,10 +143,10 @@ function neonAnnotations(payload) {
 }
 
 function ownedVercelDeployments(state) {
-  const output = vercel("list", process.env.VERCEL_PREVIEW_PROJECT_NAME || "parkdex-landing-staging", "--meta", `sourceCommit=${state.headSha}`, "--meta", `landingReleaseId=${state.releaseId}`, "--meta", `landingPr=${state.pullRequest}`, "--yes", "--no-color");
+  const output = vercel("list", process.env.VERCEL_PREVIEW_PROJECT_NAME || "parkdex-landing", "--meta", `sourceCommit=${state.headSha}`, "--meta", `landingReleaseId=${state.releaseId}`, "--meta", `landingPr=${state.pullRequest}`, "--yes", "--no-color");
   const hosts = [...new Set(output.match(/[A-Za-z0-9][A-Za-z0-9-]*\.vercel\.app/g) || [])];
   return hosts.map((host) => JSON.parse(vercel("inspect", host, "--json")))
-    .filter((item) => item.name === (process.env.VERCEL_PREVIEW_PROJECT_NAME || "parkdex-landing-staging") && item.target === "preview");
+    .filter((item) => item.name === (process.env.VERCEL_PREVIEW_PROJECT_NAME || "parkdex-landing") && item.target === "preview");
 }
 
 async function create(pr) {
