@@ -260,9 +260,12 @@
 
 .outdoor-form-row {
   display: grid;
-  grid-template-columns: minmax(0, 1fr) auto;
+  grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
   gap: .55rem;
 }
+
+/* The email spans both list actions so each button reads as a separate choice. */
+.outdoor-form-row input { grid-column: 1 / -1; }
 
 .outdoor-form-row input,
 .outdoor-page #email,
@@ -304,8 +307,32 @@
   transition: background var(--dur-short) var(--ease-out), transform var(--dur-short) var(--ease-out);
 }
 
-.outdoor-primary:active {
+.outdoor-secondary,
+.outdoor-form-row .outdoor-secondary {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 54px;
+  padding: .8rem 1rem;
+  border: 1px solid var(--outdoor-photo-copy);
+  border-radius: 5px;
+  background: var(--color-shade-38);
+  color: var(--outdoor-photo-copy);
+  font-family: var(--font-display), sans-serif;
+  font-size: .95rem;
+  font-weight: 720;
+  letter-spacing: -.02em;
+  white-space: nowrap;
+  transition: background var(--dur-short) var(--ease-out), transform var(--dur-short) var(--ease-out);
+}
+
+.outdoor-primary:active,
+.outdoor-secondary:active {
   transform: translateY(1px);
+}
+
+.outdoor-secondary:disabled {
+  opacity: .7;
 }
 
 .outdoor-primary:disabled {
@@ -922,6 +949,9 @@
     transform: translate(2px, -2px);
   }
 
+  .outdoor-page .outdoor-secondary:hover:not(:disabled) {
+    background: var(--color-shade-48);
+  }
   .outdoor-page .outdoor-primary:hover:not(:disabled) {
     background: var(--outdoor-lime-hover);
   }
@@ -1017,7 +1047,7 @@
   }
   .outdoor-waitlist label { font-size: 1rem; }
   .outdoor-form-row { grid-template-columns: minmax(0, 1fr); gap: .45rem; }
-  .outdoor-page #email, .outdoor-primary { min-height: 46px; height: 46px; }
+  .outdoor-page #email, .outdoor-primary, .outdoor-secondary { min-height: 46px; height: 46px; }
   .outdoor-form-row .outdoor-primary { min-height: 46px; font-size: .95rem; }
   .outdoor-form-message { margin-top: .45rem; font-size: .95rem; }
   .outdoor-section,
