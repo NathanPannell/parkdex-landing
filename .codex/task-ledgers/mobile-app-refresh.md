@@ -68,6 +68,13 @@ Awaiting explicit authorization to deploy. Then: preview create for PR #20 from 
 - Production: parkdex.app and www.parkdex.app serve `9033bbf` from `parkdex-landing` (Production target, Neon `main`). Rollback target from before the field app release: `dpl_77515NBaaPGUTAyp2753zneFiKvQ`.
 - Staging: staging.parkdex.app serves a Preview-target deployment of `parkdex-landing` on Neon `staging`, with noindex and robots disallow.
 - Providers: one Vercel project (`parkdex-landing`) and one Neon project (`noisy-smoke-89213665`, branches `main` and `staging`). No landing Railway service. No PR preview resources remain for PRs #20 and #21.
-- Waitlists: `android_beta_signups` and `app_store_waitlist_signups` on both branches. Legacy `waitlist_signups` keeps its original Android launch signups (5 in production); the user has not decided how to contact or migrate them.
-- Open follow-ups: privacy page still describes accounts and cloud photo storage, while the field app is offline with no accounts; favicon is still the camas icon rather than Kip.
+- Waitlists: `android_beta_signups` and `app_store_waitlist_signups` on both branches.
+- Open follow-up: the privacy page still describes accounts and cloud photo storage, while the field app is offline with no accounts.
 - Status: complete.
+
+## 2026-09-27 Kip favicon and legacy retirement
+
+- The user moved the 5 production legacy signups to the new lists (1 Android beta, 4 App Store). Outstanding legacy rows before migration: 0 on both branches.
+- PR #29: Kip favicons and Apple touch icon; `schema.sql` copies outstanding legacy rows to the App Store list and drops `waitlist_signups`; removal no longer touches the old table. PGlite check covered moved, outstanding, rerun and fresh cases. Preview (first on the merged Vercel project) passed and was torn down; absence verified three times.
+- Staging `24b5495` (`dpl_7XazDpe1KWrQf87FD93Y93djP7mw`) aliased, then the migration (SHA256 `f4399ff3…2c45`) ran on Neon `staging`; join and removal verified.
+- PR #30 released `4fd61d7` to production (`dpl_5kpMSwumREtj47BNdip4ADj2BFgH`) before the migration ran on Neon `main`. Result: `waitlist_signups` dropped; `android_beta_signups` 1 row, `app_store_waitlist_signups` 4 rows. Kip favicon served; join and removal verified in Chrome; test rows at 0.
