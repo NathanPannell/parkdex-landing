@@ -58,4 +58,16 @@ Awaiting explicit authorization to deploy. Then: preview create for PR #20 from 
 - The `parkdex-landing` firewall rule (path and method only) covers every host.
 - PR #25 merged as `8114faa`. Staging deployment `dpl_9gqzzafu1aBtEcXoi3RVANdUeUWe` is a Preview-target deployment of `parkdex-landing`. `staging.parkdex.app` moved from the retired project to `parkdex-landing` and aliased. Browser-verified: staging signups wrote only to Neon `staging`, production signups only to `main`; all test rows removed.
 - Deleted Vercel `parkdex-landing-staging` (`prj_te8EwQf0rmVvmUgwpzB366IDEaoK`, HTTP 204) and Neon `twilight-heart-20114456` (0 rows, HTTP 200) with user approval. Three consecutive observations: both 404; only `parkdex-landing` and `noisy-smoke-89213665` remain.
-- Next: promote the workflow change to `main`, then remove the `VERCEL_STAGING_PROJECT_ID` and `VERCEL_PRODUCTION_PROJECT_ID` variables.
+- PR #26 (ledger) released to staging as `f9b5024`, deployment `dpl_8UF2QWKdGrQVrtNLox96uZPWNkpq`, aliased and serving HTTP 200.
+- PR #27 promoted `staging` to `main` as `9033bbf`. Production deployment `dpl_9eNKFR1Jqgtr4Nn5CUkvB9TfMMXh` came from the single-project workflow and is aliased to parkdex.app and www.parkdex.app. API smoke test: an App Store join wrote one row to Neon `main` and removal cleared it.
+- Removed the `VERCEL_STAGING_PROJECT_ID` and `VERCEL_PRODUCTION_PROJECT_ID` repository variables. Remaining: variables `VERCEL_ORG_ID` and `VERCEL_PROJECT_ID`; secrets `VERCEL_STAGING_TOKEN`, `VERCEL_PRODUCTION_TOKEN` and `STAGING_DATABASE_URL`.
+- Closed issues #14, #15, #19 and #24.
+
+## Final state (2026-09-27)
+
+- Production: parkdex.app and www.parkdex.app serve `9033bbf` from `parkdex-landing` (Production target, Neon `main`). Rollback target from before the field app release: `dpl_77515NBaaPGUTAyp2753zneFiKvQ`.
+- Staging: staging.parkdex.app serves a Preview-target deployment of `parkdex-landing` on Neon `staging`, with noindex and robots disallow.
+- Providers: one Vercel project (`parkdex-landing`) and one Neon project (`noisy-smoke-89213665`, branches `main` and `staging`). No landing Railway service. No PR preview resources remain for PRs #20 and #21.
+- Waitlists: `android_beta_signups` and `app_store_waitlist_signups` on both branches. Legacy `waitlist_signups` keeps its original Android launch signups (5 in production); the user has not decided how to contact or migrate them.
+- Open follow-ups: privacy page still describes accounts and cloud photo storage, while the field app is offline with no accounts; favicon is still the camas icon rather than Kip.
+- Status: complete.
