@@ -12,9 +12,16 @@ The photograph and these resized versions are licensed under [Creative Commons A
 
 The Goldstream photo within both screenshots is by Mike: [Flow, Goldstream Provincial Park](https://commons.wikimedia.org/wiki/File:Flow,_Goldstream_Provincial_Park.jpg), [CC BY-SA 2.0](https://creativecommons.org/licenses/by-sa/2.0/). It is cropped by app UI. Screenshot pixels remain unedited in this landing project.
 
-## Live web app screenshots
+## Field app screenshots and Kip
 
-`live-map.webp` is a 1440×900 browser capture of the Field Guide map at [web.parkdex.app](https://web.parkdex.app/) on September 23, 2026, with the All filter selected and the Vancouver Island pins visible. It appears in both laptop previews. `live-list-mobile.webp` is a 430×932 mobile browser capture of the same app's List view, showing visit and category filters plus Capital Region places. Both captures were converted to WebP for this page. Map data is © OpenStreetMap contributors.
+The `field-*.webp` phone screens are unedited 780×1688 captures from the Parkdex field app (`parkdex-badge-mockup/shots/`, commit `5a28645`, September 26, 2026), converted to WebP. The photos inside the claim, case and share screens are the app's illustrated demonstration images, not user visits. Map © Protomaps and OpenStreetMap contributors.
+
+- `field-map.webp` (06-map): hero phone.
+- `field-park-sheet.webp` (07-park-sheet) and `field-nearby.webp` (17-find-next-park): map story.
+- `field-arrival.webp` (10-arrival) and `field-claimed.webp` (16-claimed): visit story.
+- `field-case.webp` (18-case) and `field-share.webp` (22-share): collection story.
+
+`kip/kip-wave.webp`, `kip/kip-cheer.webp` and `kip/kip-idle.webp` are copies of the field app's Kip the oystercatcher art (`parkdex-badge-mockup/public/art/kip/`).
 
 ## Park example images
 

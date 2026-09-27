@@ -116,3 +116,30 @@ test("configured future canonical origin is accepted", async () => {
   assert.equal(response.status, 200);
   assert.equal(saved, "a@example.com");
 });
+
+test("routes joins to the requested list and keeps the lists separate", async () => {
+  const lists: Record<string, Set<string>> = { android_beta: new Set(), app_store: new Set() };
+  const handle = createWaitlistHandler({ async saveSignup(email, list) { lists[list].add(email); } });
+  assert.equal((await handle(signup({ email: "a@example.com", list: "android_beta" }))).status, 200);
+  assert.equal((await handle(signup({ email: "b@example.com", list: "app_store" }))).status, 200);
+  assert.deepEqual([...lists.android_beta], ["a@example.com"]);
+  assert.deepEqual([...lists.app_store], ["b@example.com"]);
+});
+
+test("treats a join without a list as the Android beta for cached pages", async () => {
+  let savedList = "";
+  const handle = createWaitlistHandler({ async saveSignup(_email, list) { savedList = list; } });
+  assert.equal((await handle(signup({ email: "a@example.com" }))).status, 200);
+  assert.equal(savedList, "android_beta");
+});
+
+test("rejects an unknown list without storing", async () => {
+  let calls = 0;
+  const handle = createWaitlistHandler({ async saveSignup() { calls++; } });
+  for (const list of ["ios", "", null, 3]) {
+    const response = await handle(signup({ email: "a@example.com", list }));
+    assert.equal(response.status, 400);
+    assert.deepEqual(await response.json(), { ok: false, error: "invalid_list" });
+  }
+  assert.equal(calls, 0);
+});

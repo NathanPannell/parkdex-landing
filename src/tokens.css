@@ -1,5 +1,5 @@
 /* Parkdex field guide tokens. The hero adds a coastal photo layer while the
- * paper, ink, lime, and matte hardware materials remain shared below. */
+ * paper, ink, Kip orange, and matte hardware materials remain shared below. */
 :root {
   color-scheme: light;
   --color-paper: #f1f0e8;
@@ -8,9 +8,9 @@
   --color-ink: #142d27;
   --color-secondary: #40594e;
   --color-muted: #546359;
-  --color-accent: #b8f53d;
+  --color-accent: #ff5a1f;
   --color-accent-ink: #142d27;
-  --color-accent-hover: #a6e22d;
+  --color-accent-hover: #ff7a45;
   --color-rule: #b7c1b0;
   --color-focus: #246b56;
   --color-error: #a12c24;

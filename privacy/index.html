@@ -4,6 +4,19 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <meta name="description" content="How Parkdex uses account information, location, visits, photos and waitlist email, and how to request deletion." />
+    <link rel="canonical" href="https://parkdex.app/privacy/" />
+    <meta property="og:site_name" content="Parkdex" />
+    <meta property="og:type" content="website" />
+    <meta property="og:locale" content="en_CA" />
+    <meta property="og:url" content="https://parkdex.app/privacy/" />
+    <meta property="og:title" content="Privacy · Parkdex" />
+    <meta property="og:description" content="How Parkdex uses account information, location, visits, photos and waitlist email, and how to request deletion." />
+    <meta property="og:image" content="https://parkdex.app/og-image.jpg" />
+    <meta property="og:image:width" content="1200" />
+    <meta property="og:image:height" content="630" />
+    <meta property="og:image:alt" content="Parkdex wordmark over the East Sooke coastline beside the app map and Kip the oystercatcher" />
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:image" content="https://parkdex.app/og-image.jpg" />
     <meta name="theme-color" content="#142d27" />
     <link rel="icon" href="/favicon.ico" sizes="16x16 24x24 32x32 48x48 64x64" />
     <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png" />
@@ -53,7 +66,7 @@
 
         <section aria-labelledby="providers-title">
           <h2 id="providers-title">Services that run Parkdex</h2>
-          <p>Vercel hosts the websites, Railway runs the app API, and Neon stores account and collection information. The Android waitlist uses a separate Neon database.</p>
+          <p>Vercel hosts the websites, Railway runs the app API, and Neon stores account and collection information. The Android beta and App Store waitlists use a separate Neon database.</p>
           <p>Resend delivers account verification and password-recovery emails. Google handles Google sign-in when you choose it. The Parkdex Android app stores visit photos privately with Cloudflare R2 through the Parkdex API.</p>
           <p>The app loads map tiles and map fonts from OpenFreeMap. Those requests reveal your network address and the map areas being loaded to the map service.</p>
           <p><a href="https://openfreemap.org/privacy/">OpenFreeMap’s privacy policy</a> describes anonymized service logs kept indefinitely and temporary IP-address logging during security incidents for up to 30 days. Its service may also use Cloudflare.</p>
@@ -69,13 +82,13 @@
           <p>Deletion does not erase a separate guest history, files you downloaded or copies you shared elsewhere. Account-owned local data is cleared on the device completing the in-app deletion. Copies on an offline device cannot be erased remotely while it is offline; you can clear that device’s app data.</p>
           <p>Network-level abuse counters and service-provider logs or backups may remain separately from the active account. Deleting the active account does not immediately erase every provider copy.</p>
           <p>The app database is configured with a six-hour restore-history window. Railway’s current plan provides seven days of application log access and two days of audit log access. These are restore or access windows, not guarantees about when providers erase every internal copy.</p>
-          <p>Account deletion and waitlist removal are separate. Use the waitlist controls below if you also want to remove your launch email.</p>
+          <p>Account deletion and waitlist removal are separate. Use the waitlist controls below if you also want to remove your waitlist email.</p>
         </section>
 
         <section id="waitlist" aria-labelledby="waitlist-title">
-          <h2 id="waitlist-title">The Android waitlist</h2>
-          <p>Joining the waitlist saves your email address and signup time to send one email when Parkdex for Android is ready. It does not create a Parkdex account.</p>
-          <p>You can <a href="/#email-privacy">remove your waitlist email</a> from the landing page. This deletes the address from the active waitlist database. It does not delete a Parkdex account.</p>
+          <h2 id="waitlist-title">The Android beta and App Store waitlists</h2>
+          <p>The landing page keeps two separate lists. Joining the Android beta list saves your email address and signup time to invite you to the Parkdex Android beta. Joining the App Store waitlist saves them to send one email when Parkdex reaches the App Store. Neither creates a Parkdex account. Addresses that joined the earlier Android launch list stay on that list for its original launch email.</p>
+          <p>You can <a href="/#email-privacy">remove your waitlist email</a> from the landing page. This deletes the address from both lists and the earlier Android launch list. It does not delete a Parkdex account.</p>
           <p>The landing database has a 24-hour restore-history setting. That setting is not a promise that every provider backup or operational log is erased within 24 hours.</p>
         </section>
 

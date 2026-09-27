@@ -1,0 +1,320 @@
+/* Calls to action, Kip, the full-screen signup modal, and the footer. */
+
+.outdoor-cta {
+  max-width: 670px;
+  margin-top: 1.4rem;
+}
+
+.outdoor-link-button {
+  min-height: 44px;
+  padding: 0;
+  border: 0;
+  background: transparent;
+  color: inherit;
+  cursor: pointer;
+  font: inherit;
+  text-align: left;
+  text-decoration: underline;
+  text-decoration-thickness: .06em;
+  text-underline-offset: .22em;
+}
+
+/* Hero Kip: large enough to read as the page's character, overlapping the phone's lower corner. */
+.outdoor-kip-hero {
+  position: absolute;
+  z-index: 3;
+  left: -72%;
+  bottom: -8%;
+  width: 86%;
+  pointer-events: none;
+}
+
+.outdoor-kip--hero {
+  width: 100%;
+  height: auto;
+  transform: rotate(-5deg);
+  filter: drop-shadow(0 14px 18px var(--color-shade-40));
+}
+
+.outdoor-kip-bubble {
+  position: absolute;
+  top: -4%;
+  left: 38%;
+  padding: .45rem .8rem;
+  border: 2px solid var(--color-ink);
+  border-radius: 999px;
+  background: var(--color-paper-bright);
+  color: var(--color-ink);
+  font: 780 clamp(.9rem, 1.2vw, 1.15rem) / 1 var(--font-display), sans-serif;
+  letter-spacing: -.02em;
+  white-space: nowrap;
+  transform: rotate(-4deg);
+}
+
+@media (max-width: 40rem) {
+  /* Phones keep the text column clear, so Kip sits on the phone's lower-right corner. */
+  .outdoor-kip-hero {
+    left: auto;
+    right: -12%;
+    bottom: -14%;
+    width: 64%;
+  }
+  .outdoor-kip--hero { transform: scaleX(-1) rotate(-5deg); }
+  .outdoor-kip-bubble {
+    top: -14%;
+    left: -20%;
+    padding: .3rem .55rem;
+    font-size: .78rem;
+  }
+}
+
+/* Full-screen signup modal */
+.outdoor-signup {
+  width: 100vw;
+  max-width: none;
+  height: 100dvh;
+  max-height: none;
+  margin: 0;
+  padding: 0;
+  overflow: auto;
+  border: 0;
+  background:
+    radial-gradient(circle at 26% 42%, var(--color-shade-28), transparent 58%),
+    var(--color-ink);
+  color: var(--color-hero-text);
+}
+
+.outdoor-signup::backdrop {
+  background: var(--color-ink);
+}
+
+.outdoor-signup[open] {
+  display: grid;
+  place-items: center;
+}
+
+.outdoor-signup-close {
+  position: fixed;
+  top: max(1rem, env(safe-area-inset-top));
+  right: max(1rem, env(safe-area-inset-right));
+  z-index: 1;
+  width: 48px;
+  height: 48px;
+  border: 1px solid var(--color-hero-soft);
+  border-radius: 50%;
+  background: transparent;
+  color: var(--color-hero-text);
+  cursor: pointer;
+  font-size: 2rem;
+  line-height: 1;
+}
+
+.outdoor-signup-inner {
+  display: grid;
+  grid-template-columns: minmax(0, .9fr) minmax(0, 1.1fr);
+  align-items: center;
+  gap: clamp(1.5rem, 5vw, 5rem);
+  width: min(100% - 2.5rem, 1040px);
+  padding-block: 4.5rem 2.5rem;
+}
+
+.outdoor-signup-kip {
+  justify-self: center;
+  width: min(100%, 420px);
+  height: auto;
+  filter: drop-shadow(0 18px 24px rgb(0 0 0 / 30%));
+}
+
+.outdoor-signup-form {
+  display: grid;
+  gap: .9rem;
+  max-width: 34rem;
+}
+
+.outdoor-signup-form h2 {
+  font-family: var(--font-display), sans-serif;
+  font-size: clamp(2.2rem, 4.6vw, 3.8rem);
+  font-weight: 780;
+  line-height: .9;
+  letter-spacing: -.035em;
+}
+
+.outdoor-signup-lists {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 4px;
+  margin: .4rem 0 0;
+  padding: 4px;
+  border: 1px solid var(--color-hero-soft);
+  border-radius: 999px;
+}
+
+.outdoor-signup-lists label {
+  position: relative;
+  display: grid;
+  place-items: center;
+  min-height: 44px;
+  border-radius: 999px;
+  cursor: pointer;
+  font: 720 .95rem var(--font-display), sans-serif;
+  text-align: center;
+}
+
+.outdoor-signup-lists input {
+  position: absolute;
+  opacity: 0;
+  pointer-events: none;
+}
+
+.outdoor-signup-lists label:has(input:checked) {
+  background: var(--color-hero-text);
+  color: var(--color-ink);
+}
+
+.outdoor-signup-lists label:has(input:focus-visible) {
+  outline: 3px solid var(--color-accent);
+  outline-offset: 2px;
+}
+
+.outdoor-signup-lede {
+  color: var(--color-hero-soft);
+  font-size: 1.15rem;
+}
+
+.outdoor-signup-form #signup-email {
+  width: 100%;
+  min-height: 56px;
+  padding: .8rem 1rem;
+  border: 1px solid var(--color-rule);
+  border-radius: 5px;
+  background: var(--color-paper-bright);
+  color: var(--color-ink);
+  caret-color: var(--color-focus);
+  font-size: 1.1rem;
+}
+
+.outdoor-signup-form #signup-email::placeholder {
+  color: var(--color-muted);
+  opacity: 1;
+}
+
+.outdoor-signup-form .outdoor-primary {
+  width: 100%;
+  font-family: var(--font-display), sans-serif;
+  font-weight: 720;
+  min-height: 56px;
+  font-size: 1.05rem;
+}
+
+.outdoor-signup-form .outdoor-form-message {
+  margin: 0;
+  color: var(--color-hero-soft);
+}
+
+.outdoor-signup-form[data-state="success"] .outdoor-form-message {
+  color: var(--color-hero-text);
+  font-weight: 650;
+}
+
+.outdoor-signup-form[data-state="error"] .outdoor-form-message {
+  padding: .4rem .6rem;
+  border-radius: 5px;
+  background: var(--color-paper-bright);
+  color: var(--color-error);
+}
+
+.outdoor-signup-fine {
+  color: var(--color-hero-soft);
+  font-size: .95rem;
+}
+
+@media (max-width: 40rem) {
+  .outdoor-signup[open] { place-items: start center; }
+  .outdoor-signup-inner {
+    grid-template-columns: 1fr;
+    gap: .5rem;
+    padding-block: 4rem 2rem;
+  }
+  .outdoor-signup-kip { width: min(52vw, 210px); }
+}
+
+/* Footer: a large sign-off row, then grouped links and fine print. */
+.outdoor-footer {
+  padding: clamp(3rem, 6vw, 5rem) max(var(--outdoor-gutter), calc((100% - 1440px) / 2)) 1.6rem;
+  border-top: 1px solid var(--outdoor-rule);
+  background: var(--outdoor-paper);
+  color: var(--outdoor-ink);
+}
+
+.outdoor-footer-sign {
+  display: flex;
+  align-items: center;
+  gap: clamp(.75rem, 2vw, 1.5rem);
+}
+
+.outdoor-footer-kip {
+  flex: 0 0 auto;
+  width: clamp(88px, 10vw, 140px);
+  height: auto;
+}
+
+.outdoor-footer-signoff {
+  font-family: var(--font-hand), cursive;
+  font-size: clamp(2.6rem, 5.4vw, 4.6rem);
+  line-height: .95;
+}
+
+.outdoor-footer-signoff a {
+  text-decoration-thickness: .05em;
+  text-underline-offset: .12em;
+}
+
+.outdoor-footer-grid {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 12rem));
+  gap: 1.5rem clamp(2rem, 6vw, 6rem);
+  margin-top: clamp(2.2rem, 4vw, 3.4rem);
+}
+
+.outdoor-footer-grid h2 {
+  margin-bottom: .4rem;
+  color: var(--outdoor-secondary);
+  font: 720 .82rem var(--font-display), sans-serif;
+  letter-spacing: .08em;
+  text-transform: uppercase;
+}
+
+.outdoor-footer-grid ul {
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.outdoor-footer-grid a,
+.outdoor-footer-grid .outdoor-link-button {
+  display: inline-flex;
+  align-items: center;
+  min-height: 40px;
+  color: var(--outdoor-ink);
+  font-size: 1.05rem;
+  text-decoration: none;
+}
+
+.outdoor-footer-grid a:hover,
+.outdoor-footer-grid .outdoor-link-button:hover {
+  text-decoration: underline;
+  text-underline-offset: .22em;
+}
+
+.outdoor-footer-fine {
+  margin-top: clamp(2rem, 4vw, 3rem);
+  padding-top: 1.2rem;
+  border-top: 1px solid var(--outdoor-rule);
+  color: var(--outdoor-muted);
+  font-size: .92rem;
+}
+
+@media (max-width: 40rem) {
+  .outdoor-footer { padding-inline: 1.25rem; }
+  .outdoor-footer-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+}

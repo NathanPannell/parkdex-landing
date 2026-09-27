@@ -46,6 +46,7 @@
       "source": "/:path((?!mcp(?:/.*)?$|authorize$|token$|register$|revoke$|oauth/consent$|\\.well-known/oauth-authorization-server$|\\.well-known/oauth-protected-resource/mcp$|auth/google/callback$).*)",
       "headers": [
         { "key": "X-Content-Type-Options", "value": "nosniff" },
+        { "key": "X-Robots-Tag", "value": "noindex" },
         { "key": "Referrer-Policy", "value": "strict-origin-when-cross-origin" },
         { "key": "Permissions-Policy", "value": "camera=(), microphone=(), geolocation=()" },
         { "key": "Content-Security-Policy", "value": "default-src 'self'; script-src 'self'; style-src 'self'; img-src 'self' data:; font-src 'self'; connect-src 'self'; base-uri 'self'; frame-ancestors 'none'; form-action 'self'" }

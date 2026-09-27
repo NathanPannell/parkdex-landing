@@ -1,8 +1,9 @@
 import './shared-base.css';
 import './poster-page.css';
 import './device-frame.css';
+import './signup-footer.css';
 
-const dialogs = [...document.querySelectorAll<HTMLDialogElement>('.outdoor-dialog')];
+const dialogs = [...document.querySelectorAll<HTMLDialogElement>('.outdoor-dialog, .outdoor-signup')];
 function revealLinkedDialog() {
   const dialog = dialogs.find((item) => `#${item.id}` === location.hash);
   if (dialog && !dialog.open) dialog.showModal();
@@ -26,100 +27,148 @@ revealLinkedDialog();
 window.addEventListener('hashchange', revealLinkedDialog);
 window.addEventListener('pageshow', revealLinkedDialog);
 
-const signupForms = [...document.querySelectorAll<HTMLFormElement>('.outdoor-waitlist')].map((form) => ({
-  form,
-  email: form.querySelector<HTMLInputElement>('input[name="email"]')!,
-  company: form.querySelector<HTMLInputElement>('input[name="company"]')!,
-  message: form.querySelector<HTMLParagraphElement>('.outdoor-form-message')!,
-  join: form.querySelector<HTMLButtonElement>('button[type="submit"]')!,
-  joinLabel: form.querySelector<HTMLSpanElement>('button[type="submit"] span')!,
-  touched: false,
-}));
+type WaitlistList = 'android_beta' | 'app_store';
+
+const listCopy: Record<WaitlistList, { title: string; lede: string; submit: string; done: string; saved: (email: string) => string }> = {
+  android_beta: {
+    title: 'Get access to the Android beta',
+    lede: 'I’ll email you when a beta spot opens.',
+    submit: 'Join the Android beta list',
+    done: 'You’re on the beta list',
+    saved: (email) => `${email} is on the Android beta list. I’ll email you when a spot opens.`,
+  },
+  app_store: {
+    title: 'Join the App Store waitlist',
+    lede: 'I’ll email you once when Parkdex reaches the App Store.',
+    submit: 'Join the App Store waitlist',
+    done: 'You’re on the App Store list',
+    saved: (email) => `${email} is on the App Store waitlist. I’ll email you when Parkdex reaches the App Store.`,
+  },
+};
+
+const signupDialog = document.querySelector<HTMLDialogElement>('#signup-dialog')!;
+const signupForm = document.querySelector<HTMLFormElement>('#signup-form')!;
+const signupTitle = document.querySelector<HTMLElement>('#signup-title')!;
+const signupLede = document.querySelector<HTMLElement>('#signup-lede')!;
+const signupEmail = document.querySelector<HTMLInputElement>('#signup-email')!;
+const signupCompany = document.querySelector<HTMLInputElement>('#signup-company')!;
+const signupSubmit = document.querySelector<HTMLButtonElement>('#signup-submit')!;
+const signupSubmitLabel = signupSubmit.querySelector<HTMLSpanElement>('span')!;
+const signupMessage = document.querySelector<HTMLParagraphElement>('#signup-message')!;
+const signupKip = document.querySelector<HTMLImageElement>('.outdoor-signup-kip')!;
+const listInputs = [...signupForm.querySelectorAll<HTMLInputElement>('input[name="list"]')];
 const removeForm = document.querySelector<HTMLFormElement>('#remove-form')!;
 const removeEmail = document.querySelector<HTMLInputElement>('#remove-email')!;
 const removeCompany = document.querySelector<HTMLInputElement>('#remove-company')!;
 const removeButton = document.querySelector<HTMLButtonElement>('#remove-button')!;
 const removeMessage = document.querySelector<HTMLParagraphElement>('#remove-message')!;
+// Lists joined in this page view, so switching lists shows the right state.
+const joined = new Set<string>();
 let pending = false;
 let removing = false;
 
-signupForms.forEach((signup) => {
-  const { form, email, company, message, join, joinLabel } = signup;
-  function validate(): boolean {
-    const valid = email.validity.valid && email.value.trim().length > 0;
-    email.setAttribute('aria-invalid', String(!valid));
-    if (!valid) {
-      form.dataset.state = 'error';
-      message.textContent = 'Add a valid email address, like you@example.com.';
-    }
-    return valid;
+function selectedList(): WaitlistList {
+  return (listInputs.find((input) => input.checked)?.value ?? 'android_beta') as WaitlistList;
+}
+
+function renderSignup() {
+  const list = selectedList();
+  const copy = listCopy[list];
+  const isJoined = joined.has(`${list}:${signupEmail.value.trim().toLowerCase()}`);
+  signupTitle.textContent = copy.title;
+  signupLede.textContent = copy.lede;
+  if (!pending) signupSubmitLabel.textContent = isJoined ? copy.done : copy.submit;
+  signupSubmit.disabled = pending || removing || isJoined;
+  signupKip.src = isJoined ? signupKip.dataset.kipDone! : signupKip.dataset.kipIdle!;
+}
+
+function openSignup(list: WaitlistList) {
+  listInputs.forEach((input) => { input.checked = input.value === list; });
+  if (!pending) {
+    signupForm.dataset.state = 'idle';
+    signupMessage.textContent = '';
   }
+  renderSignup();
+  if (!signupDialog.open) signupDialog.showModal();
+  signupEmail.focus();
+}
 
-  email.addEventListener('blur', () => { if (email.value && !pending) { signup.touched = true; validate(); } });
-  email.addEventListener('input', () => {
-    if (pending) return;
-    if (signup.touched && !validate()) return;
-    form.dataset.state = 'idle';
-    email.setAttribute('aria-invalid', 'false');
-    message.textContent = '';
-    joinLabel.textContent = 'Join the waitlist';
-    join.disabled = removing;
-  });
+document.querySelectorAll<HTMLButtonElement>('[data-signup-open]').forEach((button) => {
+  button.addEventListener('click', () => openSignup(button.dataset.signupOpen as WaitlistList));
+});
+listInputs.forEach((input) => input.addEventListener('change', () => {
+  if (pending) return;
+  signupForm.dataset.state = 'idle';
+  signupMessage.textContent = '';
+  renderSignup();
+}));
 
-  form.addEventListener('submit', async (event) => {
-    event.preventDefault();
-    if (pending) return;
-    if (removing) { message.textContent = 'Please wait for the email removal to finish.'; return; }
-    email.value = email.value.trim();
-    signup.touched = true;
-    if (!validate()) { email.focus(); return; }
-    pending = true;
-    signupForms.forEach((item) => { item.join.disabled = true; });
-    removeButton.disabled = true;
-    email.readOnly = true;
-    form.dataset.state = 'loading';
-    form.setAttribute('aria-busy', 'true');
-    joinLabel.textContent = 'Joining…';
-    message.textContent = 'Saving your spot on the list…';
-    const submittedEmail = email.value;
-    try {
-      const response = await fetch('/api/waitlist', {
-        method: 'POST', headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({ email: submittedEmail, company: company.value }),
-        signal: AbortSignal.timeout(15000),
-      });
-      const result = await response.json().catch(() => null);
-      if (!response.ok || result?.ok !== true) {
-        if (result?.error === 'invalid_email') {
-          email.setAttribute('aria-invalid', 'true');
-          throw new Error('Check your email address and try again.');
-        }
-        if (response.status === 429) throw new Error('A few too many tries. Please try again in a little while.');
-        throw new Error('Your email wasn’t saved. Please try again in a moment.');
+signupEmail.addEventListener('input', () => {
+  if (pending) return;
+  signupForm.dataset.state = 'idle';
+  signupEmail.setAttribute('aria-invalid', 'false');
+  signupMessage.textContent = '';
+  renderSignup();
+});
+
+signupForm.addEventListener('submit', async (event) => {
+  event.preventDefault();
+  if (pending) return;
+  if (removing) { signupMessage.textContent = 'Please wait for the email removal to finish.'; return; }
+  const list = selectedList();
+  signupEmail.value = signupEmail.value.trim();
+  if (!signupEmail.validity.valid || !signupEmail.value) {
+    signupForm.dataset.state = 'error';
+    signupEmail.setAttribute('aria-invalid', 'true');
+    signupMessage.textContent = 'Add a valid email address, like you@example.com.';
+    signupEmail.focus();
+    return;
+  }
+  pending = true;
+  signupSubmitLabel.textContent = 'Joining…';
+  renderSignup();
+  removeButton.disabled = true;
+  signupEmail.readOnly = true;
+  signupForm.dataset.state = 'loading';
+  signupForm.setAttribute('aria-busy', 'true');
+  signupMessage.textContent = 'Saving your spot on the list…';
+  const submittedEmail = signupEmail.value;
+  try {
+    const response = await fetch('/api/waitlist', {
+      method: 'POST', headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({ email: submittedEmail, list, company: signupCompany.value }),
+      signal: AbortSignal.timeout(15000),
+    });
+    const result = await response.json().catch(() => null);
+    if (!response.ok || result?.ok !== true) {
+      if (result?.error === 'invalid_email') {
+        signupEmail.setAttribute('aria-invalid', 'true');
+        throw new Error('Check your email address and try again.');
       }
-      form.dataset.state = 'success';
-      joinLabel.textContent = 'You’re on the list';
-      message.textContent = `${submittedEmail} is on the list. I’ll email you when Android is ready.`;
-    } catch (error) {
-      form.dataset.state = 'error';
-      joinLabel.textContent = 'Try again';
-      message.textContent = error instanceof Error && !['TimeoutError', 'TypeError', 'AbortError'].includes(error.name)
-        ? error.message : 'Couldn’t reach the waitlist. Check your connection and try again.';
-    } finally {
-      pending = false;
-      email.readOnly = false;
-      signupForms.forEach((item) => { item.join.disabled = removing || item.form.dataset.state === 'success'; });
-      removeButton.disabled = removeForm.dataset.state === 'success';
-      form.removeAttribute('aria-busy');
+      if (response.status === 429) throw new Error('A few too many tries. Please try again in a little while.');
+      throw new Error('Your email wasn’t saved. Please try again in a moment.');
     }
-  });
+    joined.add(`${list}:${submittedEmail.toLowerCase()}`);
+    signupForm.dataset.state = 'success';
+    signupMessage.textContent = listCopy[list].saved(submittedEmail);
+  } catch (error) {
+    signupForm.dataset.state = 'error';
+    signupMessage.textContent = error instanceof Error && !['TimeoutError', 'TypeError', 'AbortError'].includes(error.name)
+      ? error.message : 'Couldn’t reach the waitlist. Check your connection and try again.';
+  } finally {
+    pending = false;
+    signupEmail.readOnly = false;
+    removeButton.disabled = removeForm.dataset.state === 'success';
+    signupForm.removeAttribute('aria-busy');
+    renderSignup();
+  }
 });
 
 removeEmail.addEventListener('input', () => {
   if (removing) return;
   removeForm.dataset.state = 'idle';
   removeEmail.setAttribute('aria-invalid', 'false');
-  removeButton.textContent = "I'd like to leave the waitlist";
+  removeButton.textContent = "Remove me from both lists";
   removeButton.disabled = pending;
   removeMessage.textContent = '';
 });
@@ -140,11 +189,11 @@ removeForm.addEventListener('submit', async event => {
   removeEmail.setAttribute('aria-invalid', 'false');
   removeEmail.readOnly = true;
   removeButton.disabled = true;
-  signupForms.forEach((item) => { item.join.disabled = true; });
+  renderSignup();
   removeButton.textContent = 'Removing…';
   removeForm.dataset.state = 'loading';
   removeForm.setAttribute('aria-busy', 'true');
-  removeMessage.textContent = 'Removing this address from the waitlist…';
+  removeMessage.textContent = 'Removing this address from both lists…';
   const submittedEmail = removeEmail.value;
   try {
     const response = await fetch('/api/waitlist', {
@@ -163,14 +212,13 @@ removeForm.addEventListener('submit', async event => {
     }
     removeForm.dataset.state = 'success';
     removeButton.textContent = 'Done';
-    removeMessage.textContent = 'If this address was on the waitlist, it has been removed. You can join again anytime.';
-    signupForms.forEach(({ form, email, message, join, joinLabel }) => {
-      if (email.value.trim().toLowerCase() !== submittedEmail.toLowerCase()) return;
-      form.dataset.state = 'idle';
-      joinLabel.textContent = 'Join the waitlist';
-      join.disabled = false;
-      message.textContent = '';
-    });
+    removeMessage.textContent = 'If this address was on either list, it has been removed. You can join again anytime.';
+    const removedEmail = submittedEmail.toLowerCase();
+    for (const key of [...joined]) if (key.endsWith(`:${removedEmail}`)) joined.delete(key);
+    if (signupEmail.value.trim().toLowerCase() === removedEmail) {
+      signupForm.dataset.state = 'idle';
+      signupMessage.textContent = '';
+    }
   } catch (error) {
     removeForm.dataset.state = 'error';
     removeButton.textContent = 'Try again';
@@ -180,7 +228,7 @@ removeForm.addEventListener('submit', async event => {
     removing = false;
     removeEmail.readOnly = false;
     removeButton.disabled = removeForm.dataset.state === 'success';
-    signupForms.forEach(({ form, join }) => { join.disabled = form.dataset.state === 'success'; });
+    renderSignup();
     removeForm.removeAttribute('aria-busy');
   }
 });
@@ -212,18 +260,21 @@ function animateCategoryCounts() {
 }
 
 const parkCount = Number(countTrigger.dataset.count);
+const countDigits = String(parkCount).length;
+// Pad to the final width so the headline does not reflow while counting.
+const formatCount = (value: number) => String(value).padStart(countDigits, '0').replace(/\B(?=(\d{3})+$)/g, ',');
 if (Number.isFinite(parkCount) && !matchMedia('(prefers-reduced-motion: reduce)').matches) {
   let countStart: number | undefined;
   const countDuration = 1000;
   const updateCount = (time: number) => {
     countStart ??= time;
     const progress = Math.min((time - countStart) / countDuration, 1);
-    countTrigger.textContent = String(Math.round(parkCount * progress)).padStart(3, '0');
+    countTrigger.textContent = formatCount(Math.round(parkCount * progress));
     if (progress < 1) requestAnimationFrame(updateCount);
   };
   requestAnimationFrame(updateCount);
 } else if (Number.isFinite(parkCount)) {
-  countTrigger.textContent = String(parkCount);
+  countTrigger.textContent = formatCount(parkCount);
 }
 let countPinned = false;
 let countCloseTimer: ReturnType<typeof setTimeout> | undefined;
@@ -297,11 +348,6 @@ const categoryExamples = {
     title: 'Little Huson Cave Regional Park',
     description: 'Natural bridge over Atluck Creek.',
     image: '/images/little-huson.webp',
-  },
-  islands: {
-    title: 'Cortes Island',
-    description: 'Squirrel Cove shoreline and oyster beds.',
-    image: '/images/cortes-island.webp',
   },
 } as const;
 
