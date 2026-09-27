@@ -9,8 +9,8 @@
   --outdoor-ink: var(--color-ink);
   --outdoor-secondary: var(--color-secondary);
   --outdoor-muted: var(--color-muted);
-  --outdoor-lime: var(--color-accent);
-  --outdoor-lime-hover: var(--color-accent-hover);
+  --outdoor-marker: var(--color-accent);
+  --outdoor-marker-hover: var(--color-accent-hover);
   --outdoor-rule: var(--color-rule);
   --outdoor-focus: var(--color-focus);
   --outdoor-shell: var(--color-device-shell);
@@ -116,7 +116,7 @@
   left: var(--outdoor-gutter);
   z-index: var(--z-overlay);
   padding: .75rem 1rem;
-  background: var(--outdoor-lime);
+  background: var(--outdoor-marker);
   color: var(--outdoor-ink);
   font-family: var(--font-display), sans-serif;
   font-weight: 720;
@@ -187,7 +187,7 @@
 }
 
 .outdoor-wordmark span {
-  color: var(--outdoor-lime);
+  color: var(--outdoor-marker);
 }
 
 .outdoor-hero h1 {
@@ -199,7 +199,7 @@
 }
 
 .outdoor-hero h1 span {
-  color: var(--outdoor-lime);
+  color: var(--outdoor-marker);
 }
 
 .outdoor-hero h1 .outdoor-hero-location {
@@ -297,7 +297,7 @@
   padding: .8rem 1rem;
   border: 0;
   border-radius: 5px;
-  background: var(--outdoor-lime);
+  background: var(--outdoor-marker);
   color: var(--outdoor-ink);
   font-family: var(--font-display), sans-serif;
   font-size: .95rem;
@@ -359,7 +359,8 @@
 }
 
 .outdoor-page .outdoor-waitlist[data-state="success"] .outdoor-form-message {
-  color: var(--outdoor-lime);
+  color: var(--outdoor-photo-copy);
+  font-weight: 650;
 }
 
 .outdoor-page form[data-state="error"] #email,
@@ -518,7 +519,7 @@
   z-index: 20;
   width: min(280px, calc(100vw - 1.5rem));
   padding: .4rem .85rem;
-  border-top: 3px solid var(--outdoor-lime);
+  border-top: 3px solid var(--outdoor-marker);
   border-radius: 5px;
   background: var(--outdoor-paper-bright) url('/images/paper.webp') center / 1000px auto;
   color: var(--outdoor-ink);
@@ -565,7 +566,7 @@
 .outdoor-count-popover [data-category="regional"] { --row-color: var(--park-regional); --row-ink: var(--park-regional-ink); }
 .outdoor-count-popover [data-category="islands"] { --row-color: var(--park-islands); --row-ink: var(--park-islands-ink); }
 
-.outdoor-visit-gallery {
+.outdoor-phone-gallery {
   display: grid;
   grid-template-columns: repeat(2, minmax(0, calc(var(--story-device-height) * .4808)));
   align-items: center;
@@ -573,12 +574,12 @@
   gap: clamp(2rem, 5vw, 5rem);
   width: 100%;
 }
-.outdoor-visit-gallery .device-frame {
+.outdoor-phone-gallery .device-frame {
   --device-frame-width: min(100%, calc(var(--story-device-height) * .4808));
   margin-inline: auto;
 }
-.outdoor-visit-gallery .outdoor-device:first-child { transform: rotate(-2deg); }
-.outdoor-visit-gallery .outdoor-device:last-child { transform: rotate(2deg); }
+.outdoor-phone-gallery .outdoor-device:first-child { transform: rotate(-2deg); }
+.outdoor-phone-gallery .outdoor-device:last-child { transform: rotate(2deg); }
 
 .outdoor-section--map {
   position: relative;
@@ -953,7 +954,7 @@
     background: var(--color-shade-48);
   }
   .outdoor-page .outdoor-primary:hover:not(:disabled) {
-    background: var(--outdoor-lime-hover);
+    background: var(--outdoor-marker-hover);
   }
 
 }
@@ -969,8 +970,7 @@
   .outdoor-section { --story-device-height: clamp(230px, 36vw, 280px); }
   .outdoor-section--map,
   .outdoor-section--collection { display: block; }
-  .outdoor-map-visuals,
-  .outdoor-collection-stage { margin-top: 2.8rem; }
+  .outdoor-phone-gallery { margin-top: 2.8rem; }
   .outdoor-collection-waitlist { margin-top: clamp(4rem, 6vw, 6.5rem); }
   .outdoor-footer { flex-wrap: wrap; }
   .outdoor-footer-meta { justify-content: flex-start; }
@@ -1109,13 +1109,13 @@
     margin-top: 2.8rem;
   }
 
-  .outdoor-visit-gallery {
+  .outdoor-phone-gallery {
     grid-template-columns: 1fr;
     gap: 3rem;
     margin-top: 2.8rem;
   }
-  .outdoor-visit-gallery .device-frame { --device-frame-width: var(--mobile-story-phone-width); }
-  .outdoor-visit-gallery .outdoor-device:last-child { margin-top: 0; }
+  .outdoor-phone-gallery .device-frame { --device-frame-width: var(--mobile-story-phone-width); }
+  .outdoor-phone-gallery .outdoor-device:last-child { margin-top: 0; }
   .outdoor-category-trigger::after {
     content: '';
     position: absolute;
@@ -1185,4 +1185,35 @@
 @media (max-width: 22.5rem) {
   .outdoor-hero-inner { padding-block: .7rem; }
   .outdoor-hero-lede { font-size: 1rem; }
+}
+
+/* Kip is the app's mascot; the hero pose overlaps the phone so the two read as one group. */
+.outdoor-kip {
+  display: block;
+  pointer-events: none;
+  user-select: none;
+}
+
+.outdoor-device--hero { position: relative; }
+
+.outdoor-kip--hero {
+  position: absolute;
+  z-index: 3;
+  left: -40%;
+  bottom: -3%;
+  width: 52%;
+  height: auto;
+  transform: rotate(-6deg);
+}
+
+.outdoor-kip--footer {
+  display: inline-block;
+  width: 1.6em;
+  height: auto;
+  margin-right: .15em;
+  vertical-align: -.35em;
+}
+
+@media (max-width: 40rem) {
+  .outdoor-kip--hero { left: auto; right: -14%; bottom: -12%; width: 38%; transform: scaleX(-1) rotate(6deg); }
 }

@@ -336,11 +336,6 @@ const categoryExamples = {
     description: 'Natural bridge over Atluck Creek.',
     image: '/images/little-huson.webp',
   },
-  islands: {
-    title: 'Cortes Island',
-    description: 'Squirrel Cove shoreline and oyster beds.',
-    image: '/images/cortes-island.webp',
-  },
 } as const;
 
 type Category = keyof typeof categoryExamples;

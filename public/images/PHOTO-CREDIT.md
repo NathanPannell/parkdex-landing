@@ -12,17 +12,16 @@ The photograph and these resized versions are licensed under [Creative Commons A
 
 The Goldstream photo within both screenshots is by Mike: [Flow, Goldstream Provincial Park](https://commons.wikimedia.org/wiki/File:Flow,_Goldstream_Provincial_Park.jpg), [CC BY-SA 2.0](https://creativecommons.org/licenses/by-sa/2.0/). It is cropped by app UI. Screenshot pixels remain unedited in this landing project.
 
-## Staging app screenshots
+## Field app screenshots and Kip
 
-These are unedited captures of the staging app at https://staging.web.parkdex.app/, taken on September 26, 2026 as a signed-out guest. The Android build bundles the same interface. They were saved as WebP for this page. Map data is © OpenStreetMap contributors.
+The `field-*.webp` phone screens are unedited 780×1688 captures from the Parkdex field app (`parkdex-badge-mockup/shots/`, commit `5a28645`, September 26, 2026), converted to WebP. The photos inside the claim, case and share screens are the app's illustrated demonstration images, not user visits. Map © Protomaps and OpenStreetMap contributors.
 
-- `app-map-mobile.webp`: 390×844 phone viewport at 2x, Field Guide map with BC park boundaries and pins. Hero phone.
-- `app-park-mobile.webp`: 390×844 phone viewport at 2x, Goldstream Park boundary with its place photo and published area. Map story phone.
-- `app-desktop-park.webp`: 1440×900 desktop viewport, the same Goldstream Park view beside its description. Map story laptop.
-- `app-desktop-places.webp`: 1440×900 desktop viewport, List view with 1,030-place progress by category. Collection story laptop.
-- `app-badges-mobile.webp`: 390×844 phone viewport at 2x, My Dex badges with all 22 still to earn. Collection story phone.
+- `field-map.webp` (06-map): hero phone.
+- `field-park-sheet.webp` (07-park-sheet) and `field-nearby.webp` (17-find-next-park): map story.
+- `field-arrival.webp` (10-arrival) and `field-claimed.webp` (16-claimed): visit story.
+- `field-case.webp` (18-case) and `field-share.webp` (22-share): collection story.
 
-The Goldstream photo inside the park screenshots is the same Mike photograph credited above. The badge photographs are shown by the app with their own credits in its badge details.
+`kip/kip-wave.webp`, `kip/kip-cheer.webp` and `kip/kip-idle.webp` are copies of the field app's Kip the oystercatcher art (`parkdex-badge-mockup/public/art/kip/`).
 
 ## Park example images
 

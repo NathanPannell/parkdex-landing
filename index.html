@@ -4,16 +4,54 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover" />
     <meta name="theme-color" content="#142d27" />
-    <meta name="description" content="Explore the parks and islands Parkdex tracks in BC. Claim visits when you're on location." />
-    <meta property="og:title" content="Parkdex · Go out and explore." />
-    <meta property="og:description" content="One field guide for 1,030 parks and islands across BC." />
+    <meta name="description" content="Pick a Vancouver Island park, go there, and claim its badge when you're inside the boundary. Join the Android beta or the App Store waitlist." />
+    <link rel="canonical" href="https://parkdex.app/" />
+    <meta property="og:site_name" content="Parkdex" />
     <meta property="og:type" content="website" />
+    <meta property="og:locale" content="en_CA" />
+    <meta property="og:url" content="https://parkdex.app/" />
+    <meta property="og:title" content="Parkdex · Park badges for Vancouver Island" />
+    <meta property="og:description" content="There are 122 parks on Vancouver Island. Go out and explore them, and collect the badges as you go." />
+    <meta property="og:image" content="https://parkdex.app/og-image.jpg" />
+    <meta property="og:image:type" content="image/jpeg" />
+    <meta property="og:image:width" content="1200" />
+    <meta property="og:image:height" content="630" />
+    <meta property="og:image:alt" content="Parkdex wordmark over the East Sooke coastline beside the app map and Kip the oystercatcher" />
     <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:title" content="Parkdex · Park badges for Vancouver Island" />
+    <meta name="twitter:description" content="There are 122 parks on Vancouver Island. Go out and explore them, and collect the badges as you go." />
+    <meta name="twitter:image" content="https://parkdex.app/og-image.jpg" />
+    <meta name="twitter:image:alt" content="Parkdex wordmark over the East Sooke coastline beside the app map and Kip the oystercatcher" />
+    <script type="application/ld+json">
+      {
+        "@context": "https://schema.org",
+        "@graph": [
+          {
+            "@type": "WebSite",
+            "@id": "https://parkdex.app/#website",
+            "url": "https://parkdex.app/",
+            "name": "Parkdex",
+            "inLanguage": "en-CA"
+          },
+          {
+            "@type": "MobileApplication",
+            "@id": "https://parkdex.app/#app",
+            "name": "Parkdex",
+            "operatingSystem": "Android",
+            "applicationCategory": "TravelApplication",
+            "description": "Pick a Vancouver Island park, go there, and claim its badge when you're inside the boundary. Join the Android beta or the App Store waitlist.",
+            "image": "https://parkdex.app/og-image.jpg",
+            "url": "https://parkdex.app/",
+            "author": { "@type": "Person", "name": "Nathan Pannell", "url": "https://www.nathanpannell.com/" }
+          }
+        ]
+      }
+    </script>
     <link rel="icon" href="/favicon.ico" sizes="16x16 24x24 32x32 48x48 64x64" />
     <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png" />
     <link rel="icon" type="image/png" sizes="64x64" href="/favicon-64x64.png" />
     <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png" />
-    <title>Parkdex · Go out and explore.</title>
+    <title>Parkdex · Park badges for Vancouver Island</title>
     <script type="module" src="/src/auth-token-redirect-entry.ts"></script>
   </head>
   <body class="outdoor-page">
@@ -30,8 +68,8 @@
           <div class="outdoor-hero-inner">
             <div class="outdoor-hero-copy">
               <p class="outdoor-wordmark" aria-label="Parkdex">Parkdex<span aria-hidden="true">.</span></p>
-              <h1 id="hero-title">There are <button id="park-count-trigger" class="outdoor-count-trigger" type="button" data-count="1030" aria-label="1,030" aria-controls="park-count-popover" aria-expanded="false">0,000</button> parks<span class="outdoor-hero-location"> in BC.</span><br class="outdoor-hero-after-location" /> <span>Go out and explore them.</span></h1>
-              <p class="outdoor-hero-lede">Parkdex logs your visits when you're actually on location.</p>
+              <h1 id="hero-title">There are <button id="park-count-trigger" class="outdoor-count-trigger" type="button" data-count="122" aria-label="122" aria-controls="park-count-popover" aria-expanded="false">000</button> parks<span class="outdoor-hero-location"> on Vancouver Island.</span><br class="outdoor-hero-after-location" /> <span>Go out and explore them.</span></h1>
+              <p class="outdoor-hero-lede">Find a park, go there, and claim its badge.</p>
 
               <form id="waitlist-form" class="outdoor-waitlist" method="dialog" novalidate>
                 <label class="outdoor-sr-only" for="email">Your email address</label>
@@ -49,47 +87,33 @@
 
             <div id="park-count-popover" class="outdoor-count-popover" role="tooltip" hidden>
               <dl>
-                <div data-category="national"><dt>National</dt><dd>7</dd></div>
-                <div data-category="provincial"><dt>Provincial</dt><dd>693</dd></div>
-                <div data-category="regional"><dt>Regional</dt><dd>293</dd></div>
-                <div data-category="islands"><dt>Islands</dt><dd>37</dd></div>
+                <div data-category="national"><dt>National</dt><dd>1</dd></div>
+                <div data-category="provincial"><dt>Provincial</dt><dd>76</dd></div>
+                <div data-category="regional"><dt>Regional</dt><dd>45</dd></div>
               </dl>
             </div>
 
             <figure class="outdoor-device outdoor-device--hero">
               <div class="outdoor-device-trigger">
                 <span class="device-frame device-frame--iphone-16-max device-frame--parkdex-asset">
-                  <span class="device-frame__screen"><span class="device-frame__media"><img src="/images/app-map-mobile.webp" width="780" height="1688" fetchpriority="high" alt="Parkdex Field Guide map with park boundaries and pins across Vancouver Island and the BC coast" /></span></span>
+                  <span class="device-frame__screen"><span class="device-frame__media"><img src="/images/field-map.webp" width="780" height="1688" fetchpriority="high" alt="Parkdex map of Victoria with a Gonzales Hill badge pin, a 0 of 20 badges counter and nearby badges" /></span></span>
                   <span class="device-frame__hardware" aria-hidden="true"><img src="/frames/parkdex-phone-frame.webp" width="1252" height="2604" alt="" /></span>
                 </span>
               </div>
+              <img class="outdoor-kip outdoor-kip--hero" src="/images/kip/kip-wave.webp" width="512" height="512" alt="Kip the oystercatcher, the Parkdex mascot, waving" />
             </figure>
           </div>
         </section>
 
         <section id="inside" class="outdoor-section outdoor-section--map" aria-labelledby="map-title">
           <div class="outdoor-section-copy">
-            <h2 id="map-title">One field guide.</h2>
-            <p>Parkdex combines <span class="outdoor-category-token"><button class="outdoor-category-trigger" type="button" data-category="national" aria-controls="category-preview" aria-expanded="false">national</button>,</span> <span class="outdoor-category-token"><button class="outdoor-category-trigger" type="button" data-category="provincial" aria-controls="category-preview" aria-expanded="false">provincial</button>,</span> and <span class="outdoor-category-token"><button class="outdoor-category-trigger" type="button" data-category="regional" aria-controls="category-preview" aria-expanded="false">regional</button> parks.</span> <span class="outdoor-category-token"><button class="outdoor-category-trigger" type="button" data-category="islands" aria-controls="category-preview" aria-expanded="false">Islands</button> too.</span></p>
-            <p>Open a place to see its boundary, a short guide, and links to official visitor information.</p>
+            <h2 id="map-title">Pick your next park.</h2>
+            <p>Parkdex combines <span class="outdoor-category-token"><button class="outdoor-category-trigger" type="button" data-category="national" aria-controls="category-preview" aria-expanded="false">national</button>,</span> <span class="outdoor-category-token"><button class="outdoor-category-trigger" type="button" data-category="provincial" aria-controls="category-preview" aria-expanded="false">provincial</button>,</span> and <span class="outdoor-category-token"><button class="outdoor-category-trigger" type="button" data-category="regional" aria-controls="category-preview" aria-expanded="false">regional</button> parks</span> across Vancouver Island.</p>
+            <p>Tap a pin to see the badge you’ll earn and how long the drive takes. The map works offline, so no signal is needed.</p>
           </div>
-          <div class="outdoor-map-visuals">
-            <figure class="outdoor-laptop-stage">
-              <div class="outdoor-device-trigger">
-                <span class="outdoor-laptop-frame outdoor-laptop-frame--asset">
-                  <span class="outdoor-laptop-screen outdoor-laptop-screen--asset"><img src="/images/app-desktop-park.webp" width="1440" height="900" loading="lazy" alt="Parkdex desktop Field Guide showing the Goldstream Park boundary beside its photo and description" /></span>
-                  <span class="outdoor-laptop-hardware--asset" aria-hidden="true"><img src="/frames/parkdex-laptop-frame.webp" width="2600" height="1509" alt="" /></span>
-                </span>
-              </div>
-            </figure>
-            <figure class="outdoor-device outdoor-device--map-list">
-              <div class="outdoor-device-trigger">
-                <span class="device-frame device-frame--iphone-16-max device-frame--parkdex-asset">
-                  <span class="device-frame__screen"><span class="device-frame__media"><img src="/images/app-park-mobile.webp" width="780" height="1688" loading="lazy" alt="Parkdex mobile view of the Goldstream Park boundary with its photo and published area" /></span></span>
-                  <span class="device-frame__hardware" aria-hidden="true"><img src="/frames/parkdex-phone-frame.webp" width="1252" height="2604" alt="" /></span>
-                </span>
-              </div>
-            </figure>
+          <div class="outdoor-phone-gallery" role="group" aria-label="Parkdex map screens">
+            <figure class="outdoor-device"><div class="outdoor-device-trigger"><span class="device-frame device-frame--iphone-16-max device-frame--parkdex-asset"><span class="device-frame__screen"><span class="device-frame__media"><img src="/images/field-park-sheet.webp" width="780" height="1688" loading="lazy" alt="Parkdex park sheet for Gonzales Hill Regional Park showing its badge, 5 km road distance, 12 minute drive and a Let’s go button" /></span></span><span class="device-frame__hardware" aria-hidden="true"><img src="/frames/parkdex-phone-frame.webp" width="1252" height="2604" alt="" /></span></span></div></figure>
+            <figure class="outdoor-device"><div class="outdoor-device-trigger"><span class="device-frame device-frame--iphone-16-max device-frame--parkdex-asset"><span class="device-frame__screen"><span class="device-frame__media"><img src="/images/field-nearby.webp" width="780" height="1688" loading="lazy" alt="Parkdex map with a Badges near you row listing nearby parks and drive times" /></span></span><span class="device-frame__hardware" aria-hidden="true"><img src="/frames/parkdex-phone-frame.webp" width="1252" height="2604" alt="" /></span></span></div></figure>
           </div>
           <div id="category-preview" class="outdoor-category-preview" role="tooltip" hidden>
             <img id="category-preview-image" src="/images/pacific-rim.webp" alt="" width="960" height="640" />
@@ -100,39 +124,25 @@
         <section class="outdoor-section outdoor-section--visit" aria-labelledby="visit-title">
           <div class="outdoor-section-copy">
             <h2 id="visit-title">Prove you were there.</h2>
-            <p>When you’re inside a park boundary, claim your visit with a photo.</p>
-            <p>Each one becomes a private postcard in My Dex.</p>
-            <p class="outdoor-preview-note">(In the Android beta)</p>
+            <p>Step inside the park boundary and Kip lets you know you made it. Check in and snap a photo to claim the badge.</p>
+            <p>Your visits and photos stay on your phone.</p>
+            <p class="outdoor-preview-note">(Demonstration photos)</p>
           </div>
-          <div class="outdoor-visit-gallery" role="group" aria-label="Android visit preview screens">
-            <figure class="outdoor-device"><div class="outdoor-device-trigger"><span class="device-frame device-frame--iphone-16-max device-frame--parkdex-asset"><span class="device-frame__screen"><span class="device-frame__media"><img src="/images/sealed-arrival-after.png" width="375" height="843" loading="lazy" alt="Android preview of an on-site Goldstream Park arrival with a Claim and photo action" /></span></span><span class="device-frame__hardware" aria-hidden="true"><img src="/frames/parkdex-phone-frame.webp" width="1252" height="2604" alt="" /></span></span></div></figure>
-            <figure class="outdoor-device"><div class="outdoor-device-trigger"><span class="device-frame device-frame--iphone-16-max device-frame--parkdex-asset"><span class="device-frame__screen"><span class="device-frame__media"><img src="/images/sealed-collection-after.png" width="367" height="825" loading="lazy" alt="Android preview of a private collection of visit postcards" /></span></span><span class="device-frame__hardware" aria-hidden="true"><img src="/frames/parkdex-phone-frame.webp" width="1252" height="2604" alt="" /></span></span></div></figure>
+          <div class="outdoor-phone-gallery" role="group" aria-label="Parkdex check-in screens">
+            <figure class="outdoor-device"><div class="outdoor-device-trigger"><span class="device-frame device-frame--iphone-16-max device-frame--parkdex-asset"><span class="device-frame__screen"><span class="device-frame__media"><img src="/images/field-arrival.webp" width="780" height="1688" loading="lazy" alt="Parkdex arrival screen inside the Gonzales Hill boundary with Kip saying KLEEP, you made it, and a Check in and snap button" /></span></span><span class="device-frame__hardware" aria-hidden="true"><img src="/frames/parkdex-phone-frame.webp" width="1252" height="2604" alt="" /></span></span></div></figure>
+            <figure class="outdoor-device"><div class="outdoor-device-trigger"><span class="device-frame device-frame--iphone-16-max device-frame--parkdex-asset"><span class="device-frame__screen"><span class="device-frame__media"><img src="/images/field-claimed.webp" width="780" height="1688" loading="lazy" alt="Parkdex badge claimed screen for Gonzales Hill, badge 1 of 20, with a Share it button" /></span></span><span class="device-frame__hardware" aria-hidden="true"><img src="/frames/parkdex-phone-frame.webp" width="1252" height="2604" alt="" /></span></span></div></figure>
           </div>
         </section>
 
         <section class="outdoor-section outdoor-section--collection" aria-labelledby="collection-title">
           <div class="outdoor-section-copy">
             <h2 id="collection-title">Connect with the land.</h2>
-            <p>Track your progress across 1,030 places and earn 22 badges named for local wildlife and plants.</p>
+            <p>Fill your case with 20 badges, from common to legendary, and share each one to your story.</p>
             <p>There's always somewhere new to explore.</p>
           </div>
-          <div class="outdoor-collection-stage">
-            <figure class="outdoor-laptop-stage outdoor-laptop-stage--collection">
-              <div class="outdoor-device-trigger">
-                <span class="outdoor-laptop-frame outdoor-laptop-frame--asset">
-                  <span class="outdoor-laptop-screen outdoor-laptop-screen--asset"><img src="/images/app-desktop-places.webp" width="1440" height="900" loading="lazy" alt="Parkdex desktop list showing visit progress across 1,030 BC places by category" /></span>
-                  <span class="outdoor-laptop-hardware--asset" aria-hidden="true"><img src="/frames/parkdex-laptop-frame.webp" width="2600" height="1509" alt="" /></span>
-                </span>
-              </div>
-            </figure>
-            <figure class="outdoor-device outdoor-device--collection-badge">
-              <div class="outdoor-device-trigger">
-                <span class="device-frame device-frame--iphone-16-max device-frame--parkdex-asset">
-                  <span class="device-frame__screen"><span class="device-frame__media"><img src="/images/app-badges-mobile.webp" width="780" height="1688" loading="lazy" alt="Parkdex My Dex badges screen with 22 wildlife badges still to earn" /></span></span>
-                  <span class="device-frame__hardware" aria-hidden="true"><img src="/frames/parkdex-phone-frame.webp" width="1252" height="2604" alt="" /></span>
-                </span>
-              </div>
-            </figure>
+          <div class="outdoor-phone-gallery" role="group" aria-label="Parkdex collection screens">
+            <figure class="outdoor-device"><div class="outdoor-device-trigger"><span class="device-frame device-frame--iphone-16-max device-frame--parkdex-asset"><span class="device-frame__screen"><span class="device-frame__media"><img src="/images/field-case.webp" width="780" height="1688" loading="lazy" alt="Parkdex case showing 1 of 20 badges collected with rarity filters" /></span></span><span class="device-frame__hardware" aria-hidden="true"><img src="/frames/parkdex-phone-frame.webp" width="1252" height="2604" alt="" /></span></span></div></figure>
+            <figure class="outdoor-device"><div class="outdoor-device-trigger"><span class="device-frame device-frame--iphone-16-max device-frame--parkdex-asset"><span class="device-frame__screen"><span class="device-frame__media"><img src="/images/field-share.webp" width="780" height="1688" loading="lazy" alt="Parkdex share card for a collected Gonzales Hill badge with Share to story and Save image buttons" /></span></span><span class="device-frame__hardware" aria-hidden="true"><img src="/frames/parkdex-phone-frame.webp" width="1252" height="2604" alt="" /></span></span></div></figure>
           </div>
           <form id="collection-waitlist-form" class="outdoor-waitlist outdoor-collection-waitlist" method="dialog" novalidate>
             <label class="outdoor-sr-only" for="collection-email">Your email address</label>
@@ -148,7 +158,7 @@
       </main>
 
       <footer class="outdoor-footer">
-        <p class="outdoor-footer-signoff">See you out there. <a href="https://www.nathanpannell.com/">-Nathan</a></p>
+        <p class="outdoor-footer-signoff"><img class="outdoor-kip outdoor-kip--footer" src="/images/kip/kip-cheer.webp" width="512" height="512" alt="" />See you out there. <a href="https://www.nathanpannell.com/">-Nathan</a></p>
         <div class="outdoor-footer-meta">
           <button class="outdoor-footer-action" type="button" data-dialog-open="email-privacy">About your email</button>
           <nav class="outdoor-policy-links" aria-label="Privacy and support">
@@ -175,14 +185,12 @@
         <dialog id="credits-dialog" class="outdoor-dialog" aria-labelledby="credits-title">
             <div class="outdoor-dialog-head"><h2 id="credits-title">Credits</h2><button class="outdoor-dialog-close" type="button" data-dialog-close aria-label="Close credits">×</button></div>
             <div class="outdoor-credits-content">
-              <p>The visit preview screens use controlled demonstration photos.</p>
+              <p>App screens and Kip the oystercatcher are from the Parkdex field app. Its screens show demonstration photos. Map © <a href="https://protomaps.com">Protomaps</a>.</p>
               <p>Map © <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors.</p>
               <p>East Sooke photo: <a href="https://commons.wikimedia.org/wiki/File:East_Sooke_Park_BC.jpg">Brandon Godfrey</a> · <a href="https://creativecommons.org/licenses/by-sa/2.0/">CC BY-SA 2.0</a>. Cropped for this page.</p>
-              <p>Flow, Goldstream Provincial Park: <a href="https://commons.wikimedia.org/wiki/File:Flow,_Goldstream_Provincial_Park.jpg">Mike</a> · <a href="https://creativecommons.org/licenses/by-sa/2.0/">CC BY-SA 2.0</a>. Cropped in app UI.</p>
               <p>Pacific Rim National Park Reserve: <a href="https://commons.wikimedia.org/wiki/File:Longbeach_prnp.jpg">Michael Oswald</a> · public domain.</p>
               <p>Strathcona Park: <a href="https://commons.wikimedia.org/wiki/File:Paradise_Meadows_Strathcona_Provincial_Park_02.jpg">Susan Daly</a> · <a href="https://creativecommons.org/licenses/by-sa/4.0/">CC BY-SA 4.0</a>.</p>
               <p>Little Huson Cave Regional Park: <a href="https://commons.wikimedia.org/wiki/File:Natural_Bridge_(28723312295).jpg">David Stanley</a> · <a href="https://creativecommons.org/licenses/by/2.0/">CC BY 2.0</a>.</p>
-              <p>Cortes Island: <a href="https://commons.wikimedia.org/wiki/File:Settlement_of_Squirrel_Cove,_Cortes_Island,_BC.jpg">A.Davey</a> · <a href="https://creativecommons.org/licenses/by/2.0/">CC BY 2.0</a>.</p>
             </div>
         </dialog>
       </footer>
