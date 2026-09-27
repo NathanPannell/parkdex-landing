@@ -37,3 +37,11 @@ One Neon project (`noisy-smoke-89213665`, `main`/`staging`) and one Vercel proje
 ## Next
 
 Awaiting explicit authorization to deploy. Then: preview create for PR #20 from a clean staging harness, browser test signup (both lists) and removal, apply schema to staging branch, merge, verify staging SHA, tear down preview with stable absence.
+
+## 2026-09-27 outcomes
+
+- PR #20 merged as `106dad3`. Preview for head `8c02bd0` passed (both lists, removal, meta, robots). Staging schema applied to `br-royal-mode-arzi4hg3` (new tables added; legacy table unchanged). Staging deployment `dpl_CGAdRytYPBs5UwhUGqoUwdBTm5iy` (release `gha-36293870117-1`) aliased to `staging.parkdex.app` and browser-verified. Preview torn down; stable absence verified.
+- PR #21 (share card: Explore with Parkdex CTA, typographic apostrophes) merged as `3b2975f`. Preview passed. Staging deployment `dpl_DYqrW5pzrjUerPKejaBagBqhPZiM` (release `gha-36294427664-1`) aliased and browser-verified; Open Graph debugger reports 12 passing checks. Preview torn down; stable absence verified.
+- Production schema on `main` (`br-young-shape-ar1qojbp`) was blocked by the session's permission policy for production actions. Awaiting the user. Command: `node output/landing-mobile-captures-20260926/apply-schema.mjs production <schema.sql from 3b2975f>`.
+- Test addresses used: `claude-preview-pr20-87a5@`, `claude-staging-106dad3@`, `claude-preview-pr21-ace9@`, `claude-staging-3b2975f@` (all example.com). All removed; staging rows verified at 0.
+- Next: single-project migration (separate issue and PR).
