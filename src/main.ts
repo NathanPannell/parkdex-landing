@@ -26,13 +26,36 @@ revealLinkedDialog();
 window.addEventListener('hashchange', revealLinkedDialog);
 window.addEventListener('pageshow', revealLinkedDialog);
 
+type WaitlistList = 'android_beta' | 'app_store';
+
+const listCopy: Record<WaitlistList, { idle: string; loading: string; done: string; saved: (email: string) => string }> = {
+  android_beta: {
+    idle: 'Get access to Android beta',
+    loading: 'Joining…',
+    done: 'You’re on the beta list',
+    saved: (email) => `${email} is on the Android beta list. I’ll email you when a spot opens.`,
+  },
+  app_store: {
+    idle: 'Join App Store waitlist',
+    loading: 'Joining…',
+    done: 'You’re on the App Store list',
+    saved: (email) => `${email} is on the App Store waitlist. I’ll email you when Parkdex reaches the App Store.`,
+  },
+};
+
+type ListButton = { button: HTMLButtonElement; label: HTMLSpanElement; list: WaitlistList; joined: boolean };
+
 const signupForms = [...document.querySelectorAll<HTMLFormElement>('.outdoor-waitlist')].map((form) => ({
   form,
   email: form.querySelector<HTMLInputElement>('input[name="email"]')!,
   company: form.querySelector<HTMLInputElement>('input[name="company"]')!,
   message: form.querySelector<HTMLParagraphElement>('.outdoor-form-message')!,
-  join: form.querySelector<HTMLButtonElement>('button[type="submit"]')!,
-  joinLabel: form.querySelector<HTMLSpanElement>('button[type="submit"] span')!,
+  buttons: [...form.querySelectorAll<HTMLButtonElement>('button[data-list]')].map((button): ListButton => ({
+    button,
+    label: button.querySelector<HTMLSpanElement>('span')!,
+    list: button.dataset.list as WaitlistList,
+    joined: false,
+  })),
   touched: false,
 }));
 const removeForm = document.querySelector<HTMLFormElement>('#remove-form')!;
@@ -43,8 +66,17 @@ const removeMessage = document.querySelector<HTMLParagraphElement>('#remove-mess
 let pending = false;
 let removing = false;
 
+function resetListButton(item: ListButton) {
+  item.joined = false;
+  item.label.textContent = listCopy[item.list].idle;
+}
+
+function refreshListButtons() {
+  signupForms.forEach(({ buttons }) => buttons.forEach((item) => { item.button.disabled = pending || removing || item.joined; }));
+}
+
 signupForms.forEach((signup) => {
-  const { form, email, company, message, join, joinLabel } = signup;
+  const { form, email, company, message, buttons } = signup;
   function validate(): boolean {
     const valid = email.validity.valid && email.value.trim().length > 0;
     email.setAttribute('aria-invalid', String(!valid));
@@ -62,30 +94,33 @@ signupForms.forEach((signup) => {
     form.dataset.state = 'idle';
     email.setAttribute('aria-invalid', 'false');
     message.textContent = '';
-    joinLabel.textContent = 'Join the waitlist';
-    join.disabled = removing;
+    buttons.forEach(resetListButton);
+    refreshListButtons();
   });
 
   form.addEventListener('submit', async (event) => {
     event.preventDefault();
     if (pending) return;
     if (removing) { message.textContent = 'Please wait for the email removal to finish.'; return; }
+    // Pressing Enter in the field submits with the first button, the Android beta.
+    const chosen = buttons.find((item) => item.button === event.submitter) ?? buttons[0];
+    if (chosen.joined) return;
     email.value = email.value.trim();
     signup.touched = true;
     if (!validate()) { email.focus(); return; }
     pending = true;
-    signupForms.forEach((item) => { item.join.disabled = true; });
+    refreshListButtons();
     removeButton.disabled = true;
     email.readOnly = true;
     form.dataset.state = 'loading';
     form.setAttribute('aria-busy', 'true');
-    joinLabel.textContent = 'Joining…';
+    chosen.label.textContent = listCopy[chosen.list].loading;
     message.textContent = 'Saving your spot on the list…';
     const submittedEmail = email.value;
     try {
       const response = await fetch('/api/waitlist', {
         method: 'POST', headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({ email: submittedEmail, company: company.value }),
+        body: JSON.stringify({ email: submittedEmail, list: chosen.list, company: company.value }),
         signal: AbortSignal.timeout(15000),
       });
       const result = await response.json().catch(() => null);
@@ -98,17 +133,18 @@ signupForms.forEach((signup) => {
         throw new Error('Your email wasn’t saved. Please try again in a moment.');
       }
       form.dataset.state = 'success';
-      joinLabel.textContent = 'You’re on the list';
-      message.textContent = `${submittedEmail} is on the list. I’ll email you when Android is ready.`;
+      chosen.joined = true;
+      chosen.label.textContent = listCopy[chosen.list].done;
+      message.textContent = listCopy[chosen.list].saved(submittedEmail);
     } catch (error) {
       form.dataset.state = 'error';
-      joinLabel.textContent = 'Try again';
+      chosen.label.textContent = listCopy[chosen.list].idle;
       message.textContent = error instanceof Error && !['TimeoutError', 'TypeError', 'AbortError'].includes(error.name)
         ? error.message : 'Couldn’t reach the waitlist. Check your connection and try again.';
     } finally {
       pending = false;
       email.readOnly = false;
-      signupForms.forEach((item) => { item.join.disabled = removing || item.form.dataset.state === 'success'; });
+      refreshListButtons();
       removeButton.disabled = removeForm.dataset.state === 'success';
       form.removeAttribute('aria-busy');
     }
@@ -119,7 +155,7 @@ removeEmail.addEventListener('input', () => {
   if (removing) return;
   removeForm.dataset.state = 'idle';
   removeEmail.setAttribute('aria-invalid', 'false');
-  removeButton.textContent = "I'd like to leave the waitlist";
+  removeButton.textContent = "Remove me from both lists";
   removeButton.disabled = pending;
   removeMessage.textContent = '';
 });
@@ -140,11 +176,11 @@ removeForm.addEventListener('submit', async event => {
   removeEmail.setAttribute('aria-invalid', 'false');
   removeEmail.readOnly = true;
   removeButton.disabled = true;
-  signupForms.forEach((item) => { item.join.disabled = true; });
+  refreshListButtons();
   removeButton.textContent = 'Removing…';
   removeForm.dataset.state = 'loading';
   removeForm.setAttribute('aria-busy', 'true');
-  removeMessage.textContent = 'Removing this address from the waitlist…';
+  removeMessage.textContent = 'Removing this address from both lists…';
   const submittedEmail = removeEmail.value;
   try {
     const response = await fetch('/api/waitlist', {
@@ -163,12 +199,11 @@ removeForm.addEventListener('submit', async event => {
     }
     removeForm.dataset.state = 'success';
     removeButton.textContent = 'Done';
-    removeMessage.textContent = 'If this address was on the waitlist, it has been removed. You can join again anytime.';
-    signupForms.forEach(({ form, email, message, join, joinLabel }) => {
+    removeMessage.textContent = 'If this address was on either list, it has been removed. You can join again anytime.';
+    signupForms.forEach(({ form, email, message, buttons }) => {
       if (email.value.trim().toLowerCase() !== submittedEmail.toLowerCase()) return;
       form.dataset.state = 'idle';
-      joinLabel.textContent = 'Join the waitlist';
-      join.disabled = false;
+      buttons.forEach(resetListButton);
       message.textContent = '';
     });
   } catch (error) {
@@ -180,7 +215,7 @@ removeForm.addEventListener('submit', async event => {
     removing = false;
     removeEmail.readOnly = false;
     removeButton.disabled = removeForm.dataset.state === 'success';
-    signupForms.forEach(({ form, join }) => { join.disabled = form.dataset.state === 'success'; });
+    refreshListButtons();
     removeForm.removeAttribute('aria-busy');
   }
 });
@@ -212,18 +247,21 @@ function animateCategoryCounts() {
 }
 
 const parkCount = Number(countTrigger.dataset.count);
+const countDigits = String(parkCount).length;
+// Pad to the final width so the headline does not reflow while counting.
+const formatCount = (value: number) => String(value).padStart(countDigits, '0').replace(/\B(?=(\d{3})+$)/g, ',');
 if (Number.isFinite(parkCount) && !matchMedia('(prefers-reduced-motion: reduce)').matches) {
   let countStart: number | undefined;
   const countDuration = 1000;
   const updateCount = (time: number) => {
     countStart ??= time;
     const progress = Math.min((time - countStart) / countDuration, 1);
-    countTrigger.textContent = String(Math.round(parkCount * progress)).padStart(3, '0');
+    countTrigger.textContent = formatCount(Math.round(parkCount * progress));
     if (progress < 1) requestAnimationFrame(updateCount);
   };
   requestAnimationFrame(updateCount);
 } else if (Number.isFinite(parkCount)) {
-  countTrigger.textContent = String(parkCount);
+  countTrigger.textContent = formatCount(parkCount);
 }
 let countPinned = false;
 let countCloseTimer: ReturnType<typeof setTimeout> | undefined;

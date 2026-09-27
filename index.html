@@ -4,9 +4,9 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover" />
     <meta name="theme-color" content="#142d27" />
-    <meta name="description" content="Explore the parks and islands Parkdex tracks in BC. Log visits on the island when you're on location." />
+    <meta name="description" content="Explore the parks and islands Parkdex tracks in BC. Claim visits when you're on location." />
     <meta property="og:title" content="Parkdex · Go out and explore." />
-    <meta property="og:description" content="One unified map for national, provincial, and regional parks. Islands too." />
+    <meta property="og:description" content="One field guide for 1,030 parks and islands across BC." />
     <meta property="og:type" content="website" />
     <meta name="twitter:card" content="summary_large_image" />
     <link rel="icon" href="/favicon.ico" sizes="16x16 24x24 32x32 48x48 64x64" />
@@ -30,35 +30,36 @@
           <div class="outdoor-hero-inner">
             <div class="outdoor-hero-copy">
               <p class="outdoor-wordmark" aria-label="Parkdex">Parkdex<span aria-hidden="true">.</span></p>
-              <h1 id="hero-title">There are <button id="park-count-trigger" class="outdoor-count-trigger" type="button" data-count="198" aria-label="198" aria-controls="park-count-popover" aria-expanded="false">000</button> parks<span class="outdoor-hero-location"> on Vancouver Island.</span><br class="outdoor-hero-after-location" /> <span>Go out and explore them.</span></h1>
+              <h1 id="hero-title">There are <button id="park-count-trigger" class="outdoor-count-trigger" type="button" data-count="1030" aria-label="1,030" aria-controls="park-count-popover" aria-expanded="false">0,000</button> parks<span class="outdoor-hero-location"> in BC.</span><br class="outdoor-hero-after-location" /> <span>Go out and explore them.</span></h1>
               <p class="outdoor-hero-lede">Parkdex logs your visits when you're actually on location.</p>
 
               <form id="waitlist-form" class="outdoor-waitlist" method="dialog" novalidate>
                 <label class="outdoor-sr-only" for="email">Your email address</label>
                 <div class="outdoor-form-row">
                   <input id="email" name="email" type="email" inputmode="email" autocomplete="email" placeholder="you@example.com" required maxlength="254" aria-describedby="form-message privacy-note" />
-                  <button id="join-button" class="outdoor-primary" type="submit"><span>Join the waitlist</span></button>
+                  <button id="android-beta-button" class="outdoor-primary" type="submit" data-list="android_beta"><span>Get access to Android beta</span></button>
+                  <button id="app-store-button" class="outdoor-secondary" type="submit" data-list="app_store"><span>Join App Store waitlist</span></button>
                 </div>
                 <div class="outdoor-bot-field" aria-hidden="true"><label for="company">Company</label><input id="company" name="company" tabindex="-1" autocomplete="off" /></div>
                 <p id="form-message" class="outdoor-form-message" role="status" aria-live="polite"></p>
               </form>
-              <noscript><p class="outdoor-noscript">Please enable JavaScript to join the waitlist. You can still read about Parkdex.</p></noscript>
+              <noscript><p class="outdoor-noscript">Please enable JavaScript to join the Android beta or App Store waitlist. You can still read about Parkdex.</p></noscript>
 
             </div>
 
             <div id="park-count-popover" class="outdoor-count-popover" role="tooltip" hidden>
               <dl>
-                <div data-category="national"><dt>National</dt><dd>2</dd></div>
-                <div data-category="provincial"><dt>Provincial</dt><dd>117</dd></div>
-                <div data-category="regional"><dt>Regional</dt><dd>55</dd></div>
-                <div data-category="islands"><dt>Islands</dt><dd>24</dd></div>
+                <div data-category="national"><dt>National</dt><dd>7</dd></div>
+                <div data-category="provincial"><dt>Provincial</dt><dd>693</dd></div>
+                <div data-category="regional"><dt>Regional</dt><dd>293</dd></div>
+                <div data-category="islands"><dt>Islands</dt><dd>37</dd></div>
               </dl>
             </div>
 
             <figure class="outdoor-device outdoor-device--hero">
               <div class="outdoor-device-trigger">
                 <span class="device-frame device-frame--iphone-16-max device-frame--parkdex-asset">
-                  <span class="device-frame__screen"><span class="device-frame__media"><img src="/images/hero-map-mobile.webp" width="409" height="888" fetchpriority="high" alt="Parkdex mobile map showing all parks across Vancouver Island" /></span></span>
+                  <span class="device-frame__screen"><span class="device-frame__media"><img src="/images/app-map-mobile.webp" width="780" height="1688" fetchpriority="high" alt="Parkdex Field Guide map with park boundaries and pins across Vancouver Island and the BC coast" /></span></span>
                   <span class="device-frame__hardware" aria-hidden="true"><img src="/frames/parkdex-phone-frame.webp" width="1252" height="2604" alt="" /></span>
                 </span>
               </div>
@@ -68,15 +69,15 @@
 
         <section id="inside" class="outdoor-section outdoor-section--map" aria-labelledby="map-title">
           <div class="outdoor-section-copy">
-            <h2 id="map-title">One unified map.</h2>
+            <h2 id="map-title">One field guide.</h2>
             <p>Parkdex combines <span class="outdoor-category-token"><button class="outdoor-category-trigger" type="button" data-category="national" aria-controls="category-preview" aria-expanded="false">national</button>,</span> <span class="outdoor-category-token"><button class="outdoor-category-trigger" type="button" data-category="provincial" aria-controls="category-preview" aria-expanded="false">provincial</button>,</span> and <span class="outdoor-category-token"><button class="outdoor-category-trigger" type="button" data-category="regional" aria-controls="category-preview" aria-expanded="false">regional</button> parks.</span> <span class="outdoor-category-token"><button class="outdoor-category-trigger" type="button" data-category="islands" aria-controls="category-preview" aria-expanded="false">Islands</button> too.</span></p>
-            <p>Discover places you want to go next, and add them to your wishlist.</p>
+            <p>Open a place to see its boundary, a short guide, and links to official visitor information.</p>
           </div>
           <div class="outdoor-map-visuals">
             <figure class="outdoor-laptop-stage">
               <div class="outdoor-device-trigger">
                 <span class="outdoor-laptop-frame outdoor-laptop-frame--asset">
-                  <span class="outdoor-laptop-screen outdoor-laptop-screen--asset"><img src="/images/live-map.webp" width="1440" height="900" loading="lazy" alt="Parkdex desktop map showing park pins across Vancouver Island" /></span>
+                  <span class="outdoor-laptop-screen outdoor-laptop-screen--asset"><img src="/images/app-desktop-park.webp" width="1440" height="900" loading="lazy" alt="Parkdex desktop Field Guide showing the Goldstream Park boundary beside its photo and description" /></span>
                   <span class="outdoor-laptop-hardware--asset" aria-hidden="true"><img src="/frames/parkdex-laptop-frame.webp" width="2600" height="1509" alt="" /></span>
                 </span>
               </div>
@@ -84,7 +85,7 @@
             <figure class="outdoor-device outdoor-device--map-list">
               <div class="outdoor-device-trigger">
                 <span class="device-frame device-frame--iphone-16-max device-frame--parkdex-asset">
-                  <span class="device-frame__screen"><span class="device-frame__media"><img src="/images/live-list-mobile.webp" width="390" height="844" loading="lazy" alt="Parkdex mobile list of places with filters" /></span></span>
+                  <span class="device-frame__screen"><span class="device-frame__media"><img src="/images/app-park-mobile.webp" width="780" height="1688" loading="lazy" alt="Parkdex mobile view of the Goldstream Park boundary with its photo and published area" /></span></span>
                   <span class="device-frame__hardware" aria-hidden="true"><img src="/frames/parkdex-phone-frame.webp" width="1252" height="2604" alt="" /></span>
                 </span>
               </div>
@@ -99,9 +100,9 @@
         <section class="outdoor-section outdoor-section--visit" aria-labelledby="visit-title">
           <div class="outdoor-section-copy">
             <h2 id="visit-title">Prove you were there.</h2>
-            <p>Visit a park and take a photo on-site.</p>
-            <p>Keep your collection of hard-earned memories as private postcards.</p>
-            <p class="outdoor-preview-note">(Coming to Android)</p>
+            <p>When you’re inside a park boundary, claim your visit with a photo.</p>
+            <p>Each one becomes a private postcard in My Dex.</p>
+            <p class="outdoor-preview-note">(In the Android beta)</p>
           </div>
           <div class="outdoor-visit-gallery" role="group" aria-label="Android visit preview screens">
             <figure class="outdoor-device"><div class="outdoor-device-trigger"><span class="device-frame device-frame--iphone-16-max device-frame--parkdex-asset"><span class="device-frame__screen"><span class="device-frame__media"><img src="/images/sealed-arrival-after.png" width="375" height="843" loading="lazy" alt="Android preview of an on-site Goldstream Park arrival with a Claim and photo action" /></span></span><span class="device-frame__hardware" aria-hidden="true"><img src="/frames/parkdex-phone-frame.webp" width="1252" height="2604" alt="" /></span></span></div></figure>
@@ -112,14 +113,14 @@
         <section class="outdoor-section outdoor-section--collection" aria-labelledby="collection-title">
           <div class="outdoor-section-copy">
             <h2 id="collection-title">Connect with the land.</h2>
-            <p>As you find and visit more places, your Dex fills in.</p>
+            <p>Track your progress across 1,030 places and earn 22 badges named for local wildlife and plants.</p>
             <p>There's always somewhere new to explore.</p>
           </div>
           <div class="outdoor-collection-stage">
             <figure class="outdoor-laptop-stage outdoor-laptop-stage--collection">
               <div class="outdoor-device-trigger">
                 <span class="outdoor-laptop-frame outdoor-laptop-frame--asset">
-                  <span class="outdoor-laptop-screen outdoor-laptop-screen--asset"><img src="/images/live-map.webp" width="1440" height="900" loading="lazy" alt="Parkdex map showing park pins across Vancouver Island" /></span>
+                  <span class="outdoor-laptop-screen outdoor-laptop-screen--asset"><img src="/images/app-desktop-places.webp" width="1440" height="900" loading="lazy" alt="Parkdex desktop list showing visit progress across 1,030 BC places by category" /></span>
                   <span class="outdoor-laptop-hardware--asset" aria-hidden="true"><img src="/frames/parkdex-laptop-frame.webp" width="2600" height="1509" alt="" /></span>
                 </span>
               </div>
@@ -127,7 +128,7 @@
             <figure class="outdoor-device outdoor-device--collection-badge">
               <div class="outdoor-device-trigger">
                 <span class="device-frame device-frame--iphone-16-max device-frame--parkdex-asset">
-                  <span class="device-frame__screen"><span class="device-frame__media"><img src="/images/badge-reward.webp" width="714" height="1354" loading="lazy" alt="Parkdex badge screen showing a new River Otter discovery" /></span></span>
+                  <span class="device-frame__screen"><span class="device-frame__media"><img src="/images/app-badges-mobile.webp" width="780" height="1688" loading="lazy" alt="Parkdex My Dex badges screen with 22 wildlife badges still to earn" /></span></span>
                   <span class="device-frame__hardware" aria-hidden="true"><img src="/frames/parkdex-phone-frame.webp" width="1252" height="2604" alt="" /></span>
                 </span>
               </div>
@@ -137,7 +138,8 @@
             <label class="outdoor-sr-only" for="collection-email">Your email address</label>
             <div class="outdoor-form-row">
               <input id="collection-email" name="email" type="email" inputmode="email" autocomplete="email" placeholder="you@example.com" required maxlength="254" aria-describedby="collection-form-message privacy-note" />
-              <button id="collection-join-button" class="outdoor-primary" type="submit"><span>Join the waitlist</span></button>
+              <button id="collection-android-beta-button" class="outdoor-primary" type="submit" data-list="android_beta"><span>Get access to Android beta</span></button>
+              <button id="collection-app-store-button" class="outdoor-secondary" type="submit" data-list="app_store"><span>Join App Store waitlist</span></button>
             </div>
             <div class="outdoor-bot-field" aria-hidden="true"><label for="collection-company">Company</label><input id="collection-company" name="company" tabindex="-1" autocomplete="off" /></div>
             <p id="collection-form-message" class="outdoor-form-message" role="status" aria-live="polite"></p>
@@ -159,12 +161,12 @@
         <dialog id="email-privacy" class="outdoor-dialog" aria-labelledby="email-privacy-title">
           <div class="outdoor-dialog-head"><h2 id="email-privacy-title">About your email</h2><button class="outdoor-dialog-close" type="button" data-dialog-close aria-label="Close about your email">×</button></div>
             <div class="privacy-content">
-              <p id="privacy-note">Your email is saved to let you know about Parkdex Android launches. There is no newsletter and we don't sell your information.</p>
+              <p id="privacy-note">Your email is saved only for the list you choose: Android beta access or the App Store launch. There is no newsletter and we don't sell your information.</p>
               <form id="remove-form" method="dialog" novalidate>
                 <label class="outdoor-sr-only" for="remove-email">Your email address</label>
                 <input id="remove-email" name="email" type="email" inputmode="email" autocomplete="email" placeholder="you@example.com" required maxlength="254" aria-describedby="remove-message" />
                 <div class="outdoor-bot-field" aria-hidden="true"><label for="remove-company">Company</label><input id="remove-company" name="company" tabindex="-1" autocomplete="off" /></div>
-                <button id="remove-button" class="outdoor-remove-button" type="submit">I'd like to leave the waitlist</button>
+                <button id="remove-button" class="outdoor-remove-button" type="submit">Remove me from both lists</button>
                 <p id="remove-message" class="outdoor-form-message" role="status" aria-live="polite"></p>
               </form>
               <noscript><p>Enable JavaScript to remove your email here, or email <a href="mailto:contact@nathanpannell.com">contact@nathanpannell.com</a>.</p></noscript>
@@ -173,7 +175,7 @@
         <dialog id="credits-dialog" class="outdoor-dialog" aria-labelledby="credits-title">
             <div class="outdoor-dialog-head"><h2 id="credits-title">Credits</h2><button class="outdoor-dialog-close" type="button" data-dialog-close aria-label="Close credits">×</button></div>
             <div class="outdoor-credits-content">
-              <p>Android preview screens use controlled demonstration photos.</p>
+              <p>The visit preview screens use controlled demonstration photos.</p>
               <p>Map © <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors.</p>
               <p>East Sooke photo: <a href="https://commons.wikimedia.org/wiki/File:East_Sooke_Park_BC.jpg">Brandon Godfrey</a> · <a href="https://creativecommons.org/licenses/by-sa/2.0/">CC BY-SA 2.0</a>. Cropped for this page.</p>
               <p>Flow, Goldstream Provincial Park: <a href="https://commons.wikimedia.org/wiki/File:Flow,_Goldstream_Provincial_Park.jpg">Mike</a> · <a href="https://creativecommons.org/licenses/by-sa/2.0/">CC BY-SA 2.0</a>. Cropped in app UI.</p>
