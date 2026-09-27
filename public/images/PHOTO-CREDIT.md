@@ -12,9 +12,17 @@ The photograph and these resized versions are licensed under [Creative Commons A
 
 The Goldstream photo within both screenshots is by Mike: [Flow, Goldstream Provincial Park](https://commons.wikimedia.org/wiki/File:Flow,_Goldstream_Provincial_Park.jpg), [CC BY-SA 2.0](https://creativecommons.org/licenses/by-sa/2.0/). It is cropped by app UI. Screenshot pixels remain unedited in this landing project.
 
-## Live web app screenshots
+## Staging app screenshots
 
-`live-map.webp` is a 1440×900 browser capture of the Field Guide map at [web.parkdex.app](https://web.parkdex.app/) on September 23, 2026, with the All filter selected and the Vancouver Island pins visible. It appears in both laptop previews. `live-list-mobile.webp` is a 430×932 mobile browser capture of the same app's List view, showing visit and category filters plus Capital Region places. Both captures were converted to WebP for this page. Map data is © OpenStreetMap contributors.
+These are unedited captures of the staging app at https://staging.web.parkdex.app/, taken on September 26, 2026 as a signed-out guest. The Android build bundles the same interface. They were saved as WebP for this page. Map data is © OpenStreetMap contributors.
+
+- `app-map-mobile.webp`: 390×844 phone viewport at 2x, Field Guide map with BC park boundaries and pins. Hero phone.
+- `app-park-mobile.webp`: 390×844 phone viewport at 2x, Goldstream Park boundary with its place photo and published area. Map story phone.
+- `app-desktop-park.webp`: 1440×900 desktop viewport, the same Goldstream Park view beside its description. Map story laptop.
+- `app-desktop-places.webp`: 1440×900 desktop viewport, List view with 1,030-place progress by category. Collection story laptop.
+- `app-badges-mobile.webp`: 390×844 phone viewport at 2x, My Dex badges with all 22 still to earn. Collection story phone.
+
+The Goldstream photo inside the park screenshots is the same Mike photograph credited above. The badge photographs are shown by the app with their own credits in its badge details.
 
 ## Park example images
 

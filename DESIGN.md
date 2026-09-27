@@ -114,9 +114,9 @@ components:
 
 **Creative North Star: "Outdoor Poster"**
 
-Parkdex opens like a large outdoor poster laid over a real East Sooke photograph. An oversized Parkdex wordmark, the operator's 198-park statement, and a mobile map phone make the place and product apparent immediately. The underlined count opens a four-category breakdown. The waitlist form is part of this opening. There is no small masthead, navigation band, hand-drawn annotation, or scroll-only signup call to action.
+Parkdex opens like a large outdoor poster laid over a real East Sooke photograph. An oversized Parkdex wordmark, the 1,030-park BC statement, and a mobile map phone make the place and product apparent immediately. The underlined count opens a four-category breakdown. The waitlist form is part of this opening. There is no small masthead, navigation band, hand-drawn annotation, or scroll-only signup call to action.
 
-Three full-width product stories follow the photo: the unified map, on-site visit and private postcard previews, and Dex progress. Category words in the map copy open real place examples with photographs and descriptions. Large Strichpunkt headlines, practical Ysabeau copy, real app captures fitted to matte device frames, and a live mobile list view carry the sequence. The upcoming Android section uses the arrival and collection after captures from Sealed Impressions. A short Caveat sign-off closes the page. About your email and Credits open in dialogs.
+Three full-width product stories follow the photo: the field guide, on-location claim and private postcard previews, and Dex progress. Category words in the map copy open real place examples with photographs and descriptions. Large Strichpunkt headlines, practical Ysabeau copy, real app captures fitted to matte device frames, and a live mobile list view carry the sequence. The upcoming Android section uses the arrival and collection after captures from Sealed Impressions. A short Caveat sign-off closes the page. About your email and Credits open in dialogs.
 
 **Key Characteristics:**
 
@@ -173,7 +173,7 @@ The palette starts with natural coastal color and warm photo copy, then moves th
 ### Hierarchy
 
 - **Brand** (780, desktop clamp from 5rem to 15rem, .7 line-height, tight tracking): A single huge Parkdex wordmark and lime period on the photograph. Phone layouts use a smaller fluid range so the mark stays whole.
-- **Display** (780, desktop clamp from 2.5rem to 4.3rem, .86 line-height): Two-line warm-white and lime hero statement. The white count starts at 000 and reaches 198 in one second. It scales down to 2rem in the narrowest phone rule.
+- **Display** (780, desktop clamp from 2.5rem to 4.3rem, .86 line-height): Two-line warm-white and lime hero statement. The white count starts at 0,000 and reaches 1,030 in one second. It scales down to 2rem in the narrowest phone rule.
 - **Headline** (780, desktop clamp from 3rem to 6rem, .87 line-height): Three short product-story headings. The dark collection section reverses them to warm white.
 - **Title** (720, 1.25rem to 1.6rem): Place example heading.
 - **Body** (regular, 1.125rem base): Hero lede reaches 1.3rem within 35ch; story paragraphs reach 1.3rem within 34ch and use a calmer 1.42 line-height.
@@ -188,7 +188,7 @@ The page is a centered 1800px maximum-width shell. The first region is a full ph
 
 Three full-width color sections create the scroll sequence, with their content held to about 1440px on large screens. Each uses a large heading and slightly larger supporting copy beside substantial product imagery on desktop, then stacks copy before imagery at 40rem and below. The map introduces four colored, underlined categories with example place tooltips, a laptop map with all pins, and a mobile list with filters. Paired Android previews show on-site arrival and the private postcard collection. The final deep-green section combines the map with the River Otter badge. The footer returns to paper with a filled waitlist link above a compact sign-off and link row. The Nathan signature links to his site; email and credits details open in dialogs.
 
-The hero waitlist field and action share a row above 40rem and stack on phones. Device imagery remains large, with the two Android phones side by side on wide screens and stacked on phones. The collection section sets the laptop and smaller badge phone together. These are this page's story compositions, not general-purpose grids.
+The hero email field spans the row above the two list actions, which sit side by side above 40rem; all three stack on phones. Device imagery remains large, with the two Android phones side by side on wide screens and stacked on phones. The collection section sets the laptop and smaller badge phone together. These are this page's story compositions, not general-purpose grids.
 
 ## Elevation & Depth
 
@@ -209,7 +209,9 @@ The hero has no visible frame or header rule; the photograph runs edge to edge w
 
 ### Buttons
 
-- **Waitlist primary:** The actual submit control is lime with green Strichpunkt lettering, 5px corners, and at least 54px height on desktop. It sits inline with the email field, then stacks at 40rem and below. On phones both controls use at least 48px height. Hover darkens only on precise pointers; active presses down 1px.
+- **Android beta primary:** The "Get access to Android beta" submit control is lime with green Strichpunkt lettering, 5px corners, and at least 54px height on desktop.
+- **App Store secondary:** "Join App Store waitlist" uses the same shape with a warm-white outline and lettering over a transparent coastal shade. It saves to a separate list.
+- Both actions sit beneath the email field, side by side above 40rem and stacked below. On phones both controls use at least 48px height. Hover darkens only on precise pointers; active presses down 1px.
 - **Removal action:** A quiet, outlined paper-section button inside the privacy disclosure, with at least 44px height. It has distinct disabled and loading states.
 
 ### Inputs / Fields
@@ -222,7 +224,7 @@ There is no masthead or navigation menu. The giant wordmark is display text. A f
 
 ### Screenshot Devices and Place Examples
 
-The hero phone shows the mobile map and all pins. A laptop map and mobile list in the second section, two Android after screens in the third, and a map laptop with a badge phone in the fourth carry the product stories. All six story devices share one displayed height on desktop, with slight rotations preserved. At phone widths the two laptops disappear completely, and the four remaining story phones share one size. The four colored category words reveal one real place each in compact tooltips anchored inside the map section on hover, focus, or click. The warm-white handwritten and underlined hero count reveals a similarly compact tooltip containing only the four category labels and counts. Each tooltip count animates from zero over 0.3 seconds when opened. Device screens are not clickable.
+The hero phone shows the BC Field Guide map with boundaries and pins. A Goldstream Park laptop and phone in the second section, two Android after screens in the third, and a progress-list laptop with the My Dex badges phone in the fourth carry the product stories. All six story devices share one displayed height on desktop, with slight rotations preserved. At phone widths the two laptops disappear completely, and the four remaining story phones share one size. The four colored category words reveal one real place each in compact tooltips anchored inside the map section on hover, focus, or click. The warm-white handwritten and underlined hero count reveals a similarly compact tooltip containing only the four category labels and counts. Each tooltip count animates from zero over 0.3 seconds when opened. Device screens are not clickable.
 
 The hero phone and story devices use the owner-supplied transparent frame overlays referenced by issue #4. Their media layers fill the transparent apertures and sit beneath the hardware overlays, including the phone camera island. Use a cover crop to close gaps at the bezel while preserving meaningful app controls.
 
@@ -242,7 +244,7 @@ The privacy explanation and Credits each use a native modal dialog. The privacy 
 
 - **Do** keep the giant wordmark, inline Android form, and map phone in one photographic opening.
 - **Do** preserve real screenshot content, including its full edges, within a visible matte chassis and a reserved camera area.
-- **Do** make the three product stories readable as unified map, on-site visit and private postcard, and Dex progress.
+- **Do** make the three product stories readable as field guide, on-location claim and private postcard, and Dex progress.
 - **Do** keep the demonstration-photo status in accessible text and Credits while preserving the operator's exact visible story copy.
 - **Do** keep essential reading in Ysabeau, reserve Caveat for the park count and closing sign-off, and preserve clear form and focus states.
 
