@@ -12,6 +12,8 @@ on:
     secrets:
       VERCEL_DEPLOY_TOKEN:
         required: true
+      STAGING_DATABASE_URL:
+        required: false
     outputs:
       source_sha:
         value: ${{ jobs.deploy.outputs.source_sha }}
@@ -43,8 +45,8 @@ jobs:
       EXPECTED_COMMIT_SHA: ${{ inputs.source_sha }}
       VERCEL_TOKEN: ${{ secrets.VERCEL_DEPLOY_TOKEN }}
       VERCEL_ORG_ID: ${{ vars.VERCEL_ORG_ID }}
-      VERCEL_STAGING_PROJECT_ID: ${{ vars.VERCEL_STAGING_PROJECT_ID }}
-      VERCEL_PRODUCTION_PROJECT_ID: ${{ vars.VERCEL_PRODUCTION_PROJECT_ID }}
+      VERCEL_PROJECT_ID: ${{ vars.VERCEL_PROJECT_ID }}
+      STAGING_DATABASE_URL: ${{ secrets.STAGING_DATABASE_URL }}
     steps:
       - uses: actions/checkout@v6
         with:
@@ -84,18 +86,20 @@ jobs:
           set -euo pipefail
           : "${VERCEL_TOKEN:?VERCEL_TOKEN is required}"
           : "${VERCEL_ORG_ID:?VERCEL_ORG_ID is required}"
+          # One Vercel project serves both environments. Production is its Production target;
+          # staging is a Preview-target deployment that the release agent aliases to staging.parkdex.app.
+          project_id="${VERCEL_PROJECT_ID:?VERCEL_PROJECT_ID is required}"
+          project_name=parkdex-landing
           if [[ "$TARGET_ENVIRONMENT" == staging ]]; then
-            project_id="${VERCEL_STAGING_PROJECT_ID:?VERCEL_STAGING_PROJECT_ID is required}"
-            project_name=parkdex-landing-staging
+            : "${STAGING_DATABASE_URL:?STAGING_DATABASE_URL is required for staging}"
             app_url=https://staging.web.parkdex.app
             stable_url=https://staging.parkdex.app
-            config_args=(--local-config vercel.staging.json)
+            # Deployment-scoped so the shared Preview environment keeps no persistent variables.
+            target_args=(--target preview --local-config vercel.staging.json --env "DATABASE_URL=$STAGING_DATABASE_URL")
           else
-            project_id="${VERCEL_PRODUCTION_PROJECT_ID:?VERCEL_PRODUCTION_PROJECT_ID is required}"
-            project_name=parkdex-landing
             app_url=https://web.parkdex.app
             stable_url=https://www.parkdex.app
-            config_args=()
+            target_args=(--prod)
           fi
           [[ "$VERCEL_ORG_ID" =~ ^team_[A-Za-z0-9]+$ ]]
           [[ "$project_id" =~ ^prj_[A-Za-z0-9]+$ ]]
@@ -106,8 +110,8 @@ jobs:
           release_id="gha-${GITHUB_RUN_ID}-${GITHUB_RUN_ATTEMPT}"
           stdout="$RUNNER_TEMP/vercel.out"
           stderr="$RUNNER_TEMP/vercel.err"
-          if ! vercel deploy --yes --prod --skip-domain --no-wait --no-color \
-            "${config_args[@]}" --build-env "VITE_APP_URL=$app_url" \
+          if ! vercel deploy --yes --skip-domain --no-wait --no-color \
+            "${target_args[@]}" --build-env "VITE_APP_URL=$app_url" \
             --meta "sourceCommit=$EXPECTED_COMMIT_SHA" \
             --meta "landingReleaseId=$release_id" \
             --meta "landingEnvironment=$TARGET_ENVIRONMENT" \

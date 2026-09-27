@@ -45,3 +45,17 @@ Awaiting explicit authorization to deploy. Then: preview create for PR #20 from 
 - Production schema on `main` (`br-young-shape-ar1qojbp`) was blocked by the session's permission policy for production actions. Awaiting the user. Command: `node output/landing-mobile-captures-20260926/apply-schema.mjs production <schema.sql from 3b2975f>`.
 - Test addresses used: `claude-preview-pr20-87a5@`, `claude-staging-106dad3@`, `claude-preview-pr21-ace9@`, `claude-staging-3b2975f@` (all example.com). All removed; staging rows verified at 0.
 - Next: single-project migration (separate issue and PR).
+
+## 2026-09-27 share card and production
+
+- PR #22 (flat paper share card: Kip, wordmark, Collect park badges) merged as `f087b56`, released to staging `dpl_66aoRQPpjYSX58aRC4JK8nQPfm6J` without a preview (user approved).
+- Production Neon `main` received the additive schema with user approval; legacy `waitlist_signups` kept its 5 rows.
+- PR #23 released `d2e3545` to production: `dpl_EVXuzBzu5y9ppyiroviy1uvLB5Yh` aliased to parkdex.app and www.parkdex.app. Rollback target `dpl_77515NBaaPGUTAyp2753zneFiKvQ`. Browser-verified both lists and removal on production (test rows back to 0). Open Graph debugger: 0 errors, 0 warnings, 12 good.
+
+## Single-project migration
+
+- Repository secret `STAGING_DATABASE_URL` set from Neon `staging` (pooled). Variable `VERCEL_PROJECT_ID=prj_R7ccAjDhGmhiys542GFXJ67d1k8X` set. Old project-ID variables remain until verification.
+- The `parkdex-landing` firewall rule (path and method only) covers every host.
+- PR #25 merged as `8114faa`. Staging deployment `dpl_9gqzzafu1aBtEcXoi3RVANdUeUWe` is a Preview-target deployment of `parkdex-landing`. `staging.parkdex.app` moved from the retired project to `parkdex-landing` and aliased. Browser-verified: staging signups wrote only to Neon `staging`, production signups only to `main`; all test rows removed.
+- Deleted Vercel `parkdex-landing-staging` (`prj_te8EwQf0rmVvmUgwpzB366IDEaoK`, HTTP 204) and Neon `twilight-heart-20114456` (0 rows, HTTP 200) with user approval. Three consecutive observations: both 404; only `parkdex-landing` and `noisy-smoke-89213665` remain.
+- Next: promote the workflow change to `main`, then remove the `VERCEL_STAGING_PROJECT_ID` and `VERCEL_PRODUCTION_PROJECT_ID` variables.
