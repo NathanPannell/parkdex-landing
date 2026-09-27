@@ -58,3 +58,12 @@ test("policy pages carry canonical and share tags for their own URL", async () =
     assert.match(html, /<meta name="twitter:card" content="summary_large_image" \/>/, path);
   }
 });
+
+test("meta content uses typographic apostrophes so naive scrapers do not truncate it", async () => {
+  for (const path of ["../index.html", "../privacy/index.html", "../support/index.html", "../delete-account/index.html"]) {
+    const html = await readFile(new URL(path, import.meta.url), "utf8");
+    for (const [, content] of html.matchAll(/<meta [^>]*content="([^"]*)"/g)) {
+      assert.doesNotMatch(content, /'/, `${path}: ${content}`);
+    }
+  }
+});

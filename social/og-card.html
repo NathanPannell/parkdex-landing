@@ -4,12 +4,20 @@
     <meta charset="UTF-8" />
     <meta name="robots" content="noindex" />
     <title>Parkdex share card source</title>
-    <!-- Source for public/og-image.png. Render it at 1200x630; see social/README.md. -->
+    <!-- Source for public/og-image.jpg. Render it at 1200x630; see social/README.md. -->
     <script type="module">import '../src/shared-base.css';</script>
     <style>
       html, body { margin: 0; }
+      /* Few, large elements kept near the center so previews stay legible at phone size
+         and survive the square crops some apps apply. */
       .card {
         position: relative;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        gap: 18px;
+        text-align: center;
         width: 1200px;
         height: 630px;
         overflow: hidden;
@@ -27,60 +35,36 @@
       .scrim {
         position: absolute;
         inset: 0;
-        background: linear-gradient(100deg, var(--color-shade-48) 0%, var(--color-shade-38) 45%, var(--color-hero-scrim-soft) 75%);
+        background: radial-gradient(circle at 50% 50%, var(--color-shade-48) 0%, var(--color-shade-38) 55%, var(--color-shade-28) 100%);
       }
-      .copy {
-        position: absolute;
-        left: 64px;
-        top: 70px;
-        width: 640px;
+      .kip {
+        position: relative;
+        width: 210px;
+        margin-bottom: -6px;
+        height: auto;
+        filter: drop-shadow(0 18px 24px rgb(0 0 0 / 35%));
       }
+      .copy { position: relative; }
       .wordmark {
         margin: 0;
         font-family: var(--font-display), sans-serif;
-        font-size: 150px;
+        font-size: 132px;
         font-weight: 780;
-        line-height: .78;
+        line-height: .8;
         letter-spacing: -.045em;
       }
       .wordmark span { color: var(--color-accent); }
-      .headline {
-        margin: 42px 0 0;
+      .cta {
+        display: inline-block;
+        margin: 30px 0 0;
+        padding: 20px 34px;
+        border-radius: 14px;
+        background: var(--color-accent);
+        color: var(--color-ink);
         font-family: var(--font-display), sans-serif;
-        font-size: 60px;
+        font-size: 44px;
         font-weight: 780;
-        line-height: .9;
-        letter-spacing: -.035em;
-      }
-      .headline span { display: block; color: var(--color-accent); }
-      .lede {
-        margin: 26px 0 0;
-        font-family: var(--font-body), sans-serif;
-        font-size: 27px;
-        color: var(--color-hero-soft);
-      }
-      .phone {
-        position: absolute;
-        right: 92px;
-        top: 46px;
-        width: 262px;
-        transform: rotate(4deg);
-      }
-      .phone .screen {
-        position: absolute;
-        inset: 1.9% 4.3% 1.9% 4.3%;
-        overflow: hidden;
-        border-radius: 34px;
-        background: var(--color-device-bezel);
-      }
-      .phone .screen img { width: 100%; height: 100%; object-fit: cover; object-position: top; }
-      .phone .frame { position: relative; display: block; width: 100%; }
-      .kip {
-        position: absolute;
-        right: 330px;
-        bottom: 18px;
-        width: 210px;
-        transform: rotate(-6deg);
+        letter-spacing: -.03em;
       }
     </style>
   </head>
@@ -88,16 +72,11 @@
     <div class="card">
       <img class="photo" src="/images/island-hero.webp" alt="" />
       <div class="scrim"></div>
+      <img class="kip" src="/images/kip/kip-wave.webp" alt="" />
       <div class="copy">
         <p class="wordmark">Parkdex<span>.</span></p>
-        <p class="headline">122 parks on Vancouver Island. <span>Go out and explore them.</span></p>
-        <p class="lede">Android beta and App Store waitlist at parkdex.app</p>
+        <p class="cta">Explore with Parkdex <span aria-hidden="true">→</span></p>
       </div>
-      <div class="phone">
-        <div class="screen"><img src="/images/field-map.webp" alt="" /></div>
-        <img class="frame" src="/frames/parkdex-phone-frame.webp" alt="" />
-      </div>
-      <img class="kip" src="/images/kip/kip-wave.webp" alt="" />
     </div>
   </body>
 </html>
