@@ -30,16 +30,16 @@ $pgPort = if ($uri.Port -gt 0) { $uri.Port } else { 5432 }
 $psqlArgs = @('-h', $uri.Host, '-p', $pgPort, '-U', $pgUser, '-d', 'app', '-v', 'ON_ERROR_STOP=1', '-At')
 
 try {
-  $exists = & psql @psqlArgs -c "SELECT to_regclass('public.waitlist_signups') IS NOT NULL"
+  $exists = & psql @psqlArgs -c "SELECT to_regclass('public.android_beta_signups') IS NOT NULL"
   if ($LASTEXITCODE -ne 0 -or $exists -ne 't') { throw 'Landing waitlist table is missing.' }
   if ($TestEmail) {
-    $count = & psql @psqlArgs -c "SELECT count(*) FROM waitlist_signups WHERE email_normalized = '$TestEmail'"
+    $count = & psql @psqlArgs -c "SELECT count(*) FROM android_beta_signups WHERE email_normalized = '$TestEmail'"
     if ($LASTEXITCODE -ne 0) { throw 'Could not inspect test signup.' }
     Write-Output "Owned test signup rows: $count"
     if ($DeleteTestEmail) {
-      & psql @psqlArgs -c "DELETE FROM waitlist_signups WHERE email_normalized = '$TestEmail'" | Out-Null
+      & psql @psqlArgs -c "DELETE FROM android_beta_signups WHERE email_normalized = '$TestEmail'" | Out-Null
       if ($LASTEXITCODE -ne 0) { throw 'Could not delete owned test signup.' }
-      $after = & psql @psqlArgs -c "SELECT count(*) FROM waitlist_signups WHERE email_normalized = '$TestEmail'"
+      $after = & psql @psqlArgs -c "SELECT count(*) FROM android_beta_signups WHERE email_normalized = '$TestEmail'"
       if ($LASTEXITCODE -ne 0 -or $after -ne '0') { throw 'Owned test signup deletion not verified.' }
       Write-Output 'Owned test signup deleted and absence verified.'
     }

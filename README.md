@@ -16,7 +16,7 @@ The landing deploys only to its separate Vercel project. No Git deployment integ
 
 ## Signup data
 
-Each signup names a list. Android beta requests go to `android_beta_signups` and App Store requests go to `app_store_waitlist_signups`; each normalized email is saved once per list with its creation timestamp. A request without a list is treated as the Android beta so cached pages keep working. The earlier `waitlist_signups` table keeps its Android launch signups under their original consent and receives no new rows. Only a beta invitation or an App Store launch notification is promised. There is no public list or export endpoint and no email is sent automatically. The operator can export or delete registrations directly in the dedicated Neon database. Test addresses are removed after verification.
+Each signup names a list. Android beta requests go to `android_beta_signups` and App Store requests go to `app_store_waitlist_signups`; each normalized email is saved once per list with its creation timestamp. A request without a list is treated as the Android beta so cached pages keep working. The original `waitlist_signups` Android launch list was retired on September 27, 2026: the operator moved its signups to the new lists, and `schema.sql` copies any remaining rows to the App Store waitlist before dropping the table. Only a beta invitation or an App Store launch notification is promised. There is no public list or export endpoint and no email is sent automatically. The operator can export or delete registrations directly in the dedicated Neon database. Test addresses are removed after verification.
 
 ## Design and assets
 
@@ -27,7 +27,7 @@ Real app captures are used without recreating their contents. All phone screens 
 
 The unlinked `/mockups/` route compares two candidate directions in desktop and phone viewports. `/mockups/field-guide.html` emphasizes the app journey; `/mockups/poster.html` explores an outdoor poster composition. Both are design previews with inert email forms and `noindex`. The user selected Outdoor Poster for the production page. Comparison routes retain the earlier concepts and provisional frames. Production uses the owner-supplied transparent laptop and phone frames documented in public/frames/PROVENANCE.md.
 
-The main page's **About your email** disclosure includes direct removal from both waitlists and the earlier Android launch list. Removal uses the same-origin `POST /api/waitlist` endpoint with `action: "remove"`; join remains the default and takes `list: "android_beta" | "app_store"`. Both operations use generic success responses and the same request-size, origin and WAF protections.
+The main page's **About your email** disclosure includes direct removal from both waitlists. Removal uses the same-origin `POST /api/waitlist` endpoint with `action: "remove"`; join remains the default and takes `list: "android_beta" | "app_store"`. Both operations use generic success responses and the same request-size, origin and WAF protections.
 
 ## Public information pages
 
