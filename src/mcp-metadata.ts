@@ -1,6 +1,7 @@
+import { KIP_APP_ORIGINS, LANDING_ORIGIN_BY_KIP_APP_ORIGIN } from "./app-origins";
+
 const ISSUER_BY_APP_URL: Readonly<Record<string, string>> = {
-  "https://web.parkdex.app": "https://parkdex.app",
-  "https://staging.web.parkdex.app": "https://staging.parkdex.app",
+  ...LANDING_ORIGIN_BY_KIP_APP_ORIGIN,
 };
 
 export function siteUrlForApp(appUrl: string): string {
@@ -12,7 +13,7 @@ export function siteUrlForApp(appUrl: string): string {
 export function rewriteStaticAppLinks(html: string, appUrl: string): string {
   const siteUrl = siteUrlForApp(appUrl);
   // Canonical and share URLs are authored for production and follow the landing environment.
-  return html.replaceAll("https://web.parkdex.app", appUrl).replaceAll("https://parkdex.app/", `${siteUrl}/`);
+  return html.replaceAll(KIP_APP_ORIGINS.production, appUrl).replaceAll("https://parkdex.app/", `${siteUrl}/`);
 }
 
 export function createRobotsTxt(appUrl: string): string {

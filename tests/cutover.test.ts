@@ -1,6 +1,7 @@
 import assert from "node:assert/strict";
 import { readFileSync } from "node:fs";
 import test from "node:test";
+import { KIP_APP_ORIGINS } from "../src/app-origins.ts";
 import { authTokenRedirectTarget } from "../src/auth-token-redirect.ts";
 import { createMcpMetadata, rewriteStaticAppLinks } from "../src/mcp-metadata.ts";
 
@@ -85,24 +86,28 @@ test("generated MCP metadata matches the current production and staging issuers"
   assert.throws(() => createMcpMetadata("https://attacker.example"), /Unsupported VITE_APP_URL/);
 });
 
-test("static app links use only the matching production or staging app host", () => {
-  const source = '<a href="https://web.parkdex.app">Open Parkdex</a>';
-  assert.equal(rewriteStaticAppLinks(source, "https://web.parkdex.app"), source);
+test("static app links and migration handoffs use the matching Kip app host", () => {
+  assert.deepEqual(KIP_APP_ORIGINS, {
+    production: "https://web.parkdex.app",
+    staging: "https://staging.web.parkdex.app",
+  });
+  const source = `<a href="${KIP_APP_ORIGINS.production}/migrate/">Move guest progress</a>`;
+  assert.equal(rewriteStaticAppLinks(source, KIP_APP_ORIGINS.production), source);
   assert.equal(
-    rewriteStaticAppLinks(source, "https://staging.web.parkdex.app"),
-    '<a href="https://staging.web.parkdex.app">Open Parkdex</a>',
+    rewriteStaticAppLinks(source, KIP_APP_ORIGINS.staging),
+    `<a href="${KIP_APP_ORIGINS.staging}/migrate/">Move guest progress</a>`,
   );
   assert.throws(() => rewriteStaticAppLinks(source, "https://attacker.example"), /Unsupported VITE_APP_URL/);
 });
 
-test("only exact reset and verification fragments move to the matching web app", () => {
+test("only exact reset and verification fragments move to the matching Kip app host", () => {
   assert.equal(
     authTokenRedirectTarget("https://parkdex.app", "#resetToken=reset-123"),
-    "https://web.parkdex.app/#resetToken=reset-123",
+    `${KIP_APP_ORIGINS.production}/#resetToken=reset-123`,
   );
   assert.equal(
     authTokenRedirectTarget("https://staging.parkdex.app", "#verificationToken=verify-456"),
-    "https://staging.web.parkdex.app/#verificationToken=verify-456",
+    `${KIP_APP_ORIGINS.staging}/#verificationToken=verify-456`,
   );
 
   for (const [origin, hash] of [

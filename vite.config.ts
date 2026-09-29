@@ -1,11 +1,12 @@
 import { defineConfig, loadEnv } from 'vite';
 import { mkdir, writeFile } from 'node:fs/promises';
 import { resolve } from 'node:path';
+import { KIP_APP_ORIGINS } from './src/app-origins';
 import { createMcpMetadata, createRobotsTxt, createSitemapXml, rewriteStaticAppLinks } from './src/mcp-metadata';
 
 export default defineConfig(({ mode }) => {
   const env = loadEnv(mode, process.cwd(), 'VITE_');
-  const appUrl = process.env.VITE_APP_URL || env.VITE_APP_URL || 'https://web.parkdex.app';
+  const appUrl = process.env.VITE_APP_URL || env.VITE_APP_URL || KIP_APP_ORIGINS.production;
   const mcpMetadata = createMcpMetadata(appUrl);
   let outputDirectory = 'dist';
 
