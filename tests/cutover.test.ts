@@ -1,7 +1,7 @@
 import assert from "node:assert/strict";
 import { readFileSync } from "node:fs";
 import test from "node:test";
-import { KIP_APP_ORIGINS } from "../src/app-origins.ts";
+import { KIP_APP_ORIGINS, LEGACY_APP_ORIGIN_BY_LANDING_ORIGIN } from "../src/app-origins.ts";
 import { authTokenRedirectTarget } from "../src/auth-token-redirect.ts";
 import { createMcpMetadata, rewriteStaticAppLinks } from "../src/mcp-metadata.ts";
 
@@ -100,14 +100,26 @@ test("static app links and migration handoffs use the matching Kip app host", ()
   assert.throws(() => rewriteStaticAppLinks(source, "https://attacker.example"), /Unsupported VITE_APP_URL/);
 });
 
-test("only exact reset and verification fragments move to the matching Kip app host", () => {
+test("only exact reset and verification fragments move to the matching legacy app host", () => {
+  assert.deepEqual(LEGACY_APP_ORIGIN_BY_LANDING_ORIGIN, {
+    "https://parkdex.app": "https://map.parkdex.app",
+    "https://staging.parkdex.app": "https://staging.map.parkdex.app",
+  });
   assert.equal(
     authTokenRedirectTarget("https://parkdex.app", "#resetToken=reset-123"),
-    `${KIP_APP_ORIGINS.production}/#resetToken=reset-123`,
+    "https://map.parkdex.app/#resetToken=reset-123",
+  );
+  assert.equal(
+    authTokenRedirectTarget("https://parkdex.app", "#verificationToken=verify-456"),
+    "https://map.parkdex.app/#verificationToken=verify-456",
   );
   assert.equal(
     authTokenRedirectTarget("https://staging.parkdex.app", "#verificationToken=verify-456"),
-    `${KIP_APP_ORIGINS.staging}/#verificationToken=verify-456`,
+    "https://staging.map.parkdex.app/#verificationToken=verify-456",
+  );
+  assert.equal(
+    authTokenRedirectTarget("https://staging.parkdex.app", "#resetToken=reset-123"),
+    "https://staging.map.parkdex.app/#resetToken=reset-123",
   );
 
   for (const [origin, hash] of [
@@ -119,6 +131,7 @@ test("only exact reset and verification fragments move to the matching Kip app h
     ["https://staging.parkdex.app", "#verificationToken=one&unrecognized=value"],
     ["https://www.parkdex.app", "#resetToken=secret"],
     ["https://web.parkdex.app", "#resetToken=secret"],
+    ["https://staging.web.parkdex.app", "#verificationToken=secret"],
   ]) {
     assert.equal(authTokenRedirectTarget(origin, hash), null, `${origin}${hash}`);
   }

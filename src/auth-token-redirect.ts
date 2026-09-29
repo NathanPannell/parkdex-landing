@@ -1,9 +1,9 @@
-import { KIP_APP_ORIGIN_BY_LANDING_ORIGIN } from "./app-origins";
+import { LEGACY_APP_ORIGIN_BY_LANDING_ORIGIN } from "./app-origins";
 
 const AUTH_TOKEN_KEYS = ["resetToken", "verificationToken"] as const;
 
 export function authTokenRedirectTarget(origin: string, hash: string): string | null {
-  const appOrigin = KIP_APP_ORIGIN_BY_LANDING_ORIGIN[origin];
+  const appOrigin = LEGACY_APP_ORIGIN_BY_LANDING_ORIGIN[origin];
   if (!appOrigin || !hash.startsWith("#")) return null;
 
   const fragmentParameters = new URLSearchParams(hash.slice(1));

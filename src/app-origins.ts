@@ -12,3 +12,8 @@ export const KIP_APP_ORIGIN_BY_LANDING_ORIGIN: Readonly<Record<string, string>> 
   "https://parkdex.app": KIP_APP_ORIGINS.production,
   "https://staging.parkdex.app": KIP_APP_ORIGINS.staging,
 };
+
+export const LEGACY_APP_ORIGIN_BY_LANDING_ORIGIN: Readonly<Record<string, string>> = {
+  "https://parkdex.app": "https://map.parkdex.app",
+  "https://staging.parkdex.app": "https://staging.map.parkdex.app",
+};
