@@ -17,8 +17,8 @@ test("production and staging Vercel configs preserve the seven legacy API routes
   ].sort();
 
   for (const [file, apiOrigin, appOrigin] of [
-    ["vercel.json", "https://api-production-e72df.up.railway.app", "https://web.parkdex.app"],
-    ["vercel.staging.json", "https://api-staging-882c.up.railway.app", "https://staging.web.parkdex.app"],
+    ["vercel.json", "https://api-production-e72df.up.railway.app", "https://map.parkdex.app"],
+    ["vercel.staging.json", "https://api-staging-882c.up.railway.app", "https://staging.map.parkdex.app"],
   ] as const) {
     const config = JSON.parse(readFileSync(new URL(`../${file}`, import.meta.url), "utf8"));
     assert.deepEqual(config.rewrites.map((route: { source: string }) => route.source).sort(), expectedRoutes);
