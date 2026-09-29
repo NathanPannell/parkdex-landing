@@ -6,7 +6,7 @@
   "redirects": [
     {
       "source": "/auth/google/callback",
-      "destination": "https://staging.web.parkdex.app/auth/google/callback",
+      "destination": "https://staging.map.parkdex.app/auth/google/callback",
       "permanent": false
     }
   ],
