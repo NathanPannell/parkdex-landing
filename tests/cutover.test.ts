@@ -1,6 +1,7 @@
 import assert from "node:assert/strict";
 import { readFileSync } from "node:fs";
 import test from "node:test";
+import { KIP_APP_ORIGINS, LEGACY_APP_ORIGIN_BY_LANDING_ORIGIN } from "../src/app-origins.ts";
 import { authTokenRedirectTarget } from "../src/auth-token-redirect.ts";
 import { createMcpMetadata, rewriteStaticAppLinks } from "../src/mcp-metadata.ts";
 
@@ -16,8 +17,8 @@ test("production and staging Vercel configs preserve the seven legacy API routes
   ].sort();
 
   for (const [file, apiOrigin, appOrigin] of [
-    ["vercel.json", "https://api-production-e72df.up.railway.app", "https://web.parkdex.app"],
-    ["vercel.staging.json", "https://api-staging-882c.up.railway.app", "https://staging.web.parkdex.app"],
+    ["vercel.json", "https://api-production-e72df.up.railway.app", "https://map.parkdex.app"],
+    ["vercel.staging.json", "https://api-staging-882c.up.railway.app", "https://staging.map.parkdex.app"],
   ] as const) {
     const config = JSON.parse(readFileSync(new URL(`../${file}`, import.meta.url), "utf8"));
     assert.deepEqual(config.rewrites.map((route: { source: string }) => route.source).sort(), expectedRoutes);
@@ -85,24 +86,40 @@ test("generated MCP metadata matches the current production and staging issuers"
   assert.throws(() => createMcpMetadata("https://attacker.example"), /Unsupported VITE_APP_URL/);
 });
 
-test("static app links use only the matching production or staging app host", () => {
-  const source = '<a href="https://web.parkdex.app">Open Parkdex</a>';
-  assert.equal(rewriteStaticAppLinks(source, "https://web.parkdex.app"), source);
+test("static app links and migration handoffs use the matching Kip app host", () => {
+  assert.deepEqual(KIP_APP_ORIGINS, {
+    production: "https://web.parkdex.app",
+    staging: "https://staging.web.parkdex.app",
+  });
+  const source = `<a href="${KIP_APP_ORIGINS.production}/migrate/">Move guest progress</a>`;
+  assert.equal(rewriteStaticAppLinks(source, KIP_APP_ORIGINS.production), source);
   assert.equal(
-    rewriteStaticAppLinks(source, "https://staging.web.parkdex.app"),
-    '<a href="https://staging.web.parkdex.app">Open Parkdex</a>',
+    rewriteStaticAppLinks(source, KIP_APP_ORIGINS.staging),
+    `<a href="${KIP_APP_ORIGINS.staging}/migrate/">Move guest progress</a>`,
   );
   assert.throws(() => rewriteStaticAppLinks(source, "https://attacker.example"), /Unsupported VITE_APP_URL/);
 });
 
-test("only exact reset and verification fragments move to the matching web app", () => {
+test("only exact reset and verification fragments move to the matching legacy app host", () => {
+  assert.deepEqual(LEGACY_APP_ORIGIN_BY_LANDING_ORIGIN, {
+    "https://parkdex.app": "https://map.parkdex.app",
+    "https://staging.parkdex.app": "https://staging.map.parkdex.app",
+  });
   assert.equal(
     authTokenRedirectTarget("https://parkdex.app", "#resetToken=reset-123"),
-    "https://web.parkdex.app/#resetToken=reset-123",
+    "https://map.parkdex.app/#resetToken=reset-123",
+  );
+  assert.equal(
+    authTokenRedirectTarget("https://parkdex.app", "#verificationToken=verify-456"),
+    "https://map.parkdex.app/#verificationToken=verify-456",
   );
   assert.equal(
     authTokenRedirectTarget("https://staging.parkdex.app", "#verificationToken=verify-456"),
-    "https://staging.web.parkdex.app/#verificationToken=verify-456",
+    "https://staging.map.parkdex.app/#verificationToken=verify-456",
+  );
+  assert.equal(
+    authTokenRedirectTarget("https://staging.parkdex.app", "#resetToken=reset-123"),
+    "https://staging.map.parkdex.app/#resetToken=reset-123",
   );
 
   for (const [origin, hash] of [
@@ -114,6 +131,7 @@ test("only exact reset and verification fragments move to the matching web app",
     ["https://staging.parkdex.app", "#verificationToken=one&unrecognized=value"],
     ["https://www.parkdex.app", "#resetToken=secret"],
     ["https://web.parkdex.app", "#resetToken=secret"],
+    ["https://staging.web.parkdex.app", "#verificationToken=secret"],
   ]) {
     assert.equal(authTokenRedirectTarget(origin, hash), null, `${origin}${hash}`);
   }

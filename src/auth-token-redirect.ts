@@ -1,12 +1,9 @@
-const APP_ORIGIN_BY_LANDING_ORIGIN: Readonly<Record<string, string>> = {
-  "https://parkdex.app": "https://web.parkdex.app",
-  "https://staging.parkdex.app": "https://staging.web.parkdex.app",
-};
+import { LEGACY_APP_ORIGIN_BY_LANDING_ORIGIN } from "./app-origins";
 
 const AUTH_TOKEN_KEYS = ["resetToken", "verificationToken"] as const;
 
 export function authTokenRedirectTarget(origin: string, hash: string): string | null {
-  const appOrigin = APP_ORIGIN_BY_LANDING_ORIGIN[origin];
+  const appOrigin = LEGACY_APP_ORIGIN_BY_LANDING_ORIGIN[origin];
   if (!appOrigin || !hash.startsWith("#")) return null;
 
   const fragmentParameters = new URLSearchParams(hash.slice(1));
