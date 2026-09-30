@@ -359,3 +359,15 @@
   .beta-step-button { font-size: 1.05rem; }
   .outdoor-beta .outdoor-signup-kip { width: min(36vw, 150px); }
 }
+
+/* Tablets: keep Kip on the phone's lower corner so the actions stay clear. */
+@media (min-width: 40.01rem) and (max-width: 63.99rem) {
+  .outdoor-kip-hero {
+    left: auto;
+    right: -16%;
+    bottom: -12%;
+    width: 56%;
+  }
+  .outdoor-kip--hero { transform: scaleX(-1) rotate(-5deg); }
+  .outdoor-kip-bubble { top: -12%; left: -24%; }
+}
