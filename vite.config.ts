@@ -6,7 +6,9 @@ import { createMcpMetadata, createRobotsTxt, createSitemapXml, rewriteStaticAppL
 
 export default defineConfig(({ mode }) => {
   const env = loadEnv(mode, process.cwd(), 'VITE_');
-  const appUrl = process.env.VITE_APP_URL || env.VITE_APP_URL || KIP_APP_ORIGINS.production;
+  // Vercel Git deploys of the staging branch build against the staging app.
+  const branchAppUrl = process.env.VERCEL_GIT_COMMIT_REF === 'staging' ? KIP_APP_ORIGINS.staging : KIP_APP_ORIGINS.production;
+  const appUrl = process.env.VITE_APP_URL || env.VITE_APP_URL || branchAppUrl;
   const mcpMetadata = createMcpMetadata(appUrl);
   let outputDirectory = 'dist';
 

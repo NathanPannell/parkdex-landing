@@ -12,7 +12,7 @@ Use Node 22 or 24. Run `npm ci`, then `npm run dev`. The static page is served a
 
 `DATABASE_URL` is server-only and points to the landing application's dedicated waitlist database. Never use the main Parkdex database. `VITE_APP_URL` selects the matching app origin for OAuth metadata and account migration. It defaults to `https://web.parkdex.app`; staging uses `https://staging.web.parkdex.app`.
 
-The landing deploys only to its separate Vercel project. No Git deployment integration, cron, polling service, or Railway service is needed. Read DEPLOYMENT.md for the temporary URL and provider ownership.
+The landing deploys through the Vercel Git integration: pushes to `staging` deploy to `staging.parkdex.app` and pushes to `main` deploy to `parkdex.app`. No GitHub Actions deploy, cron, polling service, or Railway service is needed. Read DEPLOYMENT.md for the temporary URL and provider ownership.
 
 ## Signup data
 

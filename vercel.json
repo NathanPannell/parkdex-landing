@@ -2,8 +2,14 @@
   "framework": "vite",
   "buildCommand": "npm run build",
   "outputDirectory": "dist",
-  "git": { "deploymentEnabled": false },
+  "git": { "deploymentEnabled": { "**": false, "main": true, "staging": true } },
   "redirects": [
+    {
+      "source": "/auth/google/callback",
+      "destination": "https://staging.map.parkdex.app/auth/google/callback",
+      "permanent": false,
+      "has": [{ "type": "host", "value": "staging.parkdex.app" }]
+    },
     {
       "source": "/auth/google/callback",
       "destination": "https://map.parkdex.app/auth/google/callback",
@@ -11,6 +17,13 @@
     }
   ],
   "rewrites": [
+    { "source": "/mcp", "destination": "https://api-staging-882c.up.railway.app/mcp", "has": [{ "type": "host", "value": "staging.parkdex.app" }] },
+    { "source": "/mcp/:path*", "destination": "https://api-staging-882c.up.railway.app/mcp/:path*", "has": [{ "type": "host", "value": "staging.parkdex.app" }] },
+    { "source": "/authorize", "destination": "https://api-staging-882c.up.railway.app/authorize", "has": [{ "type": "host", "value": "staging.parkdex.app" }] },
+    { "source": "/token", "destination": "https://api-staging-882c.up.railway.app/token", "has": [{ "type": "host", "value": "staging.parkdex.app" }] },
+    { "source": "/register", "destination": "https://api-staging-882c.up.railway.app/register", "has": [{ "type": "host", "value": "staging.parkdex.app" }] },
+    { "source": "/revoke", "destination": "https://api-staging-882c.up.railway.app/revoke", "has": [{ "type": "host", "value": "staging.parkdex.app" }] },
+    { "source": "/oauth/consent", "destination": "https://api-staging-882c.up.railway.app/oauth/consent", "has": [{ "type": "host", "value": "staging.parkdex.app" }] },
     { "source": "/mcp", "destination": "https://api-production-e72df.up.railway.app/mcp" },
     { "source": "/mcp/:path*", "destination": "https://api-production-e72df.up.railway.app/mcp/:path*" },
     { "source": "/authorize", "destination": "https://api-production-e72df.up.railway.app/authorize" },
@@ -50,6 +63,11 @@
         { "key": "Permissions-Policy", "value": "camera=(), microphone=(), geolocation=()" },
         { "key": "Content-Security-Policy", "value": "default-src 'self'; script-src 'self'; style-src 'self'; img-src 'self' data:; font-src 'self'; connect-src 'self'; base-uri 'self'; frame-ancestors 'none'; form-action 'self'" }
       ]
+    },
+    {
+      "source": "/:path((?!mcp(?:/.*)?$|authorize$|token$|register$|revoke$|oauth/consent$|\\.well-known/oauth-authorization-server$|\\.well-known/oauth-protected-resource/mcp$|auth/google/callback$).*)",
+      "has": [{ "type": "host", "value": "staging.parkdex.app" }],
+      "headers": [{ "key": "X-Robots-Tag", "value": "noindex" }]
     },
     {
       "source": "/mockups/(.*)",
