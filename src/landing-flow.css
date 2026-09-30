@@ -1,0 +1,373 @@
+/* Positioning story (how it works, collection ranks, trail facts) and the
+ * self-service Android beta steps. Builds on the Outdoor Poster tokens. */
+
+/* Hero count: the handwritten number that anchors the headline. */
+.outdoor-hero h1 .outdoor-count {
+  display: inline-block;
+  margin-right: .13em;
+  color: var(--outdoor-photo-copy);
+  font-family: var(--font-hand), cursive;
+  font-size: 1.2em;
+  font-variant-numeric: tabular-nums;
+  font-weight: 800;
+  -webkit-text-stroke: .018em currentColor;
+  letter-spacing: -.04em;
+  text-decoration-line: underline;
+  text-decoration-thickness: .055em;
+  text-underline-offset: .08em;
+  text-decoration-skip-ink: none;
+  white-space: nowrap;
+}
+
+@media (min-width: 64rem) {
+  .outdoor-hero .outdoor-hero-lede { max-width: 34ch; white-space: normal; }
+}
+
+.outdoor-section--collection .outdoor-section-copy h2 {
+  max-width: 13ch;
+  font-size: clamp(2.6rem, 4.4vw, 4.4rem);
+}
+
+.outdoor-cta-note {
+  margin-top: .7rem;
+  color: var(--outdoor-photo-soft);
+  font-size: .98rem;
+  line-height: 1.35;
+}
+
+.flow-eyebrow {
+  color: var(--outdoor-secondary);
+  font: 720 .82rem var(--font-display), sans-serif;
+  letter-spacing: .1em;
+  text-transform: uppercase;
+}
+
+/* How it works: one row of three numbered steps, each led by its real screen. */
+.flow-section {
+  padding: clamp(4rem, 7vw, 7rem) max(var(--outdoor-gutter), calc((100% - 1320px) / 2));
+  background: var(--outdoor-paper);
+}
+
+.flow-intro {
+  max-width: 44rem;
+}
+
+.flow-intro h2 {
+  margin-top: .7rem;
+  font-size: clamp(2.7rem, 5.3vw, 5rem);
+  line-height: .9;
+}
+
+.flow-intro p:last-child {
+  max-width: 40ch;
+  margin-top: 1.3rem;
+  color: var(--outdoor-secondary);
+  font-size: clamp(1.15rem, 1.55vw, 1.35rem);
+  line-height: 1.38;
+}
+
+.flow-steps {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: clamp(1.5rem, 3.5vw, 3.5rem);
+  margin: clamp(2.8rem, 5vw, 4.5rem) 0 0;
+  padding: 0;
+  list-style: none;
+}
+
+.flow-step {
+  display: grid;
+  grid-template-rows: auto 1fr;
+  gap: 1.6rem;
+}
+
+.flow-step .device-frame {
+  --device-frame-width: min(100%, 250px);
+  margin-inline: auto;
+}
+
+.flow-step:nth-child(1) .outdoor-device { transform: rotate(-2deg); }
+.flow-step:nth-child(3) .outdoor-device { transform: rotate(2deg); }
+
+.flow-step-copy {
+  padding-top: 1rem;
+  border-top: 2px solid var(--outdoor-ink);
+}
+
+.flow-step-number {
+  color: var(--outdoor-marker);
+  font: 780 1.05rem var(--font-display), sans-serif;
+  letter-spacing: .02em;
+}
+
+.flow-step h3 {
+  margin-top: .3rem;
+  font-size: clamp(1.6rem, 2.3vw, 2.1rem);
+  line-height: 1;
+}
+
+.flow-step-copy p:last-child {
+  max-width: 32ch;
+  margin-top: .6rem;
+  color: var(--outdoor-secondary);
+  font-size: 1.12rem;
+  line-height: 1.38;
+}
+
+/* Collection ranks, from the app's own rank ladder. */
+.rank-ladder {
+  display: grid;
+  gap: .45rem;
+  max-width: 26rem;
+  margin: 2rem 0 0;
+  padding: 0;
+  list-style: none;
+}
+
+.rank-ladder li {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) auto;
+  grid-template-areas: "name rarity" "rule rarity";
+  align-items: center;
+  column-gap: 1rem;
+  padding: .6rem .85rem;
+  border: 1px solid var(--color-hero-rule);
+  border-radius: .6rem;
+}
+
+.rank-name {
+  grid-area: name;
+  color: var(--outdoor-photo-copy);
+  font: 780 1.1rem var(--font-display), sans-serif;
+  letter-spacing: -.02em;
+}
+
+.rank-rule {
+  grid-area: rule;
+  color: var(--outdoor-photo-soft);
+  font-size: .95rem;
+}
+
+.rank-rarity {
+  grid-area: rarity;
+  padding: .25rem .6rem;
+  border-radius: 999px;
+  background: var(--outdoor-photo-copy);
+  color: var(--outdoor-ink);
+  font: 720 .8rem var(--font-display), sans-serif;
+}
+
+.rank-rarity[data-rarity="uncommon"] { background: #bfe3c8; }
+.rank-rarity[data-rarity="rare"] { background: #c6d8ff; }
+.rank-rarity[data-rarity="legendary"] { background: var(--outdoor-marker); }
+
+/* Trail facts: three short promises, no devices. */
+.trail-section {
+  padding: clamp(3rem, 5vw, 4.5rem) max(var(--outdoor-gutter), calc((100% - 1320px) / 2));
+  background: var(--outdoor-paper-deep);
+}
+
+.trail-facts {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: clamp(1.5rem, 4vw, 4rem);
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.trail-facts li {
+  padding-left: 1rem;
+  border-left: 3px solid var(--outdoor-marker);
+}
+
+.trail-facts h3 {
+  font-size: clamp(1.35rem, 1.9vw, 1.7rem);
+  line-height: 1.05;
+}
+
+.trail-facts p {
+  max-width: 34ch;
+  margin-top: .5rem;
+  color: var(--outdoor-secondary);
+  font-size: 1.08rem;
+  line-height: 1.4;
+}
+
+/* Beta section: the same two steps as the hero panel, on the page. */
+.beta-section {
+  display: grid;
+  grid-template-columns: minmax(0, .9fr) minmax(0, 1.1fr);
+  align-items: start;
+  gap: clamp(2rem, 6vw, 6rem);
+  padding: clamp(4rem, 7vw, 7rem) max(var(--outdoor-gutter), calc((100% - 1320px) / 2));
+  background: var(--outdoor-visit-paper);
+}
+
+.beta-section-copy h2 {
+  margin-top: .7rem;
+  font-size: clamp(2.7rem, 5vw, 4.6rem);
+  line-height: .9;
+}
+
+.beta-section-copy p:last-child {
+  max-width: 36ch;
+  margin-top: 1.3rem;
+  color: var(--outdoor-secondary);
+  font-size: clamp(1.15rem, 1.55vw, 1.3rem);
+  line-height: 1.38;
+}
+
+/* Beta steps. Colours come from the surrounding surface. */
+.beta-steps {
+  --step-ink: var(--outdoor-ink);
+  --step-soft: var(--outdoor-secondary);
+  --step-surface: var(--outdoor-paper-bright);
+  --step-rule: var(--outdoor-rule);
+  display: grid;
+  gap: 1rem;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.outdoor-beta .beta-steps {
+  --step-ink: var(--color-hero-text);
+  --step-soft: var(--color-hero-soft);
+  --step-surface: rgb(255 248 236 / 8%);
+  --step-rule: var(--color-hero-rule);
+}
+
+.beta-step-button {
+  display: grid;
+  grid-template-columns: auto minmax(0, 1fr) auto;
+  align-items: center;
+  gap: .9rem;
+  min-height: 64px;
+  padding: .7rem 1rem .7rem .7rem;
+  border: 1px solid var(--step-rule);
+  border-radius: .7rem;
+  background: var(--step-surface);
+  color: var(--step-ink);
+  font: 720 1.12rem var(--font-display), sans-serif;
+  letter-spacing: -.02em;
+  text-decoration: none;
+  white-space: normal;
+  transition: background var(--dur-short) var(--ease-out), border-color var(--dur-short) var(--ease-out), transform var(--dur-short) var(--ease-out);
+}
+
+.beta-step-button:active { transform: translateY(1px); }
+
+.beta-step-number {
+  display: grid;
+  place-items: center;
+  width: 2.5rem;
+  height: 2.5rem;
+  border: 2px solid currentColor;
+  border-radius: 50%;
+  font-size: 1.1rem;
+  line-height: 1;
+}
+
+.beta-step-done {
+  display: none;
+  color: var(--step-soft);
+  font-size: .9rem;
+  font-weight: 650;
+}
+
+.beta-step[data-state="current"] .beta-step-button {
+  border-color: var(--outdoor-marker);
+  background: var(--outdoor-marker);
+  color: var(--outdoor-ink);
+}
+
+.beta-step[data-state="done"] .beta-step-number {
+  border-color: var(--color-success);
+  background: var(--color-success);
+  color: var(--color-hero-text);
+}
+
+.beta-step[data-state="done"] .beta-step-done { display: inline; }
+
+.beta-step-help {
+  max-width: 44ch;
+  margin-top: .5rem;
+  padding-left: .75rem;
+  color: var(--step-soft);
+  font-size: 1rem;
+  line-height: 1.4;
+}
+
+.beta-step-help strong { color: var(--step-ink); font-weight: 700; }
+
+.beta-fine {
+  max-width: 50ch;
+  margin-top: 1rem;
+  color: var(--outdoor-secondary);
+  font-size: .98rem;
+  line-height: 1.45;
+}
+
+.beta-fine .outdoor-link-button { min-height: 0; }
+
+.beta-panel {
+  display: grid;
+  gap: 1rem;
+  max-width: 34rem;
+}
+
+.beta-panel h2 {
+  font-size: clamp(2.2rem, 4.6vw, 3.8rem);
+  line-height: .9;
+}
+
+.outdoor-beta .beta-fine {
+  margin-top: 0;
+  color: var(--color-hero-soft);
+  font-size: .95rem;
+}
+
+@media (hover: hover) and (pointer: fine) {
+  .beta-step-button:hover { border-color: var(--outdoor-marker); }
+  .beta-step[data-state="current"] .beta-step-button:hover { background: var(--outdoor-marker-hover); }
+}
+
+@media (max-width: 63.99rem) {
+  .flow-steps { gap: 1.25rem; }
+  .flow-step h3 { font-size: 1.45rem; }
+  .flow-step-copy p:last-child { font-size: 1.02rem; }
+  .beta-section { grid-template-columns: 1fr; }
+}
+
+@media (max-width: 40rem) {
+  .outdoor-cta-note { font-size: .9rem; }
+  .flow-section,
+  .beta-section { padding: 4.6rem 1.25rem; }
+  .trail-section { padding: 3.2rem 1.25rem; }
+  .flow-intro h2,
+  .beta-section-copy h2 { font-size: clamp(2.6rem, 12vw, 4rem); }
+  .flow-steps {
+    grid-template-columns: 1fr;
+    gap: 3.2rem;
+  }
+  .flow-step { gap: 1.2rem; }
+  .flow-step .device-frame { --device-frame-width: min(72vw, 250px); }
+  .flow-step-copy { max-width: 30rem; margin-inline: auto; width: 100%; }
+  .trail-facts { grid-template-columns: 1fr; gap: 1.6rem; }
+  .rank-ladder li { padding: .5rem .7rem; }
+  .beta-step-button { font-size: 1.05rem; }
+  .outdoor-beta .outdoor-signup-kip { width: min(36vw, 150px); }
+}
+
+/* Tablets: keep Kip on the phone's lower corner so the actions stay clear. */
+@media (min-width: 40.01rem) and (max-width: 63.99rem) {
+  .outdoor-kip-hero {
+    left: auto;
+    right: -16%;
+    bottom: -12%;
+    width: 56%;
+  }
+  .outdoor-kip--hero { transform: scaleX(-1) rotate(-5deg); }
+  .outdoor-kip-bubble { top: -12%; left: -24%; }
+}

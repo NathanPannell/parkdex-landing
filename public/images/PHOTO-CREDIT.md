@@ -14,12 +14,11 @@ The Goldstream photo within both screenshots is by Mike: [Flow, Goldstream Provi
 
 ## Field app screenshots and Kip
 
-The `field-*.webp` phone screens are unedited 780×1688 captures of the Parkdex field app at `https://parkdex-kip-staging.vercel.app` (Kip `staging` at `425c47b`, content release `5f0d1370`), taken September 28, 2026 in headless Chrome at 390×844 with device scale 2, signed out, using the demo spot in Victoria. Each map frame was taken after the detailed island map finished downloading. They are converted to WebP. The photos inside the claim and share screens are the app's illustrated demonstration images, not user visits. Map © Protomaps and OpenStreetMap contributors.
+The `app-*.webp` phone screens are unedited 780×1688 captures of the Parkdex app at `https://parkdex-kip-staging.vercel.app` (Kip `staging` at `0b79239`, the 100-park Victoria catalogue), taken September 30, 2026 in headless Chromium at 390×844 with device scale 2, signed out, using the demo spot in Victoria and the app's simulated trip. They are converted to WebP. The photo inside the claim, Dex and share screens is the app's illustrated stand-in scene, not a user visit. Map © Protomaps and OpenStreetMap contributors.
 
-- `field-map.webp` (map): hero phone.
-- `field-park-sheet.webp` (park sheet) and `field-nearby.webp` (map after the claim): map story.
-- `field-arrival.webp` (arrival) and `field-claimed.webp` (badge claimed): visit story.
-- `field-case.webp` (My Dex) and `field-share.webp` (share card): collection story.
+- `app-map.webp` (map with badge pins, 0 of 100): hero phone.
+- `app-park-sheet.webp`, `app-arrival.webp` and `app-claimed.webp`: the three How it works steps.
+- `app-dex.webp` (My Dex) and `app-share.webp` (share card): collection story.
 
 `kip/kip-wave.webp`, `kip/kip-cheer.webp` and `kip/kip-idle.webp` are copies of the field app's Kip the oystercatcher art (`parkdex-badge-mockup/public/art/kip/`).
 
