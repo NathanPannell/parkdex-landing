@@ -11,3 +11,7 @@ Use researched upstream device frame with side hardware and camera. Reserve came
 End See you out there. Retain About your email and functional removal, necessary photo/map credits. No portfolio link. Existing API, dedicated storage and throttling remain.
 
 Verify phone, tablet, laptop and wide desktop in batched review. Confirm screenshot dialogs, keyboard, signup/removal and Back then Scroll on deployed temporary Vercel URL. Record before/after in PR1. No app or domain changes.
+
+## September 30, 2026 revision
+
+Positioning: "100 park badges around Victoria. You have to go to get one." The opening keeps the photograph, wordmark, map phone, Kip and two actions. The primary action opens the two-step Android beta panel (Google Group, then Google Play testing and install); no Android email field remains. The secondary action is the App Store waitlist. Story: How it works (three real screens), collection with rank ladder, trail facts, Android beta section. Screens are the September 30 captures of Kip staging `0b79239`.
