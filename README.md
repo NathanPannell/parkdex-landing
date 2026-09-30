@@ -1,6 +1,6 @@
 # Parkdex landing
 
-The independent Parkdex introduction, the self-service Android beta steps, and the App Store waitlist. A static Vite page with a Vercel Function and its own Neon database.
+The independent Parkdex introduction, th e self-service Android beta steps, and the App Store waitlist. A static Vite page with a Vercel Function and its own Neon database.
 
 ## Development
 
