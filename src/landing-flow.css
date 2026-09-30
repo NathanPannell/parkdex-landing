@@ -311,6 +311,23 @@
 
 .beta-fine .outdoor-link-button { min-height: 0; }
 
+.beta-note {
+  max-width: 50ch;
+  margin-top: 1rem;
+  padding: .85rem 1rem;
+  border: 1px solid var(--step-rule);
+  border-left: 4px solid var(--outdoor-marker);
+  border-radius: .7rem;
+  background: var(--step-surface);
+  color: var(--step-soft);
+  font-size: 1rem;
+  line-height: 1.45;
+}
+
+.beta-note strong { color: var(--step-ink); font-weight: 700; }
+
+.outdoor-beta .beta-note { margin-top: 0; }
+
 .beta-panel {
   display: grid;
   gap: 1rem;
@@ -347,13 +364,23 @@
   .trail-section { padding: 3.2rem 1.25rem; }
   .flow-intro h2,
   .beta-section-copy h2 { font-size: clamp(2.6rem, 12vw, 4rem); }
+  /* Phones: the three steps swipe sideways so they don't stack three screens tall. */
   .flow-steps {
-    grid-template-columns: 1fr;
-    gap: 3.2rem;
+    grid-template-columns: none;
+    grid-auto-flow: column;
+    grid-auto-columns: min(78%, 18rem);
+    gap: 1.25rem;
+    margin-inline: -1.25rem;
+    padding: .75rem 1.25rem 1rem;
+    overflow-x: auto;
+    overscroll-behavior-x: contain;
+    scroll-snap-type: x mandatory;
+    scroll-padding-inline: 1.25rem;
+    scrollbar-width: none;
   }
-  .flow-step { gap: 1.2rem; }
-  .flow-step .device-frame { --device-frame-width: min(72vw, 250px); }
-  .flow-step-copy { max-width: 30rem; margin-inline: auto; width: 100%; }
+  .flow-steps::-webkit-scrollbar { display: none; }
+  .flow-step { gap: 1.2rem; scroll-snap-align: start; }
+  .flow-step .device-frame { --device-frame-width: min(100%, 220px); }
   .trail-facts { grid-template-columns: 1fr; gap: 1.6rem; }
   .rank-ladder li { padding: .5rem .7rem; }
   .beta-step-button { font-size: 1.05rem; }
