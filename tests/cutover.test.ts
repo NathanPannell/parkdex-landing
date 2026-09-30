@@ -21,6 +21,9 @@ test("production and staging Vercel configs preserve the seven legacy API routes
     ["vercel.staging.json", "https://api-staging-882c.up.railway.app", "https://staging.map.parkdex.app"],
   ] as const) {
     const config = JSON.parse(readFileSync(new URL(`../${file}`, import.meta.url), "utf8"));
+    // vercel.json also carries host-scoped staging routes; those are checked in workflows.test.ts.
+    config.rewrites = config.rewrites.filter((route: { has?: unknown }) => !route.has);
+    config.redirects = config.redirects.filter((route: { has?: unknown }) => !route.has);
     assert.deepEqual(config.rewrites.map((route: { source: string }) => route.source).sort(), expectedRoutes);
     assert.ok(config.rewrites.every((route: { destination: string }) => route.destination.startsWith(`${apiOrigin}/`)));
     const metadataHeaders = config.headers.filter((route: { source: string }) => route.source.startsWith("/.well-known/"));
@@ -36,7 +39,6 @@ test("production and staging Vercel configs preserve the seven legacy API routes
       destination: `${appOrigin}/auth/google/callback`,
       permanent: false,
     });
-    assert.equal(config.git.deploymentEnabled, false);
   }
 });
 

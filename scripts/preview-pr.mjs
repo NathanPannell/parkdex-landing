@@ -213,7 +213,9 @@ async function create(pr) {
     await sql.query(readFileSync(join(directory, "schema.sql"), "utf8"));
     bindVercel(directory);
     const previewEnv = vercelWithStderr("env", "ls", "preview", "--cwd", directory, "--no-color");
-    if (!/No Environment Variables found/i.test(previewEnv)) throw new Error("The Vercel Preview environment must contain no persistent variables");
+    // Only the staging branch's own DATABASE_URL may live in Preview; PR previews get theirs per deployment.
+    const previewRows = previewEnv.split(/\r?\n/).filter((line) => /^\s*[A-Z][A-Z0-9_]*\s+\S/.test(line) && !/^\s*name\s/i.test(line));
+    if (!/No Environment Variables found/i.test(previewEnv) && !previewRows.every((line) => /^\s*DATABASE_URL\s.*Preview \(staging\)/.test(line))) throw new Error("The Vercel Preview environment may only hold the staging branch DATABASE_URL");
     state.intent.vercel = { projectId: required("VERCEL_PREVIEW_PROJECT_ID"), headSha: pull.headRefOid, releaseId };
     state.status = "vercel-creating";
     save(path, state);
