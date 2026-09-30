@@ -19,6 +19,15 @@
   white-space: nowrap;
 }
 
+@media (min-width: 64rem) {
+  .outdoor-hero .outdoor-hero-lede { max-width: 34ch; white-space: normal; }
+}
+
+.outdoor-section--collection .outdoor-section-copy h2 {
+  max-width: 13ch;
+  font-size: clamp(2.6rem, 4.4vw, 4.4rem);
+}
+
 .outdoor-cta-note {
   margin-top: .7rem;
   color: var(--outdoor-photo-soft);
