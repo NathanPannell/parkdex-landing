@@ -1,6 +1,6 @@
 # Parkdex landing
 
-The independent Parkdex introduction, th e self-service Android beta steps, and the App Store waitlist. A static Vite page with a Vercel Function and its own Neon database.
+The independent Parkdex introduction, the self-service Android beta steps, and the App Store waitlist. A static Vite page with a Vercel Function and its own Neon database.
 
 ## Development
 
@@ -33,4 +33,4 @@ The main page's **About your email** disclosure includes direct removal from bot
 
 `/privacy/`, `/delete-account/`, and `/support/` are static pages in this landing project. Account deletion requests go to Nathan at `contact@nathanpannell.com` and are fulfilled through the Parkdex app's verified owner-run process. The landing has no account-deletion API, request database, or inbox automation. Waitlist removal stays in **About your email** and is separate from account deletion. Update the public privacy copy when the app's data flow or provider configuration changes; source evidence and release gates are in `docs/privacy-data-inventory.md` and `docs/privacy-release-gates.md`.
 
-The upcoming Android section uses the `arrival-after` and `collection-after` Sealed Impressions captures with demonstration photographs. Their provenance and photo credits are in public/images/PHOTO-CREDIT.md. Production styles enter through src/shared-base.css, poster-page.css and device-frame.css; the older style.css is retained only by comparison routes.
+The Android beta section uses the `arrival-after` and `collection-after` Sealed Impressions captures with demonstration photographs. Their provenance and photo credits are in public/images/PHOTO-CREDIT.md. Production styles enter through src/shared-base.css, poster-page.css and device-frame.css; the older style.css is retained only by comparison routes.
