@@ -371,20 +371,24 @@ h1, h2, h3 { font-variation-settings: 'opsz' 96; font-weight: 800; letter-spacin
 .badge-svg__holo { opacity: .55; mix-blend-mode: soft-light; animation: badge-holo 7s ease-in-out infinite alternate; }
 @keyframes badge-holo { from { translate: -40px -30px; } to { translate: 40px 30px; } }
 
-/* ---------- Full-screen badge wall ---------- */
-.badge-wall { --tile: clamp(96px, 11vw, 150px); position: relative; display: grid; place-items: center; height: 100svh; min-height: 560px; max-height: 1400px; overflow: hidden; border-block: var(--outline); background: radial-gradient(circle at 50% 50%, #fff3c4, var(--cream-deep) 70%); perspective: 1200px; }
-.badge-wall__tiles { position: absolute; top: 50%; left: 50%; display: grid; row-gap: calc(var(--tile) * -0.13); transform: translate(-50%, -50%) rotateX(var(--tilt-x, 0deg)) rotateY(var(--tilt-y, 0deg)); transition: transform .6s var(--ease-out, ease-out); }
+/* ---------- Badge bands ----------
+ * Rows of app-style badges between sections. Edges fade out instead of
+ * stopping at a hard line. */
+.badge-band { --tile: clamp(92px, 10vw, 140px); position: relative; height: calc(var(--rows) * var(--tile) * .89 + var(--tile) * .2); overflow: hidden; -webkit-mask-image: linear-gradient(transparent, #000 22%, #000 78%, transparent), linear-gradient(90deg, transparent, #000 8%, #000 92%, transparent); -webkit-mask-composite: source-in; mask-image: linear-gradient(transparent, #000 22%, #000 78%, transparent), linear-gradient(90deg, transparent, #000 8%, #000 92%, transparent); mask-composite: intersect; }
+.badge-band[data-rows="2"] { --rows: 2; } .badge-band[data-rows="3"] { --rows: 3; } .badge-band[data-rows="4"] { --rows: 4; }
+.badge-band__tiles { position: absolute; top: 50%; left: 50%; display: grid; row-gap: calc(var(--tile) * -0.13); transform: translate(-50%, -50%); }
 .wall-row { display: flex; gap: calc(var(--tile) * .06); }
 .wall-row--offset { margin-left: calc(var(--tile) * .53); }
-.wall-tile { flex: none; width: var(--tile); animation: wall-ripple 6s ease-in-out infinite; transition: transform .2s ease; }
-.wall-tile:hover { position: relative; z-index: 2; transform: scale(1.18) rotate(-4deg); animation-play-state: paused; }
+.wall-tile { flex: none; width: var(--tile); animation: wall-ripple 6s ease-in-out infinite; transition: scale .2s ease; }
+.wall-tile:hover, .wall-tile:focus-visible { position: relative; z-index: 2; scale: 1.15; animation-play-state: paused; }
 @keyframes wall-ripple { 0%, 70%, 100% { transform: translateY(0) scale(1); } 80% { transform: translateY(-8%) scale(1.06); } 90% { transform: translateY(2%) scale(.98); } }
 .wall-tile[data-ring="1"] { animation-delay: .25s; } .wall-tile[data-ring="2"] { animation-delay: .5s; } .wall-tile[data-ring="3"] { animation-delay: .75s; }
 .wall-tile[data-ring="4"] { animation-delay: 1s; } .wall-tile[data-ring="5"] { animation-delay: 1.25s; } .wall-tile[data-ring="6"] { animation-delay: 1.5s; }
 .wall-tile[data-ring="7"] { animation-delay: 1.75s; } .wall-tile[data-ring="8"] { animation-delay: 2s; } .wall-tile[data-ring="9"] { animation-delay: 2.25s; }
-.badge-wall__card { position: relative; z-index: 3; max-width: min(30rem, calc(100% - 2.5rem)); padding: 1.6rem 1.6rem 1.8rem; border: var(--outline); border-radius: 26px; background: rgb(255 248 236 / 94%); box-shadow: 0 8px 0 var(--ink); text-align: center; backdrop-filter: blur(6px); }
-.badge-wall__card h2 { font-size: clamp(2rem, 6vw, 3rem); }
-.badge-wall__card p { margin: .8rem 0 1.3rem; color: var(--ink-soft); font-size: 1.1rem; }
+.badge-intro { padding-top: 3.5rem; text-align: center; }
+.badge-intro__copy { width: min(40rem, calc(100% - 2.5rem)); margin: 0 auto 1rem; }
+.badge-intro__copy h2 { font-size: clamp(2.2rem, 7vw, 3.4rem); }
+.badge-intro__copy p { margin: .8rem auto 1.4rem; color: var(--ink-soft); font-size: 1.15rem; }
 
 /* Badges page and day trips: app badges at a sensible size. */
 .badge-entry__badge { width: 100%; max-width: 220px; margin-inline: auto; }
@@ -392,9 +396,9 @@ h1, h2, h3 { font-variation-settings: 'opsz' 96; font-weight: 800; letter-spacin
 .trip-post figure img { aspect-ratio: 1; }
 
 /* The closing signup stays as narrow as the content above it. */
-.fan-get { width: min(760px, calc(100% - 2.5rem)); }
+.fan-get { width: min(760px, calc(100% - 2.5rem)); margin-inline: auto; padding-block: 3rem; text-align: center; }
+.fan-get h2 { font-size: clamp(2.1rem, 6vw, 3rem); }
 
 @media (prefers-reduced-motion: reduce) {
   .wall-tile, .badge-svg__shine, .badge-svg__holo { animation: none; }
-  .badge-wall__tiles { transition: none; }
 }
