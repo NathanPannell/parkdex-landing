@@ -2,6 +2,7 @@ import './fan-page.css';
 import 'maplibre-gl/dist/maplibre-gl.css';
 import * as maplibregl from 'maplibre-gl';
 import badgeData from './badges.json';
+import { CATEGORY_LABEL } from './badge-cards';
 
 // OpenFreeMap's Positron style is a quiet, low-detail basemap that needs no key.
 maplibregl.setWorkerUrl(`${location.origin}/maplibre/maplibre-gl-worker.mjs`);
@@ -41,14 +42,14 @@ function popupContent(badge: (typeof badges)[number]): HTMLElement {
   const chip = document.createElement('span');
   chip.className = 'badge-chip';
   chip.textContent = badge.rarity;
+  const meta = document.createElement('p');
+  meta.className = 'badge-entry__meta';
+  meta.append(chip, CATEGORY_LABEL[badge.category ?? ''] ?? 'Park');
   const name = document.createElement('strong');
   name.textContent = badge.name;
   const blurb = document.createElement('p');
   blurb.textContent = badge.blurb;
-  const link = document.createElement('a');
-  link.href = `/badges/#${badge.id}`;
-  link.textContent = 'About this badge';
-  wrapper.append(chip, name, blurb, link);
+  wrapper.append(meta, name, blurb);
   return wrapper;
 }
 
