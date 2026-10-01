@@ -1,6 +1,6 @@
 # Parkdex landing
 
-The independent Parkdex introduction, th e self-service Android beta steps, and the App Store waitlist. A static Vite page with a Vercel Function and its own Neon database.
+The independent Parkdex introduction, the self-service Android beta steps, and the App Store waitlist. A static Vite page with a Vercel Function and its own Neon database.
 
 ## Development
 
@@ -20,7 +20,7 @@ Each signup names a list. Android beta requests go to `android_beta_signups` and
 
 ## Design and assets
 
-The page opens with the East Sooke coastline, the Parkdex wordmark and the positioning line "100 park badges around Victoria. You have to go to get one." beside the current map phone and Kip. "Get access to Android beta" opens a full-screen panel with two numbered buttons, "1. Join the tester group" and "2. Install Parkdex"; the steps open Google in a new tab, remember progress for the session, and the panel stays open to return to. "On iPhone? Join the waitlist" opens the App Store email form. The story follows the app's own loop: How it works (pick a park, step inside the boundary, snap and claim, one real screen each), a deep-green collection section with the app's rank ladder beside My Dex and the share card, three trail facts (offline map, no account needed, location use), and an Android beta section repeating the two steps with the Canada and internal-tester notes. The footer keeps the sign-off, links, About your email and Credits dialogs.
+The page is a collector page whose layout takes inspiration from chonkfinder.app and whose look follows the Parkdex app (Bricolage Grotesque and Figtree, cream paper, Kip orange, ink outlines with hard shadows, and the app's rarity colours): a sticky nav with a Get the beta button, a hero ("Every park around here has a badge.") beside the map phone and Kip, two rows of real badge art scrolling in opposite directions, three feature rows (the map, being there, ranks) with app screens, a wall of every live badge sorted rarest first, and a closing section with the two Android beta steps and the Google Play delay note. The beta panel, App Store waitlist, About your email and Credits dialogs are unchanged in behaviour. Styles live in src/fan-page.css. The Badges, Near me and Day trips pages share the nav and footer from src/site-shell.ts. Badge cards come from `src/badges.json` and `public/badges/`, which `npm run sync-badges` refreshes from the staging catalogue for now, since it has far more finished badges (set `PARKDEX_APP_ORIGIN=https://web.parkdex.app` to use production); review and commit the result.
 
 Real app captures are used without recreating their contents. All phone screens and Kip come from the Parkdex field app (`../parkdex-badge-mockup`), currently the 100-park catalogue around Victoria. `/og-image.jpg` is the share card rendered from `social/og-card.html`; see social/README.md. Screenshot provenance and the hero photograph credit are recorded in public/images/PHOTO-CREDIT.md. DESIGN.md and the surface brief describe the current visual system and composition.
 ## Design comparison
@@ -33,4 +33,4 @@ The main page's **About your email** disclosure includes direct removal from bot
 
 `/privacy/`, `/delete-account/`, and `/support/` are static pages in this landing project. Account deletion requests go to Nathan at `contact@nathanpannell.com` and are fulfilled through the Parkdex app's verified owner-run process. The landing has no account-deletion API, request database, or inbox automation. Waitlist removal stays in **About your email** and is separate from account deletion. Update the public privacy copy when the app's data flow or provider configuration changes; source evidence and release gates are in `docs/privacy-data-inventory.md` and `docs/privacy-release-gates.md`.
 
-The upcoming Android section uses the `arrival-after` and `collection-after` Sealed Impressions captures with demonstration photographs. Their provenance and photo credits are in public/images/PHOTO-CREDIT.md. Production styles enter through src/shared-base.css, poster-page.css and device-frame.css; the older style.css is retained only by comparison routes.
+The Android beta section uses the `arrival-after` and `collection-after` Sealed Impressions captures with demonstration photographs. Their provenance and photo credits are in public/images/PHOTO-CREDIT.md. Production styles enter through src/shared-base.css, poster-page.css and device-frame.css; the older style.css is retained only by comparison routes.

@@ -1,8 +1,5 @@
-import './shared-base.css';
-import './poster-page.css';
+import './fan-page.css';
 import './device-frame.css';
-import './signup-footer.css';
-import './landing-flow.css';
 
 const dialogs = [...document.querySelectorAll<HTMLDialogElement>('.outdoor-dialog, .outdoor-signup')];
 function revealLinkedDialog() {
@@ -253,20 +250,3 @@ removeForm.addEventListener('submit', async event => {
   }
 });
 
-// Count the headline number up once, padded so the line does not reflow.
-const countElement = document.querySelector<HTMLSpanElement>('#park-count')!;
-const parkCount = Number(countElement.dataset.count);
-const countDigits = String(parkCount).length;
-const formatCount = (value: number) => String(value).padStart(countDigits, '0');
-if (Number.isFinite(parkCount) && !matchMedia('(prefers-reduced-motion: reduce)').matches) {
-  let countStart: number | undefined;
-  const updateCount = (time: number) => {
-    countStart ??= time;
-    const progress = Math.min((time - countStart) / 1000, 1);
-    countElement.textContent = formatCount(Math.round(parkCount * progress));
-    if (progress < 1) requestAnimationFrame(updateCount);
-  };
-  requestAnimationFrame(updateCount);
-} else if (Number.isFinite(parkCount)) {
-  countElement.textContent = formatCount(parkCount);
-}

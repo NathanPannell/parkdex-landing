@@ -1,0 +1,31 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover" />
+    <meta name="theme-color" content="#fff9f0" />
+    <meta name="description" content="A map of the Parkdex badge parks around you." />
+    <link rel="canonical" href="https://parkdex.app/near-me/" />
+    <meta property="og:site_name" content="Parkdex" />
+    <meta property="og:type" content="website" />
+    <meta property="og:url" content="https://parkdex.app/near-me/" />
+    <meta property="og:title" content="Near me · Parkdex" />
+    <meta property="og:description" content="A map of the Parkdex badge parks around you." />
+    <meta property="og:image" content="https://parkdex.app/og-image.jpg" />
+    <link rel="icon" href="/favicon.ico" sizes="16x16 24x24 32x32 48x48 64x64" />
+    <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png" />
+    <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png" />
+    <title>Near me · Parkdex</title>
+  </head>
+  <body class="fan-page fan-page--map">
+    <a class="fan-skip" href="#main">Skip to content</a>
+    <!-- site-nav:near-me -->
+    <main id="main" class="near-me">
+      <h1 class="fan-sr-only">Badge parks near me</h1>
+      <div id="near-me-map" class="near-me__map" role="region" aria-label="Map of badge parks"></div>
+      <p id="near-me-status" class="near-me__status" role="status" aria-live="polite"></p>
+    </main>
+    <!-- site-footer -->
+    <script type="module" src="/src/near-me.ts"></script>
+  </body>
+</html>
