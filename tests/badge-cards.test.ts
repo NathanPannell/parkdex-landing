@@ -1,24 +1,22 @@
 import assert from "node:assert/strict";
 import test from "node:test";
-import { renderMarquee, renderWall, type Badge } from "../src/badge-cards.ts";
+import { renderBadgeList, renderDexPage, type Badge } from "../src/badge-cards.ts";
 import badgeData from "../src/badges.json" with { type: "json" };
 
 const badge = (short: string, rarity: string): Badge => ({ id: short, name: `${short} Park`, short, rarity, biome: "forest", scene: short.toLowerCase(), blurb: "" });
 
-test("marquee repeats each row once, hiding the copies from screen readers", () => {
-  const html = renderMarquee([badge("A", "common"), badge("B", "rare"), badge("C", "common")]);
-  assert.equal((html.match(/<ul class="badge-marquee__row/g) ?? []).length, 2);
-  assert.equal((html.match(/<li /g) ?? []).length, 6);
-  assert.equal((html.match(/aria-hidden="true"/g) ?? []).length, 3);
-});
-
-test("wall leads with the rarest badges", () => {
-  const html = renderWall([badge("Zed", "common"), badge("Amy", "uncommon"), badge("Bo", "rare")]);
-  assert.deepEqual([...html.matchAll(/badge-card__name">([^<]+)/g)].map((m) => m[1]), ["Bo", "Amy", "Zed"]);
+test("dex page leads with the rarest badges and adds empty slots", () => {
+  const html = renderDexPage([badge("Zed", "common"), badge("Amy", "uncommon"), badge("Bo", "rare")], 2, 3);
+  assert.deepEqual([...html.matchAll(/dex-slot__ribbon">([^<]+)/g)].map((m) => m[1]), ["Bo", "Amy"]);
+  assert.equal((html.match(/dex-slot--empty/g) ?? []).length, 3);
 });
 
 test("park names are escaped", () => {
-  assert.match(renderWall([badge("<b>&", "common")]), /&#60;b&#62;&#38;/);
+  assert.match(renderDexPage([badge("<b>&", "common")]), /&#60;b&#62;&#38;/);
+});
+
+test("badge entries carry lowercase search text", () => {
+  assert.match(renderBadgeList([badge("Bo", "rare")]), /data-search="bo park bo rare park "/);
 });
 
 test("every synced badge has its art committed", async () => {

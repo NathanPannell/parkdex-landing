@@ -97,16 +97,8 @@ h1, h2, h3 { font-family: var(--display); font-weight: 800; line-height: 1.02; l
 .fan-kip img { width: 100%; }
 .fan-kip__bubble { position: absolute; left: 10%; bottom: 92%; padding: .35rem .8rem; border: 2px solid var(--ink); border-radius: 999px; background: #fff; font-family: var(--display); font-size: .95rem; font-weight: 700; white-space: nowrap; }
 
-/* Badge marquee */
-.badge-marquee { display: grid; gap: 1rem; padding-block: 1rem 3.5rem; overflow: hidden; }
-.badge-marquee__row { display: flex; gap: 1rem; width: max-content; animation: fan-marquee 60s linear infinite; }
-.badge-marquee__row--reverse { animation-direction: reverse; }
-.badge-marquee:hover .badge-marquee__row { animation-play-state: paused; }
-.badge-marquee .badge-card { width: clamp(150px, 18vw, 200px); }
-@keyframes fan-marquee { to { transform: translateX(calc(-50% - .5rem)); } }
-.fan-caption { width: var(--page); margin: .75rem auto 0; color: var(--muted); font-size: .95rem; text-align: center; }
 
-/* Badge cards, shared by the marquee and the wall */
+/* Badge cards */
 .badge-card { position: relative; overflow: hidden; aspect-ratio: 1; border-radius: var(--radius); background: var(--cream-deep); box-shadow: var(--shadow-soft); }
 .badge-card img { width: 100%; height: 100%; object-fit: cover; }
 .badge-card::after { content: ''; position: absolute; inset: 55% 0 0; background: linear-gradient(transparent, rgb(20 20 15 / 62%)); }
@@ -136,10 +128,7 @@ h1, h2, h3 { font-family: var(--display); font-weight: 800; line-height: 1.02; l
 .fan-ranks em[data-rarity="legendary"] { background: var(--rarity-legendary); }
 
 /* Badge wall */
-.badge-wall-section, .fan-get { width: var(--page); margin-inline: auto; padding-block: 4rem; text-align: center; }
-.badge-wall-section h2, .fan-get h2 { font-size: clamp(2.1rem, 6vw, 3rem); }
 .fan-section-lede { max-width: 34rem; margin: .8rem auto 0; color: var(--ink-soft); font-size: 1.1rem; }
-.badge-wall { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: .85rem; margin-top: 2.25rem; text-align: left; }
 
 /* Final call to action with the beta steps */
 .fan-get { margin-bottom: 3rem; padding: 3rem 1.25rem; border-radius: 32px; background: var(--cream-deep); }
@@ -198,7 +187,6 @@ form[data-state=success] .outdoor-form-message { color: var(--success); }
 .fan-footer__fine { display: flex; flex-wrap: wrap; justify-content: space-between; gap: .5rem; width: var(--page); margin-inline: auto; padding-block: 1.25rem 2rem; border-top: 1px solid var(--line); color: var(--muted); font-size: .85rem; }
 
 @media (min-width: 40rem) {
-  .badge-wall { grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 1rem; }
   .fan-footer__cols { grid-template-columns: repeat(3, minmax(0, 1fr)); }
 }
 
@@ -211,8 +199,6 @@ form[data-state=success] .outdoor-form-message { color: var(--success); }
   .fan-feature { grid-template-columns: .8fr 1.2fr; gap: 4rem; padding-block: 4.5rem; }
   .fan-feature--flip .fan-feature__phone { order: 2; }
   .fan-feature__phone { width: min(100%, 250px); }
-  .badge-wall { grid-template-columns: repeat(6, minmax(0, 1fr)); }
-  .badge-wall .badge-card__name { font-size: .95rem; }
   .fan-footer__inner { grid-template-columns: 1fr 1.6fr; }
 }
 
@@ -221,14 +207,10 @@ form[data-state=success] .outdoor-form-message { color: var(--success); }
   .fan-store:hover { transform: translateY(-2px); }
   .fan-nav__links a:hover, .fan-footer li a:hover, .fan-footer li .fan-link:hover { color: var(--orange); }
   .beta-step-button:hover { border-color: var(--orange); }
-  .badge-wall .badge-card { transition: transform .2s ease; }
-  .badge-wall .badge-card:hover { transform: rotate(-1.5deg) scale(1.03); }
 }
 
 @media (prefers-reduced-motion: reduce) {
   html { scroll-behavior: auto; }
-  .badge-marquee__row { animation: none; }
-  .badge-marquee { overflow-x: auto; }
   *, *::before, *::after { transition: none !important; }
 }
 
@@ -300,8 +282,7 @@ form[data-state=success] .outdoor-form-message { color: var(--success); }
  * Outlined, sticker-like surfaces with a hard ink shadow, as in the app. */
 h1, h2, h3 { font-variation-settings: 'opsz' 96; font-weight: 800; letter-spacing: -.035em; line-height: .98; }
 .fan-hero h1 { font-size: clamp(2.7rem, 9vw, 4.6rem); }
-.fan-accent { position: relative; white-space: nowrap; }
-.fan-accent::after { content: ''; position: absolute; left: -.05em; right: -.05em; bottom: .04em; z-index: -1; height: .28em; border-radius: 999px; background: var(--sun); }
+.fan-accent { white-space: nowrap; }
 .fan-nav { border-bottom: var(--outline); background: rgb(255 248 236 / 92%); }
 .fan-brand img { border: 2px solid var(--ink); box-shadow: 0 2px 0 var(--ink); }
 .fan-button, .outdoor-primary { border: var(--outline); color: var(--ink); box-shadow: var(--pop); font-family: var(--display); font-weight: 800; }
@@ -321,9 +302,6 @@ h1, h2, h3 { font-variation-settings: 'opsz' 96; font-weight: 800; letter-spacin
 
 /* Badge cards read as stickers: ink outline, hard shadow, slight tilt. */
 .badge-card { border: var(--outline); box-shadow: var(--shadow-soft); }
-.badge-marquee__row .badge-card:nth-child(odd) { transform: rotate(-1.2deg); }
-.badge-marquee__row .badge-card:nth-child(even) { transform: rotate(1.2deg); }
-.badge-marquee { padding-top: 1.5rem; }
 .badge-card::after { background: linear-gradient(transparent, rgb(20 35 28 / 72%)); }
 .badge-card__name { font-family: var(--display); font-weight: 800; }
 
@@ -359,3 +337,53 @@ h1, h2, h3 { font-variation-settings: 'opsz' 96; font-weight: 800; letter-spacin
   .fan-store:hover { transform: translateY(-2px); box-shadow: 0 6px 0 var(--ink); }
   .trip-card a:hover, .badge-entry:hover { transform: translateY(-2px); box-shadow: var(--pop); }
 }
+
+/* ---------- Dex page on the homepage ----------
+ * Hexagon badges with a name ribbon, like the app's badge shelf. */
+.dex-section { display: grid; gap: 2.5rem; align-items: center; width: var(--page); margin-inline: auto; padding-block: 3rem; }
+.dex-section h2 { font-size: clamp(2rem, 6vw, 2.75rem); }
+.dex-section__copy p { max-width: 30rem; margin: 1rem 0 1.5rem; color: var(--ink-soft); font-size: 1.1rem; }
+.dex-grid { --cols: 3; display: grid; grid-template-columns: repeat(calc(var(--cols) * 2 + 1), minmax(0, 1fr)); row-gap: 0; column-gap: .5rem; }
+.dex-slot { grid-column: span 2; position: relative; margin-bottom: -12%; }
+.dex-slot:nth-child(6n + 4) { grid-column: 2 / span 2; }
+.dex-slot__link { display: block; color: inherit; text-decoration: none; }
+.dex-slot__hex { display: grid; place-items: center; aspect-ratio: 1 / 1.1547; padding: 5%; background: var(--ink); clip-path: polygon(50% 0, 100% 25%, 100% 75%, 50% 100%, 0 75%, 0 25%); }
+.dex-slot__hex img, .dex-slot__hex > span { width: 100%; height: 100%; object-fit: cover; clip-path: polygon(50% 0, 100% 25%, 100% 75%, 50% 100%, 0 75%, 0 25%); }
+.dex-slot__ribbon { position: absolute; left: 50%; bottom: 14%; max-width: 110%; padding: .12rem .55rem; overflow: hidden; border: 2px solid var(--ink); border-radius: 6px; background: var(--pine); color: var(--cream); font-family: var(--display); font-size: clamp(.68rem, 2.4vw, .85rem); font-weight: 700; text-overflow: ellipsis; white-space: nowrap; transform: translateX(-50%); box-shadow: 0 2px 0 var(--ink); }
+.dex-slot[data-rarity="uncommon"] .dex-slot__ribbon { background: var(--rarity-uncommon-ink); }
+.dex-slot[data-rarity="rare"] .dex-slot__ribbon { background: var(--rarity-rare-ink); }
+.dex-slot[data-rarity="legendary"] .dex-slot__ribbon { background: var(--rarity-legendary-ink); }
+.dex-slot--empty .dex-slot__hex { background: var(--line); }
+.dex-slot--empty .dex-slot__hex > span { display: grid; place-items: center; background: var(--cream-deep); color: var(--muted); font-family: var(--display); font-size: clamp(1.5rem, 5vw, 2.4rem); font-weight: 700; }
+@media (min-width: 56rem) {
+  .dex-section { grid-template-columns: .9fr 1.1fr; gap: 4rem; padding-block: 4.5rem; }
+  .dex-grid { --cols: 4; }
+  .dex-slot:nth-child(6n + 4) { grid-column: span 2; }
+  .dex-slot:nth-child(8n + 5) { grid-column: 2 / span 2; }
+}
+@media (hover: hover) and (pointer: fine) {
+  .dex-slot__link { transition: transform .2s ease; }
+  .dex-slot__link:hover { transform: translateY(-4px) rotate(-2deg); }
+}
+
+/* ---------- Badges search ---------- */
+.badge-search { display: grid; gap: .5rem; max-width: 34rem; margin-bottom: 2rem; }
+.badge-search label { font-family: var(--display); font-size: 1.1rem; font-weight: 700; }
+.badge-search input { min-height: 52px; padding: .7rem 1rem; border: var(--outline); border-radius: 16px; background: var(--card); box-shadow: var(--pop-small); font-size: 1.05rem; }
+.badge-search__count { color: var(--muted); font-size: .9rem; font-weight: 700; }
+.badge-search__empty { margin-top: 1rem; color: var(--muted); font-weight: 700; }
+.badge-entry[hidden] { display: none; }
+
+/* ---------- Day trip posts ---------- */
+.trip-post { font-size: 1.1rem; line-height: 1.7; }
+.trip-post > p { margin-top: 1rem; color: var(--ink-soft); }
+.trip-post h2 { display: flex; align-items: center; gap: .75rem; margin-top: 3rem; font-size: clamp(1.6rem, 5vw, 2.1rem); }
+.trip-post h2 .trip-stop__number { position: static; flex: none; }
+.trip-post figure { margin-top: 1.25rem; }
+.trip-post figure img { width: 100%; aspect-ratio: 16 / 9; object-fit: cover; border: var(--outline); border-radius: var(--radius); box-shadow: var(--pop-small); }
+.trip-post figcaption { display: flex; flex-wrap: wrap; align-items: center; gap: .5rem; margin-top: .6rem; color: var(--muted); font-size: .9rem; font-weight: 700; }
+.trip-post figcaption a { color: var(--orange-deep); }
+.trip-post .trip-between { margin-top: 1.75rem; padding: .9rem 1.1rem; border: 2px dashed var(--ink); border-radius: 16px; background: var(--card); color: var(--ink-soft); font-size: 1rem; }
+.trip-post .trip-between strong { color: var(--ink); }
+.fan-byline a { color: var(--ink); font-weight: 800; text-decoration-color: var(--orange); text-decoration-thickness: 2px; }
+.trip-post > .fan-section-lede { max-width: none; margin: 0; color: var(--ink); }

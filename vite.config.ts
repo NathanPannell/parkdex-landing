@@ -2,8 +2,8 @@ import { defineConfig, loadEnv } from 'vite';
 import { mkdir, writeFile } from 'node:fs/promises';
 import { resolve } from 'node:path';
 import { KIP_APP_ORIGINS } from './src/app-origins';
-import { renderBadgeList, renderMarquee, renderWall } from './src/badge-cards';
-import { renderFooter, renderNav } from './src/site-shell';
+import { renderBadgeList, renderDexPage } from './src/badge-cards';
+import { renderFooter, renderFooterFine, renderNav } from './src/site-shell';
 import badgeData from './src/badges.json';
 import { createMcpMetadata, createRobotsTxt, createSitemapXml, rewriteStaticAppLinks } from './src/mcp-metadata';
 
@@ -21,11 +21,11 @@ export default defineConfig(({ mode }) => {
       transformIndexHtml(html) {
         // Badge cards come from src/badges.json, refreshed by `npm run sync-badges`.
         return rewriteStaticAppLinks(html, appUrl)
-          .replace('<!-- badge-marquee -->', renderMarquee(badgeData.badges))
-          .replace('<!-- badge-wall -->', renderWall(badgeData.badges))
+          .replace('<!-- dex-page -->', renderDexPage(badgeData.badges))
           .replace('<!-- badge-list -->', renderBadgeList(badgeData.badges))
           .replace(/<!-- site-nav:([a-z-]+) -->/, (_match, active: string) => renderNav(active))
-          .replace('<!-- site-footer -->', renderFooter());
+          .replace('<!-- site-footer -->', renderFooter())
+          .replace('<!-- footer-fine -->', renderFooterFine());
       },
       configResolved(config) {
         outputDirectory = resolve(config.root, config.build.outDir);

@@ -24,6 +24,12 @@ export function renderFooter(): string {
     + `<div class="fan-footer__cols">`
     + `<nav aria-label="Explore"><h2>Explore</h2><ul>${LINKS.map(({ href, label }) => `<li><a href="${href}">${label}</a></li>`).join('')}</ul></nav>`
     + `<nav aria-label="Help"><h2>Help</h2><ul><li><a href="/#get">Get the beta</a></li><li><a href="/support/">Support</a></li><li><a href="/delete-account/">Delete account</a></li></ul></nav>`
-    + `<nav aria-label="About"><h2>About</h2><ul><li><a href="/privacy/">Privacy</a></li><li><a href="https://www.nathanpannell.com/">Nathan Pannell</a></li></ul></nav>`
-    + `</div></div><div class="fan-footer__fine"><p>© 2026 Parkdex</p><p>Made in Victoria, British Columbia</p></div></footer>`;
+    + `<nav aria-label="About"><h2>About</h2><ul><li><a href="/privacy/">Privacy</a></li><li><a href="/support/">Contact</a></li></ul></nav>`
+    + `</div></div>${renderFooterFine()}</footer>`;
+}
+
+// The line below the footer rule, shared with the homepage and info pages.
+export function renderFooterFine(): string {
+  return '<div class="fan-footer__fine"><p>© 2026 Parkdex · Made in Victoria, British Columbia</p>'
+    + '<p class="fan-byline">Made by <a href="https://www.nathanpannell.com/">Nathan Pannell</a></p></div>';
 }
