@@ -8,8 +8,11 @@
       "short": "Esquimalt Lagoon",
       "rarity": "common",
       "biome": "coast",
+      "category": "municipal",
       "scene": "esquimalt-lagoon-coburg-spit",
-      "blurb": "A narrow sand and gravel spit shelters Esquimalt Lagoon from the Strait, leaving a shallow tidal lagoon where herons, shorebirds, and seasonal waterfowl feed. The forested far shore and distinct open and sheltered waters give this sanctuary its recognizable shape."
+      "blurb": "A narrow sand and gravel spit shelters Esquimalt Lagoon from the Strait, leaving a shallow tidal lagoon where herons, shorebirds, and seasonal waterfowl feed. The forested far shore and distinct open and sheltered waters give this sanctuary its recognizable shape.",
+      "lat": 48.41908,
+      "lng": -123.47016
     },
     {
       "id": "municipal-city-of-victoria-1442",
@@ -17,8 +20,11 @@
       "short": "Beacon Hill",
       "rarity": "common",
       "biome": "forest",
+      "category": "municipal",
       "scene": "beacon-hill-stone-bridge-flat-v2",
-      "blurb": "Garden paths, roaming peacocks and the stone bridge over Goodacre Lake make Beacon Hill a place to wander. Garry oak meadows shelter sensitive native plants, while the park's southern edge opens onto the Strait of Juan de Fuca. Nearby Mile Zero marks the western end of the Trans-Canada Highway."
+      "blurb": "Garden paths, roaming peacocks and the stone bridge over Goodacre Lake make Beacon Hill a place to wander. Garry oak meadows shelter sensitive native plants, while the park's southern edge opens onto the Strait of Juan de Fuca. Nearby Mile Zero marks the western end of the Trans-Canada Highway.",
+      "lat": 48.4119,
+      "lng": -123.36334
     },
     {
       "id": "municipal-district-of-oak-bay-911",
@@ -26,8 +32,11 @@
       "short": "Willows",
       "rarity": "common",
       "biome": "forest",
+      "category": "municipal",
       "scene": "willows-beach-kiwanis-tea-room",
-      "blurb": "Willows Park pairs an open Oak Bay beach with lawns, mature trees, a playground, and the Kiwanis Tea Room. Driftwood and pebbles line the shore below the small beachside building."
+      "blurb": "Willows Park pairs an open Oak Bay beach with lawns, mature trees, a playground, and the Kiwanis Tea Room. Driftwood and pebbles line the shore below the small beachside building.",
+      "lat": 48.43399,
+      "lng": -123.30443
     },
     {
       "id": "municipal-district-of-oak-bay-916",
@@ -35,8 +44,11 @@
       "short": "Uplands",
       "rarity": "common",
       "biome": "forest",
+      "category": "municipal",
       "scene": "uplands-garry-oak-camas-meadow",
-      "blurb": "Uplands Park protects an open Garry oak meadow that blooms with camas and other wildflowers in spring. Its shallow rocky ground leads toward Cattle Point and the Strait of Juan de Fuca."
+      "blurb": "Uplands Park protects an open Garry oak meadow that blooms with camas and other wildflowers in spring. Its shallow rocky ground leads toward Cattle Point and the Strait of Juan de Fuca.",
+      "lat": 48.44156,
+      "lng": -123.29916
     },
     {
       "id": "municipal-district-of-saanich-220",
@@ -44,8 +56,11 @@
       "short": "Cadboro Gyro",
       "rarity": "common",
       "biome": "forest",
+      "category": "municipal",
       "scene": "cadboro-gyro-red-octopus-slide",
-      "blurb": "Cadboro-Gyro Park pairs a sandy Cadboro Bay waterfront with a marine-themed playground. Its red octopus, blue salmon, and green-and-yellow Caddy sea serpent are concrete play sculptures."
+      "blurb": "Cadboro-Gyro Park pairs a sandy Cadboro Bay waterfront with a marine-themed playground. Its red octopus, blue salmon, and green-and-yellow Caddy sea serpent are concrete play sculptures.",
+      "lat": 48.45973,
+      "lng": -123.29413
     },
     {
       "id": "municipal-district-of-saanich-244",
@@ -53,8 +68,11 @@
       "short": "PKOLS",
       "rarity": "uncommon",
       "biome": "mountain",
+      "category": "municipal",
       "scene": "pkols-summit-lookout-wall",
-      "blurb": "PKOLS, the mountain’s SENĆOŦEN name, is a place of deep importance to the W̱SÁNEĆ. Trails climb through forest to a rocky 225 m summit with sweeping ocean views."
+      "blurb": "PKOLS, the mountain’s SENĆOŦEN name, is a place of deep importance to the W̱SÁNEĆ. Trails climb through forest to a rocky 225 m summit with sweeping ocean views.",
+      "lat": 48.49308,
+      "lng": -123.34463
     },
     {
       "id": "municipal-district-of-sooke-970",
@@ -62,8 +80,11 @@
       "short": "Whiffin Spit",
       "rarity": "common",
       "biome": "coast",
+      "category": "municipal",
       "scene": "whiffin-spit-recurved-shore",
-      "blurb": "Whiffin Spit's level path winds along a narrow, hooked shoreline at the mouth of Sooke Harbour. Its rounded point offers wide views across the harbour and Salish Sea, with coastal plants and marine wildlife along the way."
+      "blurb": "Whiffin Spit's level path winds along a narrow, hooked shoreline at the mouth of Sooke Harbour. Its rounded point offers wide views across the harbour and Salish Sea, with coastal plants and marine wildlife along the way.",
+      "lat": 48.35895,
+      "lng": -123.71541
     },
     {
       "id": "provincial-au-welnew-john-dean-park",
@@ -71,8 +92,11 @@
       "short": "Ƚáuˌwelṉew̱ / John Dean",
       "rarity": "uncommon",
       "biome": "forest",
+      "category": "provincial",
       "scene": "john-dean-pickles-bluff-arbutus",
-      "blurb": "Ƚáuˌwelṉew̱ / John Dean Park protects old-growth forest on the Saanich Peninsula. At Pickles Bluff, native Arbutus frames views across the lowlands, water, and nearby islands."
+      "blurb": "Ƚáuˌwelṉew̱ / John Dean Park protects old-growth forest on the Saanich Peninsula. At Pickles Bluff, native Arbutus frames views across the lowlands, water, and nearby islands.",
+      "lat": 48.61465,
+      "lng": -123.44819
     },
     {
       "id": "provincial-goldstream-park",
@@ -80,8 +104,11 @@
       "short": "Goldstream",
       "rarity": "uncommon",
       "biome": "river",
+      "category": "provincial",
       "scene": "goldstream-autumn-salmon-run-flat-v2",
-      "blurb": "Each autumn, salmon return to the Goldstream River beneath old-growth firs and cedars, drawing bald eagles to this South Island park."
+      "blurb": "Each autumn, salmon return to the Goldstream River beneath old-growth firs and cedars, drawing bald eagles to this South Island park.",
+      "lat": 48.47556,
+      "lng": -123.54243
     },
     {
       "id": "provincial-gowlland-tod-park",
@@ -89,8 +116,11 @@
       "short": "Gowlland Tod",
       "rarity": "uncommon",
       "biome": "forest",
+      "category": "provincial",
       "scene": "gowlland-tod-jocelyn-arbutus-overlook",
-      "blurb": "Gowlland Tod Park's Jocelyn Hill trail climbs through arbutus and rocky forest to views across Finlayson Arm. The narrow inlet winds between wooded slopes below the ridge."
+      "blurb": "Gowlland Tod Park's Jocelyn Hill trail climbs through arbutus and rocky forest to views across Finlayson Arm. The narrow inlet winds between wooded slopes below the ridge.",
+      "lat": 48.54069,
+      "lng": -123.51431
     },
     {
       "id": "regional-east-sooke-regional-park",
@@ -98,8 +128,11 @@
       "short": "East Sooke",
       "rarity": "uncommon",
       "biome": "coast",
+      "category": "regional",
       "scene": "east-sooke-aylard-point-flat-v2",
-      "blurb": "Follow East Sooke's rugged Coast Trail past rocky bays and pocket beaches, with views across the Strait of Juan de Fuca to the Olympic Mountains."
+      "blurb": "Follow East Sooke's rugged Coast Trail past rocky bays and pocket beaches, with views across the Strait of Juan de Fuca to the Olympic Mountains.",
+      "lat": 48.33942,
+      "lng": -123.66995
     },
     {
       "id": "regional-elk-beaver-lake-regional-park",
@@ -107,8 +140,11 @@
       "short": "Elk/Beaver Lake",
       "rarity": "common",
       "biome": "lake",
+      "category": "regional",
       "scene": "elk-beaver-willow-rowing-shore",
-      "blurb": "Elk and Beaver are joined lakes ringed by a 10 km loop, with four beaches, willow-shaded shores, and a rowing centre at Eagle Beach."
+      "blurb": "Elk and Beaver are joined lakes ringed by a 10 km loop, with four beaches, willow-shaded shores, and a rowing centre at Eagle Beach.",
+      "lat": 48.52232,
+      "lng": -123.39595
     },
     {
       "id": "regional-island-view-beach-regional-park",
@@ -116,8 +152,11 @@
       "short": "Island View Beach",
       "rarity": "common",
       "biome": "coast",
+      "category": "regional",
       "scene": "island-view-beach-low-tide-birds",
-      "blurb": "Island View Beach has a long driftwood-lined shore and pockets of dunes, wetland, and salt marsh. At low tide, shorebirds forage across exposed sand and shallow channels, with James Island and Mount Baker beyond Haro Strait."
+      "blurb": "Island View Beach has a long driftwood-lined shore and pockets of dunes, wetland, and salt marsh. At low tide, shorebirds forage across exposed sand and shallow channels, with James Island and Mount Baker beyond Haro Strait.",
+      "lat": 48.57821,
+      "lng": -123.37229
     },
     {
       "id": "regional-matheson-lake-regional-park",
@@ -125,8 +164,11 @@
       "short": "Matheson Lake",
       "rarity": "common",
       "biome": "lake",
+      "category": "regional",
       "scene": "matheson-lake-sandy-beach",
-      "blurb": "A pocket sandy beach opens onto Matheson Lake, while a forested loop circles the water near the Galloping Goose Trail."
+      "blurb": "A pocket sandy beach opens onto Matheson Lake, while a forested loop circles the water near the Galloping Goose Trail.",
+      "lat": 48.36244,
+      "lng": -123.60016
     },
     {
       "id": "regional-mount-work-regional-park",
@@ -134,8 +176,11 @@
       "short": "Mount Work",
       "rarity": "common",
       "biome": "mountain",
+      "category": "regional",
       "scene": "mount-work-durrance-lake-shore",
-      "blurb": "Mount Work Regional Park includes the forested shores of Durrance Lake and rocky trails to higher viewpoints. At the lake, clear water meets a low stony shore beneath a continuous rim of conifers."
+      "blurb": "Mount Work Regional Park includes the forested shores of Durrance Lake and rocky trails to higher viewpoints. At the lake, clear water meets a low stony shore beneath a continuous rim of conifers.",
+      "lat": 48.53103,
+      "lng": -123.47767
     },
     {
       "id": "regional-sooke-potholes-regional-park",
@@ -143,8 +188,11 @@
       "short": "Sooke Potholes",
       "rarity": "rare",
       "biome": "river",
+      "category": "regional",
       "scene": "glacial-river-potholes",
-      "blurb": "Swirling water and glacial boulders carved the Sooke River's namesake rock pools, now framed by forest and polished stone ledges."
+      "blurb": "Swirling water and glacial boulders carved the Sooke River's namesake rock pools, now framed by forest and polished stone ledges.",
+      "lat": 48.44706,
+      "lng": -123.72776
     },
     {
       "id": "regional-thetis-lake-regional-park",
@@ -152,8 +200,11 @@
       "short": "Thetis Lake",
       "rarity": "common",
       "biome": "lake",
+      "category": "regional",
       "scene": "thetis-empty-main-beach-flat-v2",
-      "blurb": "Upper and Lower Thetis Lakes pair forested shores and sandy swimming beaches with more than 40 km of trails."
+      "blurb": "Upper and Lower Thetis Lakes pair forested shores and sandy swimming beaches with more than 40 km of trails.",
+      "lat": 48.48123,
+      "lng": -123.4774
     },
     {
       "id": "regional-witty-s-lagoon-regional-park",
@@ -161,8 +212,11 @@
       "short": "Witty's Lagoon",
       "rarity": "common",
       "biome": "coast",
+      "category": "regional",
       "scene": "wittys-lagoon-sitting-lady-falls",
-      "blurb": "A forest trail passes Sitting Lady Falls and reaches a broad tidal beach, one of the few sandy shores with significant tides on southern Vancouver Island. Witty's Lagoon also shelters more than 160 recorded bird species."
+      "blurb": "A forest trail passes Sitting Lady Falls and reaches a broad tidal beach, one of the few sandy shores with significant tides on southern Vancouver Island. Witty's Lagoon also shelters more than 160 recorded bird species.",
+      "lat": 48.38571,
+      "lng": -123.51755
     }
   ]
 }
