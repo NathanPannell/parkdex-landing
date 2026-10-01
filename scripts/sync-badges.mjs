@@ -27,7 +27,7 @@ for (const park of parks) {
   if (!art.ok) throw new Error(`Art request for ${park.scene} failed with HTTP ${art.status}`);
   const image = Buffer.from(await art.arrayBuffer());
   await writeFile(resolve(artDirectory, `${park.scene}.webp`), await sharp(image).resize(480, 480, { fit: 'cover' }).webp({ quality: 78 }).toBuffer());
-  badges.push({ id: park.id, name: park.name, short: park.short, rarity: park.rarity, biome: park.biome, scene: park.scene, blurb: park.blurb });
+  badges.push({ id: park.id, name: park.name, short: park.short, rarity: park.rarity, biome: park.biome, category: park.category, scene: park.scene, blurb: park.blurb, lat: park.lat, lng: park.lng });
 }
 
 // Drop art for parks that no longer have a badge so stale files do not ship.

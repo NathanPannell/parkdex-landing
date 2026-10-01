@@ -11,7 +11,9 @@
     "build": "tsc --noEmit && vite build",
     "preview": "vite preview --host 127.0.0.1 --port 4317",
     "test": "tsx --test tests/*.test.ts",
-    "sync-badges": "node scripts/sync-badges.mjs"
+    "sync-badges": "node scripts/sync-badges.mjs",
+    "predev": "node scripts/copy-maplibre-worker.mjs",
+    "prebuild": "node scripts/copy-maplibre-worker.mjs"
   },
   "dependencies": {
     "@fontsource-variable/caveat": "^5.3.0",
@@ -19,7 +21,8 @@
     "@fontsource-variable/strichpunkt-sans": "^5.3.0",
     "@fontsource-variable/ysabeau": "^5.3.0",
     "@fontsource/baloo-2": "^5.3.0",
-    "@neondatabase/serverless": "^1.0.2"
+    "@neondatabase/serverless": "^1.0.2",
+    "maplibre-gl": "^6.11.2"
   },
   "devDependencies": {
     "@types/node": "^24.0.0",

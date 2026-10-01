@@ -2,7 +2,8 @@ import { defineConfig, loadEnv } from 'vite';
 import { mkdir, writeFile } from 'node:fs/promises';
 import { resolve } from 'node:path';
 import { KIP_APP_ORIGINS } from './src/app-origins';
-import { renderMarquee, renderWall } from './src/badge-cards';
+import { renderBadgeList, renderMarquee, renderWall } from './src/badge-cards';
+import { renderFooter, renderNav } from './src/site-shell';
 import badgeData from './src/badges.json';
 import { createMcpMetadata, createRobotsTxt, createSitemapXml, rewriteStaticAppLinks } from './src/mcp-metadata';
 
@@ -21,7 +22,10 @@ export default defineConfig(({ mode }) => {
         // Badge cards come from src/badges.json, refreshed by `npm run sync-badges`.
         return rewriteStaticAppLinks(html, appUrl)
           .replace('<!-- badge-marquee -->', renderMarquee(badgeData.badges))
-          .replace('<!-- badge-wall -->', renderWall(badgeData.badges));
+          .replace('<!-- badge-wall -->', renderWall(badgeData.badges))
+          .replace('<!-- badge-list -->', renderBadgeList(badgeData.badges))
+          .replace(/<!-- site-nav:([a-z-]+) -->/, (_match, active: string) => renderNav(active))
+          .replace('<!-- site-footer -->', renderFooter());
       },
       configResolved(config) {
         outputDirectory = resolve(config.root, config.build.outDir);
@@ -51,6 +55,11 @@ export default defineConfig(({ mode }) => {
           privacy: resolve(import.meta.dirname, 'privacy/index.html'),
           deleteAccount: resolve(import.meta.dirname, 'delete-account/index.html'),
           support: resolve(import.meta.dirname, 'support/index.html'),
+          badges: resolve(import.meta.dirname, 'badges/index.html'),
+          nearMe: resolve(import.meta.dirname, 'near-me/index.html'),
+          dayTrips: resolve(import.meta.dirname, 'day-trips/index.html'),
+          tripVictoria: resolve(import.meta.dirname, 'day-trips/victoria-oak-bay/index.html'),
+          tripSooke: resolve(import.meta.dirname, 'day-trips/sooke/index.html'),
         },
       },
     },

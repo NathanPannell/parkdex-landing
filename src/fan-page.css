@@ -55,7 +55,7 @@ h1, h2, h3 { font-family: var(--display); font-weight: 800; line-height: 1.02; l
 .fan-accent { color: var(--orange); }
 
 /* Buttons */
-.fan-button { display: inline-flex; align-items: center; justify-content: center; min-height: 48px; padding: .7rem 1.4rem; border: 0; border-radius: 999px; background: var(--orange); color: #fff; font-family: var(--display); font-size: 1.05rem; font-weight: 700; white-space: nowrap; box-shadow: 0 4px 0 var(--orange-deep); transition: transform .15s ease, box-shadow .15s ease; }
+.fan-button { text-decoration: none; display: inline-flex; align-items: center; justify-content: center; min-height: 48px; padding: .7rem 1.4rem; border: 0; border-radius: 999px; background: var(--orange); color: #fff; font-family: var(--display); font-size: 1.05rem; font-weight: 700; white-space: nowrap; box-shadow: 0 4px 0 var(--orange-deep); transition: transform .15s ease, box-shadow .15s ease; }
 .fan-button:active { transform: translateY(2px); box-shadow: 0 2px 0 var(--orange-deep); }
 .fan-button--small { min-height: 42px; padding: .5rem 1.1rem; font-size: .98rem; }
 .fan-store { display: inline-flex; flex: 1 1 9.5rem; max-width: 14rem; flex-direction: column; align-items: flex-start; justify-content: center; min-height: 56px; min-width: 0; padding: .45rem 1.3rem; border: 2px solid var(--ink); border-radius: 14px; background: var(--ink); color: #fff; text-align: left; line-height: 1.1; transition: transform .15s ease; }
@@ -220,4 +220,68 @@ form[data-state=success] .outdoor-form-message { color: var(--success); }
   .badge-marquee__row { animation: none; }
   .badge-marquee { overflow-x: auto; }
   *, *::before, *::after { transition: none !important; }
+}
+
+/* Inner pages */
+.fan-nav__links a[aria-current="page"] { color: var(--orange); }
+.fan-page-main { width: var(--page); margin-inline: auto; padding-block: 3rem 4rem; }
+.fan-page-main--narrow { width: min(760px, calc(100% - 2.5rem)); }
+.fan-page-head { max-width: 40rem; margin-bottom: 2.5rem; }
+.fan-page-head h1 { font-size: clamp(2.6rem, 8vw, 3.8rem); }
+.fan-page-head .fan-section-lede { margin-inline: 0; }
+.fan-crumb { margin-bottom: .6rem; color: var(--muted); font-weight: 700; }
+.badge-chip { display: inline-block; margin-right: .55rem; padding: .08rem .6rem; border-radius: 999px; background: var(--rarity-common); color: #fff; font-family: var(--display); font-size: .78rem; font-weight: 700; }
+[data-rarity="uncommon"] .badge-chip { background: var(--rarity-uncommon); }
+[data-rarity="rare"] .badge-chip { background: var(--rarity-rare); }
+[data-rarity="legendary"] .badge-chip { background: var(--rarity-legendary); }
+.badge-entry__meta { color: var(--muted); font-size: .9rem; font-weight: 700; }
+.badge-entry__map { display: inline-block; margin-top: .8rem; color: var(--orange-deep); font-weight: 800; }
+
+.badge-list { display: grid; gap: 1.25rem; }
+.badge-entry { display: grid; gap: 1rem; padding: 1rem; border: 1px solid var(--line); border-radius: var(--radius); background: var(--card); scroll-margin-top: 6rem; }
+.badge-entry img { width: 100%; aspect-ratio: 1; object-fit: cover; border-radius: 16px; }
+.badge-entry h2 { margin-top: .35rem; font-size: 1.6rem; }
+.badge-entry__body > p:not(.badge-entry__meta) { margin-top: .5rem; color: var(--ink-soft); }
+.badge-entry:target { border-color: var(--orange); box-shadow: 0 0 0 3px var(--orange-glow); }
+
+.trip-cards { display: grid; gap: 1.25rem; }
+.trip-card a { display: grid; overflow: hidden; border: 1px solid var(--line); border-radius: var(--radius); background: var(--card); text-decoration: none; }
+.trip-card img { width: 100%; aspect-ratio: 16 / 9; object-fit: cover; }
+.trip-card__body { display: grid; gap: .35rem; padding: 1.1rem 1.25rem 1.3rem; }
+.trip-card__count { color: var(--orange-deep); font-size: .85rem; font-weight: 800; }
+.trip-card__title { font-family: var(--display); font-size: 1.6rem; font-weight: 800; line-height: 1.1; }
+.trip-card__text { color: var(--ink-soft); }
+.trip-stops { display: grid; gap: 1.25rem; }
+.trip-stop { position: relative; display: grid; gap: 1rem; padding: 1rem; border: 1px solid var(--line); border-radius: var(--radius); background: var(--card); }
+.trip-stop img { width: 100%; aspect-ratio: 16 / 10; object-fit: cover; border-radius: 16px; }
+.trip-stop__number { position: absolute; top: 1.6rem; left: 1.6rem; z-index: 1; display: grid; place-items: center; width: 2.4rem; height: 2.4rem; border-radius: 50%; background: var(--orange); color: #fff; font-family: var(--display); font-size: 1.2rem; font-weight: 800; box-shadow: 0 3px 0 var(--orange-deep); }
+.trip-stop h2 { margin-top: .35rem; font-size: 1.6rem; }
+.trip-stop__body > p:not(.badge-entry__meta) { margin-top: .5rem; color: var(--ink-soft); }
+.trip-note { margin-top: 2rem; color: var(--muted); font-size: .92rem; }
+
+/* Near me: the map fills the space between the nav and the bottom of the screen. */
+.fan-page--map .fan-footer { display: none; }
+.near-me { position: relative; height: calc(100dvh - 69px); }
+.near-me__map { position: absolute; inset: 0; }
+.near-me__status:empty { display: none; }
+.near-me__status { position: absolute; left: 50%; bottom: 1.5rem; z-index: 2; max-width: calc(100% - 2rem); padding: .6rem 1rem; border-radius: 999px; background: var(--ink); color: #fff; font-size: .92rem; font-weight: 700; transform: translateX(-50%); }
+.near-me__pin { width: 40px; height: 40px; padding: 0; border: 3px solid #fff; border-radius: 50%; background: var(--cream-deep) center / cover; box-shadow: 0 0 0 2px var(--rarity-common), var(--shadow-soft); cursor: pointer; }
+.near-me__pin[data-rarity="uncommon"] { box-shadow: 0 0 0 2px var(--rarity-uncommon), var(--shadow-soft); }
+.near-me__pin[data-rarity="rare"] { box-shadow: 0 0 0 2px var(--rarity-rare), var(--shadow-soft); }
+.near-me__pin[data-rarity="legendary"] { box-shadow: 0 0 0 2px var(--rarity-legendary), var(--shadow-soft); }
+.near-me__popup { display: grid; justify-items: start; gap: .3rem; font-family: var(--body); }
+.near-me__popup strong { font-family: var(--display); font-size: 1.1rem; line-height: 1.15; }
+.near-me__popup a { color: var(--orange-deep); font-weight: 800; }
+.maplibregl-popup-content { border-radius: 14px; padding: .8rem .95rem; }
+
+@media (min-width: 40rem) {
+  .badge-entry, .trip-stop { grid-template-columns: 220px 1fr; align-items: start; gap: 1.5rem; padding: 1.25rem; }
+  .trip-stop img { aspect-ratio: 1; }
+  .trip-cards { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+}
+
+/* Kip stands taller beside the hero phone on wide screens. */
+@media (min-width: 56rem) {
+  .fan-kip { left: -58%; bottom: 2%; width: 66%; }
+  .fan-kip__bubble { left: 18%; bottom: 96%; font-size: 1.05rem; }
 }
