@@ -1,22 +1,26 @@
-import { defineConfig, loadEnv } from 'vite';
+import { defineConfig, loadEnv, type UserConfig } from 'vite';
 import { mkdir, writeFile } from 'node:fs/promises';
 import { resolve } from 'node:path';
 import { KIP_APP_ORIGINS } from './src/app-origins';
+import { applyBadgeCount, fetchBadgeCount } from './lib/badge-count';
 import { createMcpMetadata, createRobotsTxt, createSitemapXml, rewriteStaticAppLinks } from './src/mcp-metadata';
 
-export default defineConfig(({ mode }) => {
+export default defineConfig(async ({ command, mode }) => {
   const env = loadEnv(mode, process.cwd(), 'VITE_');
   // Vercel Git deploys of the staging branch build against the staging app.
   const branchAppUrl = process.env.VERCEL_GIT_COMMIT_REF === 'staging' ? KIP_APP_ORIGINS.staging : KIP_APP_ORIGINS.production;
   const appUrl = process.env.VITE_APP_URL || env.VITE_APP_URL || branchAppUrl;
   const mcpMetadata = createMcpMetadata(appUrl);
+  // Bake in the live badge count; the page refreshes it at runtime from /api/badge-count.
+  const badgeCount = command === 'build' ? await fetchBadgeCount(appUrl) : null;
   let outputDirectory = 'dist';
 
-  return {
+  const config: UserConfig = {
     plugins: [{
       name: 'parkdex-mcp-metadata',
       transformIndexHtml(html) {
-        return rewriteStaticAppLinks(html, appUrl);
+        const linked = rewriteStaticAppLinks(html, appUrl);
+        return badgeCount === null ? linked : applyBadgeCount(linked, badgeCount);
       },
       configResolved(config) {
         outputDirectory = resolve(config.root, config.build.outDir);
@@ -50,4 +54,5 @@ export default defineConfig(({ mode }) => {
       },
     },
   };
+  return config;
 });

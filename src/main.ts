@@ -255,9 +255,10 @@ removeForm.addEventListener('submit', async event => {
 
 // Count the headline number up once, padded so the line does not reflow.
 const countElement = document.querySelector<HTMLSpanElement>('#park-count')!;
-const parkCount = Number(countElement.dataset.count);
-const countDigits = String(parkCount).length;
-const formatCount = (value: number) => String(value).padStart(countDigits, '0');
+const countLabel = countElement.nextElementSibling;
+let parkCount = Number(countElement.dataset.count);
+let countFinished = false;
+const formatCount = (value: number) => String(value).padStart(String(parkCount).length, '0');
 if (Number.isFinite(parkCount) && !matchMedia('(prefers-reduced-motion: reduce)').matches) {
   let countStart: number | undefined;
   const updateCount = (time: number) => {
@@ -265,8 +266,23 @@ if (Number.isFinite(parkCount) && !matchMedia('(prefers-reduced-motion: reduce)'
     const progress = Math.min((time - countStart) / 1000, 1);
     countElement.textContent = formatCount(Math.round(parkCount * progress));
     if (progress < 1) requestAnimationFrame(updateCount);
+    else countFinished = true;
   };
   requestAnimationFrame(updateCount);
 } else if (Number.isFinite(parkCount)) {
   countElement.textContent = formatCount(parkCount);
+  countFinished = true;
 }
+
+// The built page carries the count from its last deploy; refresh it from the live catalogue.
+fetch('/api/badge-count', { signal: AbortSignal.timeout(5000) })
+  .then((response) => (response.ok ? response.json() : null))
+  .then((body: { count?: unknown } | null) => {
+    const live = body?.count;
+    if (typeof live !== 'number' || !Number.isInteger(live) || live <= 0 || live === parkCount) return;
+    parkCount = live;
+    countElement.dataset.count = String(live);
+    if (countLabel) countLabel.textContent = String(live);
+    if (countFinished) countElement.textContent = formatCount(live);
+  })
+  .catch(() => {});
