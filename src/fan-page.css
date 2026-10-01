@@ -355,8 +355,9 @@ h1, h2, h3 { font-variation-settings: 'opsz' 96; font-weight: 800; letter-spacin
 .trip-post figure img { width: 100%; aspect-ratio: 16 / 9; object-fit: cover; border: var(--outline); border-radius: var(--radius); box-shadow: var(--pop-small); }
 .trip-post figcaption { display: flex; flex-wrap: wrap; align-items: center; gap: .5rem; margin-top: .6rem; color: var(--muted); font-size: .9rem; font-weight: 700; }
 .trip-post figcaption a { color: var(--orange-deep); }
-.trip-post .trip-between { margin-top: 1.75rem; padding: .9rem 1.1rem; border: 2px dashed var(--ink); border-radius: 16px; background: var(--card); color: var(--ink-soft); font-size: 1rem; }
-.trip-post .trip-between strong { color: var(--ink); }
+.trip-post .trip-between { position: relative; display: grid; gap: .2rem; margin: 2rem 0 0; padding: .85rem 1.1rem .9rem 3.4rem; border-radius: 16px; background: #fff3e3; color: var(--ink-soft); font-size: 1rem; line-height: 1.55; }
+.trip-post .trip-between::before { content: '→'; position: absolute; left: 1rem; top: 50%; display: grid; place-items: center; width: 1.7rem; height: 1.7rem; border-radius: 50%; background: var(--orange); color: var(--ink); font-weight: 800; transform: translateY(-50%); }
+.trip-between__label { color: var(--orange-deep); font-family: var(--display); font-size: .8rem; font-weight: 800; letter-spacing: .06em; text-transform: uppercase; }
 .fan-byline a { color: var(--ink); font-weight: 800; text-decoration-color: var(--orange); text-decoration-thickness: 2px; }
 .trip-post > .fan-section-lede { max-width: none; margin: 0; color: var(--ink); }
 
@@ -385,14 +386,14 @@ h1, h2, h3 { font-variation-settings: 'opsz' 96; font-weight: 800; letter-spacin
 .wall-tile[data-ring="1"] { animation-delay: .25s; } .wall-tile[data-ring="2"] { animation-delay: .5s; } .wall-tile[data-ring="3"] { animation-delay: .75s; }
 .wall-tile[data-ring="4"] { animation-delay: 1s; } .wall-tile[data-ring="5"] { animation-delay: 1.25s; } .wall-tile[data-ring="6"] { animation-delay: 1.5s; }
 .wall-tile[data-ring="7"] { animation-delay: 1.75s; } .wall-tile[data-ring="8"] { animation-delay: 2s; } .wall-tile[data-ring="9"] { animation-delay: 2.25s; }
-.badge-intro { padding-top: 1rem; text-align: center; }
+.badge-intro { padding-top: 0; text-align: center; }
 .badge-intro__copy { width: min(40rem, calc(100% - 2.5rem)); margin: 0 auto 1rem; }
 .badge-intro__copy h2 { font-size: clamp(2.2rem, 7vw, 3.4rem); }
 .badge-intro__copy p { margin: .8rem auto 1.4rem; color: var(--ink-soft); font-size: 1.15rem; }
 
 /* Badges page and day trips: app badges at a sensible size. */
 .badge-entry__badge { width: 100%; max-width: 220px; margin-inline: auto; }
-.trip-post figure { max-width: 300px; }
+.trip-post figure { max-width: 300px; margin-inline: auto; }
 .trip-post figure img { aspect-ratio: 1; }
 
 /* The closing signup stays as narrow as the content above it. */

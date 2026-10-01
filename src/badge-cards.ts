@@ -47,7 +47,7 @@ export function renderBadgeWall(badges: Badge[], cols = 14, rows = 11, start = 0
   return out.join('');
 }
 
-const CATEGORY_LABEL: Record<string, string> = {
+export const CATEGORY_LABEL: Record<string, string> = {
   municipal: 'Municipal park',
   regional: 'Regional park',
   provincial: 'Provincial park',
