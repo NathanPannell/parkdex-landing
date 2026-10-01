@@ -1,18 +1,29 @@
 import assert from "node:assert/strict";
 import test from "node:test";
-import { renderBadgeList, renderDexPage, type Badge } from "../src/badge-cards.ts";
+import { renderBadgeList, renderBadgeWall, type Badge } from "../src/badge-cards.ts";
+import { renderBadgeSvg } from "../src/badge-svg.ts";
 import badgeData from "../src/badges.json" with { type: "json" };
 
 const badge = (short: string, rarity: string): Badge => ({ id: short, name: `${short} Park`, short, rarity, biome: "forest", scene: short.toLowerCase(), blurb: "" });
 
-test("dex page leads with the rarest badges and adds empty slots", () => {
-  const html = renderDexPage([badge("Zed", "common"), badge("Amy", "uncommon"), badge("Bo", "rare")], 2, 3);
-  assert.deepEqual([...html.matchAll(/dex-slot__ribbon">([^<]+)/g)].map((m) => m[1]), ["Bo", "Amy"]);
-  assert.equal((html.match(/dex-slot--empty/g) ?? []).length, 3);
+test("wall fills every row and hides tiles from keyboard focus", () => {
+  const html = renderBadgeWall([badge("Zed", "common"), badge("Bo", "rare")], 4, 3);
+  assert.equal((html.match(/class="wall-row/g) ?? []).length, 3);
+  assert.equal((html.match(/class="wall-tile"/g) ?? []).length, 12);
+  assert.equal((html.match(/tabindex="-1"/g) ?? []).length, 12);
+  assert.equal((html.match(/wall-row--offset/g) ?? []).length, 1);
 });
 
-test("park names are escaped", () => {
-  assert.match(renderDexPage([badge("<b>&", "common")]), /&#60;b&#62;&#38;/);
+test("badges carry stars, holo for rare ones, and an escaped ribbon", () => {
+  const common = renderBadgeSvg({ ...badge("<b>&", "common"), shape: "circle" });
+  assert.equal((common.match(/<polygon /g) ?? []).length, 1);
+  assert.doesNotMatch(common, /badge-svg__holo/);
+  assert.match(common, /&#60;B&#62;&#38;/);
+  assert.match(common, /badge-clip-circle/);
+  const rare = renderBadgeSvg(badge("Bo", "rare"));
+  assert.equal((rare.match(/<polygon /g) ?? []).length, 3);
+  assert.match(rare, /badge-svg__holo/);
+  assert.match(rare, /badge-clip-hex/);
 });
 
 test("badge entries carry lowercase search text", () => {

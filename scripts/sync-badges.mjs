@@ -5,7 +5,9 @@ import { mkdir, readdir, rm, writeFile } from 'node:fs/promises';
 import { resolve } from 'node:path';
 import sharp from 'sharp';
 
-const appOrigin = process.env.PARKDEX_APP_ORIGIN || 'https://web.parkdex.app';
+// Staging carries far more finished badges than production for now. Set
+// PARKDEX_APP_ORIGIN=https://web.parkdex.app to sync from production instead.
+const appOrigin = process.env.PARKDEX_APP_ORIGIN || 'https://staging.web.parkdex.app';
 const root = resolve(import.meta.dirname, '..');
 const artDirectory = resolve(root, 'public/badges');
 const dataFile = resolve(root, 'src/badges.json');
@@ -26,8 +28,8 @@ for (const park of parks) {
   const art = await fetch(asset.url, { signal: AbortSignal.timeout(30000) });
   if (!art.ok) throw new Error(`Art request for ${park.scene} failed with HTTP ${art.status}`);
   const image = Buffer.from(await art.arrayBuffer());
-  await writeFile(resolve(artDirectory, `${park.scene}.webp`), await sharp(image).resize(480, 480, { fit: 'cover' }).webp({ quality: 78 }).toBuffer());
-  badges.push({ id: park.id, name: park.name, short: park.short, rarity: park.rarity, biome: park.biome, category: park.category, scene: park.scene, blurb: park.blurb, lat: park.lat, lng: park.lng });
+  await writeFile(resolve(artDirectory, `${park.scene}.webp`), await sharp(image).resize(320, 320, { fit: 'cover' }).webp({ quality: 74 }).toBuffer());
+  badges.push({ id: park.id, name: park.name, short: park.short, rarity: park.rarity, biome: park.biome, category: park.category, scene: park.scene, blurb: park.blurb, lat: park.lat, lng: park.lng, shape: park.shape, seed: park.seed });
 }
 
 // Drop art for parks that no longer have a badge so stale files do not ship.
