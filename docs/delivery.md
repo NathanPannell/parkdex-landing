@@ -17,7 +17,7 @@ In the `parkdex-landing` Vercel project:
 - **Domains:** `parkdex.app` and `www.parkdex.app` on Production; `staging.parkdex.app` assigned to Git branch `staging`.
 - **Environment variables:** Production holds the production `DATABASE_URL` (Neon `main`). Preview holds exactly one variable, `DATABASE_URL` scoped to branch `staging` (the pooled Neon `staging` URL). PR previews receive their own isolated Neon URL per deployment from the preview script, which refuses to deploy if Preview holds anything else.
 
-Deployment protection stays at "all except custom domains", so `staging.parkdex.app` is public while PR preview URLs require a Vercel session.
+Vercel Authentication is on for every non-production deployment. Because `staging` deploys as a Preview, `staging.parkdex.app` and PR preview URLs both require a Vercel session (or the automation bypass for scripted checks). Only the Production domains are public. This is deliberate; turning protection off would also make PR preview URLs public.
 
 Both persistent Neon branches have database `app` and owner role `app_owner`. The staging branch was created from the production branch's schema only, so production waitlist addresses were not copied. Supply `NEON_PROJECT_ID=noisy-smoke-89213665` and `VERCEL_PREVIEW_PROJECT_ID=prj_R7ccAjDhGmhiys542GFXJ67d1k8X` when creating previews. The preview script defaults to `NEON_PARENT_BRANCH=staging`, `NEON_DATABASE_NAME=app`, `NEON_ROLE_NAME=app_owner` and project name `parkdex-landing`. Apply `schema.sql` (one additive statement) to `staging` before a merge that needs it, and to `main` before promoting it.
 
