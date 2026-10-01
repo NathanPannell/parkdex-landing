@@ -6,7 +6,8 @@ import badgeData from "../src/badges.json" with { type: "json" };
 
 const badge = (short: string, rarity: string): Badge => ({ id: short, name: `${short} Park`, short, rarity, biome: "forest", scene: short.toLowerCase(), blurb: "" });
 
-test("wall fills every row and hides tiles from keyboard focus", () => {
+test("bands fill every row, start where asked, and stay out of keyboard focus", () => {
+  assert.match(renderBadgeWall([badge("Zed", "common"), badge("Bo", "rare")], 1, 1, 1), /aria-label="Zed badge"/);
   const html = renderBadgeWall([badge("Zed", "common"), badge("Bo", "rare")], 4, 3);
   assert.equal((html.match(/class="wall-row/g) ?? []).length, 3);
   assert.equal((html.match(/class="wall-tile"/g) ?? []).length, 12);

@@ -19,17 +19,18 @@ function escapeHtml(value: string): string {
   return value.replace(/[&<>"']/g, (char) => `&#${char.charCodeAt(0)};`);
 }
 
-// A full-screen honeycomb of badges. Rows alternate by half a tile so the
+// A honeycomb band of badges. start offsets which badges a band begins with,
+// so stacked bands down the page don't repeat each other. Rows alternate by half a tile so the
 // shapes interlock. Tiles repeat to fill the screen; the wall is decorative
 // (the Badges page is the accessible list), so tiles are hidden from screen
 // readers and skipped by keyboard focus. data-ring is each tile's distance
 // from the centre, which staggers the ripple animation outward.
-export function renderBadgeWall(badges: Badge[], cols = 14, rows = 11): string {
+export function renderBadgeWall(badges: Badge[], cols = 14, rows = 11, start = 0): string {
   if (badges.length === 0) return '';
   const order = [...badges].sort((a, b) => ((a.seed ?? 0) * 7919) % 997 - ((b.seed ?? 0) * 7919) % 997 || a.id.localeCompare(b.id));
   const midRow = (rows - 1) / 2;
   const midCol = (cols - 1) / 2;
-  let index = 0;
+  let index = start;
   const out: string[] = [];
   for (let row = 0; row < rows; row++) {
     const tiles: string[] = [];

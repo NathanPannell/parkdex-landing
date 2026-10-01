@@ -22,7 +22,7 @@ export default defineConfig(({ mode }) => {
       transformIndexHtml(html) {
         // Badge cards come from src/badges.json, refreshed by `npm run sync-badges`.
         return rewriteStaticAppLinks(html, appUrl)
-          .replace('<!-- badge-wall -->', renderBadgeWall(badgeData.badges))
+          .replace(/<!-- badge-band:(\d+):(\d+) -->/g, (_match, rows: string, start: string) => renderBadgeWall(badgeData.badges, 16, Number(rows), Number(start)))
           .replace('<!-- badge-defs -->', renderBadgeDefs())
           .replace('<!-- badge-list -->', renderBadgeList(badgeData.badges))
           .replace(/<!-- site-nav:([a-z-]+) -->/, (_match, active: string) => renderNav(active))
