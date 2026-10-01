@@ -1,3 +1,5 @@
+import { renderBadgeSvg } from './badge-svg';
+
 export interface Badge {
   id: string;
   name: string;
@@ -9,39 +11,39 @@ export interface Badge {
   category?: string;
   lat?: number;
   lng?: number;
+  shape?: string;
+  seed?: number;
 }
-
-const RARITY_ORDER = ['legendary', 'rare', 'uncommon', 'common'];
 
 function escapeHtml(value: string): string {
   return value.replace(/[&<>"']/g, (char) => `&#${char.charCodeAt(0)};`);
 }
 
-function card(badge: Badge, decorative: boolean): string {
-  const alt = decorative ? '' : escapeHtml(`${badge.name} badge art`);
-  const hidden = decorative ? ' aria-hidden="true"' : '';
-  return `<li class="badge-card" data-rarity="${escapeHtml(badge.rarity)}"${hidden}>`
-    + `<img src="/badges/${escapeHtml(badge.scene)}.webp" width="480" height="480" loading="lazy" alt="${alt}" />`
-    + `<span class="badge-card__rarity">${escapeHtml(badge.rarity)}</span>`
-    + `<span class="badge-card__name">${escapeHtml(badge.short)}</span></li>`;
-}
-
-function rank(rarity: string): number {
-  const index = RARITY_ORDER.indexOf(rarity);
-  return index === -1 ? RARITY_ORDER.length : index;
-}
-
-// A page of the Dex: hexagon badges like the app's, rarest first, followed
-// by a few empty slots to show there is more to collect.
-export function renderDexPage(badges: Badge[], filled = 8, empty = 4): string {
-  const shown = [...badges].sort((a, b) => rank(a.rarity) - rank(b.rarity) || a.short.localeCompare(b.short)).slice(0, filled);
-  const slots = shown.map((badge) => `<li class="dex-slot" data-rarity="${escapeHtml(badge.rarity)}">`
-    + `<a class="dex-slot__link" href="/badges/#${escapeHtml(badge.id)}"><span class="dex-slot__hex"><img src="/badges/${escapeHtml(badge.scene)}.webp" width="480" height="480" loading="lazy" alt="" /></span>`
-    + `<span class="dex-slot__ribbon">${escapeHtml(badge.short)}</span><span class="fan-sr-only">, ${escapeHtml(badge.rarity)} badge</span></a></li>`);
-  for (let index = 0; index < empty; index++) {
-    slots.push('<li class="dex-slot dex-slot--empty" aria-hidden="true"><span class="dex-slot__hex"><span>?</span></span></li>');
+// A full-screen honeycomb of badges. Rows alternate by half a tile so the
+// shapes interlock. Tiles repeat to fill the screen; the wall is decorative
+// (the Badges page is the accessible list), so tiles are hidden from screen
+// readers and skipped by keyboard focus. data-ring is each tile's distance
+// from the centre, which staggers the ripple animation outward.
+export function renderBadgeWall(badges: Badge[], cols = 14, rows = 11): string {
+  if (badges.length === 0) return '';
+  const order = [...badges].sort((a, b) => ((a.seed ?? 0) * 7919) % 997 - ((b.seed ?? 0) * 7919) % 997 || a.id.localeCompare(b.id));
+  const midRow = (rows - 1) / 2;
+  const midCol = (cols - 1) / 2;
+  let index = 0;
+  const out: string[] = [];
+  for (let row = 0; row < rows; row++) {
+    const tiles: string[] = [];
+    for (let col = 0; col < cols; col++) {
+      const badge = order[index % order.length];
+      const x = col + (row % 2) * 0.5 - midCol;
+      const y = (row - midRow) * 0.87;
+      const ring = Math.min(9, Math.round(Math.hypot(x, y)));
+      tiles.push(`<a class="wall-tile" href="/badges/#${escapeHtml(badge.id)}" tabindex="-1" data-ring="${ring}" data-rarity="${escapeHtml(badge.rarity)}">${renderBadgeSvg(badge, index)}</a>`);
+      index++;
+    }
+    out.push(`<div class="wall-row${row % 2 ? ' wall-row--offset' : ''}">${tiles.join('')}</div>`);
   }
-  return slots.join('');
+  return out.join('');
 }
 
 const CATEGORY_LABEL: Record<string, string> = {
@@ -56,7 +58,7 @@ export function renderBadgeList(badges: Badge[]): string {
   return [...badges].sort((a, b) => a.short.localeCompare(b.short)).map((badge) => {
     const category = CATEGORY_LABEL[badge.category ?? ''] ?? 'Park';
     return `<li class="badge-entry" id="${escapeHtml(badge.id)}" data-rarity="${escapeHtml(badge.rarity)}" data-search="${escapeHtml(`${badge.name} ${badge.short} ${badge.rarity} ${category} ${badge.blurb}`.toLowerCase())}">`
-      + `<img src="/badges/${escapeHtml(badge.scene)}.webp" width="480" height="480" loading="lazy" alt="${escapeHtml(`${badge.name} badge art`)}" />`
+      + `<div class="badge-entry__badge">${renderBadgeSvg(badge, badges.indexOf(badge))}</div>`
       + `<div class="badge-entry__body"><p class="badge-entry__meta"><span class="badge-chip">${escapeHtml(badge.rarity)}</span>${escapeHtml(category)}</p>`
       + `<h2>${escapeHtml(badge.name)}</h2><p>${escapeHtml(badge.blurb)}</p>`
       + `<a class="badge-entry__map" href="/near-me/#${escapeHtml(badge.id)}">See it on the map</a></div></li>`;

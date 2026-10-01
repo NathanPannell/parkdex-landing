@@ -338,34 +338,6 @@ h1, h2, h3 { font-variation-settings: 'opsz' 96; font-weight: 800; letter-spacin
   .trip-card a:hover, .badge-entry:hover { transform: translateY(-2px); box-shadow: var(--pop); }
 }
 
-/* ---------- Dex page on the homepage ----------
- * Hexagon badges with a name ribbon, like the app's badge shelf. */
-.dex-section { display: grid; gap: 2.5rem; align-items: center; width: var(--page); margin-inline: auto; padding-block: 3rem; }
-.dex-section h2 { font-size: clamp(2rem, 6vw, 2.75rem); }
-.dex-section__copy p { max-width: 30rem; margin: 1rem 0 1.5rem; color: var(--ink-soft); font-size: 1.1rem; }
-.dex-grid { --cols: 3; display: grid; grid-template-columns: repeat(calc(var(--cols) * 2 + 1), minmax(0, 1fr)); row-gap: 0; column-gap: .5rem; }
-.dex-slot { grid-column: span 2; position: relative; margin-bottom: -12%; }
-.dex-slot:nth-child(6n + 4) { grid-column: 2 / span 2; }
-.dex-slot__link { display: block; color: inherit; text-decoration: none; }
-.dex-slot__hex { display: grid; place-items: center; aspect-ratio: 1 / 1.1547; padding: 5%; background: var(--ink); clip-path: polygon(50% 0, 100% 25%, 100% 75%, 50% 100%, 0 75%, 0 25%); }
-.dex-slot__hex img, .dex-slot__hex > span { width: 100%; height: 100%; object-fit: cover; clip-path: polygon(50% 0, 100% 25%, 100% 75%, 50% 100%, 0 75%, 0 25%); }
-.dex-slot__ribbon { position: absolute; left: 50%; bottom: 14%; max-width: 110%; padding: .12rem .55rem; overflow: hidden; border: 2px solid var(--ink); border-radius: 6px; background: var(--pine); color: var(--cream); font-family: var(--display); font-size: clamp(.68rem, 2.4vw, .85rem); font-weight: 700; text-overflow: ellipsis; white-space: nowrap; transform: translateX(-50%); box-shadow: 0 2px 0 var(--ink); }
-.dex-slot[data-rarity="uncommon"] .dex-slot__ribbon { background: var(--rarity-uncommon-ink); }
-.dex-slot[data-rarity="rare"] .dex-slot__ribbon { background: var(--rarity-rare-ink); }
-.dex-slot[data-rarity="legendary"] .dex-slot__ribbon { background: var(--rarity-legendary-ink); }
-.dex-slot--empty .dex-slot__hex { background: var(--line); }
-.dex-slot--empty .dex-slot__hex > span { display: grid; place-items: center; background: var(--cream-deep); color: var(--muted); font-family: var(--display); font-size: clamp(1.5rem, 5vw, 2.4rem); font-weight: 700; }
-@media (min-width: 56rem) {
-  .dex-section { grid-template-columns: .9fr 1.1fr; gap: 4rem; padding-block: 4.5rem; }
-  .dex-grid { --cols: 4; }
-  .dex-slot:nth-child(6n + 4) { grid-column: span 2; }
-  .dex-slot:nth-child(8n + 5) { grid-column: 2 / span 2; }
-}
-@media (hover: hover) and (pointer: fine) {
-  .dex-slot__link { transition: transform .2s ease; }
-  .dex-slot__link:hover { transform: translateY(-4px) rotate(-2deg); }
-}
-
 /* ---------- Badges search ---------- */
 .badge-search { display: grid; gap: .5rem; max-width: 34rem; margin-bottom: 2rem; }
 .badge-search label { font-family: var(--display); font-size: 1.1rem; font-weight: 700; }
@@ -387,3 +359,42 @@ h1, h2, h3 { font-variation-settings: 'opsz' 96; font-weight: 800; letter-spacin
 .trip-post .trip-between strong { color: var(--ink); }
 .fan-byline a { color: var(--ink); font-weight: 800; text-decoration-color: var(--orange); text-decoration-thickness: 2px; }
 .trip-post > .fan-section-lede { max-width: none; margin: 0; color: var(--ink); }
+
+/* ---------- Badges drawn like the app ---------- */
+.badge-defs { position: absolute; width: 0; height: 0; overflow: hidden; }
+.badge-svg { display: block; width: 100%; height: auto; overflow: visible; }
+.badge-svg__name { font-family: var(--display); font-weight: 800; letter-spacing: .4px; }
+.badge-svg__shine { animation: badge-shine 4.5s cubic-bezier(.6, 0, .3, 1) infinite; }
+.badge-svg__shine--1 { animation-delay: .55s; } .badge-svg__shine--2 { animation-delay: 1.1s; } .badge-svg__shine--3 { animation-delay: 1.65s; }
+.badge-svg__shine--4 { animation-delay: 2.2s; } .badge-svg__shine--5 { animation-delay: 2.75s; } .badge-svg__shine--6 { animation-delay: 3.3s; } .badge-svg__shine--7 { animation-delay: 3.85s; }
+@keyframes badge-shine { 0%, 55% { transform: translateX(0); } 85%, 100% { transform: translateX(340px); } }
+.badge-svg__holo { opacity: .55; mix-blend-mode: soft-light; animation: badge-holo 7s ease-in-out infinite alternate; }
+@keyframes badge-holo { from { translate: -40px -30px; } to { translate: 40px 30px; } }
+
+/* ---------- Full-screen badge wall ---------- */
+.badge-wall { --tile: clamp(96px, 11vw, 150px); position: relative; display: grid; place-items: center; height: 100svh; min-height: 560px; max-height: 1400px; overflow: hidden; border-block: var(--outline); background: radial-gradient(circle at 50% 50%, #fff3c4, var(--cream-deep) 70%); perspective: 1200px; }
+.badge-wall__tiles { position: absolute; top: 50%; left: 50%; display: grid; row-gap: calc(var(--tile) * -0.13); transform: translate(-50%, -50%) rotateX(var(--tilt-x, 0deg)) rotateY(var(--tilt-y, 0deg)); transition: transform .6s var(--ease-out, ease-out); }
+.wall-row { display: flex; gap: calc(var(--tile) * .06); }
+.wall-row--offset { margin-left: calc(var(--tile) * .53); }
+.wall-tile { flex: none; width: var(--tile); animation: wall-ripple 6s ease-in-out infinite; transition: transform .2s ease; }
+.wall-tile:hover { position: relative; z-index: 2; transform: scale(1.18) rotate(-4deg); animation-play-state: paused; }
+@keyframes wall-ripple { 0%, 70%, 100% { transform: translateY(0) scale(1); } 80% { transform: translateY(-8%) scale(1.06); } 90% { transform: translateY(2%) scale(.98); } }
+.wall-tile[data-ring="1"] { animation-delay: .25s; } .wall-tile[data-ring="2"] { animation-delay: .5s; } .wall-tile[data-ring="3"] { animation-delay: .75s; }
+.wall-tile[data-ring="4"] { animation-delay: 1s; } .wall-tile[data-ring="5"] { animation-delay: 1.25s; } .wall-tile[data-ring="6"] { animation-delay: 1.5s; }
+.wall-tile[data-ring="7"] { animation-delay: 1.75s; } .wall-tile[data-ring="8"] { animation-delay: 2s; } .wall-tile[data-ring="9"] { animation-delay: 2.25s; }
+.badge-wall__card { position: relative; z-index: 3; max-width: min(30rem, calc(100% - 2.5rem)); padding: 1.6rem 1.6rem 1.8rem; border: var(--outline); border-radius: 26px; background: rgb(255 248 236 / 94%); box-shadow: 0 8px 0 var(--ink); text-align: center; backdrop-filter: blur(6px); }
+.badge-wall__card h2 { font-size: clamp(2rem, 6vw, 3rem); }
+.badge-wall__card p { margin: .8rem 0 1.3rem; color: var(--ink-soft); font-size: 1.1rem; }
+
+/* Badges page and day trips: app badges at a sensible size. */
+.badge-entry__badge { width: 100%; max-width: 220px; margin-inline: auto; }
+.trip-post figure { max-width: 300px; }
+.trip-post figure img { aspect-ratio: 1; }
+
+/* The closing signup stays as narrow as the content above it. */
+.fan-get { width: min(760px, calc(100% - 2.5rem)); }
+
+@media (prefers-reduced-motion: reduce) {
+  .wall-tile, .badge-svg__shine, .badge-svg__holo { animation: none; }
+  .badge-wall__tiles { transition: none; }
+}

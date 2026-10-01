@@ -249,3 +249,20 @@ removeForm.addEventListener('submit', async event => {
     removeForm.removeAttribute('aria-busy');
   }
 });
+
+// The badge wall tilts a little toward the pointer.
+const wall = document.querySelector<HTMLElement>('.badge-wall');
+const wallTiles = wall?.querySelector<HTMLElement>('.badge-wall__tiles');
+if (wall && wallTiles && matchMedia('(pointer: fine)').matches && !matchMedia('(prefers-reduced-motion: reduce)').matches) {
+  wall.addEventListener('pointermove', (event) => {
+    const bounds = wall.getBoundingClientRect();
+    const x = (event.clientX - bounds.left) / bounds.width - 0.5;
+    const y = (event.clientY - bounds.top) / bounds.height - 0.5;
+    wallTiles.style.setProperty('--tilt-y', `${(x * 8).toFixed(2)}deg`);
+    wallTiles.style.setProperty('--tilt-x', `${(-y * 8).toFixed(2)}deg`);
+  });
+  wall.addEventListener('pointerleave', () => {
+    wallTiles.style.setProperty('--tilt-y', '0deg');
+    wallTiles.style.setProperty('--tilt-x', '0deg');
+  });
+}
