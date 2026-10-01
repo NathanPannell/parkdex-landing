@@ -3,15 +3,15 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover" />
-    <meta name="theme-color" content="#142d27" />
-    <meta name="description" content="Parkdex is a badge for every park around Victoria, and you only get one by going. Join the Android beta on Google Play." />
+    <meta name="theme-color" content="#fff9f0" />
+    <meta name="description" content="Parkdex turns the parks around Victoria into badges you collect by actually going. Free Android beta, no sign-up." />
     <link rel="canonical" href="https://parkdex.app/" />
     <meta property="og:site_name" content="Parkdex" />
     <meta property="og:type" content="website" />
     <meta property="og:locale" content="en_CA" />
     <meta property="og:url" content="https://parkdex.app/" />
     <meta property="og:title" content="Parkdex · Park badges you earn in person" />
-    <meta property="og:description" content="100 park badges around Victoria. You have to go to get one." />
+    <meta property="og:description" content="Every park around Victoria has a badge. You have to go get it." />
     <meta property="og:image" content="https://parkdex.app/og-image.jpg" />
     <meta property="og:image:type" content="image/jpeg" />
     <meta property="og:image:width" content="1200" />
@@ -19,7 +19,7 @@
     <meta property="og:image:alt" content="Kip the oystercatcher beside the Parkdex wordmark and a Collect park badges button" />
     <meta name="twitter:card" content="summary_large_image" />
     <meta name="twitter:title" content="Parkdex · Park badges you earn in person" />
-    <meta name="twitter:description" content="100 park badges around Victoria. You have to go to get one." />
+    <meta name="twitter:description" content="Every park around Victoria has a badge. You have to go get it." />
     <meta name="twitter:image" content="https://parkdex.app/og-image.jpg" />
     <meta name="twitter:image:alt" content="Kip the oystercatcher beside the Parkdex wordmark and a Collect park badges button" />
     <script type="application/ld+json">
@@ -39,7 +39,7 @@
             "name": "Parkdex",
             "operatingSystem": "Android",
             "applicationCategory": "TravelApplication",
-            "description": "Parkdex is a badge for every park around Victoria, and you only get one by going. Join the Android beta on Google Play.",
+            "description": "Parkdex turns the parks around Victoria into badges you collect by actually going. Free Android beta, no sign-up.",
             "image": "https://parkdex.app/og-image.jpg",
             "url": "https://parkdex.app/",
             "author": { "@type": "Person", "name": "Nathan Pannell", "url": "https://www.nathanpannell.com/" }
@@ -54,132 +54,121 @@
     <title>Parkdex · Park badges you earn in person</title>
     <script type="module" src="/src/auth-token-redirect-entry.ts"></script>
   </head>
-  <body class="outdoor-page">
-    <a class="outdoor-skip" href="#main">Skip to content</a>
-    <div class="outdoor-shell">
-      <main id="main">
-        <section id="signup" class="outdoor-hero" aria-labelledby="hero-title">
-          <picture class="outdoor-hero-photo">
-            <source media="(max-width: 40rem)" srcset="/images/island-hero-small.webp" />
-            <img src="/images/island-hero.webp" width="2400" height="1606" fetchpriority="high" alt="Forested cliffs and blue water along the East Sooke coastline on Vancouver Island" />
-          </picture>
-          <div class="outdoor-hero-scrim" aria-hidden="true"></div>
+  <body class="fan-page">
+    <a class="fan-skip" href="#main">Skip to content</a>
+    <header class="fan-nav">
+      <div class="fan-nav__inner">
+        <a class="fan-brand" href="/" aria-label="Parkdex home"><img src="/favicon-64x64.png" width="32" height="32" alt="" /><span>Parkdex</span></a>
+        <nav class="fan-nav__links" aria-label="Sections">
+          <a href="#badges">Badges</a>
+          <a href="#map">The map</a>
+          <a href="#there">Being there</a>
+          <a href="#dex">Your Dex</a>
+        </nav>
+        <button class="fan-button fan-button--small" type="button" data-beta-open>Get the beta</button>
+      </div>
+    </header>
 
-          <div class="outdoor-hero-inner">
-            <div class="outdoor-hero-copy">
-              <p class="outdoor-wordmark" aria-label="Parkdex">Parkdex<span aria-hidden="true">.</span></p>
-              <h1 id="hero-title"><span id="park-count" class="outdoor-count" data-count="100" aria-hidden="true">000</span><span class="outdoor-sr-only">100</span> park badges<span class="outdoor-hero-location"> around Victoria.</span><br class="outdoor-hero-after-location" /> <span class="outdoor-hero-accent">You have to go to get one.</span></h1>
-              <p class="outdoor-hero-lede">Pick a park, step inside its boundary, snap a photo. Then the badge is yours.</p>
-
-              <div class="outdoor-cta">
-                <div class="outdoor-cta-row">
-                  <button class="outdoor-primary" type="button" data-beta-open><span>Get access to Android beta</span></button>
-                  <button class="outdoor-secondary" type="button" data-signup-open="app_store"><span>On iPhone? Join the waitlist</span></button>
-                </div>
-                <p class="outdoor-cta-note">Free closed beta on Google Play · Canada · no account needed</p>
-              </div>
-            </div>
-
-            <figure class="outdoor-device outdoor-device--hero">
-              <div class="outdoor-device-trigger">
-                <span class="device-frame device-frame--iphone-16-max device-frame--parkdex-asset"><span class="device-frame__screen"><span class="device-frame__media"><img src="/images/app-map.webp" width="780" height="1688" fetchpriority="high" alt="Parkdex map around Victoria covered in park badge pins, a 0 of 100 counter at the Fledgling rank, and a Badges near you row with drive times" /></span></span><span class="device-frame__hardware" aria-hidden="true"><img src="/frames/parkdex-phone-frame.webp" width="1252" height="2604" alt="" /></span></span>
-              </div>
-              <div class="outdoor-kip-hero"><p class="outdoor-kip-bubble" aria-hidden="true">Hi, I’m Kip!</p><img class="outdoor-kip outdoor-kip--hero" src="/images/kip/kip-wave.webp" width="512" height="512" alt="Kip the oystercatcher, the Parkdex mascot, waving" /></div>
-            </figure>
+    <main id="main">
+      <section class="fan-hero" aria-labelledby="hero-title">
+        <div class="fan-hero__copy">
+          <h1 id="hero-title">Every park around here has a <span class="fan-accent">badge.</span></h1>
+          <p class="fan-lede">Walk in, snap a photo, and a painting of that exact spot lands in your collection. You can’t get one from the couch, which is honestly the best part.</p>
+          <div class="fan-cta">
+            <button class="fan-store" type="button" data-beta-open><span class="fan-store__small">Free beta on</span><span class="fan-store__big">Google Play</span></button>
+            <button class="fan-store fan-store--ghost" type="button" data-signup-open="app_store"><span class="fan-store__small">On iPhone?</span><span class="fan-store__big">Join the waitlist</span></button>
           </div>
-        </section>
+          <p class="fan-fine">Android beta in Canada. No sign-up, works offline.</p>
+        </div>
+        <figure class="fan-hero__phone">
+          <span class="device-frame device-frame--iphone-16-max device-frame--parkdex-asset"><span class="device-frame__screen"><span class="device-frame__media"><img src="/images/app-map.webp" width="780" height="1688" fetchpriority="high" alt="Parkdex map around Victoria covered in park badge pins, with a Badges near you row showing drive times" /></span></span><span class="device-frame__hardware" aria-hidden="true"><img src="/frames/parkdex-phone-frame.webp" width="1252" height="2604" alt="" /></span></span>
+          <div class="fan-kip"><p class="fan-kip__bubble" aria-hidden="true">Hi, I’m Kip!</p><img src="/images/kip/kip-wave.webp" width="512" height="512" alt="Kip the oystercatcher, the Parkdex mascot, waving" /></div>
+        </figure>
+      </section>
 
-        <section id="how" class="flow-section" aria-labelledby="how-title">
-          <div class="flow-intro">
-            <p class="flow-eyebrow">How it works</p>
-            <h2 id="how-title">Three steps. No shortcuts.</h2>
-            <p>You can plan from the couch, but the badge waits for you at the park. Parkdex checks your location against the real park boundary before it lets you claim.</p>
-          </div>
-          <ol class="flow-steps">
-            <li class="flow-step">
-              <figure class="outdoor-device"><span class="device-frame device-frame--iphone-16-max device-frame--parkdex-asset"><span class="device-frame__screen"><span class="device-frame__media"><img src="/images/app-park-sheet.webp" width="780" height="1688" loading="lazy" alt="Parkdex park sheet for Victoria West Park: a common badge, 1.5 km by road, a 5 minute drive, roadside parking, and a Let’s go button" /></span></span><span class="device-frame__hardware" aria-hidden="true"><img src="/frames/parkdex-phone-frame.webp" width="1252" height="2604" alt="" /></span></span></figure>
-              <div class="flow-step-copy">
-                <p class="flow-step-number" aria-hidden="true">01</p>
-                <h3>Pick a park</h3>
-                <p>Every pin is a badge. Tap one to see its rarity, the drive, and where to park.</p>
-              </div>
-            </li>
-            <li class="flow-step">
-              <figure class="outdoor-device"><span class="device-frame device-frame--iphone-16-max device-frame--parkdex-asset"><span class="device-frame__screen"><span class="device-frame__media"><img src="/images/app-arrival.webp" width="780" height="1688" loading="lazy" alt="Parkdex arrival card saying Welcome to Victoria West, marked Inside the boundary, with Kip saying KLEEP, you made it, and a Check in and snap button" /></span></span><span class="device-frame__hardware" aria-hidden="true"><img src="/frames/parkdex-phone-frame.webp" width="1252" height="2604" alt="" /></span></span></figure>
-              <div class="flow-step-copy">
-                <p class="flow-step-number" aria-hidden="true">02</p>
-                <h3>Step inside the boundary</h3>
-                <p>Head there. When you cross into the park, Kip lets you know you made it.</p>
-              </div>
-            </li>
-            <li class="flow-step">
-              <figure class="outdoor-device"><span class="device-frame device-frame--iphone-16-max device-frame--parkdex-asset"><span class="device-frame__screen"><span class="device-frame__media"><img src="/images/app-claimed.webp" width="780" height="1688" loading="lazy" alt="Parkdex Badge claimed screen for Victoria West with the check-in photo, Badge number 1 of 100, and Share it and Find next park buttons" /></span></span><span class="device-frame__hardware" aria-hidden="true"><img src="/frames/parkdex-phone-frame.webp" width="1252" height="2604" alt="" /></span></span></figure>
-              <div class="flow-step-copy">
-                <p class="flow-step-number" aria-hidden="true">03</p>
-                <h3>Snap it. Claim it.</h3>
-                <p>Take a photo where you’re standing, press and hold, and the badge is yours, dated the day you went.</p>
-              </div>
-            </li>
-          </ol>
-        </section>
+      <section id="badges" class="badge-marquee" aria-labelledby="badges-title">
+        <h2 id="badges-title" class="fan-sr-only">A few of the badges</h2>
+        <!-- badge-marquee -->
+        <p class="fan-caption">Each badge is original art of a real spot inside that park.</p>
+      </section>
 
-        <section class="outdoor-section outdoor-section--collection" aria-labelledby="collection-title">
-          <div class="outdoor-section-copy">
-            <h2 id="collection-title">A collection you can’t fake.</h2>
-            <p>Every badge in your Dex means you were there. Visit more parks to rank up and open rarer badges, then share each one to your story.</p>
-            <ol class="rank-ladder" aria-label="Collector ranks">
-              <li><span class="rank-name">Fledgling</span><span class="rank-rule">Where you start</span><span class="rank-rarity" data-rarity="common">Common</span></li>
-              <li><span class="rank-name">Trailblazer</span><span class="rank-rule">Visit 2 parks</span><span class="rank-rarity" data-rarity="uncommon">Uncommon</span></li>
-              <li><span class="rank-name">Wayfinder</span><span class="rank-rule">Visit 5 parks</span><span class="rank-rarity" data-rarity="rare">Rare</span></li>
-              <li><span class="rank-name">Island Legend</span><span class="rank-rule">Visit 10 parks</span><span class="rank-rarity" data-rarity="legendary">Legendary</span></li>
-            </ol>
-          </div>
-          <div class="outdoor-phone-gallery" role="group" aria-label="Parkdex collection screens">
-            <figure class="outdoor-device"><div class="outdoor-device-trigger"><span class="device-frame device-frame--iphone-16-max device-frame--parkdex-asset"><span class="device-frame__screen"><span class="device-frame__media"><img src="/images/app-dex.webp" width="780" height="1688" loading="lazy" alt="Parkdex My Dex with 1 of 100 badges, the Fledgling rank one park from Trailblazer, and the Victoria West badge on the shelf" /></span></span><span class="device-frame__hardware" aria-hidden="true"><img src="/frames/parkdex-phone-frame.webp" width="1252" height="2604" alt="" /></span></span></div></figure>
-            <figure class="outdoor-device"><div class="outdoor-device-trigger"><span class="device-frame device-frame--iphone-16-max device-frame--parkdex-asset"><span class="device-frame__screen"><span class="device-frame__media"><img src="/images/app-share.webp" width="780" height="1688" loading="lazy" alt="Parkdex Show it off share card for Victoria West, badge 1 of 100, with Share to story and Save image buttons" /></span></span><span class="device-frame__hardware" aria-hidden="true"><img src="/frames/parkdex-phone-frame.webp" width="1252" height="2604" alt="" /></span></span></div></figure>
-          </div>
-        </section>
-
-        <section class="trail-section" aria-labelledby="trail-title">
-          <h2 id="trail-title" class="outdoor-sr-only">Built for the trail</h2>
-          <ul class="trail-facts">
-            <li><h3>Works without signal</h3><p>The map is saved on your phone, so a trailhead with no bars is fine.</p></li>
-            <li><h3>No account needed</h3><p>Start collecting right away. A Parkdex account is optional, for backing up your badges and photos.</p></li>
-            <li><h3>Location stays with you</h3><p>Parkdex uses your location only to check you in inside a park boundary.</p></li>
+      <section id="map" class="fan-feature" aria-labelledby="map-title">
+        <figure class="fan-feature__phone"><span class="device-frame device-frame--iphone-16-max device-frame--parkdex-asset"><span class="device-frame__screen"><span class="device-frame__media"><img src="/images/app-park-sheet.webp" width="780" height="1688" loading="lazy" alt="Parkdex park sheet for Victoria West Park: a common badge, 1.5 km by road, a 5 minute drive, roadside parking, and a Let’s go button" /></span></span><span class="device-frame__hardware" aria-hidden="true"><img src="/frames/parkdex-phone-frame.webp" width="1252" height="2604" alt="" /></span></span></figure>
+        <div class="fan-feature__copy">
+          <h2 id="map-title">A map full of badges you don’t have yet.</h2>
+          <p>Open it up and every park nearby is a pin. It turns a slow Saturday into “wait, there’s a park <em>there</em>?”</p>
+          <ul class="fan-dots">
+            <li>Tap a pin for the rarity, the drive and where to park.</li>
+            <li>The map lives on your phone, so a trailhead with no signal is fine.</li>
+            <li>Badges near you sorts itself by how close you are.</li>
           </ul>
-        </section>
+        </div>
+      </section>
 
-        <section id="beta" class="beta-section" aria-labelledby="beta-title">
-          <div class="beta-section-copy">
-            <p class="flow-eyebrow">Android beta</p>
-            <h2 id="beta-title">Get Parkdex in two taps.</h2>
-            <p>The beta is open to anyone in Canada with an Android phone. Join the tester group, then install from Google Play like any other app.</p>
-          </div>
-          <div class="beta-section-steps">
+      <section id="there" class="fan-feature fan-feature--flip" aria-labelledby="there-title">
+        <figure class="fan-feature__phone"><span class="device-frame device-frame--iphone-16-max device-frame--parkdex-asset"><span class="device-frame__screen"><span class="device-frame__media"><img src="/images/app-arrival.webp" width="780" height="1688" loading="lazy" alt="Parkdex arrival card saying Welcome to Victoria West, marked Inside the boundary, with Kip saying KLEEP, you made it, and a Check in and snap button" /></span></span><span class="device-frame__hardware" aria-hidden="true"><img src="/frames/parkdex-phone-frame.webp" width="1252" height="2604" alt="" /></span></span></figure>
+        <div class="fan-feature__copy">
+          <h2 id="there-title">You can’t fake being there.</h2>
+          <p>Parkdex checks you’re inside the actual park boundary before it lets you claim. Cross the line and Kip lets out a very proud KLEEP.</p>
+          <ul class="fan-dots">
+            <li>Snap a photo where you’re standing to claim it.</li>
+            <li>Every badge is dated the day you went.</li>
+            <li>Your location is only used for that check-in.</li>
+          </ul>
+        </div>
+      </section>
+
+      <section id="dex" class="fan-feature" aria-labelledby="dex-title">
+        <figure class="fan-feature__phone"><span class="device-frame device-frame--iphone-16-max device-frame--parkdex-asset"><span class="device-frame__screen"><span class="device-frame__media"><img src="/images/app-dex.webp" width="780" height="1688" loading="lazy" alt="Parkdex My Dex showing the Fledgling rank, one park from Trailblazer, and the Victoria West badge on the shelf" /></span></span><span class="device-frame__hardware" aria-hidden="true"><img src="/frames/parkdex-phone-frame.webp" width="1252" height="2604" alt="" /></span></span></figure>
+        <div class="fan-feature__copy">
+          <h2 id="dex-title">The more you go, the rarer it gets.</h2>
+          <p>Everyone starts as a Fledgling. Keep visiting and the rare badges start showing up.</p>
+          <ol class="fan-ranks" aria-label="Collector ranks">
+            <li><strong>Fledgling</strong><span>to start</span><em data-rarity="common">common</em></li>
+            <li><strong>Trailblazer</strong><span>2 parks</span><em data-rarity="uncommon">uncommon</em></li>
+            <li><strong>Wayfinder</strong><span>5 parks</span><em data-rarity="rare">rare</em></li>
+            <li><strong>Island Legend</strong><span>10 parks</span><em data-rarity="legendary">legendary</em></li>
+          </ol>
+        </div>
+      </section>
+
+      <section class="badge-wall-section" aria-labelledby="wall-title">
+        <h2 id="wall-title">Out there right now</h2>
+        <p class="fan-section-lede">The badges you can go claim today, rarest first. New ones get added as they’re painted.</p>
+        <ul class="badge-wall">
+          <!-- badge-wall -->
+        </ul>
+      </section>
+
+      <section id="get" class="fan-get" aria-labelledby="get-title">
+        <img class="fan-get__kip" src="/images/kip/kip-cheer.webp" width="512" height="512" alt="" />
+        <h2 id="get-title">Go get your first badge.</h2>
+        <p class="fan-section-lede">It’s free, there’s no sign-up, and there’s probably a park ten minutes from you.</p>
+        <div class="fan-get__steps">
             <ol class="beta-steps" data-beta-steps>
                 <li class="beta-step" data-beta-step="1">
-                  <a class="beta-step-button" href="https://groups.google.com/g/parkdex-testers/about" target="_blank" rel="noopener" data-beta-link="1" aria-describedby="section-step-1-help">
+                  <a class="beta-step-button" href="https://groups.google.com/g/parkdex-testers/about" target="_blank" rel="noopener" data-beta-link="1" aria-describedby="get-step-1-help">
                     <span class="beta-step-number" aria-hidden="true">1</span>
                     <span class="beta-step-label">Join the tester group</span>
                     <span class="beta-step-done" data-beta-done-label>Done</span>
                   </a>
-                  <p id="section-step-1-help" class="beta-step-help">Sign in with the Google account you use in the Play Store, then choose <strong>Join group</strong>. No approval needed.</p>
+                  <p id="get-step-1-help" class="beta-step-help">Sign in with the Google account you use in the Play Store, then choose <strong>Join group</strong>. No approval needed.</p>
                 </li>
                 <li class="beta-step" data-beta-step="2">
-                  <a class="beta-step-button" href="https://play.google.com/apps/testing/app.parkdex" target="_blank" rel="noopener" data-beta-link="2" aria-describedby="section-step-2-help">
+                  <a class="beta-step-button" href="https://play.google.com/apps/testing/app.parkdex" target="_blank" rel="noopener" data-beta-link="2" aria-describedby="get-step-2-help">
                     <span class="beta-step-number" aria-hidden="true">2</span>
                     <span class="beta-step-label">Install Parkdex</span>
                     <span class="beta-step-done" data-beta-done-label>Opened</span>
                   </a>
-                  <p id="section-step-2-help" class="beta-step-help">Choose <strong>Become a tester</strong>, then follow the Google Play link to download Parkdex. Open it and pick your first park.</p>
+                  <p id="get-step-2-help" class="beta-step-help">Choose <strong>Become a tester</strong>, then follow the Google Play link to download Parkdex. Open it and pick your first park.</p>
                 </li>
               </ol>
             <p class="beta-note" role="note"><strong>After joining the Google Group, it may take up to 1 hour to get access on Google Play.</strong> If you are unable to install the app, please try again in a little while.</p>
             <p class="beta-fine">Already an internal tester? Leave the internal test in Google Play first, then do step 2. <a href="https://support.google.com/googleplay/android-developer/answer/9845334" target="_blank" rel="noopener">Google’s tester help</a></p>
-            <p class="beta-fine">On iPhone? <button class="outdoor-link-button" type="button" data-signup-open="app_store">Join the App Store waitlist</button></p>
-          </div>
-        </section>
-      </main>
+            <p class="beta-fine">On iPhone? <button class="fan-link" type="button" data-signup-open="app_store">Join the App Store waitlist</button></p>
+        </div>
+      </section>
+    </main>
 
       <dialog id="beta-access" class="outdoor-signup outdoor-beta" aria-labelledby="beta-access-title">
         <button class="outdoor-signup-close" type="button" data-dialog-close aria-label="Close Android beta steps">×</button>
@@ -230,37 +219,31 @@
         </div>
       </dialog>
 
-      <footer class="outdoor-footer">
-        <div class="outdoor-footer-sign">
-          <img class="outdoor-footer-kip" src="/images/kip/kip-cheer.webp" width="512" height="512" alt="" />
-          <p class="outdoor-footer-signoff">See you out there. <a href="https://www.nathanpannell.com/">-Nathan</a></p>
+
+    <footer class="fan-footer">
+      <div class="fan-footer__inner">
+        <div class="fan-footer__brand">
+          <a class="fan-brand" href="/"><img src="/favicon-64x64.png" width="32" height="32" alt="" /><span>Parkdex</span></a>
+          <p>A little game for people who like parks. Go somewhere new, get a painting of it, repeat. See you out there. <a href="https://www.nathanpannell.com/">Nathan</a></p>
         </div>
-        <div class="outdoor-footer-grid">
-          <section aria-labelledby="footer-app">
-            <h2 id="footer-app">Get Parkdex</h2>
-            <ul>
-              <li><button class="outdoor-link-button" type="button" data-beta-open>Android beta</button></li>
-              <li><button class="outdoor-link-button" type="button" data-signup-open="app_store">App Store waitlist</button></li>
-            </ul>
-          </section>
-          <nav aria-labelledby="footer-help">
-            <h2 id="footer-help">Help</h2>
-            <ul>
-              <li><a href="/support/">Support</a></li>
-              <li><button class="outdoor-link-button" type="button" data-dialog-open="email-privacy">About your email</button></li>
-              <li><a href="/delete-account/">Delete account</a></li>
-            </ul>
-          </nav>
-          <section aria-labelledby="footer-about">
-            <h2 id="footer-about">About</h2>
-            <ul>
-              <li><a href="/privacy/">Privacy</a></li>
-              <li><button class="outdoor-link-button" type="button" data-dialog-open="credits-dialog">Credits</button></li>
-              <li><a href="https://www.nathanpannell.com/">Nathan Pannell</a></li>
-            </ul>
-          </section>
+        <div class="fan-footer__cols">
+          <section aria-labelledby="footer-app"><h2 id="footer-app">Get Parkdex</h2><ul>
+            <li><button class="fan-link" type="button" data-beta-open>Android beta</button></li>
+            <li><button class="fan-link" type="button" data-signup-open="app_store">App Store waitlist</button></li>
+          </ul></section>
+          <nav aria-labelledby="footer-help"><h2 id="footer-help">Help</h2><ul>
+            <li><a href="/support/">Support</a></li>
+            <li><button class="fan-link" type="button" data-dialog-open="email-privacy">About your email</button></li>
+            <li><a href="/delete-account/">Delete account</a></li>
+          </ul></nav>
+          <section aria-labelledby="footer-about"><h2 id="footer-about">About</h2><ul>
+            <li><a href="/privacy/">Privacy</a></li>
+            <li><button class="fan-link" type="button" data-dialog-open="credits-dialog">Credits</button></li>
+            <li><a href="https://www.nathanpannell.com/">Nathan Pannell</a></li>
+          </ul></section>
         </div>
-        <p class="outdoor-footer-fine">Parkdex · Made on Vancouver Island, BC</p>
+      </div>
+      <div class="fan-footer__fine"><p>© 2026 Parkdex</p><p>Made in Victoria, British Columbia</p></div>
         <dialog id="email-privacy" class="outdoor-dialog" aria-labelledby="email-privacy-title">
           <div class="outdoor-dialog-head"><h2 id="email-privacy-title">About your email</h2><button class="outdoor-dialog-close" type="button" data-dialog-close aria-label="Close about your email">×</button></div>
             <div class="privacy-content">
@@ -284,8 +267,7 @@
               <p>East Sooke photo: <a href="https://commons.wikimedia.org/wiki/File:East_Sooke_Park_BC.jpg">Brandon Godfrey</a> · <a href="https://creativecommons.org/licenses/by-sa/2.0/">CC BY-SA 2.0</a>. Cropped for this page.</p>
             </div>
         </dialog>
-      </footer>
-    </div>
+    </footer>
 
     <script type="module" src="/src/main.ts"></script>
   </body>

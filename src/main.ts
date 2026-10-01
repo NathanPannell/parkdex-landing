@@ -1,8 +1,5 @@
-import './shared-base.css';
-import './poster-page.css';
+import './fan-page.css';
 import './device-frame.css';
-import './signup-footer.css';
-import './landing-flow.css';
 
 const dialogs = [...document.querySelectorAll<HTMLDialogElement>('.outdoor-dialog, .outdoor-signup')];
 function revealLinkedDialog() {
@@ -252,37 +249,3 @@ removeForm.addEventListener('submit', async event => {
     removeForm.removeAttribute('aria-busy');
   }
 });
-
-// Count the headline number up once, padded so the line does not reflow.
-const countElement = document.querySelector<HTMLSpanElement>('#park-count')!;
-const countLabel = countElement.nextElementSibling;
-let parkCount = Number(countElement.dataset.count);
-let countFinished = false;
-const formatCount = (value: number) => String(value).padStart(String(parkCount).length, '0');
-if (Number.isFinite(parkCount) && !matchMedia('(prefers-reduced-motion: reduce)').matches) {
-  let countStart: number | undefined;
-  const updateCount = (time: number) => {
-    countStart ??= time;
-    const progress = Math.min((time - countStart) / 1000, 1);
-    countElement.textContent = formatCount(Math.round(parkCount * progress));
-    if (progress < 1) requestAnimationFrame(updateCount);
-    else countFinished = true;
-  };
-  requestAnimationFrame(updateCount);
-} else if (Number.isFinite(parkCount)) {
-  countElement.textContent = formatCount(parkCount);
-  countFinished = true;
-}
-
-// The built page carries the count from its last deploy; refresh it from the live catalogue.
-fetch('/api/badge-count', { signal: AbortSignal.timeout(5000) })
-  .then((response) => (response.ok ? response.json() : null))
-  .then((body: { count?: unknown } | null) => {
-    const live = body?.count;
-    if (typeof live !== 'number' || !Number.isInteger(live) || live <= 0 || live === parkCount) return;
-    parkCount = live;
-    countElement.dataset.count = String(live);
-    if (countLabel) countLabel.textContent = String(live);
-    if (countFinished) countElement.textContent = formatCount(live);
-  })
-  .catch(() => {});
