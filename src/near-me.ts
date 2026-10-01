@@ -30,7 +30,7 @@ function markerFor(badge: (typeof badges)[number]): maplibregl.Marker {
   element.dataset.rarity = badge.rarity;
   element.setAttribute('aria-label', `${badge.name}, ${badge.rarity} badge`);
   element.style.backgroundImage = `url(/badges/${badge.scene}.webp)`;
-  const popup = new maplibregl.Popup({ offset: 22, closeButton: false, maxWidth: '240px' }).setDOMContent(popupContent(badge));
+  const popup = new maplibregl.Popup({ offset: 22, closeButton: false, maxWidth: '280px' }).setDOMContent(popupContent(badge));
   return new maplibregl.Marker({ element }).setLngLat([badge.lng, badge.lat]).setPopup(popup).addTo(map);
 }
 
@@ -43,10 +43,12 @@ function popupContent(badge: (typeof badges)[number]): HTMLElement {
   chip.textContent = badge.rarity;
   const name = document.createElement('strong');
   name.textContent = badge.name;
+  const blurb = document.createElement('p');
+  blurb.textContent = badge.blurb;
   const link = document.createElement('a');
   link.href = `/badges/#${badge.id}`;
   link.textContent = 'About this badge';
-  wrapper.append(chip, name, link);
+  wrapper.append(chip, name, blurb, link);
   return wrapper;
 }
 
