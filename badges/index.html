@@ -25,11 +25,17 @@
         <h1>Badges</h1>
         <p class="fan-section-lede">Every badge you can claim today. Each one is stylized artwork of a real spot in the park, and you can only collect it by standing inside the park boundary.</p>
       </header>
+      <div class="badge-search">
+        <label for="badge-search">Search badges</label>
+        <input id="badge-search" type="search" placeholder="Try a park, a beach, or rare" autocomplete="off" aria-describedby="badge-search-count" />
+        <p id="badge-search-count" class="badge-search__count" role="status" aria-live="polite"></p>
+      </div>
       <ul class="badge-list">
         <!-- badge-list -->
       </ul>
+      <p class="badge-search__empty" hidden>No badges match that yet. Try another park name.</p>
     </main>
     <!-- site-footer -->
-    <script type="module" src="/src/page.ts"></script>
+    <script type="module" src="/src/badges-page.ts"></script>
   </body>
 </html>

@@ -26,26 +26,22 @@ function card(badge: Badge, decorative: boolean): string {
     + `<span class="badge-card__name">${escapeHtml(badge.short)}</span></li>`;
 }
 
-// Two rows scrolling in opposite directions. Each row repeats its cards so the
-// CSS loop can translate by exactly half its width without a visible seam; the
-// copies are hidden from assistive technology.
-export function renderMarquee(badges: Badge[]): string {
-  const half = Math.ceil(badges.length / 2);
-  const rows = [badges.slice(0, half), badges.slice(half)].filter((row) => row.length > 0);
-  return rows.map((row, index) => {
-    const cards = row.map((badge) => card(badge, false)).join('') + row.map((badge) => card(badge, true)).join('');
-    return `<ul class="badge-marquee__row${index % 2 ? ' badge-marquee__row--reverse' : ''}">${cards}</ul>`;
-  }).join('');
+function rank(rarity: string): number {
+  const index = RARITY_ORDER.indexOf(rarity);
+  return index === -1 ? RARITY_ORDER.length : index;
 }
 
-// The wall leads with the rarest badges, then alphabetical within a rarity.
-export function renderWall(badges: Badge[]): string {
-  const rank = (rarity: string) => {
-    const index = RARITY_ORDER.indexOf(rarity);
-    return index === -1 ? RARITY_ORDER.length : index;
-  };
-  const sorted = [...badges].sort((a, b) => rank(a.rarity) - rank(b.rarity) || a.short.localeCompare(b.short));
-  return sorted.map((badge) => card(badge, false)).join('');
+// A page of the Dex: hexagon badges like the app's, rarest first, followed
+// by a few empty slots to show there is more to collect.
+export function renderDexPage(badges: Badge[], filled = 8, empty = 4): string {
+  const shown = [...badges].sort((a, b) => rank(a.rarity) - rank(b.rarity) || a.short.localeCompare(b.short)).slice(0, filled);
+  const slots = shown.map((badge) => `<li class="dex-slot" data-rarity="${escapeHtml(badge.rarity)}">`
+    + `<a class="dex-slot__link" href="/badges/#${escapeHtml(badge.id)}"><span class="dex-slot__hex"><img src="/badges/${escapeHtml(badge.scene)}.webp" width="480" height="480" loading="lazy" alt="" /></span>`
+    + `<span class="dex-slot__ribbon">${escapeHtml(badge.short)}</span><span class="fan-sr-only">, ${escapeHtml(badge.rarity)} badge</span></a></li>`);
+  for (let index = 0; index < empty; index++) {
+    slots.push('<li class="dex-slot dex-slot--empty" aria-hidden="true"><span class="dex-slot__hex"><span>?</span></span></li>');
+  }
+  return slots.join('');
 }
 
 const CATEGORY_LABEL: Record<string, string> = {
@@ -59,7 +55,7 @@ const CATEGORY_LABEL: Record<string, string> = {
 export function renderBadgeList(badges: Badge[]): string {
   return [...badges].sort((a, b) => a.short.localeCompare(b.short)).map((badge) => {
     const category = CATEGORY_LABEL[badge.category ?? ''] ?? 'Park';
-    return `<li class="badge-entry" id="${escapeHtml(badge.id)}" data-rarity="${escapeHtml(badge.rarity)}">`
+    return `<li class="badge-entry" id="${escapeHtml(badge.id)}" data-rarity="${escapeHtml(badge.rarity)}" data-search="${escapeHtml(`${badge.name} ${badge.short} ${badge.rarity} ${category} ${badge.blurb}`.toLowerCase())}">`
       + `<img src="/badges/${escapeHtml(badge.scene)}.webp" width="480" height="480" loading="lazy" alt="${escapeHtml(`${badge.name} badge art`)}" />`
       + `<div class="badge-entry__body"><p class="badge-entry__meta"><span class="badge-chip">${escapeHtml(badge.rarity)}</span>${escapeHtml(category)}</p>`
       + `<h2>${escapeHtml(badge.name)}</h2><p>${escapeHtml(badge.blurb)}</p>`

@@ -75,10 +75,15 @@
         </figure>
       </section>
 
-      <section id="badges" class="badge-marquee" aria-labelledby="badges-title">
-        <h2 id="badges-title" class="fan-sr-only">A few of the badges</h2>
-        <!-- badge-marquee -->
-        <p class="fan-caption">Every badge shows a real place you can stand in.</p>
+      <section id="badges" class="dex-section" aria-labelledby="badges-title">
+        <div class="dex-section__copy">
+          <h2 id="badges-title">Your Dex starts empty.</h2>
+          <p>Every park you visit fills a slot with its badge, a piece of stylized artwork of a real spot in that park. Most are common. A few take more effort to find.</p>
+          <a class="fan-button" href="/badges/">Browse every badge</a>
+        </div>
+        <ul class="dex-grid" aria-label="Some of the badges">
+          <!-- dex-page -->
+        </ul>
       </section>
 
       <section id="map" class="fan-feature" aria-labelledby="map-title">
@@ -118,14 +123,6 @@
             <li><strong>Island Legend</strong><span>10 parks</span><em data-rarity="legendary">legendary</em></li>
           </ol>
         </div>
-      </section>
-
-      <section class="badge-wall-section" aria-labelledby="wall-title">
-        <h2 id="wall-title">Out there right now</h2>
-        <p class="fan-section-lede">Badges you can claim today, rarest first. More are added regularly.</p>
-        <ul class="badge-wall">
-          <!-- badge-wall -->
-        </ul>
       </section>
 
       <section id="get" class="fan-get" aria-labelledby="get-title">
@@ -227,11 +224,10 @@
           <section aria-labelledby="footer-about"><h2 id="footer-about">About</h2><ul>
             <li><a href="/privacy/">Privacy</a></li>
             <li><button class="fan-link" type="button" data-dialog-open="credits-dialog">Credits</button></li>
-            <li><a href="https://www.nathanpannell.com/">Nathan Pannell</a></li>
           </ul></section>
         </div>
       </div>
-      <div class="fan-footer__fine"><p>© 2026 Parkdex</p><p>Made in Victoria, British Columbia</p></div>
+      <!-- footer-fine -->
         <dialog id="email-privacy" class="outdoor-dialog" aria-labelledby="email-privacy-title">
           <div class="outdoor-dialog-head"><h2 id="email-privacy-title">About your email</h2><button class="outdoor-dialog-close" type="button" data-dialog-close aria-label="Close about your email">×</button></div>
             <div class="privacy-content">
