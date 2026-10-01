@@ -1,34 +1,44 @@
-@import '@fontsource/baloo-2/600.css';
-@import '@fontsource/baloo-2/700.css';
-@import '@fontsource/baloo-2/800.css';
-@import '@fontsource-variable/nunito';
+@import '@fontsource-variable/bricolage-grotesque';
+@import '@fontsource-variable/figtree';
 
-/* Warm, rounded and bright: a collector's fan page rather than a field guide.
- * Parkdex orange stays the accent; forest green carries the ink. */
+/* Borrowed from the Parkdex app: cream paper, Kip orange, ink outlines with a
+ * hard drop shadow, and the app's pastel rarity chips. */
 :root {
   color-scheme: light;
-  --cream: #fff9f0;
-  --cream-deep: #fbf0e0;
-  --card: #ffffff;
-  --ink: #1d2a22;
-  --ink-soft: #4d5b52;
-  --muted: #6d786f;
-  --line: #ecdfcc;
+  --cream: #fff8ec;
+  --cream-deep: #fbecd4;
+  --card: #fffdf8;
+  --ink: #14231c;
+  --ink-soft: #2d3d35;
+  --muted: #5b6b62;
+  --line: #f4dfbd;
   --orange: #ff5a1f;
-  --orange-deep: #e5470f;
-  --orange-glow: rgb(255 90 31 / 18%);
-  --green: #1f6b4f;
-  --focus: #1f6b4f;
+  --orange-deep: #d9400c;
+  --orange-glow: rgb(255 90 31 / 16%);
+  --sun: #ffc93c;
+  --moss: #2f9e6b;
+  --pine: #1c5b43;
+  --sea: #22b3c5;
+  --sky: #9fd8ff;
+  --green: var(--pine);
+  --focus: var(--pine);
   --error: #a12c24;
   --success: #216246;
-  --shadow: 0 18px 40px -18px rgb(70 40 10 / 35%);
-  --shadow-soft: 0 8px 22px -12px rgb(70 40 10 / 30%);
-  --rarity-common: #7d8a83;
-  --rarity-uncommon: #2f8a57;
-  --rarity-rare: #2d6fd6;
-  --rarity-legendary: #c9861a;
-  --display: 'Baloo 2', 'Nunito Variable', sans-serif;
-  --body: 'Nunito Variable', system-ui, sans-serif;
+  --pop: 0 4px 0 var(--ink);
+  --pop-small: 0 3px 0 var(--ink);
+  --outline: 2.5px solid var(--ink);
+  --shadow: 0 6px 0 var(--ink);
+  --shadow-soft: 0 4px 0 var(--ink);
+  --rarity-common: #ddefe3;
+  --rarity-common-ink: #1c5b43;
+  --rarity-uncommon: #cdefff;
+  --rarity-uncommon-ink: #0e6e86;
+  --rarity-rare: #dcd5ff;
+  --rarity-rare-ink: #4b3c9e;
+  --rarity-legendary: #ffe9a8;
+  --rarity-legendary-ink: #8a5a00;
+  --display: 'Bricolage Grotesque Variable', system-ui, sans-serif;
+  --body: 'Figtree Variable', system-ui, sans-serif;
   --page: min(1120px, calc(100% - 2.5rem));
   --radius: 22px;
   /* Tokens the shared device frame reads. */
@@ -284,4 +294,68 @@ form[data-state=success] .outdoor-form-message { color: var(--success); }
 @media (min-width: 56rem) {
   .fan-kip { left: -58%; bottom: 2%; width: 66%; }
   .fan-kip__bubble { left: 18%; bottom: 96%; font-size: 1.05rem; }
+}
+
+/* ---------- Parkdex app materials ----------
+ * Outlined, sticker-like surfaces with a hard ink shadow, as in the app. */
+h1, h2, h3 { font-variation-settings: 'opsz' 96; font-weight: 800; letter-spacing: -.035em; line-height: .98; }
+.fan-hero h1 { font-size: clamp(2.7rem, 9vw, 4.6rem); }
+.fan-accent { position: relative; white-space: nowrap; }
+.fan-accent::after { content: ''; position: absolute; left: -.05em; right: -.05em; bottom: .04em; z-index: -1; height: .28em; border-radius: 999px; background: var(--sun); }
+.fan-nav { border-bottom: var(--outline); background: rgb(255 248 236 / 92%); }
+.fan-brand img { border: 2px solid var(--ink); box-shadow: 0 2px 0 var(--ink); }
+.fan-button, .outdoor-primary { border: var(--outline); color: var(--ink); box-shadow: var(--pop); font-family: var(--display); font-weight: 800; }
+.fan-button:active, .outdoor-primary:active { transform: translateY(3px); box-shadow: 0 1px 0 var(--ink); }
+.fan-store { border: var(--outline); border-radius: 18px; background: var(--orange); color: var(--ink); box-shadow: var(--pop); }
+.fan-store--ghost { background: var(--card); }
+.fan-store:active { transform: translateY(3px); box-shadow: 0 1px 0 var(--ink); }
+.fan-store__small { opacity: .8; }
+.fan-store__big { font-weight: 800; }
+
+/* Sky behind the hero, like the badge scenes in the app. */
+.fan-hero { position: relative; isolation: isolate; }
+.fan-hero::before { content: ''; position: absolute; inset: -1rem calc(50% - 50vw) auto; z-index: -1; height: 75%; background: radial-gradient(circle at 94% 4%, #fff3c4 0 3.5rem, transparent 3.6rem), linear-gradient(#cdefff, transparent); }
+@media (min-width: 56rem) { .fan-hero::before { background: radial-gradient(circle at 78% 30%, #fff3c4 0 6rem, transparent 6.1rem), linear-gradient(#cdefff, transparent); } }
+.fan-hero__phone::before, .fan-feature__phone::before { background: radial-gradient(closest-side, rgb(255 201 60 / 35%), transparent); }
+.fan-kip__bubble { border-width: 2.5px; box-shadow: 0 3px 0 var(--ink); font-weight: 800; }
+
+/* Badge cards read as stickers: ink outline, hard shadow, slight tilt. */
+.badge-card { border: var(--outline); box-shadow: var(--shadow-soft); }
+.badge-marquee__row .badge-card:nth-child(odd) { transform: rotate(-1.2deg); }
+.badge-marquee__row .badge-card:nth-child(even) { transform: rotate(1.2deg); }
+.badge-marquee { padding-top: 1.5rem; }
+.badge-card::after { background: linear-gradient(transparent, rgb(20 35 28 / 72%)); }
+.badge-card__name { font-family: var(--display); font-weight: 800; }
+
+/* Rarity chips use the app's pastel fills, ink text and stars. */
+.badge-card__rarity, .badge-chip, .fan-ranks em { border: 2px solid var(--ink); background: var(--rarity-common); color: var(--rarity-common-ink); font-family: var(--display); font-weight: 800; text-transform: capitalize; }
+.badge-card__rarity::before, .badge-chip::before, .fan-ranks em::before { content: '★ '; }
+[data-rarity="uncommon"] > .badge-card__rarity, [data-rarity="uncommon"] .badge-chip, .fan-ranks em[data-rarity="uncommon"] { background: var(--rarity-uncommon); color: var(--rarity-uncommon-ink); }
+[data-rarity="uncommon"] > .badge-card__rarity::before, [data-rarity="uncommon"] .badge-chip::before, .fan-ranks em[data-rarity="uncommon"]::before { content: '★★ '; }
+[data-rarity="rare"] > .badge-card__rarity, [data-rarity="rare"] .badge-chip, .fan-ranks em[data-rarity="rare"] { background: var(--rarity-rare); color: var(--rarity-rare-ink); }
+[data-rarity="rare"] > .badge-card__rarity::before, [data-rarity="rare"] .badge-chip::before, .fan-ranks em[data-rarity="rare"]::before { content: '★★★ '; }
+[data-rarity="legendary"] > .badge-card__rarity, [data-rarity="legendary"] .badge-chip, .fan-ranks em[data-rarity="legendary"] { background: var(--rarity-legendary); color: var(--rarity-legendary-ink); }
+[data-rarity="legendary"] > .badge-card__rarity::before, [data-rarity="legendary"] .badge-chip::before, .fan-ranks em[data-rarity="legendary"]::before { content: '★★★★★ '; }
+
+.fan-dots li::before { border: 2px solid var(--ink); width: .7rem; height: .7rem; top: .45em; }
+.fan-ranks li, .badge-entry, .trip-stop, .trip-card a, .beta-step-button { border: var(--outline); box-shadow: var(--pop-small); }
+.fan-ranks strong, .trip-card__title { font-weight: 800; }
+.badge-entry img, .trip-stop img { border: 2px solid var(--ink); }
+.fan-get { border: var(--outline); box-shadow: var(--shadow); background: linear-gradient(#cdefff, var(--cream-deep) 55%); }
+.beta-step[data-state="current"] .beta-step-button { border-color: var(--ink); color: var(--ink); box-shadow: var(--pop); }
+.beta-step[data-state="current"] .beta-step-number { background: var(--card); color: var(--ink); border: 2px solid var(--ink); }
+.beta-note { border: 2px solid var(--ink); border-left-width: 6px; border-left-color: var(--orange); background: #fff3c4; }
+.trip-stop__number { border: 2.5px solid var(--ink); color: var(--ink); box-shadow: var(--pop-small); }
+.outdoor-signup, .outdoor-dialog { border: var(--outline); box-shadow: 0 8px 0 var(--ink); }
+.outdoor-signup-close, .outdoor-dialog-close { border: 2px solid var(--ink); }
+.near-me__pin { border: 3px solid var(--ink); box-shadow: 0 3px 0 var(--ink); }
+.near-me__pin[data-rarity] { box-shadow: 0 3px 0 var(--ink); }
+.maplibregl-popup-content { border: var(--outline); box-shadow: var(--pop-small); }
+.fan-footer, .fan-footer__fine { border-top: var(--outline); }
+.fan-nav__links a[aria-current="page"] { color: var(--ink); text-decoration: underline; text-decoration-color: var(--orange); text-decoration-thickness: 3px; text-underline-offset: .35em; }
+
+@media (hover: hover) and (pointer: fine) {
+  .fan-button:hover, .outdoor-primary:hover:not(:disabled) { background: #ff7a45; }
+  .fan-store:hover { transform: translateY(-2px); box-shadow: 0 6px 0 var(--ink); }
+  .trip-card a:hover, .badge-entry:hover { transform: translateY(-2px); box-shadow: var(--pop); }
 }
