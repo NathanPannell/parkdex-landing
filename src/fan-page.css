@@ -373,7 +373,8 @@ h1, h2, h3 { font-variation-settings: 'opsz' 96; font-weight: 800; letter-spacin
 @keyframes badge-holo { from { translate: -40px -30px; } to { translate: 40px 30px; } }
 
 /* ---------- Badge bands ----------
- * Rows of app-style badges between sections. Edges fade out instead of
+ * Rows of app-style badges, kept just above the closing signup so they read
+ * as the payoff rather than crowding the hero. Edges fade out instead of
  * stopping at a hard line. */
 .badge-band { --tile: clamp(92px, 10vw, 140px); position: relative; height: calc(var(--rows) * var(--tile) * .89 + var(--tile) * .2); overflow: hidden; -webkit-mask-image: linear-gradient(rgb(0 0 0 / 0), rgb(0 0 0 / .55) 18%, #000 40%, #000 62%, rgb(0 0 0 / .55) 82%, rgb(0 0 0 / 0)), linear-gradient(90deg, rgb(0 0 0 / .35), #000 18%, #000 82%, rgb(0 0 0 / .35)); -webkit-mask-composite: source-in; mask-image: linear-gradient(rgb(0 0 0 / 0), rgb(0 0 0 / .55) 18%, #000 40%, #000 62%, rgb(0 0 0 / .55) 82%, rgb(0 0 0 / 0)), linear-gradient(90deg, rgb(0 0 0 / .35), #000 18%, #000 82%, rgb(0 0 0 / .35)); mask-composite: intersect; }
 .badge-band[data-rows="2"] { --rows: 2; } .badge-band[data-rows="3"] { --rows: 3; } .badge-band[data-rows="4"] { --rows: 3.5; }
@@ -404,7 +405,7 @@ h1, h2, h3 { font-variation-settings: 'opsz' 96; font-weight: 800; letter-spacin
   .wall-tile, .badge-svg__shine, .badge-svg__holo { animation: none; }
 }
 
-/* Pull the badge section up so it starts just below the fold. */
+/* Keep the first feature close to the fold. */
 .fan-hero { padding-bottom: 1.5rem; }
 @media (min-width: 56rem) { .fan-hero { padding-block: 2.5rem 1rem; } }
 .near-me__popup p { margin: 0; color: var(--ink-soft); font-size: .88rem; line-height: 1.45; }
