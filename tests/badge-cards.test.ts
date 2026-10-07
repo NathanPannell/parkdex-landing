@@ -15,6 +15,15 @@ test("bands fill every row, start where asked, and stay out of keyboard focus", 
   assert.equal((html.match(/wall-row--offset/g) ?? []).length, 1);
 });
 
+test("the homepage band sits just above the closing signup, not under the hero", async () => {
+  const { readFile } = await import("node:fs/promises");
+  const html = await readFile(new URL("../index.html", import.meta.url), "utf8");
+  const sections = [...html.matchAll(/<section (?:id="([^"]+)" )?class="([^"]+)"/g)].map((m) => m[1] ?? m[2]);
+  assert.deepEqual(sections.slice(0, 2), ["fan-hero", "map"]);
+  assert.equal(sections[sections.indexOf("badges") + 1], "get");
+  assert.match(html, /data-rows="2"[^>]*><div class="badge-band__tiles"><!-- badge-band:2:\d+ -->/);
+});
+
 test("badges carry stars, holo for rare ones, and an escaped ribbon", () => {
   const common = renderBadgeSvg({ ...badge("<b>&", "common"), shape: "circle" });
   assert.equal((common.match(/<polygon /g) ?? []).length, 1);
