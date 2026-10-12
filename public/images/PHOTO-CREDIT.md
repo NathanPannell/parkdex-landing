@@ -8,7 +8,7 @@ The photograph and these resized versions are licensed under [Creative Commons A
 
 ## Android preview screenshots
 
-`sealed-arrival-after.png` and `sealed-collection-after.png` are unchanged captures of Sealed Impressions React components using controlled catalogue demonstration photos. They are not photographs of a user visit or evidence of live functionality. Source: `parkdex/docs/pr-evidence/sealed-impressions/{arrival-after,collection-after}.png` on the staging branch.
+`sealed-arrival-after.png` and `sealed-collection-after.png` are unchanged captures of Sealed Impressions React components using controlled catalogue demonstration photos. They are not photographs of a user visit or evidence of live functionality. Source: `parkdex/docs/pr-evidence/sealed-impressions/{arrival-after,collection-after}.png` at commit `cacff6540fa84c06c702ef8b2dce7b20aa003178` (removed from the tree later; see git history).
 
 The Goldstream photo within both screenshots is by Mike: [Flow, Goldstream Provincial Park](https://commons.wikimedia.org/wiki/File:Flow,_Goldstream_Provincial_Park.jpg), [CC BY-SA 2.0](https://creativecommons.org/licenses/by-sa/2.0/). It is cropped by app UI. Screenshot pixels remain unedited in this landing project.
 
