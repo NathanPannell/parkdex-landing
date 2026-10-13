@@ -1,24 +1,23 @@
 import { defineConfig, loadEnv } from 'vite';
-import { mkdir, writeFile } from 'node:fs/promises';
+import { writeFile } from 'node:fs/promises';
 import { resolve } from 'node:path';
 import { KIP_APP_ORIGINS } from './src/app-origins';
 import { renderBadgeList, renderBadgeWall } from './src/badge-cards';
 import { renderBadgeDefs } from './src/badge-svg';
 import { renderFooter, renderFooterFine, renderNav } from './src/site-shell';
 import badgeData from './src/badges.json';
-import { createMcpMetadata, createRobotsTxt, createSitemapXml, rewriteStaticAppLinks } from './src/mcp-metadata';
+import { createRobotsTxt, createSitemapXml, rewriteStaticAppLinks } from './src/site-metadata';
 
 export default defineConfig(({ mode }) => {
   const env = loadEnv(mode, process.cwd(), 'VITE_');
   // Vercel Git deploys of the staging branch build against the staging app.
   const branchAppUrl = process.env.VERCEL_GIT_COMMIT_REF === 'staging' ? KIP_APP_ORIGINS.staging : KIP_APP_ORIGINS.production;
   const appUrl = process.env.VITE_APP_URL || env.VITE_APP_URL || branchAppUrl;
-  const mcpMetadata = createMcpMetadata(appUrl);
   let outputDirectory = 'dist';
 
   return {
     plugins: [{
-      name: 'parkdex-mcp-metadata',
+      name: 'parkdex-site-metadata',
       transformIndexHtml(html) {
         // Badge cards come from src/badges.json, refreshed by `npm run sync-badges`.
         return rewriteStaticAppLinks(html, appUrl)
@@ -33,15 +32,7 @@ export default defineConfig(({ mode }) => {
         outputDirectory = resolve(config.root, config.build.outDir);
       },
       async writeBundle() {
-        const metadataDirectory = resolve(outputDirectory, '.well-known');
-        const resourceMetadataDirectory = resolve(metadataDirectory, 'oauth-protected-resource');
         await Promise.all([
-          mkdir(metadataDirectory, { recursive: true }),
-          mkdir(resourceMetadataDirectory, { recursive: true }),
-        ]);
-        await Promise.all([
-          writeFile(resolve(metadataDirectory, 'oauth-authorization-server'), `${JSON.stringify(mcpMetadata.authorizationServer, null, 2)}\n`),
-          writeFile(resolve(resourceMetadataDirectory, 'mcp'), `${JSON.stringify(mcpMetadata.protectedResource, null, 2)}\n`),
           writeFile(resolve(outputDirectory, 'robots.txt'), createRobotsTxt(appUrl)),
           writeFile(resolve(outputDirectory, 'sitemap.xml'), createSitemapXml(appUrl)),
         ]);

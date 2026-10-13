@@ -1,6 +1,6 @@
 # Landing delivery
 
-The landing page uses one Vercel project, `parkdex-landing` (`prj_R7ccAjDhGmhiys542GFXJ67d1k8X`), and one Neon project, `noisy-smoke-89213665`. Staging and production are separated by Git branch, Neon branch and Vercel target, not by separate projects. It does not own a Railway service. The Parkdex web app and API use their own Neon project and are separate releases. Landing links and rewrites point to their matching staging or production environments.
+The landing page uses one Vercel project, `parkdex-landing` (`prj_R7ccAjDhGmhiys542GFXJ67d1k8X`), and one Neon project, `noisy-smoke-89213665`. Staging and production are separated by Git branch, Neon branch and Vercel target, not by separate projects. It does not own a Railway service. The Parkdex web app and API use their own Neon project and are separate releases. Landing links point to their matching staging or production environments.
 
 | Target | Git branch | Neon branch | Vercel target in `parkdex-landing` | Stable landing domains | Web app |
 | --- | --- | --- | --- | --- | --- |
@@ -9,7 +9,7 @@ The landing page uses one Vercel project, `parkdex-landing` (`prj_R7ccAjDhGmhiys
 
 ## One-time provider configuration
 
-Deployments use the Vercel Git integration, so no GitHub Actions minutes are spent. `vercel.json` enables Git deploys for `main` and `staging` only; other branches and PRs create no provider preview. The build picks the web app origin from `VERCEL_GIT_COMMIT_REF` (`staging` builds against `staging.web.parkdex.app`, everything else against `web.parkdex.app`), and `vercel.json` sends requests for `staging.parkdex.app` to the staging API and map host, with `noindex`. `vercel.staging.json` is kept only for manual PR previews.
+Deployments use the Vercel Git integration, so no GitHub Actions minutes are spent. `vercel.json` enables Git deploys for `main` and `staging` only; other branches and PRs create no provider preview. The build picks the web app origin from `VERCEL_GIT_COMMIT_REF` (`staging` builds against `staging.web.parkdex.app`, everything else against `web.parkdex.app`), and `vercel.json` marks `staging.parkdex.app` with `noindex`. Neither config rewrites or redirects to another service. `vercel.staging.json` is kept only for manual PR previews.
 
 In the `parkdex-landing` Vercel project:
 

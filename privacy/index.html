@@ -30,7 +30,7 @@
       <article class="support-article">
         <h1>Privacy for Parkdex.</h1>
         <p class="support-lede">What you share, what Parkdex keeps, and how to remove it.</p>
-        <p>Last updated September 22, 2026.</p>
+        <p>Last updated October 13, 2026.</p>
 
         <section aria-labelledby="scope-title">
           <h2 id="scope-title">Who this covers</h2>
@@ -51,15 +51,13 @@
           <p>Android requests foreground location access. You can change location permission in your device settings; doing so does not delete location evidence already saved with a visit.</p>
           <h3>Information on your device</h3>
           <p>Parkdex keeps sign-in information, your journal, preferences and pending uploads in browser or app-private storage. Guest progress uses a separate collection key. Pending photo copies let you retry an interrupted upload and are cleared after upload or sign-out.</p>
-          <h3>Connections you authorize</h3>
-          <p>If you connect an assistant or other client through Parkdex’s MCP integration, that client can use its authorized access to read and change your collections and wishlist. Information returned to the client is also handled under that client’s privacy practices.</p>
           <h3>Support messages</h3>
           <p>If you email Nathan, your email address, message and any attachments are used to respond to your request. Send only the information needed to explain the issue, and never send your password.</p>
         </section>
 
         <section aria-labelledby="providers-title">
           <h2 id="providers-title">Services that run Parkdex</h2>
-          <p>Vercel hosts the websites, Railway runs the app API, and Neon stores account and collection information. The Android beta and App Store waitlists use a separate Neon database.</p>
+          <p>Vercel hosts the websites and the app API, and Neon stores account and collection information. The Android beta and App Store waitlists use a separate Neon database.</p>
           <p>Resend delivers account verification and password-recovery emails. Google handles Google sign-in when you choose it. The Parkdex Android app stores visit photos privately with Cloudflare R2 through the Parkdex API.</p>
           <p>The app loads map tiles and map fonts from OpenFreeMap. Those requests reveal your network address and the map areas being loaded to the map service.</p>
           <p><a href="https://openfreemap.org/privacy/">OpenFreeMap’s privacy policy</a> describes anonymized service logs kept indefinitely and temporary IP-address logging during security incidents for up to 30 days. Its service may also use Cloudflare.</p>
@@ -74,7 +72,7 @@
           <p>Account deletion removes your account and its associated visits, collections, authentication records and photo references. Photo files are deleted from private storage. If storage deletion fails, a deletion record remains for manual cleanup. Nathan will not confirm full completion until that cleanup is verified.</p>
           <p>Deletion does not erase a separate guest history, files you downloaded or copies you shared elsewhere. Account-owned local data is cleared on the device completing the in-app deletion. Copies on an offline device cannot be erased remotely while it is offline; you can clear that device’s app data.</p>
           <p>Network-level abuse counters and service-provider logs or backups may remain separately from the active account. Deleting the active account does not immediately erase every provider copy.</p>
-          <p>The app database is configured with a six-hour restore-history window. Railway’s current plan provides seven days of application log access and two days of audit log access. These are restore or access windows, not guarantees about when providers erase every internal copy.</p>
+          <p>The app database is configured with a six-hour restore-history window. These are restore or access windows, not guarantees about when providers erase every internal copy.</p>
           <p>Account deletion and waitlist removal are separate. Use the waitlist controls below if you also want to remove your waitlist email.</p>
         </section>
 

@@ -3,60 +3,9 @@
   "buildCommand": "npm run build",
   "outputDirectory": "dist",
   "git": { "deploymentEnabled": { "**": false, "main": true, "staging": true } },
-  "redirects": [
-    {
-      "source": "/auth/google/callback",
-      "destination": "https://staging.map.parkdex.app/auth/google/callback",
-      "permanent": false,
-      "has": [{ "type": "host", "value": "staging.parkdex.app" }]
-    },
-    {
-      "source": "/auth/google/callback",
-      "destination": "https://map.parkdex.app/auth/google/callback",
-      "permanent": false
-    }
-  ],
-  "rewrites": [
-    { "source": "/mcp", "destination": "https://api-staging-882c.up.railway.app/mcp", "has": [{ "type": "host", "value": "staging.parkdex.app" }] },
-    { "source": "/mcp/:path*", "destination": "https://api-staging-882c.up.railway.app/mcp/:path*", "has": [{ "type": "host", "value": "staging.parkdex.app" }] },
-    { "source": "/authorize", "destination": "https://api-staging-882c.up.railway.app/authorize", "has": [{ "type": "host", "value": "staging.parkdex.app" }] },
-    { "source": "/token", "destination": "https://api-staging-882c.up.railway.app/token", "has": [{ "type": "host", "value": "staging.parkdex.app" }] },
-    { "source": "/register", "destination": "https://api-staging-882c.up.railway.app/register", "has": [{ "type": "host", "value": "staging.parkdex.app" }] },
-    { "source": "/revoke", "destination": "https://api-staging-882c.up.railway.app/revoke", "has": [{ "type": "host", "value": "staging.parkdex.app" }] },
-    { "source": "/oauth/consent", "destination": "https://api-staging-882c.up.railway.app/oauth/consent", "has": [{ "type": "host", "value": "staging.parkdex.app" }] },
-    { "source": "/mcp", "destination": "https://api-production-e72df.up.railway.app/mcp" },
-    { "source": "/mcp/:path*", "destination": "https://api-production-e72df.up.railway.app/mcp/:path*" },
-    { "source": "/authorize", "destination": "https://api-production-e72df.up.railway.app/authorize" },
-    { "source": "/token", "destination": "https://api-production-e72df.up.railway.app/token" },
-    { "source": "/register", "destination": "https://api-production-e72df.up.railway.app/register" },
-    { "source": "/revoke", "destination": "https://api-production-e72df.up.railway.app/revoke" },
-    { "source": "/oauth/consent", "destination": "https://api-production-e72df.up.railway.app/oauth/consent" }
-  ],
   "headers": [
     {
-      "source": "/.well-known/oauth-authorization-server",
-      "headers": [
-        { "key": "Access-Control-Allow-Origin", "value": "*" },
-        { "key": "Access-Control-Allow-Headers", "value": "Authorization, Content-Type" },
-        { "key": "Access-Control-Allow-Methods", "value": "GET, OPTIONS" },
-        { "key": "Access-Control-Max-Age", "value": "86400" },
-        { "key": "Cache-Control", "value": "no-store" },
-        { "key": "Content-Type", "value": "application/json" }
-      ]
-    },
-    {
-      "source": "/.well-known/oauth-protected-resource/mcp",
-      "headers": [
-        { "key": "Access-Control-Allow-Origin", "value": "*" },
-        { "key": "Access-Control-Allow-Headers", "value": "Authorization, Content-Type" },
-        { "key": "Access-Control-Allow-Methods", "value": "GET, OPTIONS" },
-        { "key": "Access-Control-Max-Age", "value": "86400" },
-        { "key": "Cache-Control", "value": "no-store" },
-        { "key": "Content-Type", "value": "application/json" }
-      ]
-    },
-    {
-      "source": "/:path((?!mcp(?:/.*)?$|authorize$|token$|register$|revoke$|oauth/consent$|\\.well-known/oauth-authorization-server$|\\.well-known/oauth-protected-resource/mcp$|auth/google/callback$).*)",
+      "source": "/(.*)",
       "headers": [
         { "key": "X-Content-Type-Options", "value": "nosniff" },
         { "key": "Referrer-Policy", "value": "strict-origin-when-cross-origin" },
@@ -65,7 +14,7 @@
       ]
     },
     {
-      "source": "/:path((?!mcp(?:/.*)?$|authorize$|token$|register$|revoke$|oauth/consent$|\\.well-known/oauth-authorization-server$|\\.well-known/oauth-protected-resource/mcp$|auth/google/callback$).*)",
+      "source": "/(.*)",
       "has": [{ "type": "host", "value": "staging.parkdex.app" }],
       "headers": [{ "key": "X-Robots-Tag", "value": "noindex" }]
     },
