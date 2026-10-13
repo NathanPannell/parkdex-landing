@@ -1,7 +1,7 @@
 import assert from "node:assert/strict";
 import { readFile } from "node:fs/promises";
 import test from "node:test";
-import { createRobotsTxt, createSitemapXml, rewriteStaticAppLinks } from "../src/mcp-metadata.ts";
+import { createRobotsTxt, createSitemapXml, rewriteStaticAppLinks } from "../src/site-metadata.ts";
 
 const page = await readFile(new URL("../index.html", import.meta.url), "utf8");
 
