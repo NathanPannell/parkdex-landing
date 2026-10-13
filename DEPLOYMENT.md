@@ -27,7 +27,7 @@ The deployer owns these resources and the journal until the live signup and data
 
 ## Apex and staging cutover
 
-The intended host pairs are `parkdex.app` for this landing page and `web.parkdex.app` for the production app, plus `staging.parkdex.app` for a staging landing page and `staging.web.parkdex.app` for the staging app. Keep OAuth and MCP issuer/resource identities at the apex origins. The landing deployment serves the two discovery documents as static files and proxies the seven OAuth, consent, and MCP routes to the matching Railway API.
+The intended host pairs are `parkdex.app` for this landing page and `web.parkdex.app` for the production app, plus `staging.parkdex.app` for a staging landing page and `staging.web.parkdex.app` for the staging app. The landing deployment has no rewrites or redirects to another service. The legacy MCP server, its OAuth routes, and the `map.parkdex.app` legacy app were retired with the Railway API on October 13, 2026.
 
 The linked `parkdex-landing` project currently has only a Production `DATABASE_URL`; Vercel Preview has no environment variables. The waitlist database is production data. A `--prod` deployment to this project uses that Production database even when `--skip-domain` is supplied, so this project must not serve `staging.parkdex.app`.
 
@@ -37,7 +37,7 @@ Staging and production releases use the Vercel Git integration (see `docs/delive
 
 For production, link the reviewed production checkout to the existing `parkdex-landing` project and run `pwsh -File scripts/deploy-cutover.ps1 -Target production -ExpectedCommit <40-character-sha>`. It uses `VITE_APP_URL=https://web.parkdex.app` and also skips automatic domain assignment. Verify the immutable deployment and its production waitlist behavior, then assign `parkdex.app` to that exact deployment only after the app's `web.parkdex.app` routes and legacy endpoint handling are ready. Keep the staging alias on the verified staging deployment.
 
-The Vite build writes `/.well-known/oauth-authorization-server` and `/.well-known/oauth-protected-resource/mcp` from the exact `VITE_APP_URL` build target, allowing the landing deployment to retain current apex issuer/resource metadata without a rewrite. The target also selects the app origin for account recovery and guest migration. Vercel reserves `/.well-known` from redirects and rewrites, so the no-domain staging check above is a cutover gate. Vercel CLI inspection on September 22, 2026 reported the linked production project's root directory as `.`, Node.js `24.x`, and framework preset `Other`. `vercel env ls production` showed only the encrypted `DATABASE_URL`; Preview had no variables, including no `VITE_APP_URL`. Both tracked configs set `git.deploymentEnabled` to `false`, so commits to a new branch do not create automatic deployments. The deployment script always requires an explicit target and full commit SHA.
+The `VITE_APP_URL` build target selects the app origin for links and guest migration. Vercel CLI inspection on September 22, 2026 reported the linked production project's root directory as `.`, Node.js `24.x`, and framework preset `Other`. `vercel env ls production` showed only the encrypted `DATABASE_URL`; Preview had no variables, including no `VITE_APP_URL`. Both tracked configs set `git.deploymentEnabled` to `false`, so commits to a new branch do not create automatic deployments. The deployment script always requires an explicit target and full commit SHA.
 
 ## Data contract
 

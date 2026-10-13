@@ -13,17 +13,7 @@ test("Vercel Git deploys only main and staging, with no Actions deploy", () => {
   }
 });
 
-test("staging.parkdex.app routes to the staging app and API before the production fallbacks", () => {
-  const firstRewrite = new Map<string, string>();
-  for (const route of config.rewrites) if (!firstRewrite.has(route.source)) firstRewrite.set(route.source, route.destination);
-  for (const route of config.rewrites.filter((route: { has?: unknown }) => route.has)) {
-    assert.deepEqual(route.has, staging);
-    assert.ok(route.destination.startsWith("https://api-staging-882c.up.railway.app/"));
-    assert.equal(firstRewrite.get(route.source), route.destination);
-  }
-  assert.equal(config.rewrites.filter((route: { has?: unknown }) => route.has).length, 7);
-  assert.deepEqual(config.redirects[0].has, staging);
-  assert.equal(config.redirects[0].destination, "https://staging.map.parkdex.app/auth/google/callback");
+test("staging.parkdex.app is marked noindex", () => {
   assert.ok(config.headers.some((route: { has?: unknown; headers: { key: string; value: string }[] }) =>
     JSON.stringify(route.has) === JSON.stringify(staging) && route.headers.some((header) => header.key === "X-Robots-Tag" && header.value === "noindex")));
 });
