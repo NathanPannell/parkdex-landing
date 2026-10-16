@@ -112,7 +112,11 @@ components:
 
 ## Overview
 
-**Creative North Star: "Outdoor Poster"**
+**Creative North Star: "Field day"** (October 2026; the sections below describe the earlier Outdoor Poster page and are kept for reference)
+
+The page reads like a game played outdoors. A sky-to-cream hero holds the headline, the two store actions and the flag map phone, with Kip and generated player flags planted on a green hill whose front slope becomes the pine How a game works section. Four numbered rule steps swipe on phones and scroll beside one sticky phone on wide screens. A dark scoreboard with sun-yellow numbers lists every points rule, with the founder bonus as the gold row. Sun and sky cards cover founders and handles, a gridded field shows the production park count as a dot map with flags, and a sky card closes with the beta steps. Ink outlines and hard shadows come from the app. Each section changes layout so no two read as the same row.
+
+**Earlier: "Outdoor Poster"**
 
 Parkdex opens like a large outdoor poster laid over a real East Sooke photograph. An oversized Parkdex wordmark, the 122-park Vancouver Island statement, Kip the oystercatcher,, and a mobile map phone make the place and product apparent immediately. The underlined count opens a four-category breakdown. The waitlist form is part of this opening. There is no small masthead, navigation band, hand-drawn annotation, or scroll-only signup call to action.
 

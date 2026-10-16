@@ -15,3 +15,7 @@ Verify phone, tablet, laptop and wide desktop in batched review. Confirm screens
 ## September 30, 2026 revision
 
 Positioning: "100 park badges around Victoria. You have to go to get one." The opening keeps the photograph, wordmark, map phone, Kip and two actions. The primary action opens the two-step Android beta panel (Google Group, then Google Play testing and install); no Android email field remains. The secondary action is the App Store waitlist. Story: How it works (three real screens), collection with rank ladder, trail facts, Android beta section. Screens are the September 30 captures of Kip staging `0b79239`.
+
+## October 16, 2026 redesign: the flag game
+
+Positioning: "Plant your flag in real parks." Capture the flag for every park around you, from the app's onboarding. Badges, ranks and day trips are gone; /badges/ and /day-trips/ redirect. Opening: headline, Google Play beta and App Store waitlist actions, the flag map phone, Kip, and generated flags on a hill, all before scrolling at 390x844. Story: How a game works (go, hold, take, crew) with a sticky phone on desktop and a swipe row on phones; scoreboard of point values; founder and @handle cards; production park count with a dot map and a link to the park map; beta steps. Screens are local captures of Kip staging with test players.
