@@ -3,8 +3,8 @@
   "buildCommand": "npm run build",
   "outputDirectory": "dist",
   "redirects": [
-    { "source": "/badges/:path*", "destination": "/", "permanent": false },
-    { "source": "/day-trips/:path*", "destination": "/near-me/", "permanent": false }
+    { "source": "/badges(.*)", "destination": "/", "permanent": false },
+    { "source": "/day-trips(.*)", "destination": "/near-me/", "permanent": false }
   ],
   "git": { "deploymentEnabled": false },
   "headers": [
