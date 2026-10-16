@@ -1,14 +1,14 @@
 // The nav and footer shared by every fan page. The homepage opens the beta
 // dialog in place; other pages send people to the homepage's beta section.
 const LINKS = [
-  { key: 'badges', href: '/badges/', label: 'Badges' },
-  { key: 'near-me', href: '/near-me/', label: 'Near me' },
-  { key: 'day-trips', href: '/day-trips/', label: 'Day trips' },
+  { key: 'play', href: '/#play', label: 'How to play' },
+  { key: 'points', href: '/#points', label: 'Scoring' },
+  { key: 'near-me', href: '/near-me/', label: 'Park map' },
 ];
 
 export function renderNav(active: string): string {
   const links = LINKS.map(({ key, href, label }) =>
-    `<a href="${href}"${key === active ? ' aria-current="page"' : ''}>${label}</a>`).join('');
+    `<a href="${active === 'home' && href.startsWith('/#') ? href.slice(1) : href}"${key === active ? ' aria-current="page"' : ''}>${label}</a>`).join('');
   const cta = active === 'home'
     ? '<button class="fan-button fan-button--small" type="button" data-beta-open>Get the beta</button>'
     : '<a class="fan-button fan-button--small" href="/#get">Get the beta</a>';
@@ -20,7 +20,7 @@ export function renderNav(active: string): string {
 export function renderFooter(): string {
   return `<footer class="fan-footer"><div class="fan-footer__inner">`
     + `<div class="fan-footer__brand"><a class="fan-brand" href="/"><img src="/favicon-64x64.png" width="32" height="32" alt="" /><span>Parkdex</span></a>`
-    + `<p>A collecting game for the parks around Victoria. Visit somewhere new, add its badge, repeat.</p></div>`
+    + `<p>Capture the flag for real parks. Plant yours, hold it, and take your friends’.</p></div>`
     + `<div class="fan-footer__cols">`
     + `<nav aria-label="Explore"><h2>Explore</h2><ul>${LINKS.map(({ href, label }) => `<li><a href="${href}">${label}</a></li>`).join('')}</ul></nav>`
     + `<nav aria-label="Help"><h2>Help</h2><ul><li><a href="/#get">Get the beta</a></li><li><a href="/support/">Support</a></li><li><a href="/delete-account/">Delete account</a></li></ul></nav>`

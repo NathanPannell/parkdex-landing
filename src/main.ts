@@ -1,6 +1,25 @@
 import './fan-page.css';
 import './device-frame.css';
 
+// How to play: on wide screens one phone stays on screen and shows the step
+// nearest the middle of the viewport. Without JavaScript every step stays lit.
+const play = document.querySelector<HTMLElement>('.play');
+const steps = [...document.querySelectorAll<HTMLLIElement>('.play .step')];
+const screens = [...document.querySelectorAll<HTMLImageElement>('.play__screens img')];
+function showStep(step: HTMLLIElement) {
+  steps.forEach((item) => item.classList.toggle('is-active', item === step));
+  screens.forEach((image) => image.classList.toggle('is-active', image.dataset.screen === step.dataset.step));
+}
+if (play && steps.length && screens.length) {
+  play.classList.add('is-staged');
+  showStep(steps[0]);
+  const observer = new IntersectionObserver((entries) => {
+    const visible = entries.filter((entry) => entry.isIntersecting);
+    if (visible.length) showStep(visible[visible.length - 1].target as HTMLLIElement);
+  }, { rootMargin: '-45% 0px -45% 0px' });
+  steps.forEach((step) => observer.observe(step));
+}
+
 const dialogs = [...document.querySelectorAll<HTMLDialogElement>('.outdoor-dialog, .outdoor-signup')];
 function revealLinkedDialog() {
   const dialog = dialogs.find((item) => `#${item.id}` === location.hash);

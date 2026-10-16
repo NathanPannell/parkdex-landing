@@ -11,7 +11,7 @@
     "build": "tsc --noEmit && vite build",
     "preview": "vite preview --host 127.0.0.1 --port 4317",
     "test": "tsx --test tests/*.test.ts",
-    "sync-badges": "node scripts/sync-badges.mjs",
+    "sync-parks": "node scripts/sync-parks.mjs",
     "predev": "node scripts/copy-maplibre-worker.mjs",
     "prebuild": "node scripts/copy-maplibre-worker.mjs"
   },
