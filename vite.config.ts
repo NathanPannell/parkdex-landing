@@ -3,15 +3,19 @@ import { writeFile } from 'node:fs/promises';
 import { resolve } from 'node:path';
 import { KIP_APP_ORIGINS } from './src/app-origins';
 import { renderFlagCloth, renderFlagHill, renderParkDots } from './src/flag-art';
+import { applyHomeMedia, homeMediaMode } from './src/home-media';
 import { renderFooter, renderFooterFine, renderNav } from './src/site-shell';
 import parkData from './src/parks.json';
+import basemap from './src/park-basemap.json';
 import { createRobotsTxt, createSitemapXml, rewriteStaticAppLinks } from './src/site-metadata';
 
-export default defineConfig(({ mode }) => {
-  const env = loadEnv(mode, process.cwd(), 'VITE_');
+export default defineConfig(({ command, mode }) => {
+  const env = loadEnv(mode, process.cwd(), ['VITE_', 'HOME_']);
   // Vercel Git deploys of the staging branch build against the staging app.
   const branchAppUrl = process.env.VERCEL_GIT_COMMIT_REF === 'staging' ? KIP_APP_ORIGINS.staging : KIP_APP_ORIGINS.production;
   const appUrl = process.env.VITE_APP_URL || env.VITE_APP_URL || branchAppUrl;
+  // Moving or still app screens on the homepage; see src/home-media.ts.
+  const homeMedia = homeMediaMode(process.env.HOME_MEDIA || env.HOME_MEDIA);
   let outputDirectory = 'dist';
 
   return {
@@ -19,10 +23,10 @@ export default defineConfig(({ mode }) => {
       name: 'parkdex-site-metadata',
       transformIndexHtml(html) {
         // Parks come from src/parks.json, refreshed from production by `npm run sync-parks`.
-        return rewriteStaticAppLinks(html, appUrl)
+        return applyHomeMedia(rewriteStaticAppLinks(html, appUrl), homeMedia, resolve(import.meta.dirname, 'public'), command === 'build')
           .replace(/<!-- flag-cloth:([a-z-]+) -->/g, (_match, seed: string) => renderFlagCloth(seed))
           .replace('<!-- flag-hill -->', renderFlagHill())
-          .replace('<!-- park-dots -->', renderParkDots(parkData.parks))
+          .replace('<!-- park-dots -->', renderParkDots(parkData.parks, basemap))
           .replace('<!-- park-count -->', parkData.parks.length.toLocaleString('en-CA'))
           .replace(/<!-- site-nav:([a-z-]+) -->/, (_match, active: string) => renderNav(active))
           .replace('<!-- site-footer -->', renderFooter())

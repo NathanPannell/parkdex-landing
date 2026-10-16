@@ -4,7 +4,7 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover" />
     <meta name="theme-color" content="#fff8ec" />
-    <meta name="description" content="Capture the flag for real parks. Plant your flag, earn a point every hour it flies and take parks from your friends. Free Android beta in Canada." />
+    <meta name="description" content="Capture the flag for real parks. Plant your flag, hold it, earn points and take parks from your friends. Free Android beta in Canada." />
     <link rel="canonical" href="https://parkdex.app/" />
     <meta property="og:site_name" content="Parkdex" />
     <meta property="og:type" content="website" />
@@ -39,7 +39,7 @@
             "name": "Parkdex",
             "operatingSystem": "Android",
             "applicationCategory": "GameApplication",
-            "description": "Capture the flag for real parks. Plant your flag, earn a point every hour it flies and take parks from your friends. Free Android beta in Canada.",
+            "description": "Capture the flag for real parks. Plant your flag, hold it, earn points and take parks from your friends. Free Android beta in Canada.",
             "image": "https://parkdex.app/og-image.jpg",
             "url": "https://parkdex.app/",
             "author": { "@type": "Person", "name": "Nathan Pannell", "url": "https://www.nathanpannell.com/" }
@@ -63,15 +63,14 @@
           <div class="hero__copy">
             <p class="hero__tag"><!-- flag-cloth:landing-tide --><span>Capture the flag, for real parks</span></p>
             <h1 id="hero-title">Plant your flag in <span class="hero__mark">real parks.</span></h1>
-            <p class="hero__lede">Go to a park, plant your flag, and hold it while your friends try to take it. Every hour it flies, it earns you a point.</p>
+            <p class="hero__lede">Go to a park, plant your flag, and hold it against your friends.</p>
             <div class="fan-cta">
               <button class="fan-store" type="button" data-beta-open><span class="fan-store__small">Free beta on</span><span class="fan-store__big">Google Play</span></button>
               <button class="fan-store fan-store--ghost" type="button" data-signup-open="app_store"><span class="fan-store__small">On iPhone?</span><span class="fan-store__big">Join the waitlist</span></button>
             </div>
-            <p class="fan-fine">Free Android beta in Canada.</p>
           </div>
           <figure class="hero__phone">
-            <span class="device-frame device-frame--iphone-16-max device-frame--parkdex-asset"><span class="device-frame__screen"><span class="device-frame__media"><img src="/images/app/app-flag-map.webp" width="780" height="1688" fetchpriority="high" alt="Parkdex map of Victoria with players’ flags on the parks. @fern_finn has 686 points and 4 parks; nearby cards show Beacon Hill (yours), Holland Point (no flag) and Moss Rocks (@salish_sky)" /></span></span><span class="device-frame__hardware" aria-hidden="true"><img src="/frames/parkdex-phone-frame.webp" width="1252" height="2604" alt="" /></span></span>
+            <span class="device-frame device-frame--iphone-16-max device-frame--parkdex-asset"><span class="device-frame__screen"><span class="device-frame__media"><img src="/images/app/app-flag-map.webp" width="780" height="1688" fetchpriority="high" alt="Parkdex map of Victoria with players’ flags on the parks, and nearby parks listed below" data-motion="/images/app/motion/hero-map.webp" /></span></span><span class="device-frame__hardware" aria-hidden="true"><img src="/frames/parkdex-phone-frame.webp" width="1252" height="2604" alt="" /></span></span>
             <div class="hero__kip"><p class="hero__bubble" aria-hidden="true">Hi, I’m Kip!</p><img src="/images/kip/kip-wave.webp" width="512" height="512" alt="Kip the oystercatcher, the Parkdex mascot, waving" /></div>
           </figure>
         </div>
@@ -82,78 +81,52 @@
         <div class="play__inner">
           <header class="play__head">
             <h2 id="play-title">How a game works</h2>
-            <p>Every park on the map is up for grabs. You only have to get there.</p>
           </header>
           <div class="play__body">
             <ol class="play__steps">
               <li class="step" data-step="go">
                 <span class="step__number" aria-hidden="true">1</span>
                 <div class="step__copy">
-                  <h3>Go to a park. Up goes your flag.</h3>
-                  <p>Head to any park on the map. Once you’re inside the boundary, hold the button and plant your flag.</p>
+                  <h3>Go to a park.</h3>
+                  <p>Get inside the boundary and plant your flag.</p>
                 </div>
-                <figure class="step__phone"><span class="device-frame device-frame--iphone-16-max device-frame--parkdex-asset"><span class="device-frame__screen"><span class="device-frame__media"><img src="/images/app/app-arrive.webp" width="780" height="1688" loading="lazy" alt="Arrival card: Welcome to Holland Point, inside the boundary. Nobody holds this park yet, with a Plant your flag button" /></span></span><span class="device-frame__hardware" aria-hidden="true"><img src="/frames/parkdex-phone-frame.webp" width="1252" height="2604" alt="" /></span></span></figure>
+                <figure class="step__phone"><span class="device-frame device-frame--iphone-16-max device-frame--parkdex-asset"><span class="device-frame__screen"><span class="device-frame__media"><img src="/images/app/app-arrive.webp" width="780" height="1688" loading="lazy" alt="Arrival card: Welcome to Holland Point, inside the boundary. Nobody holds this park yet, with a Plant your flag button" data-motion="/images/app/motion/go.webp" /></span></span><span class="device-frame__hardware" aria-hidden="true"><img src="/frames/parkdex-phone-frame.webp" width="1252" height="2604" alt="" /></span></span></figure>
               </li>
               <li class="step" data-step="hold">
                 <span class="step__number" aria-hidden="true">2</span>
                 <div class="step__copy">
-                  <h3>A point an hour while it flies.</h3>
-                  <p>Your flag earns 1 point for every hour it stays up. The longer it flies, the more it’s worth.</p>
+                  <h3>Hold it.</h3>
+                  <p>Earn points for as long as your flag flies.</p>
                 </div>
-                <figure class="step__phone"><span class="device-frame device-frame--iphone-16-max device-frame--parkdex-asset"><span class="device-frame__screen"><span class="device-frame__media"><img src="/images/app/app-your-parks.webp" width="780" height="1688" loading="lazy" alt="Your flags in Parkdex: @fern_finn holds 4 parks for 686 points, with flags flying 12, 7, 5 and 3 days" /></span></span><span class="device-frame__hardware" aria-hidden="true"><img src="/frames/parkdex-phone-frame.webp" width="1252" height="2604" alt="" /></span></span></figure>
+                <figure class="step__phone"><span class="device-frame device-frame--iphone-16-max device-frame--parkdex-asset"><span class="device-frame__screen"><span class="device-frame__media"><img src="/images/app/app-your-parks.webp" width="780" height="1688" loading="lazy" alt="Your flags in Parkdex: the parks @fern_finn holds and how long each flag has flown" data-motion="/images/app/motion/hold.webp" /></span></span><span class="device-frame__hardware" aria-hidden="true"><img src="/frames/parkdex-phone-frame.webp" width="1252" height="2604" alt="" /></span></span></figure>
               </li>
               <li class="step" data-step="take">
                 <span class="step__number" aria-hidden="true">3</span>
                 <div class="step__copy">
-                  <h3>Take parks. Win their days.</h3>
-                  <p>Plant on someone else’s park and it’s yours: 4 points, plus a point for every day their flag was up. They keep what they earned.</p>
+                  <h3>Take theirs.</h3>
+                  <p>Plant on a friend’s park to take it and earn points for the steal.</p>
                 </div>
-                <figure class="step__phone"><span class="device-frame device-frame--iphone-16-max device-frame--parkdex-asset"><span class="device-frame__screen"><span class="device-frame__media"><img src="/images/app/app-take-park.webp" width="780" height="1688" loading="lazy" alt="Moss Rocks Park held by @salish_sky, flying for 9 days. Take it for +13 points, with a Take it from @salish_sky button" /></span></span><span class="device-frame__hardware" aria-hidden="true"><img src="/frames/parkdex-phone-frame.webp" width="1252" height="2604" alt="" /></span></span></figure>
+                <figure class="step__phone"><span class="device-frame device-frame--iphone-16-max device-frame--parkdex-asset"><span class="device-frame__screen"><span class="device-frame__media"><img src="/images/app/app-take.webp" width="780" height="1688" loading="lazy" alt="Taking Moss Rocks from @salish_sky: your flag goes up in place of theirs" data-motion="/images/app/motion/take.webp" /></span></span><span class="device-frame__hardware" aria-hidden="true"><img src="/frames/parkdex-phone-frame.webp" width="1252" height="2604" alt="" /></span></span></figure>
               </li>
               <li class="step" data-step="crew">
                 <span class="step__number" aria-hidden="true">4</span>
                 <div class="step__copy">
                   <h3>Bring your crew.</h3>
-                  <p>Arrive together and hold the park as a crew. Share your crew code in the first hour and everyone’s pennant flies on the same pole.</p>
+                  <p>Arrive together and hold the park as a crew.</p>
                 </div>
-                <figure class="step__phone"><span class="device-frame device-frame--iphone-16-max device-frame--parkdex-asset"><span class="device-frame__screen"><span class="device-frame__media"><img src="/images/app/app-crew.webp" width="780" height="1688" loading="lazy" alt="Bring your crew: a QR code and crew code K4Z-D3P for Holland Point, with 53 minutes left and a Share the link button" /></span></span><span class="device-frame__hardware" aria-hidden="true"><img src="/frames/parkdex-phone-frame.webp" width="1252" height="2604" alt="" /></span></span></figure>
+                <figure class="step__phone"><span class="device-frame device-frame--iphone-16-max device-frame--parkdex-asset"><span class="device-frame__screen"><span class="device-frame__media"><img src="/images/app/app-crew.webp" width="780" height="1688" loading="lazy" alt="Bring your crew: a QR code and crew code for friends to join the flag at Holland Point" data-motion="/images/app/motion/crew.webp" /></span></span><span class="device-frame__hardware" aria-hidden="true"><img src="/frames/parkdex-phone-frame.webp" width="1252" height="2604" alt="" /></span></span></figure>
               </li>
             </ol>
             <div class="play__stage" aria-hidden="true">
               <div class="play__sticky">
                 <span class="device-frame device-frame--iphone-16-max device-frame--parkdex-asset"><span class="device-frame__screen"><span class="device-frame__media play__screens">
-                  <img data-screen="go" src="/images/app/app-arrive.webp" width="780" height="1688" loading="lazy" alt="" />
-                  <img data-screen="hold" src="/images/app/app-your-parks.webp" width="780" height="1688" loading="lazy" alt="" />
-                  <img data-screen="take" src="/images/app/app-take-park.webp" width="780" height="1688" loading="lazy" alt="" />
-                  <img data-screen="crew" src="/images/app/app-crew.webp" width="780" height="1688" loading="lazy" alt="" />
+                  <img data-screen="go" src="/images/app/app-arrive.webp" width="780" height="1688" loading="lazy" alt="" data-motion="/images/app/motion/go.webp" />
+                  <img data-screen="hold" src="/images/app/app-your-parks.webp" width="780" height="1688" loading="lazy" alt="" data-motion="/images/app/motion/hold.webp" />
+                  <img data-screen="take" src="/images/app/app-take.webp" width="780" height="1688" loading="lazy" alt="" data-motion="/images/app/motion/take.webp" />
+                  <img data-screen="crew" src="/images/app/app-crew.webp" width="780" height="1688" loading="lazy" alt="" data-motion="/images/app/motion/crew.webp" />
                 </span></span><span class="device-frame__hardware"><img src="/frames/parkdex-phone-frame.webp" width="1252" height="2604" alt="" /></span></span>
               </div>
             </div>
-          </div>
-        </div>
-      </section>
-
-      <section id="points" class="points" aria-labelledby="points-title">
-        <div class="points__inner">
-          <div class="points__copy">
-            <h2 id="points-title">Every hour counts.</h2>
-            <p>Points never come off. Lose a park and you keep everything it earned you, then go take it back.</p>
-            <figure class="points__phone"><span class="device-frame device-frame--iphone-16-max device-frame--parkdex-asset"><span class="device-frame__screen"><span class="device-frame__media"><img src="/images/app/app-plant-result.webp" width="780" height="1688" loading="lazy" alt="You took Moss Rocks from @salish_sky: +13 points, with the new flag planted and Kip cheering" /></span></span><span class="device-frame__hardware" aria-hidden="true"><img src="/frames/parkdex-phone-frame.webp" width="1252" height="2604" alt="" /></span></span></figure>
-          </div>
-          <div class="board">
-            <p class="board__title" aria-hidden="true"><!-- flag-cloth:landing-orca --><span>Scoring</span></p>
-            <table class="board__table">
-              <caption class="fan-sr-only">How Parkdex points work</caption>
-              <thead class="fan-sr-only"><tr><th scope="col">Move</th><th scope="col">Points</th></tr></thead>
-              <tbody>
-                <tr><th scope="row">Your flag flies</th><td><strong>+1</strong><span>every hour</span></td></tr>
-                <tr><th scope="row">Plant at an empty park</th><td><strong>+6</strong></td></tr>
-                <tr><th scope="row">Take someone’s flag</th><td><strong>+4</strong><span>plus 1 a day it flew</span></td></tr>
-                <tr><th scope="row">Visit a park you hold</th><td><strong>+1</strong></td></tr>
-                <tr><th scope="row">Join a crew’s flag</th><td><strong>+2</strong></td></tr>
-                <tr class="board__gold"><th scope="row">Found a park</th><td><strong>+24</strong></td></tr>
-              </tbody>
-            </table>
           </div>
         </div>
       </section>
@@ -162,16 +135,16 @@
         <article class="duo__card duo__card--founder" aria-labelledby="founder-title">
           <div class="duo__copy">
             <h2 id="founder-title">Be the founder.</h2>
-            <p>Standing in a park with no founder yet? Take its first photo to become the founder, and pocket 24 points.</p>
+            <p>Take the first photo of a park and earn points as its founder.</p>
           </div>
-          <figure class="duo__phone"><span class="device-frame device-frame--iphone-16-max device-frame--parkdex-asset"><span class="device-frame__screen"><span class="device-frame__media"><img src="/images/app/app-founder.webp" width="780" height="1688" loading="lazy" alt="Holland Point Park with your flag just planted and no founder yet. Become the founder: take its first photo for +24" /></span></span><span class="device-frame__hardware" aria-hidden="true"><img src="/frames/parkdex-phone-frame.webp" width="1252" height="2604" alt="" /></span></span></figure>
+          <figure class="duo__phone"><span class="device-frame device-frame--iphone-16-max device-frame--parkdex-asset"><span class="device-frame__screen"><span class="device-frame__media"><img src="/images/app/app-founder.webp" width="780" height="1688" loading="lazy" alt="Holland Point Park with your flag just planted, no founder yet, and a Become the founder prompt" data-motion="/images/app/motion/founder.webp" /></span></span><span class="device-frame__hardware" aria-hidden="true"><img src="/frames/parkdex-phone-frame.webp" width="1252" height="2604" alt="" /></span></span></figure>
         </article>
         <article class="duo__card duo__card--board" aria-labelledby="board-title">
           <div class="duo__copy">
             <h2 id="board-title">Your @handle. Your flag.</h2>
-            <p>Every player gets a one-of-a-kind flag. Everyone sees it, and your handle, on the parks you hold and up the leaderboard.</p>
+            <p>Everyone sees it on the parks you hold and up the leaderboard.</p>
           </div>
-          <figure class="duo__phone"><span class="device-frame device-frame--iphone-16-max device-frame--parkdex-asset"><span class="device-frame__screen"><span class="device-frame__media"><img src="/images/app/app-leaderboard.webp" width="780" height="1688" loading="lazy" alt="The Everyone leaderboard: @salish_sky first with 840 points, @island_ivy second, @fern_finn third, each with their flag" /></span></span><span class="device-frame__hardware" aria-hidden="true"><img src="/frames/parkdex-phone-frame.webp" width="1252" height="2604" alt="" /></span></span></figure>
+          <figure class="duo__phone"><span class="device-frame device-frame--iphone-16-max device-frame--parkdex-asset"><span class="device-frame__screen"><span class="device-frame__media"><img src="/images/app/app-leaderboard.webp" width="780" height="1688" loading="lazy" alt="The Everyone leaderboard: @salish_sky first, @island_ivy second and @fern_finn third, each with their flag" data-motion="/images/app/motion/leaderboard.webp" /></span></span><span class="device-frame__hardware" aria-hidden="true"><img src="/frames/parkdex-phone-frame.webp" width="1252" height="2604" alt="" /></span></span></figure>
         </article>
       </section>
 
@@ -179,10 +152,10 @@
         <div class="parks__inner">
           <div class="parks__copy">
             <h2 id="parks-title"><span class="parks__count"><!-- park-count --></span> parks. Which one’s yours?</h2>
-            <p>From provincial parks to the pocket park two streets over, every one on the map can fly a flag. There’s likely one closer than you think.</p>
+            <p>There’s likely one closer than you think.</p>
             <a class="fan-button" href="/near-me/">Open the park map</a>
           </div>
-          <figure class="parks__map"><!-- park-dots --></figure>
+          <figure class="parks__map"><!-- park-dots --><figcaption>Map © <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors, <a href="https://openfreemap.org">OpenFreeMap</a></figcaption></figure>
         </div>
       </section>
 
@@ -191,7 +164,6 @@
           <div class="get__head">
             <img class="get__kip" src="/images/kip/kip-cheer.webp" width="512" height="512" alt="" />
             <h2 id="get-title">Go plant your first flag.</h2>
-            <p>It’s free, and there’s likely a park close by.</p>
           </div>
           <div class="get__steps">
             <ol class="beta-steps" data-beta-steps>
@@ -201,7 +173,7 @@
                     <span class="beta-step-label">Join the tester group</span>
                     <span class="beta-step-done" data-beta-done-label>Done</span>
                   </a>
-                  <p id="get-step-1-help" class="beta-step-help">Sign in with the Google account you use in the Play Store, then choose <strong>Join group</strong>. No approval needed.</p>
+                  <p id="get-step-1-help" class="beta-step-help">Use your Play Store Google account.</p>
                 </li>
                 <li class="beta-step" data-beta-step="2">
                   <a class="beta-step-button" href="https://play.google.com/apps/testing/app.parkdex" target="_blank" rel="noopener" data-beta-link="2" aria-describedby="get-step-2-help">
@@ -209,11 +181,10 @@
                     <span class="beta-step-label">Install Parkdex</span>
                     <span class="beta-step-done" data-beta-done-label>Opened</span>
                   </a>
-                  <p id="get-step-2-help" class="beta-step-help">Choose <strong>Become a tester</strong>, then follow the Google Play link to download Parkdex. Open it, pick your @handle and find a park.</p>
+                  <p id="get-step-2-help" class="beta-step-help">Tap <strong>Become a tester</strong>, then install.</p>
                 </li>
               </ol>
-            <p class="beta-note" role="note"><strong>After joining the Google Group, it may take up to 1 hour to get access on Google Play.</strong> If you are unable to install the app, please try again in a little while.</p>
-            <p class="beta-fine">Already an internal tester? Leave the internal test in Google Play first, then do step 2. <a href="https://support.google.com/googleplay/android-developer/answer/9845334" target="_blank" rel="noopener">Google’s tester help</a></p>
+            <p class="beta-note" role="note">Access can take up to an hour after joining.</p>
             <p class="beta-fine">On iPhone? <button class="fan-link" type="button" data-signup-open="app_store">Join the App Store waitlist</button></p>
           </div>
         </div>
@@ -226,7 +197,7 @@
           <img class="outdoor-signup-kip" src="/images/kip/kip-wave.webp" data-kip-idle="/images/kip/kip-wave.webp" data-kip-done="/images/kip/kip-cheer.webp" width="512" height="512" alt="Kip the oystercatcher" />
           <div class="beta-panel">
             <h2 id="beta-access-title">Get the Android beta</h2>
-            <p class="outdoor-signup-lede">Two quick steps. Keep this page open and come back after step 1.</p>
+            <p class="outdoor-signup-lede">Two quick steps. Android in Canada.</p>
             <ol class="beta-steps" data-beta-steps>
                 <li class="beta-step" data-beta-step="1">
                   <a class="beta-step-button" href="https://groups.google.com/g/parkdex-testers/about" target="_blank" rel="noopener" data-beta-link="1" aria-describedby="panel-step-1-help">
@@ -234,7 +205,7 @@
                     <span class="beta-step-label">Join the tester group</span>
                     <span class="beta-step-done" data-beta-done-label>Done</span>
                   </a>
-                  <p id="panel-step-1-help" class="beta-step-help">Sign in with the Google account you use in the Play Store, then choose <strong>Join group</strong>. No approval needed.</p>
+                  <p id="panel-step-1-help" class="beta-step-help">Use your Play Store Google account.</p>
                 </li>
                 <li class="beta-step" data-beta-step="2">
                   <a class="beta-step-button" href="https://play.google.com/apps/testing/app.parkdex" target="_blank" rel="noopener" data-beta-link="2" aria-describedby="panel-step-2-help">
@@ -242,12 +213,11 @@
                     <span class="beta-step-label">Install Parkdex</span>
                     <span class="beta-step-done" data-beta-done-label>Opened</span>
                   </a>
-                  <p id="panel-step-2-help" class="beta-step-help">Choose <strong>Become a tester</strong>, then follow the Google Play link to download Parkdex. Open it, pick your @handle and find a park.</p>
+                  <p id="panel-step-2-help" class="beta-step-help">Tap <strong>Become a tester</strong>, then install.</p>
                 </li>
               </ol>
-            <p class="beta-note" role="note"><strong>After joining the Google Group, it may take up to 1 hour to get access on Google Play.</strong> If you are unable to install the app, please try again in a little while.</p>
-            <p class="beta-fine">Available in Canada. Joining the group only unlocks the download; you make your Parkdex account in the app.</p>
-            <p class="beta-fine">Already an internal tester? Leave the internal test first, then do step 2. <a href="https://support.google.com/googleplay/android-developer/answer/9845334" target="_blank" rel="noopener">Google’s tester help</a></p>
+            <p class="beta-note" role="note">Access can take up to an hour after joining.</p>
+            <p class="beta-fine">Already an internal tester? Leave the internal test first.</p>
           </div>
         </div>
       </dialog>

@@ -20,9 +20,18 @@ Each signup names a list. Android beta requests go to `android_beta_signups` and
 
 ## Design and assets
 
-The page sells the flag game: capture the flag for real parks. Its look follows the Parkdex app (Bricolage Grotesque and Figtree, cream paper, Kip orange, ink outlines with hard shadows, and the flag palette's sun, sky and pine). In order: a sticky nav with a Get the beta button; a hero ("Plant your flag in real parks.") with the flag map phone and Kip standing on a hill of generated player flags; How a game works, four steps (go, hold, take, crew) that swipe on phones and scroll past one sticky phone on wide screens; a scoreboard of every points rule beside the take result; founder and @handle cards; the park count with a dot map of every production park; and the closing Android beta steps. The beta panel, App Store waitlist, About your email and Credits dialogs keep their behaviour. Styles live in src/fan-page.css.
+The page sells the flag game: capture the flag for real parks. Copy stays short and never quotes point values. Its look follows the Parkdex app (Bricolage Grotesque and Figtree, cream paper, Kip orange, ink outlines with hard shadows, and the flag palette's sun, sky and pine). In order: a sticky nav with a Get the beta button; a hero ("Plant your flag in real parks.") with the flag map phone, and on wider screens Kip, on a hill of generated player flags; How a game works, four steps (go, hold, take, crew) that swipe on phones and scroll past one sticky phone on wide screens; founder and @handle cards; the park count with a map of every production park; and the closing Android beta steps. The beta panel, App Store waitlist, About your email and Credits dialogs keep their behaviour. Styles live in src/fan-page.css.
 
-Flags are drawn at build time by `src/flag.ts`, a copy of the app's generator, so they match the flags players get. The demo seeds in `src/flag-art.ts` belong to nobody. The park count, the dot map and the Park map page (`/near-me/`) read `src/parks.json`, which `npm run sync-parks` refreshes from the production catalogue (`https://web.parkdex.app/api/content/snapshot`); review and commit the result. The page never calls the app at runtime. The retired Badges and Day trips pages redirect to the homepage and the park map.
+Flags are drawn at build time by `src/flag.ts`, a copy of the app's generator, so they match the flags players get. The demo seeds in `src/flag-art.ts` belong to nobody. The park count, the homepage map and the Park map page (`/near-me/`) read `src/parks.json`, which `npm run sync-parks` refreshes from the production catalogue (`https://web.parkdex.app/api/content/snapshot`); review and commit the result. The homepage map plots those parks on `public/images/park-basemap.webp`, a recoloured OpenFreeMap render whose bounds are in `src/park-basemap.json` (see `scripts/render-park-basemap.mjs`). The page never calls the app at runtime. The retired Badges and Day trips pages redirect to the homepage and the park map.
+
+### Moving or still app screens
+
+Every homepage app screen has a still in `public/images/app/` and a moving loop (animated WebP) in `public/images/app/motion/`, named in the image's `data-motion` attribute. The `HOME_MEDIA` environment variable picks one at build time:
+
+- `motion` (default): browsers get the loop, except visitors whose device asks for reduced motion, who get the still.
+- `still`: only the stills.
+
+To flip it, set `HOME_MEDIA` in the Vercel project's environment variables (Production for parkdex.app, Preview for staging) and redeploy. A build in `motion` mode fails if a loop is missing; the dev server falls back to the still.
 
 Real app captures are used without recreating their contents. Phone screens come from the Parkdex app (`../parkdex-badge-mockup`) running locally with test players; see public/images/app/README.md. `/og-image.jpg` is the share card rendered from `social/og-card.html`; see social/README.md. DESIGN.md and the surface brief describe the current visual system and composition.
 ## Design comparison

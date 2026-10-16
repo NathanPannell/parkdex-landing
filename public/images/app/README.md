@@ -15,11 +15,12 @@ All files are 780x1688 WebP (quality 88): a 390x844 phone viewport at device sca
 
 ## Files
 
+`app-take.webp` (the take step's still) is a frame of the takeover animation; see `motion/README.md`. The moving loops for every homepage screen are in `motion/`.
+
+
 | File | Screen and state | Alt text |
 | --- | --- | --- |
 | `app-flag-map.webp` | Explore map of Victoria, BC, signed in. Score chip, flag pins with age tags (3d, 5d, 7d, 9d, 10d, 12d, 21d), empty dashed pins, Beacon Hill's crew flag with pennants, the "Parks near you" cards and the bottom bar. | Parkdex map of Victoria with players' flags on parks. Score chip: 686 points, @fern_finn · 4 parks. Cards: Beacon Hill, Yours · 1.3 km; Holland Point, No flag · 1.6 km; Moss Rocks, @salish_sky · 2.1 km. |
-| `app-take-park.webp` | Park sheet for Moss Rocks Park, held by another player, with the player inside the boundary. | Moss Rocks Park sheet. @salish_sky: "Flying for 9 days. Take it for +13 points." You're here · 0.02 km² · Forest · No founder yet. Button: "Take it from @salish_sky". |
-| `app-plant-result.webp` | Take result after the hold-to-take and count-up finished. | "You took Moss Rocks from @salish_sky", +13 points. "One point for every hour your flag flies." Buttons: Add a photo, Back to map. |
 | `app-leaderboard.webp` | Leaders, Everyone tab: podium and ranked list. | Leaderboard, Everyone. 1 @salish_sky 840 pts, 2 @island_ivy 708 pts, 3 @fern_finn 686 pts; then @cedar_kai 521, @gorge_runner 511, @wren_walks 281, @lark_and_lu 209, @oakbay_ollie 179. |
 | `app-crew.webp` | Crew code sheet right after planting at Holland Point: QR code, 6-character code and the protected-hour countdown. | "Bring your crew" crew code for Holland Point: K4Z-D3P, 53 min left. "Anyone in the crew can show this code." Button: Share the link. |
 | `app-founder.webp` | Holland Point Park sheet just after planting: your flag (protected, Show crew code), "No founder yet" and the "Become the founder +24" prompt. | Holland Point Park. Your flag, planted today, protected · 53 min. No founder yet. "Become the founder: Take its first photo. It becomes the park's cover." +24. |

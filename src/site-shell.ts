@@ -2,7 +2,6 @@
 // dialog in place; other pages send people to the homepage's beta section.
 const LINKS = [
   { key: 'play', href: '/#play', label: 'How to play' },
-  { key: 'points', href: '/#points', label: 'Scoring' },
   { key: 'near-me', href: '/near-me/', label: 'Park map' },
 ];
 

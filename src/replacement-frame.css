@@ -16,7 +16,8 @@
   overflow: hidden;
 }
 
-.device-frame--parkdex-asset .device-frame__media > img {
+.device-frame--parkdex-asset .device-frame__media > img,
+.device-frame--parkdex-asset .device-frame__media > picture > img {
   object-fit: cover;
 }
 

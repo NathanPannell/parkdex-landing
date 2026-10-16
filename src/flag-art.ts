@@ -41,16 +41,20 @@ export function renderFlagHill(): string {
     + '</svg></div>';
 }
 
-// Equirectangular projection, squashed by the cosine of the island's middle
-// latitude so the coast keeps its shape. Units are thousandths of a degree.
-function project(parks: Park[]) {
-  const lats = parks.map((park) => park.lat);
-  const lngs = parks.map((park) => park.lng);
-  const [minLat, maxLat, minLng, maxLng] = [Math.min(...lats), Math.max(...lats), Math.min(...lngs), Math.max(...lngs)];
-  const squash = Math.cos((((minLat + maxLat) / 2) * Math.PI) / 180);
-  const pad = 140;
-  const point = (park: Park) => ({ x: Math.round((park.lng - minLng) * squash * 1000) + pad, y: Math.round((maxLat - park.lat) * 1000) + pad });
-  return { point, width: Math.round((maxLng - minLng) * squash * 1000) + pad * 2, height: Math.round((maxLat - minLat) * 1000) + pad * 2 };
+// The homepage park map: a static basemap rendered once from OpenFreeMap
+// (scripts/render-park-basemap.mjs) and its exact bounds, so park dots can be
+// placed on it in the same Web Mercator projection without loading a map.
+export interface Basemap { width: number; height: number; west: number; south: number; east: number; north: number }
+
+const mercator = (lat: number) => Math.log(Math.tan(Math.PI / 4 + (lat * Math.PI) / 360));
+
+function project(basemap: Basemap) {
+  const top = mercator(basemap.north);
+  const span = top - mercator(basemap.south);
+  return (park: Park) => ({
+    x: Math.round(((park.lng - basemap.west) / (basemap.east - basemap.west)) * basemap.width),
+    y: Math.round(((top - mercator(park.lat)) / span) * basemap.height),
+  });
 }
 
 /** Pick a spread of parks to plant demo flags on: one from each band along the island's length. */
@@ -62,22 +66,23 @@ function flagSpots(parks: Park[], count: number): Park[] {
 }
 
 /**
- * Every catalogue park as a dot, with a few demo flags planted on top. The
- * drawing is decorative; the park map page is the interactive version.
+ * Every catalogue park as a dot on the basemap, with a few demo flags planted
+ * on top. The drawing is decorative; the park map page is the interactive version.
  */
-export function renderParkDots(parks: Park[]): string {
+export function renderParkDots(parks: Park[], basemap: Basemap, image = '/images/park-basemap.webp'): string {
   if (parks.length === 0) return '';
-  const { point, width, height } = project(parks);
+  const point = project(basemap);
   const dots = parks.map((park) => {
     const { x, y } = point(park);
-    return `<circle class="dots__dot dots__dot--${park.category}" cx="${x}" cy="${y}" r="24"/>`;
+    return `<circle class="dots__dot dots__dot--${park.category}" cx="${x}" cy="${y}" r="10"/>`;
   }).join('');
-  const flags = flagSpots(parks, 9).map((park, index) => {
+  const flags = flagSpots(parks, 7).map((park, index) => {
     const { x, y } = point(park);
     // The pin's pole stands at x 8, y 54 of a 48 by 56 box.
-    const scale = 3.2;
+    const scale = 2;
     return `<g class="dots__flag" transform="translate(${Math.round(x - 8 * scale)} ${Math.round(y - 54 * scale)}) scale(${scale})">`
       + flagPinSvg(DEMO_SEEDS[index], { idPrefix: `dots-${index}` }).replace(/^<svg[^>]*>/, '').replace(/<\/svg>$/, '') + '</g>';
   }).join('');
-  return `<svg class="dots" viewBox="0 0 ${width} ${height}" role="img" aria-label="${parks.length} Parkdex parks plotted across Vancouver Island and the Gulf Islands" focusable="false">${dots}${flags}</svg>`;
+  return `<svg class="dots" viewBox="0 0 ${basemap.width} ${basemap.height}" role="img" aria-label="Map of ${parks.length} Parkdex parks across Vancouver Island and the Gulf Islands" focusable="false">`
+    + `<image href="${image}" width="${basemap.width}" height="${basemap.height}"/>${dots}${flags}</svg>`;
 }
