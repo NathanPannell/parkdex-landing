@@ -134,7 +134,7 @@ h1, h2, h3 { font-family: var(--display); font-variation-settings: 'opsz' 96; fo
 .step__number { display: grid; place-items: center; width: 2.6rem; height: 2.6rem; border: var(--outline); border-radius: 50%; background: var(--sun); color: var(--ink); font-family: var(--display); font-size: 1.3rem; font-weight: 800; box-shadow: var(--pop-small); }
 .step h3 { font-size: clamp(1.55rem, 5vw, 2.1rem); }
 .step p { margin-top: .6rem; color: var(--on-pine-soft); }
-.step__phone { width: 78%; justify-self: center; margin-bottom: -38%; }
+.step__phone { width: 78%; justify-self: center; margin-bottom: 1.25rem; }
 .step__phone .device-frame { --device-frame-width: 100%; }
 .play__stage { display: none; }
 .play__screens img { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: contain; opacity: 0; transition: opacity .35s ease; }
@@ -168,7 +168,7 @@ h1, h2, h3 { font-family: var(--display); font-variation-settings: 'opsz' 96; fo
 .duo__card--board { background: var(--sky); }
 .duo__copy h2 { font-size: clamp(2rem, 6vw, 2.8rem); }
 .duo__copy p { max-width: 26rem; margin-top: .7rem; color: var(--ink-soft); font-size: 1.1rem; }
-.duo__phone { align-self: end; justify-self: center; width: min(72%, 260px); margin-bottom: -30%; }
+.duo__phone { align-self: end; justify-self: center; width: min(68%, 250px); margin-bottom: 1.75rem; }
 .duo__phone .device-frame { --device-frame-width: 100%; filter: drop-shadow(0 18px 24px rgb(20 35 28 / 22%)); }
 
 /* ---------- Park count and dot map ---------- */
@@ -270,11 +270,22 @@ form[data-state=success] .outdoor-form-message { color: var(--success); }
 .near-me__popup a { color: var(--orange-deep); font-weight: 800; }
 .maplibregl-popup-content { padding: .8rem .95rem; border: var(--outline); border-radius: 14px; box-shadow: var(--pop-small); }
 
+/* ---------- Small phones: keep both actions and the phone above the fold ---------- */
+@media (max-width: 23.75rem) {
+  .hero__inner { gap: 1.5rem; padding-top: 1.25rem; }
+  .hero__tag { display: none; }
+  .hero h1 { margin-top: 0; font-size: 2.45rem; }
+  .hero__lede { font-size: 1rem; }
+  .hero .fan-cta { flex-wrap: nowrap; gap: .5rem; margin-top: 1.25rem; }
+  .hero .fan-store { flex: 1 1 0; padding: .4rem .65rem; }
+  .hero .fan-store__big { font-size: .94rem; }
+  .hero .fan-store__small { font-size: .68rem; }
+}
+
 /* ---------- Wider screens ---------- */
 @media (min-width: 40rem) {
   .fan-footer__cols { grid-template-columns: repeat(3, minmax(0, 1fr)); }
   .hill__flag--3, .hill__flag--5 { display: block; }
-  .duo__phone { margin-bottom: -22%; }
 }
 
 @media (min-width: 56rem) {
@@ -314,7 +325,7 @@ form[data-state=success] .outdoor-form-message { color: var(--success); }
 
   .duo { grid-template-columns: 1fr 1fr; padding-bottom: 6rem; }
   .duo__card { padding: 2.25rem 2.25rem 0; }
-  .duo__phone { width: min(62%, 270px); }
+  .duo__phone { width: min(56%, 260px); margin-bottom: 2.25rem; }
 
   .parks__inner { grid-template-columns: .8fr 1.2fr; gap: 3rem; padding-block: 5rem; }
 
