@@ -11,14 +11,22 @@
   border-radius: 11% / 4%;
 }
 
+/* App captures are full screen with no status bar. A black strip under the
+ * camera cutout stands in for one, so the cutout never covers app content;
+ * the capture sits below it whole, with no cropping. */
 .device-frame--parkdex-asset .device-frame__media {
-  inset: 0;
+  inset: 4.8% 0 0;
   overflow: hidden;
+}
+
+.device-frame--parkdex-asset .device-frame__screen {
+  background: #050807;
 }
 
 .device-frame--parkdex-asset .device-frame__media > img,
 .device-frame--parkdex-asset .device-frame__media > picture > img {
-  object-fit: cover;
+  object-fit: contain;
+  object-position: center bottom;
 }
 
 .outdoor-page .device-frame--parkdex-asset .device-frame__hardware > img {

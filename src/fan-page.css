@@ -94,16 +94,13 @@ h1, h2, h3 { font-family: var(--display); font-variation-settings: 'opsz' 96; fo
 .hero__tag { display: none; align-items: center; gap: .6rem; padding: .3rem .9rem .3rem .45rem; border: 2px solid var(--ink); border-radius: 999px; background: var(--card); box-shadow: 0 2px 0 var(--ink); font-weight: 800; font-size: .92rem; }
 .hero__tag .flag-cloth { width: 1.7rem; }
 .hero__copy { text-align: center; }
-.hero h1 { font-size: clamp(2.5rem, 11vw, 5.6rem); }
+.hero h1 { font-size: max(2.4rem, min(11vw, 5.6rem, 13svh)); }
 .hero__mark { position: relative; color: var(--orange); white-space: nowrap; }
 .hero__lede { max-width: 31rem; margin: 1rem auto 0; color: var(--ink-soft); font-size: clamp(1.08rem, 2.6vw, 1.25rem); }
 .hero__phone { position: relative; z-index: 2; justify-self: center; width: min(62%, 270px); margin-bottom: -8rem; }
 .hero .fan-cta { flex-wrap: nowrap; justify-content: center; gap: .6rem; margin-top: 1.5rem; }
 .hero .fan-store { flex: 1 1 0; max-width: 12rem; padding-inline: .9rem; }
 .hero__phone .device-frame { --device-frame-width: 100%; filter: drop-shadow(0 28px 34px rgb(20 50 30 / 30%)); }
-.hero__kip { position: absolute; right: -40%; bottom: 20%; z-index: 3; display: none; width: 44%; }
-.hero__kip img { width: 100%; }
-.hero__bubble { position: absolute; right: 4%; bottom: 94%; padding: .35rem .8rem; border: 2.5px solid var(--ink); border-radius: 999px; background: #fff; box-shadow: 0 3px 0 var(--ink); font-family: var(--display); font-size: .95rem; font-weight: 800; white-space: nowrap; }
 
 /* The hill the hero phone stands in, with player flags planted along it.
  * Its front slope is the same pine as the section below, so they join. */
@@ -266,11 +263,10 @@ form[data-state=success] .outdoor-form-message { color: var(--success); }
 /* ---------- Wider screens ---------- */
 @media (min-width: 40rem) {
   .fan-footer__cols { grid-template-columns: repeat(3, minmax(0, 1fr)); }
-  .hill__flag--2, .hill__flag--3, .hill__flag--5 { display: block; }
+  .hill__flag--3 { display: block; }
   .hill__flag--1 { left: 3%; bottom: 46%; --w: 4.6rem; }
   .hill__flag--4 { right: 13%; bottom: 46%; --w: 5rem; }
-  .hero__kip { display: block; }
-  .hero__phone { margin-right: 14%; }
+
 }
 
 @media (min-width: 56rem) {
@@ -284,11 +280,8 @@ form[data-state=success] .outdoor-form-message { color: var(--success); }
   .hero__lede { margin-inline: 0; }
   .hero .fan-cta { justify-content: flex-start; }
   .hero .fan-store { flex: 1 1 9.5rem; max-width: 14rem; padding-inline: 1.3rem; }
-  .hero__phone { width: min(100%, 290px); margin: 0 6% -11rem 0; justify-self: end; }
-  .hero__kip { right: auto; left: -62%; bottom: 14%; width: 62%; }
-  .hero__bubble { right: auto; left: 18%; font-size: 1.05rem; }
+  .hero__phone { width: min(100%, 290px, calc((100svh - 8rem) * .48)); margin: 0 6% -11rem 0; justify-self: end; }
   .hill { margin-top: -6rem; }
-  .hill__flag--6 { display: block; }
   .hill__flag--1 { --w: 5.6rem; }
   .hill__flag--3 { left: 46%; bottom: 36%; }
   .hill__flag--4 { --w: 5.6rem; right: 3%; bottom: 40%; }
@@ -305,13 +298,13 @@ form[data-state=success] .outdoor-form-message { color: var(--success); }
   .play.is-staged .step { opacity: .38; transition: opacity .3s ease; }
   .play.is-staged .step.is-active { opacity: 1; }
   .play__stage { display: block; }
-  .play__sticky { position: sticky; top: calc(50vh - 290px); padding-block: 4rem; }
-  .play__sticky .device-frame { --device-frame-width: 100%; filter: drop-shadow(0 30px 40px rgb(0 0 0 / 35%)); }
+  .play__sticky { position: sticky; top: 66px; display: flex; align-items: center; justify-content: center; height: calc(100svh - 66px); }
+  .play__sticky .device-frame { --device-frame-width: min(100%, 320px, calc((100svh - 66px - 4rem) * .48)); filter: drop-shadow(0 30px 40px rgb(0 0 0 / 35%)); }
 
 
   .duo { grid-template-columns: 1fr 1fr; padding-block: 6rem; }
-  .duo__card { padding: 2.25rem 2.25rem 0; }
-  .duo__phone { width: min(56%, 260px); margin-bottom: 2.25rem; }
+  .duo__card { grid-template-columns: 1fr minmax(0, 210px); grid-template-rows: none; align-items: center; gap: 1.75rem; padding: 2.25rem; }
+  .duo__phone { width: min(100%, calc((100svh - 12rem) * .48)); margin: 0; }
 
   .parks__inner { grid-template-columns: .8fr 1.2fr; gap: 3rem; padding-block: 5rem; }
 
@@ -335,4 +328,9 @@ form[data-state=success] .outdoor-form-message { color: var(--success); }
   html { scroll-behavior: auto; }
   *, *::before, *::after { transition: none !important; }
   .planted__cloth { animation: none; }
+}
+
+/* Short windows: the hill rises into the hero actions, so only the far flag stays. */
+@media (min-width: 40rem) and (max-height: 42rem) {
+  .hill__flag--1, .hill__flag--3 { display: none; }
 }
