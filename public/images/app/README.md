@@ -20,7 +20,7 @@ All files are 780x1688 WebP (quality 88): a 390x844 phone viewport at device sca
 
 | File | Screen and state | Alt text |
 | --- | --- | --- |
-| `app-flag-map.webp` | Explore map of Victoria, BC, signed in. Score chip, flag pins with age tags (3d, 5d, 7d, 9d, 10d, 12d, 21d), empty dashed pins, Beacon Hill's crew flag with pennants, the "Parks near you" cards and the bottom bar. | Parkdex map of Victoria with players' flags on parks. Score chip: 686 points, @fern_finn · 4 parks. Cards: Beacon Hill, Yours · 1.3 km; Holland Point, No flag · 1.6 km; Moss Rocks, @salish_sky · 2.1 km. |
+| `app-planted.webp` | Result right after planting at the empty Holland Point (the `go-still` frame from `motion/`). Used in the hero. | Flag planted: your flag flying over Holland Point, with Kip cheering beside it. |
 | `app-leaderboard.webp` | Leaders, Everyone tab: podium and ranked list. | Leaderboard, Everyone. 1 @salish_sky 840 pts, 2 @island_ivy 708 pts, 3 @fern_finn 686 pts; then @cedar_kai 521, @gorge_runner 511, @wren_walks 281, @lark_and_lu 209, @oakbay_ollie 179. |
 | `app-crew.webp` | Crew code sheet right after planting at Holland Point: QR code, 6-character code and the protected-hour countdown. | "Bring your crew" crew code for Holland Point: K4Z-D3P, 53 min left. "Anyone in the crew can show this code." Button: Share the link. |
 | `app-founder.webp` | Holland Point Park sheet just after planting: your flag (protected, Show crew code), "No founder yet" and the "Become the founder +24" prompt. | Holland Point Park. Your flag, planted today, protected · 53 min. No founder yet. "Become the founder: Take its first photo. It becomes the park's cover." +24. |
