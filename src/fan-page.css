@@ -1,4 +1,4 @@
-@import '@fontsource-variable/bricolage-grotesque';
+@import '@fontsource-variable/schibsted-grotesk';
 @import '@fontsource-variable/figtree';
 
 /* Borrowed from the Parkdex app: cream paper, Kip orange, ink outlines with a
@@ -29,7 +29,7 @@
   --pop-small: 0 3px 0 var(--ink);
   --outline: 2.5px solid var(--ink);
   --shadow: 0 6px 0 var(--ink);
-  --display: 'Bricolage Grotesque Variable', system-ui, sans-serif;
+  --display: 'Schibsted Grotesk Variable', system-ui, sans-serif;
   --body: 'Figtree Variable', system-ui, sans-serif;
   --page: min(1160px, calc(100% - 2.5rem));
   --radius: 22px;
@@ -49,7 +49,7 @@ button { cursor: pointer; }
 button:disabled { cursor: wait; opacity: .65; }
 :focus-visible { outline: 3px solid var(--focus); outline-offset: 3px; }
 ::selection { background: var(--orange); color: #fff; }
-h1, h2, h3 { font-family: var(--display); font-variation-settings: 'opsz' 96; font-weight: 800; line-height: .98; letter-spacing: -.035em; text-wrap: balance; }
+h1, h2, h3 { font-family: var(--display); font-weight: 800; line-height: 1; letter-spacing: -.03em; text-wrap: balance; }
 
 .fan-sr-only, .outdoor-sr-only { position: absolute; width: 1px; height: 1px; overflow: hidden; clip-path: inset(50%); white-space: nowrap; }
 .fan-skip { position: fixed; top: -100px; left: 1rem; z-index: 50; padding: .7rem 1rem; border-radius: 999px; background: var(--orange); color: #fff; font-weight: 800; }
@@ -94,7 +94,7 @@ h1, h2, h3 { font-family: var(--display); font-variation-settings: 'opsz' 96; fo
 .hero__tag { display: none; align-items: center; gap: .6rem; padding: .3rem .9rem .3rem .45rem; border: 2px solid var(--ink); border-radius: 999px; background: var(--card); box-shadow: 0 2px 0 var(--ink); font-weight: 800; font-size: .92rem; }
 .hero__tag .flag-cloth { width: 1.7rem; }
 .hero__copy { text-align: center; }
-.hero h1 { font-size: max(2.4rem, min(11vw, 5.6rem, 13svh)); }
+.hero h1 { font-size: max(2.4rem, min(11vw, 4.8rem, 12svh)); }
 .hero__mark { position: relative; color: var(--orange); white-space: nowrap; }
 .hero__lede { max-width: 31rem; margin: 1rem auto 0; color: var(--ink-soft); font-size: clamp(1.08rem, 2.6vw, 1.25rem); }
 .hero__phone { position: relative; z-index: 2; justify-self: center; width: min(62%, 270px); margin-bottom: -8rem; }
@@ -274,13 +274,13 @@ form[data-state=success] .outdoor-form-message { color: var(--success); }
   .fan-nav .fan-button { margin-left: 1rem; }
 
   .hero { background: radial-gradient(circle at 88% 12%, #fff3c4 0 4.5rem, transparent 4.6rem), linear-gradient(var(--sky), var(--cream) 78%); }
-  .hero__inner { grid-template-columns: 1.2fr .8fr; align-items: center; padding-top: 3.5rem; }
+  .hero__inner { grid-template-columns: minmax(0, 34rem) auto; justify-content: center; align-items: center; column-gap: clamp(3rem, 7vw, 6rem); padding-top: 3.5rem; }
   .hero__copy { padding-bottom: 8rem; text-align: left; }
   .hero__tag { display: inline-flex; margin-bottom: 1.1rem; }
   .hero__lede { margin-inline: 0; }
   .hero .fan-cta { justify-content: flex-start; }
   .hero .fan-store { flex: 1 1 9.5rem; max-width: 14rem; padding-inline: 1.3rem; }
-  .hero__phone { width: min(100%, 290px, calc((100svh - 8rem) * .48)); margin: 0 6% -11rem 0; justify-self: end; }
+  .hero__phone { width: min(290px, calc((100svh - 8rem) * .48)); margin: 0 0 -11rem; justify-self: start; }
   .hill { margin-top: -6rem; }
   .hill__flag--1 { --w: 5.6rem; }
   .hill__flag--3 { left: 46%; bottom: 36%; }

@@ -16,14 +16,13 @@ Recorded 2026-10-16 from `NathanPannell/parkdex-kip` at `origin/staging` **ba11e
 - **No overlays:** no demo overlays, toasts or Kip's Tips appear. Tips were dismissed before each recording started.
 - **Recording:** Playwright with chrome-headless-shell on GPU (ANGLE D3D11), a 390x844 phone viewport at device scale 2, an Android user agent and touch. Frames were grabbed with a CDP `Page.captureScreenshot` loop at about 16 to 25 fps.
 - **Why not screencast:** CDP screencast frames came out at the wrong size after the app's fullscreen request. The capture harness stubbed `requestFullscreen` so the viewport stays at 390x844.
-- **Hero clip:** `hero-map.webp` is the one exception. The map camera was moved one step per frame through MapLibre's own `jumpTo`, and each frame was captured only after its tiles had finished loading. This gives a smooth camera move with no blank tiles.
+- **Hero clip:** removed; the hero now shows the still `app-planted.webp`.
 - **Assembly:** frames were resized with Lanczos and encoded with Pillow's libwebp (quality 70, 60 for the hero, keyframes every 4 to 5 frames). Inter-frame encoding keeps the dark plant scenes free of blocking.
 
 ## Files
 
 | File | What it shows | Duration | fps | Size | Alt text |
 | --- | --- | --- | --- | --- | --- |
-| `hero-map.webp` | The Victoria flag map pulls back slowly from downtown to the wider city. More players' flag pins with age tags come into view (Beacon Hill's crew flag with pennants, 3d, 5d, 10d, 21d…), with the score chip, park cards and bottom bar fixed. | 5.3 s | 11 | 1,414 KB | Parkdex map of Victoria pulling back to show players' flags on parks across the city. Score chip: 690 points, @fern_finn · 4 parks. Cards: Beacon Hill (Yours · 1.3 km), Holland Point (No flag · 1.6 km), Moss Rocks (@salish_sky · 2.1 km). |
 | `hero-still.webp` | The wide end frame | – | – | 155 KB | Same as above. |
 | `go.webp` | At the empty Holland Point: the "Welcome to Holland Point" arrival card, a tap on "Plant your flag", the press-and-hold ring filling, the flag slamming into the mound with dirt and confetti, the points counting up to +6 and "Flag planted". | 6.9 s | 11 | 883 KB | Arriving at Holland Point, the player presses and holds "Plant your flag". Their flag goes up and the screen says "Flag planted, +6 points". |
 | `go-still.webp` | The "Flag planted +6" result | – | – | 68 KB | "Flag planted", +6 points. "Your flag is flying over Holland Point." |
