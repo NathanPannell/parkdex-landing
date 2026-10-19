@@ -85,8 +85,16 @@ const CLUSTER_RADIUS = 120;
 const CLUSTER_PINS = 3;
 const FAN_STEP = 120;
 
-/** Groups flags that would stand on top of each other and fans each group out. */
-export function layoutFlagPins(spots: FlagSpot[]): FlagPin[] {
+/**
+ * Groups flags that would stand on top of each other and fans each group out,
+ * keeping every cloth inside a map of `width` by `height`.
+ */
+export function layoutFlagPins(spots: FlagSpot[], width = Infinity, height = Infinity): FlagPin[] {
+  // A pin's box runs from 8 left of its pole to 40 right of it, and 54 up from the ground.
+  const keepIn = (x: number, y: number) => ({
+    x: Math.round(Math.min(Math.max(x, 8 * PIN_SCALE), width - 40 * PIN_SCALE)),
+    y: Math.round(Math.min(Math.max(y, 54 * PIN_SCALE), height)),
+  });
   const clusters: FlagSpot[][] = [];
   for (const spot of spots) {
     const near = clusters.find(([first]) => Math.hypot(first.x - spot.x, first.y - spot.y) < CLUSTER_RADIUS);
@@ -99,8 +107,7 @@ export function layoutFlagPins(spots: FlagSpot[]): FlagPin[] {
     const start = -((shown.length - 1) * FAN_STEP) / 2;
     return shown.map((spot, index): FlagPin => ({
       ...spot,
-      x: Math.round(cluster[0].x + start + index * FAN_STEP),
-      y: cluster[0].y,
+      ...keepIn(cluster[0].x + start + index * FAN_STEP, cluster[0].y),
       ...(hidden > 0 && index === shown.length - 1 ? { label: `+${hidden}` } : {}),
     }));
   }).sort((a, b) => a.y - b.y || a.x - b.x);

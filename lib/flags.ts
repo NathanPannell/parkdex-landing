@@ -7,9 +7,9 @@ export type FlagsConfig = {
   fetch?: typeof fetch;
 };
 
-// Vercel's CDN keeps a copy for five minutes, so however many people open the
-// homepage, the app's database is asked at most about once per five minutes,
-// and never while nobody is looking.
+// Vercel's CDN keeps a copy for five minutes in each region, so however many
+// people open the homepage, each region asks the app about once per five
+// minutes, and nothing asks while nobody is looking.
 const CACHED = "public, max-age=60, s-maxage=300, stale-while-revalidate=600";
 const PARK_ID = /^[a-z0-9][a-z0-9-]{0,127}$/;
 const FLAG_SEED = /^[0-9a-z-]{1,64}$/i;

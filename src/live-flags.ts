@@ -21,7 +21,8 @@ export async function plantLiveFlags(map: SVGSVGElement, fetchFlags: typeof fetc
   });
   if (!spots.length) return 0;
   // Every value in the markup is generated from validated seeds and numbers, never from user text.
-  layer.innerHTML = layoutFlagPins(spots).map(renderFlagPin).join('');
+  const { width, height } = map.viewBox.baseVal;
+  layer.innerHTML = layoutFlagPins(spots, width, height).map(renderFlagPin).join('');
   const label = map.getAttribute('aria-label');
   if (label) map.setAttribute('aria-label', `${label}, with ${spots.length} ${spots.length === 1 ? 'flag' : 'flags'} flying now`);
   return spots.length;

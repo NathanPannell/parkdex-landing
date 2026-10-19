@@ -61,6 +61,11 @@ test("flags on one spot fan out, and a crowd shows a count", () => {
   assert.match(svg, />\+3<\/text>/);
 });
 
+test("pins near the map edges stay inside it", () => {
+  const pins = layoutFlagPins([{ x: 5, y: 11, seed: "a", weather: 0 }, { x: 1598, y: 900, seed: "b", weather: 0 }], 1600, 1300);
+  assert.deepEqual(pins.map(({ x, y }) => [x, y]), [[24, 162], [1480, 900]]);
+});
+
 test("flag weather matches the app", () => {
   assert.deepEqual([0, 6, 7, 20, 21, 29].map(weatherForDays), [0, 0, 1, 1, 2, 2]);
 });
