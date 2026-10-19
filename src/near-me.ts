@@ -9,6 +9,7 @@ maplibregl.setWorkerUrl(`${location.origin}/maplibre/maplibre-gl-worker.mjs`);
 
 const STYLE_URL = 'https://tiles.openfreemap.org/styles/positron';
 const CATEGORY_LABEL: Record<string, string> = {
+  national: 'National park',
   municipal: 'Municipal park',
   regional: 'Regional park',
   provincial: 'Provincial park',
@@ -67,7 +68,7 @@ map.on('load', () => {
     source: 'parks',
     paint: {
       'circle-radius': ['interpolate', ['linear'], ['zoom'], 6, 4, 10, 7, 14, 11],
-      'circle-color': ['match', ['get', 'category'], 'provincial', '#1c5b43', 'regional', '#3fa46a', '#ff5a1f'],
+      'circle-color': ['match', ['get', 'category'], 'national', '#154634', 'provincial', '#1c5b43', 'regional', '#3fa46a', '#ff5a1f'],
       'circle-stroke-color': '#14231c',
       'circle-stroke-width': 2,
     },

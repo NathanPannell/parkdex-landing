@@ -57,32 +57,63 @@ function project(basemap: Basemap) {
   });
 }
 
-/** Pick a spread of parks to plant demo flags on: one from each band along the island's length. */
-function flagSpots(parks: Park[], count: number): Park[] {
-  const along = (park: Park) => park.lat - park.lng * 0.6;
-  const sorted = [...parks].sort((a, b) => along(a) - along(b));
-  const step = sorted.length / count;
-  return Array.from({ length: count }, (_, index) => sorted[Math.floor(index * step + step / 2)]);
-}
+const escapeAttribute = (value: string) => value.replace(/[&<>"']/g, (char) => `&#${char.charCodeAt(0)};`);
 
 /**
- * Every catalogue park as a dot on the basemap, with a few demo flags planted
- * on top. The drawing is decorative; the park map page is the interactive version.
+ * Every catalogue park as a dot on the basemap. Each dot carries its park ID so
+ * the flags flying right now can be planted on it in the browser
+ * (src/live-flags.ts). The park map page is the interactive version.
  */
 export function renderParkDots(parks: Park[], basemap: Basemap, image = '/images/park-basemap.webp'): string {
   if (parks.length === 0) return '';
   const point = project(basemap);
   const dots = parks.map((park) => {
     const { x, y } = point(park);
-    return `<circle class="dots__dot dots__dot--${park.category}" cx="${x}" cy="${y}" r="10"/>`;
+    return `<circle class="dots__dot dots__dot--${escapeAttribute(park.category)}" data-park="${escapeAttribute(park.id)}" cx="${x}" cy="${y}" r="8"/>`;
   }).join('');
-  const flags = flagSpots(parks, 7).map((park, index) => {
-    const { x, y } = point(park);
-    // The pin's pole stands at x 8, y 54 of a 48 by 56 box.
-    const scale = 2;
-    return `<g class="dots__flag" transform="translate(${Math.round(x - 8 * scale)} ${Math.round(y - 54 * scale)}) scale(${scale})">`
-      + flagPinSvg(DEMO_SEEDS[index], { idPrefix: `dots-${index}` }).replace(/^<svg[^>]*>/, '').replace(/<\/svg>$/, '') + '</g>';
-  }).join('');
-  return `<svg class="dots" viewBox="0 0 ${basemap.width} ${basemap.height}" role="img" aria-label="Map of ${parks.length} Parkdex parks across Vancouver Island and the Gulf Islands" focusable="false">`
-    + `<image href="${image}" width="${basemap.width}" height="${basemap.height}"/>${dots}${flags}</svg>`;
+  return `<svg class="dots" viewBox="0 0 ${basemap.width} ${basemap.height}" role="img" aria-label="Map of ${parks.length} Parkdex parks across British Columbia" focusable="false">`
+    + `<image href="${image}" width="${basemap.width}" height="${basemap.height}"/>${dots}<g class="dots__flags"></g></svg>`;
+}
+
+export interface FlagSpot { x: number; y: number; seed: string; weather: FlagWeather }
+export interface FlagPin extends FlagSpot { label?: string }
+
+// Flags closer than this, in basemap pixels, share one spot on the map. Up to
+// three stand side by side there, a cloth's width apart, and the last one counts the rest.
+const PIN_SCALE = 3;
+const CLUSTER_RADIUS = 120;
+const CLUSTER_PINS = 3;
+const FAN_STEP = 120;
+
+/** Groups flags that would stand on top of each other and fans each group out. */
+export function layoutFlagPins(spots: FlagSpot[]): FlagPin[] {
+  const clusters: FlagSpot[][] = [];
+  for (const spot of spots) {
+    const near = clusters.find(([first]) => Math.hypot(first.x - spot.x, first.y - spot.y) < CLUSTER_RADIUS);
+    if (near) near.push(spot);
+    else clusters.push([spot]);
+  }
+  return clusters.flatMap((cluster) => {
+    const shown = cluster.slice(0, CLUSTER_PINS);
+    const hidden = cluster.length - shown.length;
+    const start = -((shown.length - 1) * FAN_STEP) / 2;
+    return shown.map((spot, index): FlagPin => ({
+      ...spot,
+      x: Math.round(cluster[0].x + start + index * FAN_STEP),
+      y: cluster[0].y,
+      ...(hidden > 0 && index === shown.length - 1 ? { label: `+${hidden}` } : {}),
+    }));
+  }).sort((a, b) => a.y - b.y || a.x - b.x);
+}
+
+/** One flag on a pole, standing on its spot of the basemap. */
+export function renderFlagPin(pin: FlagPin, index: number): string {
+  // The pin's pole stands at x 8, y 54 of a 48 by 56 box.
+  return `<g class="dots__flag" transform="translate(${Math.round(pin.x - 8 * PIN_SCALE)} ${Math.round(pin.y - 54 * PIN_SCALE)}) scale(${PIN_SCALE})">`
+    + flagPinSvg(pin.seed, { weather: pin.weather, label: pin.label, idPrefix: `live-${index}` }).replace(/^<svg[^>]*>/, '').replace(/<\/svg>$/, '') + '</g>';
+}
+
+/** Flags look worn after a week and tattered after three weeks, as in the app. */
+export function weatherForDays(days: number): FlagWeather {
+  return days >= 21 ? 2 : days >= 7 ? 1 : 0;
 }

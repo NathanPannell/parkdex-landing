@@ -154,13 +154,13 @@ h1, h2, h3 { font-family: var(--display); font-weight: 800; line-height: 1; lett
 .parks { border-block: var(--outline); background-color: #eaf6ee; background-image: linear-gradient(rgb(28 91 67 / 8%) 1px, transparent 1px), linear-gradient(90deg, rgb(28 91 67 / 8%) 1px, transparent 1px); background-size: 40px 40px; }
 .parks__inner { display: grid; gap: 2rem; align-items: center; width: var(--page); margin-inline: auto; padding-block: 4rem; }
 .parks__copy h2 { font-size: clamp(2.3rem, 7vw, 3.6rem); }
-.parks__count { display: block; color: var(--orange); font-size: 1.7em; line-height: .95; font-variant-numeric: tabular-nums; }
+.parks__count { display: block; color: var(--orange); font-size: 1.7em; line-height: .95; }
 .parks__copy p { max-width: 27rem; margin: .9rem 0 1.6rem; color: var(--ink-soft); font-size: 1.15rem; }
 .parks__map { position: relative; min-width: 0; overflow: hidden; border: var(--outline); border-radius: 26px; background: #bfe3f0; box-shadow: var(--shadow); }
 .parks__map figcaption { position: absolute; top: .45rem; right: .6rem; padding: .1rem .5rem; border-radius: 999px; background: rgb(255 255 255 / 80%); color: var(--muted); font-size: .7rem; }
 .dots { display: block; width: 100%; height: auto; overflow: visible; }
 .dots__dot { fill: var(--pine); fill-opacity: .55; stroke: var(--ink); stroke-width: 3; stroke-opacity: .6; }
-.dots__dot--provincial { fill: var(--pine); fill-opacity: .85; }
+.dots__dot--national, .dots__dot--provincial { fill: var(--pine); fill-opacity: .85; }
 .dots__dot--regional { fill: var(--moss); fill-opacity: .8; }
 .dots__dot--municipal, .dots__dot--community { fill: var(--orange); fill-opacity: .75; }
 

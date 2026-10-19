@@ -1,5 +1,6 @@
 import './fan-page.css';
 import './device-frame.css';
+import { plantLiveFlagsWhenVisible } from './live-flags';
 
 // How to play: on wide screens one phone stays on screen and shows the step
 // nearest the middle of the viewport. Without JavaScript every step stays lit.
@@ -269,3 +270,6 @@ removeForm.addEventListener('submit', async event => {
   }
 });
 
+// The flags flying right now, planted on the park map.
+const parkMap = document.querySelector<SVGSVGElement>('.parks__map .dots');
+if (parkMap) plantLiveFlagsWhenVisible(parkMap);
