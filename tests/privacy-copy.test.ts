@@ -39,3 +39,15 @@ test("privacy policy matches the app 1.5.0 data practices declared on Google Pla
   assert.match(privacyPage, /Feedback is not linked to your account, so deleting your account does not remove it\./);
   assert.match(privacyPage, /Analytics already sent to PostHog is not deleted\./);
 });
+
+test("privacy policy does not overstate backup exclusions or guest deletion", () => {
+  assert.doesNotMatch(privacyPage, /installation identifier[^.]*excluded/);
+  assert.match(privacyPage, /Your sign-in session and the downloaded park content are excluded\./);
+  assert.match(privacyPage, /Uninstalling the app does not end the session by itself\./);
+});
+
+test("delete-account page lists what stays after deletion, like the privacy policy", async () => {
+  const deletePage = await readFile(new URL("../delete-account/index.html", import.meta.url), "utf8");
+  assert.match(deletePage, /analytics already sent to PostHog and feedback you sent are not deleted/);
+  assert.match(deletePage, /Parks you founded stay on the map without your name or cover photo\./);
+});
