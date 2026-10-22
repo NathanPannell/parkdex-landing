@@ -3,14 +3,14 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <meta name="description" content="How Parkdex uses account information, location, visits, photos and waitlist email, and how to request deletion." />
+    <meta name="description" content="How Parkdex uses account information, your public game profile, location, photos, analytics, feedback and waitlist email, and how to request deletion." />
     <link rel="canonical" href="https://parkdex.app/privacy/" />
     <meta property="og:site_name" content="Parkdex" />
     <meta property="og:type" content="website" />
     <meta property="og:locale" content="en_CA" />
     <meta property="og:url" content="https://parkdex.app/privacy/" />
     <meta property="og:title" content="Privacy · Parkdex" />
-    <meta property="og:description" content="How Parkdex uses account information, location, visits, photos and waitlist email, and how to request deletion." />
+    <meta property="og:description" content="How Parkdex uses account information, your public game profile, location, photos, analytics, feedback and waitlist email, and how to request deletion." />
     <meta property="og:image" content="https://parkdex.app/og-image.jpg" />
     <meta property="og:image:width" content="1200" />
     <meta property="og:image:height" content="630" />
@@ -30,11 +30,11 @@
       <article class="support-article">
         <h1>Privacy for Parkdex.</h1>
         <p class="support-lede">What you share, what Parkdex keeps, and how to remove it.</p>
-        <p>Last updated October 13, 2026.</p>
+        <p>Last updated October 22, 2026.</p>
 
         <section aria-labelledby="scope-title">
           <h2 id="scope-title">Who this covers</h2>
-          <p>This policy covers the Parkdex web app, the public Parkdex Android app, and this landing page. The location and photo sections describe features in the Android app that are not part of the web app.</p>
+          <p>This policy covers the Parkdex web app, the public Parkdex Android app, and this landing page. It describes Parkdex as of app version 1.5.0.</p>
           <p>Parkdex is made by Nathan Pannell. For privacy questions or help with your data, email <a href="mailto:contact@nathanpannell.com">contact@nathanpannell.com</a>.</p>
         </section>
 
@@ -43,35 +43,60 @@
           <h3>Your account</h3>
           <p>Parkdex stores your email address, an account identifier, account dates and sign-in information. When you use a password, it is stored as a password hash. Session and verification records let you stay signed in, verify your email and recover access.</p>
           <p>If you choose Google sign-in where it is available, Google provides identity information used to connect you to your account.</p>
+          <p>You can also play as a guest without an email address. A guest account has its own account identifier and handle, and works like any other account until you upgrade it or leave it.</p>
+          <h3>Your handle and what other players see</h3>
+          <p>To plant flags you choose a handle, the name other players see, and a flag design. Before a handle is accepted it goes through the automated check described below.</p>
+          <p>Your handle, flag, score, the badges you wear on your flag and the parks where your flag flies are public. Anyone can see them on the leaderboard and the park map, including people who are not signed in. Guest handles are public in the same way. If you found a park, its page shows your handle as founder, the founding date and your founding photo as the park’s cover.</p>
+          <p>When you join a crew at a park, Parkdex stores your membership, when you joined and the visit you joined with. Signed-in players can see the handles of a park’s crew members.</p>
+          <p>Friends you add by code or link, or crewmates you add by handle soon after a crew, see your handle, your flag and how many different parks you visited this week. They do not see which parks.</p>
           <h3>Your places and visits</h3>
-          <p>Parkdex stores the places you save, your collections, visit dates and trail completions so you can return to your collection and see your exploration progress.</p>
-          <h3>Location and photos</h3>
-          <p>When you ask Parkdex to verify a visit, it sends your location coordinates, the sample time and its reported accuracy to check which park you are in. A verified visit stores that location evidence with the place and visit time. Location evidence is separate from any photo you choose to save.</p>
-          <p>When you save a visit photo, Parkdex creates a resized JPEG for your postcard. The stored JPEG is re-encoded without the original embedded photo metadata. Your verified visit still retains its separately recorded location and time.</p>
-          <p>Android requests foreground location access. You can change location permission in your device settings; doing so does not delete location evidence already saved with a visit.</p>
+          <p>Parkdex stores the places you save, your collections, visit dates, trail completions, the flags you plant and hold, and your badges so you can return to your collection and play the game.</p>
+          <p>If you propose a park that is missing from the map, Parkdex stores its name, your note, the pin, any outline you draw, and the app version and platform you used. Proposals are not linked to your account.</p>
+          <h3>Location</h3>
+          <p>Parkdex uses your location only while you are using the app. Android asks for precise and approximate location in the foreground. Parkdex does not ask for background location.</p>
+          <p>Logging a visit sends the park you are visiting, not your coordinates. Visits and saved places do not store your position.</p>
+          <p>When you found a park, the app sends your precise position and its reported accuracy to Parkdex to find the park you are standing in. If Parkdex does not already know the park’s outline, the Parkdex server looks it up from OpenStreetMap data using the Nominatim service and public Overpass API servers. Those requests use your position rounded to about 10 metres. They come from the Parkdex server and do not include your account, email or network address.</p>
+          <p>A successful founding does not keep your position. If the automated photo check rejects your founding photo or cannot decide, Parkdex keeps the photo, your position and the park outline for 24 hours so you can ask for a review. If you ask, they are copied into your review request. The photo is removed 90 days after the decision. The position and the rest of the request stay until your account is deleted.</p>
+          <p>Your last known position is also kept on your device so the map can open where you were. You can change location permission in your device settings.</p>
+          <h3>Photos</h3>
+          <p>When you save a visit photo, Parkdex creates a resized JPEG for your postcard. The stored JPEG is re-encoded without the original embedded photo metadata, such as GPS tags. Visit photos are stored privately.</p>
+          <p>A founding photo is checked and, once the park is founded, becomes the park’s public cover. Embedded photo metadata is removed before it is stored. Anyone can view it on the park page.</p>
+          <h3>Automated checks</h3>
+          <p>Parkdex uses OpenRouter to run automated content checks with an AI model. OpenRouter passes the content to the model’s provider, which is OpenAI by default. Founding photos are sent with the park’s name and kind. Handles are sent on their own. Park proposals are sent with their name, note, pin and nearby map context. Parkdex does not send your account identifier or email with these checks. The result of a check is stored with the park, photo check, review request or proposal it applies to.</p>
+          <h3>Analytics and diagnostics</h3>
+          <p>Parkdex uses PostHog for product analytics, to understand how the app is used and to find problems. When analytics is on, the app loads PostHog, which records the screens you view, taps and clicks, and named events such as starting to found a park. PostHog also records basic device details, such as the operating system, device type and screen size. The app’s PostHog setup allows session recordings of the app screen. Everything typed into fields is masked, but other text on screen, such as your handle or the email shown on your account screen, can appear in a recording.</p>
+          <p>Each event carries a random installation identifier created by the app, the app version and build, and whether you use the web or Android app. After you sign in, events are also linked to your account identifier. PostHog receives your network address with app events and can use it to estimate your approximate location, such as your city and country. PostHog stores this data in the United States.</p>
+          <p>The app also sends Parkdex its own usage events when you view a park, open directions or claim a park, with the installation identifier, a session identifier and choices such as the maps app and travel mode. The Parkdex server also records each request: the route, its timing and result, your account identifier or installation identifier, the app version and any park involved. These records are kept in the Parkdex database for 90 days. Changes and game events from them are also sent to PostHog. Parkdex does not delete data from PostHog automatically.</p>
+          <p>Parkdex does not add your photos or coordinates to analytics events. The installation identifier is not your Android ID or advertising ID. Parkdex has no advertising SDKs, and there is currently no in-app setting to turn analytics off.</p>
+          <h3>Feedback from the app</h3>
+          <p>If you send feedback from the app, Parkdex stores your message, an email address if you add one, and a screenshot if you attach one. It also stores the app version, build, platform, screen and the park you were looking at. Screenshots are stored without embedded metadata.</p>
+          <p>Resend emails Nathan a notification with your message. It includes your email address only if you agree to be contacted, and it can send you a receipt. Feedback is not linked to your account, so deleting your account does not remove it. A report is deleted 90 days after Nathan archives it; until then it is kept.</p>
           <h3>Information on your device</h3>
           <p>Parkdex keeps sign-in information, your journal, preferences and pending uploads in browser or app-private storage. Guest progress uses a separate collection key. Pending photo copies let you retry an interrupted upload and are cleared after upload or sign-out.</p>
+          <p>On Android, the system’s backup can copy some Parkdex app data to your Google account, depending on your device’s backup settings. Your sign-in session and the downloaded park content are excluded.</p>
           <h3>Support messages</h3>
           <p>If you email Nathan, your email address, message and any attachments are used to respond to your request. Send only the information needed to explain the issue, and never send your password.</p>
         </section>
 
         <section aria-labelledby="providers-title">
           <h2 id="providers-title">Services that run Parkdex</h2>
-          <p>Vercel hosts the websites and the app API, and Neon stores account and collection information. The Android beta and App Store waitlists use a separate Neon database.</p>
-          <p>Resend delivers account verification and password-recovery emails. Google handles Google sign-in when you choose it. The Parkdex Android app stores visit photos privately with Cloudflare R2 through the Parkdex API.</p>
-          <p>The app loads map tiles and map fonts from OpenFreeMap. Those requests reveal your network address and the map areas being loaded to the map service.</p>
-          <p><a href="https://openfreemap.org/privacy/">OpenFreeMap’s privacy policy</a> describes anonymized service logs kept indefinitely and temporary IP-address logging during security incidents for up to 30 days. Its service may also use Cloudflare.</p>
-          <p>These services process information to provide hosting, storage, email, sign-in and maps. Hosting and storage can be outside Canada. Providers may keep their own operational or security logs.</p>
-          <p>The current app does not include advertising or marketing analytics SDKs. Parkdex still records limited operational and security events to diagnose failures and protect account access.</p>
+          <p>Vercel hosts the websites and the app API, and Neon stores account, game, collection and feedback information. The Android beta and App Store waitlists use a separate Neon database.</p>
+          <p>Resend delivers account verification, password-recovery and feedback emails. Google handles Google sign-in when you choose it. The Parkdex Android app stores visit photos privately with Cloudflare R2 through the Parkdex API. Cloudflare also runs the daily job that removes expired data.</p>
+          <p>PostHog provides product analytics. OpenRouter runs the automated content checks. OpenStreetMap’s Nominatim service and public Overpass API servers provide park outlines when you found a park. Map tiles are served from Parkdex’s own storage. Directions open in Google Maps or Apple Maps with the park’s location.</p>
+          <p>These services process information to provide hosting, storage, email, sign-in, analytics, content checks and maps. Hosting, storage, analytics and content checks can be outside Canada. Providers may keep their own operational or security logs.</p>
+          <p>Parkdex does not sell your information or use it for advertising.</p>
         </section>
 
         <section aria-labelledby="retention-title">
           <h2 id="retention-title">Keeping and deleting your data</h2>
           <p>Your account and collection have no automatic expiry. They remain until you remove the relevant information or your account-deletion request is fulfilled. Sign-in and verification tokens have expiry limits, but token expiry is not account deletion.</p>
-          <p>You can <a href="/delete-account/">request account deletion</a> without installing the Android app. Nathan handles account-access or deletion requests that the automated flow cannot complete.</p>
-          <p>Account deletion removes your account and its associated visits, collections, authentication records and photo references. Photo files are deleted from private storage. If storage deletion fails, a deletion record remains for manual cleanup. Nathan will not confirm full completion until that cleanup is verified.</p>
+          <p>A guest account whose session has ended, because you signed out or did not open Parkdex for a year, is deleted automatically 30 days later. Uninstalling the app does not end the session by itself.</p>
+          <p>You can delete your account in the app, or <a href="/delete-account/">request account deletion</a> without installing the Android app. Nathan handles account-access or deletion requests that the automated flow cannot complete.</p>
+          <p>Account deletion removes your account, authentication records, handle, flag, badges, the flags you hold, your visits, collections, crew memberships, friend code and friendships, photo checks and review requests, and your photo references. Photo files are deleted from private storage. If storage deletion fails, a deletion record remains for manual cleanup. Nathan will not confirm full completion until that cleanup is verified.</p>
+          <p>Parks you founded stay on the map without your name, and their cover photo is removed. Park proposals stay, because they are not linked to your account.</p>
+          <p>Some information stays after account deletion. Server request and usage records remain until they reach 90 days old. Analytics already sent to PostHog is not deleted. Feedback you sent stays until it is archived and purged. A deletion record with your account identifier and the deletion dates is kept to track the request.</p>
           <p>Deletion does not erase a separate guest history, files you downloaded or copies you shared elsewhere. Account-owned local data is cleared on the device completing the in-app deletion. Copies on an offline device cannot be erased remotely while it is offline; you can clear that device’s app data.</p>
-          <p>Network-level abuse counters and service-provider logs or backups may remain separately from the active account. Deleting the active account does not immediately erase every provider copy.</p>
+          <p>Network-level abuse counters, security records without your account identifier, and service-provider logs or backups may remain separately from the active account. Deleting the active account does not immediately erase every provider copy.</p>
           <p>The app database is configured with a six-hour restore-history window. These are restore or access windows, not guarantees about when providers erase every internal copy.</p>
           <p>Account deletion and waitlist removal are separate. Use the waitlist controls below if you also want to remove your waitlist email.</p>
         </section>
