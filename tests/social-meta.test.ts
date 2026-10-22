@@ -29,11 +29,15 @@ test("structured data is valid JSON", () => {
   assert.ok(block);
   const data = JSON.parse(block);
   assert.equal(data["@context"], "https://schema.org");
-  assert.deepEqual(data["@graph"].map((node: { "@type": string }) => node["@type"]), ["WebSite", "MobileApplication"]);
+  assert.deepEqual(
+    data["@graph"].map((node: { "@type": string }) => node["@type"]),
+    ["WebSite", "MobileApplication"],
+  );
 });
 
 test("canonical and share URLs follow the staging landing host", () => {
-  const source = '<link rel="canonical" href="https://parkdex.app/" /><meta property="og:image" content="https://parkdex.app/og-image.jpg" />';
+  const source =
+    '<link rel="canonical" href="https://parkdex.app/" /><meta property="og:image" content="https://parkdex.app/og-image.jpg" />';
   assert.equal(rewriteStaticAppLinks(source, "https://web.parkdex.app"), source);
   assert.equal(
     rewriteStaticAppLinks(source, "https://staging.web.parkdex.app"),

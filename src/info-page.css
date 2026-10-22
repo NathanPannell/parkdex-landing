@@ -1,26 +1,132 @@
 /* Privacy, support and delete-account pages in the fan page style. */
-.info-page .support-shell { display: contents; }
-.info-page a { overflow-wrap: anywhere; }
-.support-main { width: min(760px, calc(100% - 2.5rem)); margin-inline: auto; padding-block: 3rem 4.5rem; }
-.support-article h1, .support-intro h1 { font-size: clamp(2.6rem, 8vw, 3.8rem); text-wrap: balance; }
-.support-lede { margin-top: 1rem; color: var(--ink-soft); font-size: clamp(1.15rem, 2vw, 1.3rem); }
-.support-content { margin-top: 2.5rem; }
-.support-section, .support-article section { margin-top: 2rem; padding: 1.4rem 1.5rem 1.6rem; border: var(--outline); border-radius: var(--radius); background: var(--card); box-shadow: var(--pop-small); scroll-margin-top: 6rem; }
-.support-section h2, .support-article h2 { font-size: clamp(1.5rem, 4vw, 2rem); }
-.support-section h3, .support-article h3 { margin-top: 1.4rem; font-size: 1.2rem; }
-.support-section p, .support-article p, .support-article > p { margin-top: .8rem; color: var(--ink-soft); line-height: 1.65; }
-.support-article > p { color: var(--muted); }
-.support-section a, .support-article a { color: var(--ink); font-weight: 700; text-decoration-color: var(--orange); text-decoration-thickness: 2px; }
-.support-section ul, .support-article ul { margin-top: .8rem; padding-left: 1.25rem; list-style: disc; color: var(--ink-soft); }
-.support-section li + li, .support-article li + li { margin-top: .5rem; }
-.support-link-list { display: grid; gap: 1.1rem; margin-top: 1.2rem; padding: 0 !important; list-style: none !important; }
-.support-link-list h3 { margin-top: 0; }
-.support-details { display: grid; gap: 1.1rem; margin: 1.2rem 0 0; }
-.support-details dt { font-family: var(--display); font-weight: 800; }
-.support-details dd { margin: .3rem 0 0; color: var(--ink-soft); }
-.support-steps { margin-top: 1.2rem; padding-left: 1.35rem; list-style: decimal; color: var(--ink-soft); }
-.support-steps li + li { margin-top: .8rem; }
-.support-steps strong { color: var(--ink); }
-.support-actions { display: flex; flex-wrap: wrap; gap: 1rem; margin-top: 1.5rem; }
-.support-button { display: inline-flex; align-items: center; justify-content: center; min-height: 48px; padding: .7rem 1.3rem; border: var(--outline); border-radius: 999px; background: var(--orange); color: var(--ink); font-family: var(--display); font-weight: 800; text-decoration: none; box-shadow: var(--pop); }
-.support-button:active { transform: translateY(3px); box-shadow: 0 1px 0 var(--ink); }
+.info-page .support-shell {
+  display: contents;
+}
+.info-page a {
+  overflow-wrap: anywhere;
+}
+.support-main {
+  width: min(760px, calc(100% - 2.5rem));
+  margin-inline: auto;
+  padding-block: 3rem 4.5rem;
+}
+.support-article h1,
+.support-intro h1 {
+  font-size: clamp(2.6rem, 8vw, 3.8rem);
+  text-wrap: balance;
+}
+.support-lede {
+  margin-top: 1rem;
+  color: var(--ink-soft);
+  font-size: clamp(1.15rem, 2vw, 1.3rem);
+}
+.support-content {
+  margin-top: 2.5rem;
+}
+.support-section,
+.support-article section {
+  margin-top: 2rem;
+  padding: 1.4rem 1.5rem 1.6rem;
+  border: var(--outline);
+  border-radius: var(--radius);
+  background: var(--card);
+  box-shadow: var(--pop-small);
+  scroll-margin-top: 6rem;
+}
+.support-section h2,
+.support-article h2 {
+  font-size: clamp(1.5rem, 4vw, 2rem);
+}
+.support-section h3,
+.support-article h3 {
+  margin-top: 1.4rem;
+  font-size: 1.2rem;
+}
+.support-section p,
+.support-article p,
+.support-article > p {
+  margin-top: 0.8rem;
+  color: var(--ink-soft);
+  line-height: 1.65;
+}
+.support-article > p {
+  color: var(--muted);
+}
+.support-section a,
+.support-article a {
+  color: var(--ink);
+  font-weight: 700;
+  text-decoration-color: var(--orange);
+  text-decoration-thickness: 2px;
+}
+.support-section ul,
+.support-article ul {
+  margin-top: 0.8rem;
+  padding-left: 1.25rem;
+  list-style: disc;
+  color: var(--ink-soft);
+}
+.support-section li + li,
+.support-article li + li {
+  margin-top: 0.5rem;
+}
+.support-link-list {
+  display: grid;
+  gap: 1.1rem;
+  margin-top: 1.2rem;
+  padding: 0 !important;
+  list-style: none !important;
+}
+.support-link-list h3 {
+  margin-top: 0;
+}
+.support-details {
+  display: grid;
+  gap: 1.1rem;
+  margin: 1.2rem 0 0;
+}
+.support-details dt {
+  font-family: var(--display);
+  font-weight: 800;
+}
+.support-details dd {
+  margin: 0.3rem 0 0;
+  color: var(--ink-soft);
+}
+.support-steps {
+  margin-top: 1.2rem;
+  padding-left: 1.35rem;
+  list-style: decimal;
+  color: var(--ink-soft);
+}
+.support-steps li + li {
+  margin-top: 0.8rem;
+}
+.support-steps strong {
+  color: var(--ink);
+}
+.support-actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 1rem;
+  margin-top: 1.5rem;
+}
+.support-button {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 48px;
+  padding: 0.7rem 1.3rem;
+  border: var(--outline);
+  border-radius: 999px;
+  background: var(--orange);
+  color: var(--ink);
+  font-family: var(--display);
+  font-weight: 800;
+  text-decoration: none;
+  box-shadow: var(--pop);
+}
+.support-button:active {
+  transform: translateY(3px);
+  box-shadow: 0 1px 0 var(--ink);
+}

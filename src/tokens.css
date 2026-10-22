@@ -33,11 +33,11 @@
   --color-shade-40: rgb(9 32 27 / 40%);
   --color-shade-44: rgb(9 32 27 / 44%);
   --color-shade-48: rgb(9 32 27 / 48%);
-  --font-display: 'Strichpunkt Sans Variable', sans-serif;
-  --font-body: 'Ysabeau Variable', sans-serif;
-  --font-hand: 'Caveat Variable', cursive;
-  --space-xs: .5rem;
-  --space-sm: .75rem;
+  --font-display: "Strichpunkt Sans Variable", sans-serif;
+  --font-body: "Ysabeau Variable", sans-serif;
+  --font-hand: "Caveat Variable", cursive;
+  --space-xs: 0.5rem;
+  --space-sm: 0.75rem;
   --space-md: 1rem;
   --space-lg: 1.5rem;
   --space-xl: 2.5rem;
@@ -45,7 +45,7 @@
   --gutter: clamp(1.25rem, 4.4vw, 5rem);
   --dur-short: 180ms;
   --dur-long: 360ms;
-  --ease-out: cubic-bezier(.16, 1, .3, 1);
+  --ease-out: cubic-bezier(0.16, 1, 0.3, 1);
   --z-base: 1;
   --z-raised: 2;
   --z-front: 3;

@@ -3,7 +3,14 @@ import test from "node:test";
 import { createFlagsHandler, liveFlags } from "../lib/flags.ts";
 import { layoutFlagPins, renderFlagPin, weatherForDays } from "../src/flag-art.ts";
 
-const FLAG = { parkId: "osm-way-23612214", handle: "fern_finn", flagSeed: "b61b651c7c5f3932", since: "2026-10-13T22:07:36.602Z", crew: { size: 1 }, patches: ["founder"] };
+const FLAG = {
+  parkId: "osm-way-23612214",
+  handle: "fern_finn",
+  flagSeed: "b61b651c7c5f3932",
+  since: "2026-10-13T22:07:36.602Z",
+  crew: { size: 1 },
+  patches: ["founder"],
+};
 
 function upstream(body: unknown, status = 200) {
   const calls: string[] = [];
@@ -28,17 +35,26 @@ test("mirrors the app's flags with only what the map draws, cached at the CDN", 
 });
 
 test("drops malformed flags and refuses a malformed or failed upstream without caching", async () => {
-  assert.deepEqual(liveFlags({ flags: [FLAG, { ...FLAG, parkId: "<script>" }, { ...FLAG, flagSeed: 7 }, { ...FLAG, since: "soon" }, null] }), [
-    { parkId: FLAG.parkId, flagSeed: FLAG.flagSeed, since: FLAG.since },
-  ]);
+  assert.deepEqual(
+    liveFlags({ flags: [FLAG, { ...FLAG, parkId: "<script>" }, { ...FLAG, flagSeed: 7 }, { ...FLAG, since: "soon" }, null] }),
+    [{ parkId: FLAG.parkId, flagSeed: FLAG.flagSeed, since: FLAG.since }],
+  );
   assert.equal(liveFlags({ flags: "none" }), null);
-  for (const [body, status] of [[{ nope: true }, 200], [{ error: "down" }, 503]] as const) {
+  for (const [body, status] of [
+    [{ nope: true }, 200],
+    [{ error: "down" }, 503],
+  ] as const) {
     const handle = createFlagsHandler({ appOrigin: "https://web.parkdex.app", fetch: upstream(body, status).fetchStub });
     const response = await handle(new Request("https://parkdex.app/api/flags"));
     assert.equal(response.status, 502);
     assert.equal(response.headers.get("Cache-Control"), "no-store");
   }
-  const offline = createFlagsHandler({ appOrigin: "https://web.parkdex.app", fetch: (async () => { throw new TypeError("offline"); }) as typeof fetch });
+  const offline = createFlagsHandler({
+    appOrigin: "https://web.parkdex.app",
+    fetch: (async () => {
+      throw new TypeError("offline");
+    }) as typeof fetch,
+  });
   assert.equal((await offline(new Request("https://parkdex.app/api/flags"))).status, 502);
 });
 
@@ -51,10 +67,24 @@ test("only answers reads", async () => {
 
 test("flags on one spot fan out, and a crowd shows a count", () => {
   const spot = (x: number, seed: string) => ({ x, y: 500, seed, weather: 0 as const });
-  const pins = layoutFlagPins([spot(300, "a"), spot(305, "b"), spot(310, "c"), spot(302, "d"), spot(301, "e"), spot(304, "f"), spot(900, "g")]);
+  const pins = layoutFlagPins([
+    spot(300, "a"),
+    spot(305, "b"),
+    spot(310, "c"),
+    spot(302, "d"),
+    spot(301, "e"),
+    spot(304, "f"),
+    spot(900, "g"),
+  ]);
   assert.equal(pins.length, 4);
-  assert.deepEqual(pins.slice(0, 3).map((pin) => pin.x), [180, 300, 420]);
-  assert.deepEqual(pins.map((pin) => pin.label), [undefined, undefined, "+3", undefined]);
+  assert.deepEqual(
+    pins.slice(0, 3).map((pin) => pin.x),
+    [180, 300, 420],
+  );
+  assert.deepEqual(
+    pins.map((pin) => pin.label),
+    [undefined, undefined, "+3", undefined],
+  );
   assert.deepEqual(pins.at(-1), spot(900, "g"));
   const svg = pins.map(renderFlagPin).join("");
   assert.equal(svg.match(/class="dots__flag"/g)?.length, 4);
@@ -62,8 +92,21 @@ test("flags on one spot fan out, and a crowd shows a count", () => {
 });
 
 test("pins near the map edges stay inside it", () => {
-  const pins = layoutFlagPins([{ x: 5, y: 11, seed: "a", weather: 0 }, { x: 1598, y: 900, seed: "b", weather: 0 }], 1600, 1300);
-  assert.deepEqual(pins.map(({ x, y }) => [x, y]), [[24, 162], [1480, 900]]);
+  const pins = layoutFlagPins(
+    [
+      { x: 5, y: 11, seed: "a", weather: 0 },
+      { x: 1598, y: 900, seed: "b", weather: 0 },
+    ],
+    1600,
+    1300,
+  );
+  assert.deepEqual(
+    pins.map(({ x, y }) => [x, y]),
+    [
+      [24, 162],
+      [1480, 900],
+    ],
+  );
 });
 
 test("flag weather matches the app", () => {

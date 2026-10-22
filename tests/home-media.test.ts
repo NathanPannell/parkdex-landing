@@ -21,6 +21,13 @@ test("motion mode offers every loop, but only to visitors who have not asked for
   const loops = (page.match(/data-motion="/g) ?? []).length;
   assert.ok(loops >= 7);
   const html = applyHomeMedia(page, "motion", publicDir);
-  assert.equal((html.match(/<picture><source media="\(prefers-reduced-motion: no-preference\)" srcset="\/images\/app\/motion\/[a-z-]+\.webp" type="image\/webp" \/><img [^>]+\/><\/picture>/g) ?? []).length, loops);
+  assert.equal(
+    (
+      html.match(
+        /<picture><source media="\(prefers-reduced-motion: no-preference\)" srcset="\/images\/app\/motion\/[a-z-]+\.webp" type="image\/webp" \/><img [^>]+\/><\/picture>/g,
+      ) ?? []
+    ).length,
+    loops,
+  );
   assert.doesNotMatch(html, /data-motion/);
 });

@@ -1,1 +1,1 @@
-import './support.css';
+import "./support.css";

@@ -15,6 +15,9 @@ test("schema creates both signup lists and retires the legacy list", () => {
   }
   assert.doesNotMatch(schema, /CREATE TABLE IF NOT EXISTS waitlist_signups/);
   assert.match(schema, /IF to_regclass\('public\.waitlist_signups'\) IS NOT NULL THEN/);
-  assert.match(schema, /INSERT INTO app_store_waitlist_signups[\s\S]*ON CONFLICT \(email_normalized\) DO NOTHING;\s*DROP TABLE waitlist_signups;/);
+  assert.match(
+    schema,
+    /INSERT INTO app_store_waitlist_signups[\s\S]*ON CONFLICT \(email_normalized\) DO NOTHING;\s*DROP TABLE waitlist_signups;/,
+  );
   assert.doesNotMatch(schema, /\b(TRUNCATE|DELETE)\b/i);
 });

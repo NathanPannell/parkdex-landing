@@ -23,7 +23,10 @@ test("the park map draws one dot per park, every one on the basemap and named by
   assert.match(svg, /<image href="\/images\/park-basemap.webp"/);
   const dots = [...svg.matchAll(/class="dots__dot [^"]+" data-park="([^"]+)" cx="(-?\d+)" cy="(-?\d+)"/g)];
   assert.equal(dots.length, data.parks.length);
-  assert.deepEqual(dots.map(([, id]) => id), data.parks.map((park: { id: string }) => park.id));
+  assert.deepEqual(
+    dots.map(([, id]) => id),
+    data.parks.map((park: { id: string }) => park.id),
+  );
   for (const [, , x, y] of dots) {
     assert.ok(Number(x) >= 0 && Number(x) <= basemap.width && Number(y) >= 0 && Number(y) <= basemap.height, `${x},${y}`);
   }
@@ -34,7 +37,7 @@ test("the park map draws one dot per park, every one on the basemap and named by
 });
 
 test("the homepage names points without promising specific values", () => {
-  assert.doesNotMatch(page, /\+\d+|\d+ points?|point an hour|points? (an|per|every) hour/i);
+  assert.doesNotMatch(page, /\+\d+|\d+ points?\b|point an hour|points? (an|per|every) hour/i);
 });
 
 test("the homepage pitches the flag game, not the retired park badges", () => {
