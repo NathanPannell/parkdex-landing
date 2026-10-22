@@ -14,8 +14,13 @@ test("Vercel Git deploys only main and staging, with no Actions deploy", () => {
 });
 
 test("staging.parkdex.app is marked noindex", () => {
-  assert.ok(config.headers.some((route: { has?: unknown; headers: { key: string; value: string }[] }) =>
-    JSON.stringify(route.has) === JSON.stringify(staging) && route.headers.some((header) => header.key === "X-Robots-Tag" && header.value === "noindex")));
+  assert.ok(
+    config.headers.some(
+      (route: { has?: unknown; headers: { key: string; value: string }[] }) =>
+        JSON.stringify(route.has) === JSON.stringify(staging) &&
+        route.headers.some((header) => header.key === "X-Robots-Tag" && header.value === "noindex"),
+    ),
+  );
 });
 
 test("PR previews still deploy to the single parkdex-landing project", () => {

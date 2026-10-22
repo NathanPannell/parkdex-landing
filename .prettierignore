@@ -1,0 +1,21 @@
+# Generated or vendored output
+dist/
+public/
+node_modules/
+package-lock.json
+test-results/
+playwright-report/
+# Synced data snapshots (npm run sync-parks)
+src/parks.json
+src/park-basemap.json
+# Design notes, evidence and agent journals, not shipped code
+docs/
+.codex/
+.impeccable/
+.hallmark/
+.claude/
+*.md
+# Hand-authored page markup: tests assert its exact source text, and HTML
+# reflow can change inline whitespace in the rendered copy. The built pages
+# are covered by the Playwright e2e job instead.
+*.html

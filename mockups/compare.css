@@ -1,19 +1,107 @@
-@import '../src/style.css';
-.comparison { padding: 2rem; }
-.compare-heading { display: flex; justify-content: space-between; align-items: center; gap: 2rem; margin-bottom: 2.4rem; }
-.compare-heading h1 { font: 760 2.2rem/1.1 var(--font-display); letter-spacing: -.035em; }
-.compare-heading p { margin-top: .5rem; color: var(--color-secondary); }
-.compare-switch { display: flex; gap: .4rem; }
-.compare-switch button { min-height: 44px; padding: .5rem .9rem; border: 1px solid var(--color-rule); border-radius: 5px; background: var(--color-transparent); }
-.compare-switch button[aria-pressed=true] { background: var(--color-ink); color: var(--color-paper-bright); }
-.compare-options { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 2rem; }
-.compare-option { min-width: 0; }
-.compare-option header { display: flex; align-items: center; justify-content: space-between; gap: 1rem; }
-.compare-option h2 { font: 700 1.4rem var(--font-display); letter-spacing: -.025em; }
-.compare-option header a { min-height: 44px; display: inline-flex; align-items: center; font-size: .95rem; }
-.compare-option > p { font-size: 1rem; line-height: 1.4; color: var(--color-secondary); margin: .2rem 0 1.2rem; }
-.compare-viewport { position: relative; width: 100%; overflow: hidden; border: 1px solid var(--color-rule); background: var(--color-paper); }
-.compare-viewport iframe { display: block; position: absolute; inset: 0; border: 0; transform-origin: top left; }
-.compare-options[data-size=phone] .compare-viewport { max-width: 390px; margin-inline: auto; }
-.compare-note { margin-top: 1.5rem; max-width: 80ch; font-size: .88rem; line-height: 1.5; color: var(--color-secondary); }
-@media(max-width: 55rem) { .comparison { padding: 1.2rem; } .compare-heading { display: block; } .compare-switch { margin-top: 1rem; } .compare-options { grid-template-columns: minmax(0, 1fr); gap: 2rem; } .compare-heading h1 { font-size: 1.8rem; } }
+@import "../src/style.css";
+.comparison {
+  padding: 2rem;
+}
+.compare-heading {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 2rem;
+  margin-bottom: 2.4rem;
+}
+.compare-heading h1 {
+  font: 760 2.2rem/1.1 var(--font-display);
+  letter-spacing: -0.035em;
+}
+.compare-heading p {
+  margin-top: 0.5rem;
+  color: var(--color-secondary);
+}
+.compare-switch {
+  display: flex;
+  gap: 0.4rem;
+}
+.compare-switch button {
+  min-height: 44px;
+  padding: 0.5rem 0.9rem;
+  border: 1px solid var(--color-rule);
+  border-radius: 5px;
+  background: var(--color-transparent);
+}
+.compare-switch button[aria-pressed="true"] {
+  background: var(--color-ink);
+  color: var(--color-paper-bright);
+}
+.compare-options {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 2rem;
+}
+.compare-option {
+  min-width: 0;
+}
+.compare-option header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1rem;
+}
+.compare-option h2 {
+  font: 700 1.4rem var(--font-display);
+  letter-spacing: -0.025em;
+}
+.compare-option header a {
+  min-height: 44px;
+  display: inline-flex;
+  align-items: center;
+  font-size: 0.95rem;
+}
+.compare-option > p {
+  font-size: 1rem;
+  line-height: 1.4;
+  color: var(--color-secondary);
+  margin: 0.2rem 0 1.2rem;
+}
+.compare-viewport {
+  position: relative;
+  width: 100%;
+  overflow: hidden;
+  border: 1px solid var(--color-rule);
+  background: var(--color-paper);
+}
+.compare-viewport iframe {
+  display: block;
+  position: absolute;
+  inset: 0;
+  border: 0;
+  transform-origin: top left;
+}
+.compare-options[data-size="phone"] .compare-viewport {
+  max-width: 390px;
+  margin-inline: auto;
+}
+.compare-note {
+  margin-top: 1.5rem;
+  max-width: 80ch;
+  font-size: 0.88rem;
+  line-height: 1.5;
+  color: var(--color-secondary);
+}
+@media (max-width: 55rem) {
+  .comparison {
+    padding: 1.2rem;
+  }
+  .compare-heading {
+    display: block;
+  }
+  .compare-switch {
+    margin-top: 1rem;
+  }
+  .compare-options {
+    grid-template-columns: minmax(0, 1fr);
+    gap: 2rem;
+  }
+  .compare-heading h1 {
+    font-size: 1.8rem;
+  }
+}

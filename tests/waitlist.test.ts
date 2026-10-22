@@ -18,7 +18,16 @@ function remove(body: unknown, origin = "https://parkdex-landing.vercel.app", he
 
 test("normalizes ordinary emails and rejects malformed addresses", () => {
   assert.equal(normalizeEmail("  NAME+Tag@Example.COM "), "name+tag@example.com");
-  for (const email of ["", "a@b", "a..b@example.com", "a@-example.com", "a@example..com", "a@example.c", "a b@example.com", "x".repeat(65) + "@example.com"]) {
+  for (const email of [
+    "",
+    "a@b",
+    "a..b@example.com",
+    "a@-example.com",
+    "a@example..com",
+    "a@example.c",
+    "a b@example.com",
+    "x".repeat(65) + "@example.com",
+  ]) {
     assert.equal(normalizeEmail(email), null, email);
   }
 });
@@ -26,7 +35,12 @@ test("normalizes ordinary emails and rejects malformed addresses", () => {
 test("registers once and returns generic success for duplicate submissions", async () => {
   const saved = new Set<string>();
   let calls = 0;
-  const handle = createWaitlistHandler({ async saveSignup(email) { calls++; saved.add(email); } });
+  const handle = createWaitlistHandler({
+    async saveSignup(email) {
+      calls++;
+      saved.add(email);
+    },
+  });
   const first = await handle(signup({ email: " NAME@example.com " }));
   const second = await handle(signup({ email: "name@example.com" }));
   assert.equal(first.status, 200);
@@ -39,7 +53,11 @@ test("registers once and returns generic success for duplicate submissions", asy
 
 test("honeypot returns success without storing", async () => {
   let calls = 0;
-  const handle = createWaitlistHandler({ async saveSignup() { calls++; } });
+  const handle = createWaitlistHandler({
+    async saveSignup() {
+      calls++;
+    },
+  });
   const response = await handle(signup({ email: "bot@example.com", company: "spam" }));
   assert.equal(response.status, 200);
   assert.equal(calls, 0);
@@ -69,7 +87,9 @@ test("validates action and applies the honeypot to removal", async () => {
   let calls = 0;
   const handle = createWaitlistHandler({
     async saveSignup() {},
-    async removeSignup() { calls++; },
+    async removeSignup() {
+      calls++;
+    },
   });
   const unknown = await handle(signup({ action: "export", email: "a@example.com" }));
   assert.equal(unknown.status, 400);
@@ -83,7 +103,9 @@ test("validates action and applies the honeypot to removal", async () => {
 test("removal database failure is generic and does not claim success", async () => {
   const handle = createWaitlistHandler({
     async saveSignup() {},
-    async removeSignup() { throw new Error("secret database detail"); },
+    async removeSignup() {
+      throw new Error("secret database detail");
+    },
   });
   const response = await handle(remove({ email: "a@example.com" }));
   assert.equal(response.status, 503);
@@ -92,18 +114,40 @@ test("removal database failure is generic and does not claim success", async () 
 
 test("rejects cross-origin, missing origin, wrong method, invalid content and oversized body", async () => {
   let calls = 0;
-  const handle = createWaitlistHandler({ async saveSignup() { calls++; } });
+  const handle = createWaitlistHandler({
+    async saveSignup() {
+      calls++;
+    },
+  });
   assert.equal((await handle(signup({ email: "a@example.com" }, "https://evil.example"))).status, 403);
-  assert.equal((await handle(new Request(ENDPOINT, { method: "POST", body: "{}", headers: { "Content-Type": "application/json" } }))).status, 403);
+  assert.equal(
+    (await handle(new Request(ENDPOINT, { method: "POST", body: "{}", headers: { "Content-Type": "application/json" } }))).status,
+    403,
+  );
   assert.equal((await handle(new Request(ENDPOINT, { method: "GET" }))).status, 405);
-  assert.equal((await handle(new Request(ENDPOINT, { method: "POST", body: "email=a@example.com", headers: { Origin: new URL(ENDPOINT).origin, "Content-Type": "application/x-www-form-urlencoded" } }))).status, 415);
+  assert.equal(
+    (
+      await handle(
+        new Request(ENDPOINT, {
+          method: "POST",
+          body: "email=a@example.com",
+          headers: { Origin: new URL(ENDPOINT).origin, "Content-Type": "application/x-www-form-urlencoded" },
+        }),
+      )
+    ).status,
+    415,
+  );
   assert.equal((await handle(signup({ email: "a@example.com", padding: "x".repeat(2048) }))).status, 400);
   assert.equal((await handle(signup({ email: "bad" }))).status, 400);
   assert.equal(calls, 0);
 });
 
 test("database failure does not expose details or claim a signup", async () => {
-  const handle = createWaitlistHandler({ async saveSignup() { throw new Error("secret database detail"); } });
+  const handle = createWaitlistHandler({
+    async saveSignup() {
+      throw new Error("secret database detail");
+    },
+  });
   const response = await handle(signup({ email: "a@example.com" }));
   assert.equal(response.status, 503);
   assert.deepEqual(await response.json(), { ok: false, error: "unavailable" });
@@ -111,7 +155,12 @@ test("database failure does not expose details or claim a signup", async () => {
 
 test("configured future canonical origin is accepted", async () => {
   let saved = "";
-  const handle = createWaitlistHandler({ canonicalOrigin: "https://parkdex.app", async saveSignup(email) { saved = email; } });
+  const handle = createWaitlistHandler({
+    canonicalOrigin: "https://parkdex.app",
+    async saveSignup(email) {
+      saved = email;
+    },
+  });
   const response = await handle(signup({ email: "a@example.com" }, "https://parkdex.app"));
   assert.equal(response.status, 200);
   assert.equal(saved, "a@example.com");
@@ -119,7 +168,11 @@ test("configured future canonical origin is accepted", async () => {
 
 test("routes joins to the requested list and keeps the lists separate", async () => {
   const lists: Record<string, Set<string>> = { android_beta: new Set(), app_store: new Set() };
-  const handle = createWaitlistHandler({ async saveSignup(email, list) { lists[list].add(email); } });
+  const handle = createWaitlistHandler({
+    async saveSignup(email, list) {
+      lists[list].add(email);
+    },
+  });
   assert.equal((await handle(signup({ email: "a@example.com", list: "android_beta" }))).status, 200);
   assert.equal((await handle(signup({ email: "b@example.com", list: "app_store" }))).status, 200);
   assert.deepEqual([...lists.android_beta], ["a@example.com"]);
@@ -128,14 +181,22 @@ test("routes joins to the requested list and keeps the lists separate", async ()
 
 test("treats a join without a list as the Android beta for cached pages", async () => {
   let savedList = "";
-  const handle = createWaitlistHandler({ async saveSignup(_email, list) { savedList = list; } });
+  const handle = createWaitlistHandler({
+    async saveSignup(_email, list) {
+      savedList = list;
+    },
+  });
   assert.equal((await handle(signup({ email: "a@example.com" }))).status, 200);
   assert.equal(savedList, "android_beta");
 });
 
 test("rejects an unknown list without storing", async () => {
   let calls = 0;
-  const handle = createWaitlistHandler({ async saveSignup() { calls++; } });
+  const handle = createWaitlistHandler({
+    async saveSignup() {
+      calls++;
+    },
+  });
   for (const list of ["ios", "", null, 3]) {
     const response = await handle(signup({ email: "a@example.com", list }));
     assert.equal(response.status, 400);

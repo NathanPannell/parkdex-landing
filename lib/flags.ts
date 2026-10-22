@@ -44,12 +44,11 @@ export function createFlagsHandler(config: FlagsConfig) {
         signal: AbortSignal.timeout(5000),
       });
       if (!response.ok) return json({ error: "unavailable" }, 502, "no-store");
-      const body = await response.json() as { serverTime?: unknown };
+      const body = (await response.json()) as { serverTime?: unknown };
       const flags = liveFlags(body);
       if (!flags) return json({ error: "unavailable" }, 502, "no-store");
-      const serverTime = typeof body.serverTime === "string" && Number.isFinite(Date.parse(body.serverTime))
-        ? body.serverTime
-        : new Date().toISOString();
+      const serverTime =
+        typeof body.serverTime === "string" && Number.isFinite(Date.parse(body.serverTime)) ? body.serverTime : new Date().toISOString();
       return json({ flags, serverTime }, 200, CACHED);
     } catch {
       return json({ error: "unavailable" }, 502, "no-store");

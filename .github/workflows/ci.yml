@@ -1,0 +1,222 @@
+name: CI
+
+# The gate for every PR to staging and main. Deploys stay on the Vercel Git
+# integration (vercel.json), so this workflow only checks; it never deploys.
+on:
+  pull_request:
+    branches: [staging, main]
+  push:
+    branches: [staging, main]
+
+concurrency:
+  group: ci-${{ github.ref }}
+  cancel-in-progress: true
+
+permissions:
+  contents: read
+
+env:
+  NODE_VERSION: "24"
+
+jobs:
+  install:
+    name: Install
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: ${{ env.NODE_VERSION }}
+          cache: npm
+      - run: npm ci
+
+  format:
+    name: Format
+    needs: install
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: ${{ env.NODE_VERSION }}
+          cache: npm
+      - run: npm ci
+      - run: npm run format:check
+
+  lint:
+    name: Lint
+    needs: install
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: ${{ env.NODE_VERSION }}
+          cache: npm
+      - run: npm ci
+      - run: npm run lint
+
+  types:
+    name: Types
+    needs: install
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: ${{ env.NODE_VERSION }}
+          cache: npm
+      - run: npm ci
+      - run: npm run typecheck
+
+  test:
+    name: Tests
+    needs: install
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: ${{ env.NODE_VERSION }}
+          cache: npm
+      - run: npm ci
+      # Coverage floors live in package.json; raise them, never lower them.
+      - run: npm run test:coverage
+
+  build:
+    name: Build
+    needs: install
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: ${{ env.NODE_VERSION }}
+          cache: npm
+      - run: npm ci
+      - run: npm run build
+
+  e2e:
+    name: E2E
+    needs: install
+    runs-on: ubuntu-latest
+    timeout-minutes: 20
+    env:
+      CI: "true"
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: ${{ env.NODE_VERSION }}
+          cache: npm
+      - run: npm ci
+      - run: npx playwright install --with-deps chromium
+      - run: npm run build
+      - run: npm run e2e
+      - uses: actions/upload-artifact@v4
+        if: failure()
+        with:
+          name: playwright-report
+          path: |
+            playwright-report/
+            test-results/
+          retention-days: 7
+
+  database:
+    name: Database
+    needs: install
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    # A throwaway Postgres for schema.sql, never the Neon databases. The landing
+    # page has no background worker, so there is no idle-query test to run.
+    services:
+      postgres:
+        image: postgres:17
+        env:
+          POSTGRES_PASSWORD: postgres
+          POSTGRES_DB: app
+        ports: ["5432:5432"]
+        options: >-
+          --health-cmd "pg_isready -U postgres"
+          --health-interval 5s
+          --health-timeout 5s
+          --health-retries 10
+    env:
+      PGHOST: localhost
+      PGUSER: postgres
+      PGPASSWORD: postgres
+      PGDATABASE: app
+    steps:
+      - uses: actions/checkout@v4
+      - name: Retire the legacy list on a database that still has it
+        run: |
+          psql -v ON_ERROR_STOP=1 <<'SQL'
+          CREATE TABLE waitlist_signups (email_normalized text PRIMARY KEY, created_at timestamptz NOT NULL DEFAULT now());
+          INSERT INTO waitlist_signups (email_normalized) VALUES ('legacy@example.com'), ('moved@example.com');
+          CREATE TABLE android_beta_signups (email_normalized text PRIMARY KEY, created_at timestamptz NOT NULL DEFAULT now());
+          INSERT INTO android_beta_signups (email_normalized) VALUES ('moved@example.com');
+          SQL
+      - name: Apply schema.sql twice
+        run: |
+          psql -v ON_ERROR_STOP=1 -f schema.sql
+          psql -v ON_ERROR_STOP=1 -f schema.sql
+      - name: Check the migrated rows and the waitlist statements
+        run: |
+          psql -v ON_ERROR_STOP=1 <<'SQL'
+          DO $$
+          BEGIN
+            IF to_regclass('public.waitlist_signups') IS NOT NULL THEN RAISE EXCEPTION 'legacy table still exists'; END IF;
+            IF NOT EXISTS (SELECT 1 FROM app_store_waitlist_signups WHERE email_normalized = 'legacy@example.com') THEN
+              RAISE EXCEPTION 'legacy signup was not kept on the App Store list';
+            END IF;
+            IF EXISTS (SELECT 1 FROM app_store_waitlist_signups WHERE email_normalized = 'moved@example.com') THEN
+              RAISE EXCEPTION 'an Android beta signup was copied to the App Store list';
+            END IF;
+          END
+          $$;
+          -- The statements api/waitlist.ts runs.
+          INSERT INTO app_store_waitlist_signups (email_normalized) VALUES ('walker@example.com') ON CONFLICT (email_normalized) DO NOTHING;
+          INSERT INTO app_store_waitlist_signups (email_normalized) VALUES ('walker@example.com') ON CONFLICT (email_normalized) DO NOTHING;
+          INSERT INTO android_beta_signups (email_normalized) VALUES ('walker@example.com') ON CONFLICT (email_normalized) DO NOTHING;
+          BEGIN;
+          DELETE FROM android_beta_signups WHERE email_normalized = 'walker@example.com';
+          DELETE FROM app_store_waitlist_signups WHERE email_normalized = 'walker@example.com';
+          COMMIT;
+          DO $$
+          BEGIN
+            IF EXISTS (SELECT 1 FROM app_store_waitlist_signups WHERE email_normalized = 'walker@example.com')
+              OR EXISTS (SELECT 1 FROM android_beta_signups WHERE email_normalized = 'walker@example.com') THEN
+              RAISE EXCEPTION 'removal left a row behind';
+            END IF;
+          END
+          $$;
+          SQL
+
+  security:
+    name: Security
+    needs: install
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+      - uses: actions/setup-node@v4
+        with:
+          node-version: ${{ env.NODE_VERSION }}
+          cache: npm
+      - run: npm audit --audit-level=high
+      - name: No committed .env files
+        run: |
+          found=$(git ls-files | grep -E '(^|/)\.env($|\.)' | grep -v '\.env\.example$' || true)
+          if [ -n "$found" ]; then echo "Committed env files:"; echo "$found"; exit 1; fi
+      - name: Gitleaks secret scan
+        run: |
+          curl -sSL https://github.com/gitleaks/gitleaks/releases/download/v8.28.0/gitleaks_8.28.0_linux_x64.tar.gz | tar -xz gitleaks
+          ./gitleaks git . --no-banner --redact --exit-code 1

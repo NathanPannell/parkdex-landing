@@ -1,1 +1,1 @@
-import './fan-page.css';
+import "./fan-page.css";
