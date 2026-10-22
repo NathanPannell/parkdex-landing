@@ -23,3 +23,31 @@ test("privacy policy describes the App Store list and the Google-run Android bet
   assert.match(privacyPage, /Parkdex Testers Google Group/);
   assert.match(privacyPage, /deletes the address from both lists/);
 });
+
+test("privacy policy matches the app 1.5.0 data practices declared on Google Play", () => {
+  assert.doesNotMatch(privacyPage, /does not include advertising or marketing analytics SDKs/);
+  assert.doesNotMatch(privacyPage, /OpenFreeMap/);
+  assert.doesNotMatch(privacyPage, /A verified visit stores that location evidence/);
+  assert.match(privacyPage, /Parkdex uses PostHog for product analytics/);
+  assert.match(privacyPage, /can use it to estimate your approximate location/);
+  assert.match(privacyPage, /These records are kept in the Parkdex database for 90 days\./);
+  assert.match(privacyPage, /Anyone can see them on the leaderboard and the park map, including people who are not signed in\./);
+  assert.match(privacyPage, /Logging a visit sends the park you are visiting, not your coordinates\./);
+  assert.match(privacyPage, /Nominatim service and public Overpass API servers/);
+  assert.match(privacyPage, /keeps the photo, your position and the park outline for 24 hours/);
+  assert.match(privacyPage, /Parkdex uses OpenRouter to run automated content checks/);
+  assert.match(privacyPage, /Feedback is not linked to your account, so deleting your account does not remove it\./);
+  assert.match(privacyPage, /Analytics already sent to PostHog is not deleted\./);
+});
+
+test("privacy policy does not overstate backup exclusions or guest deletion", () => {
+  assert.doesNotMatch(privacyPage, /installation identifier[^.]*excluded/);
+  assert.match(privacyPage, /Your sign-in session and the downloaded park content are excluded\./);
+  assert.match(privacyPage, /Uninstalling the app does not end the session by itself\./);
+});
+
+test("delete-account page lists what stays after deletion, like the privacy policy", async () => {
+  const deletePage = await readFile(new URL("../delete-account/index.html", import.meta.url), "utf8");
+  assert.match(deletePage, /analytics already sent to PostHog and feedback you sent are not deleted/);
+  assert.match(deletePage, /Parks you founded stay on the map without your name or cover photo\./);
+});
