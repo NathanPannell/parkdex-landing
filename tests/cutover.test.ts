@@ -9,7 +9,8 @@ test("production and staging Vercel configs route nothing to the retired legacy 
     const source = readFileSync(new URL(`../${file}`, import.meta.url), "utf8");
     const config = JSON.parse(source);
     assert.equal(config.rewrites, undefined, file);
-    assert.equal(config.redirects, undefined, file);
+    // Only same-site redirects for retired landing pages, never another host.
+    for (const redirect of config.redirects ?? []) assert.match(redirect.destination, /^\/(?!\/)/, file);
     assert.doesNotMatch(source, /railway\.app|map\.parkdex\.app|\/mcp|well-known/, file);
   }
 });

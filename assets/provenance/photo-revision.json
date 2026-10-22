@@ -2,10 +2,39 @@
   "revision": "photo-hero",
   "date": "2026-09-21",
   "assets": [
-    {"file":"badge-reward.webp","source":"User-supplied Screenshot 2026-09-19 181206.png","content":"River Otter Rookie badge reward","dimensions":[714,1354],"treatment":"WebP encoding only"},
-    {"file":"park-search.webp","source":"User-supplied Screenshot 2026-09-19 181239.png","content":"Park categories and regional park search","dimensions":[712,1359],"treatment":"WebP encoding only"},
-    {"file":"island-progress.webp","source":"User-supplied codex-clipboard-e141b83e-e2fd-4f40-aa96-11c397b77ced.png","content":"Desktop island map with recorded progress","dimensions":[1662,1092],"treatment":"WebP encoding only"},
-    {"file":"staging-map.webp","source":"https://staging.parkdex.app/?view=map&mode=discover","content":"Fresh signed-out desktop staging map in Find places mode","dimensions":[1440,900],"treatment":"Browser screenshot, WebP encoding only"},
-    {"file":"park-detail.webp","source":"Existing approved portfolio screenshot; see original provenance","content":"Elk Falls detail with wishlist control","treatment":"Retained source, not represented as a fresh staging capture"}
+    {
+      "file": "badge-reward.webp",
+      "source": "User-supplied Screenshot 2026-09-19 181206.png",
+      "content": "River Otter Rookie badge reward",
+      "dimensions": [714, 1354],
+      "treatment": "WebP encoding only"
+    },
+    {
+      "file": "park-search.webp",
+      "source": "User-supplied Screenshot 2026-09-19 181239.png",
+      "content": "Park categories and regional park search",
+      "dimensions": [712, 1359],
+      "treatment": "WebP encoding only"
+    },
+    {
+      "file": "island-progress.webp",
+      "source": "User-supplied codex-clipboard-e141b83e-e2fd-4f40-aa96-11c397b77ced.png",
+      "content": "Desktop island map with recorded progress",
+      "dimensions": [1662, 1092],
+      "treatment": "WebP encoding only"
+    },
+    {
+      "file": "staging-map.webp",
+      "source": "https://staging.parkdex.app/?view=map&mode=discover",
+      "content": "Fresh signed-out desktop staging map in Find places mode",
+      "dimensions": [1440, 900],
+      "treatment": "Browser screenshot, WebP encoding only"
+    },
+    {
+      "file": "park-detail.webp",
+      "source": "Existing approved portfolio screenshot; see original provenance",
+      "content": "Elk Falls detail with wishlist control",
+      "treatment": "Retained source, not represented as a fresh staging capture"
+    }
   ]
 }

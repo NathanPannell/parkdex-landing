@@ -14,11 +14,7 @@ The Goldstream photo within both screenshots is by Mike: [Flow, Goldstream Provi
 
 ## Field app screenshots and Kip
 
-The `app-*.webp` phone screens are unedited 780×1688 captures of the Parkdex app at `https://parkdex-kip-staging.vercel.app` (Kip `staging` at `0b79239`, the 100-park Victoria catalogue), taken September 30, 2026 in headless Chromium at 390×844 with device scale 2, signed out, using the demo spot in Victoria and the app's simulated trip. They are converted to WebP. The photo inside the claim, Dex and share screens is the app's illustrated stand-in scene, not a user visit. Map © Protomaps and OpenStreetMap contributors.
-
-- `app-map.webp` (map with badge pins, 0 of 100): hero phone.
-- `app-park-sheet.webp`, `app-arrival.webp` and `app-claimed.webp`: the three How it works steps.
-- `app-dex.webp` (My Dex) and `app-share.webp` (share card): collection story.
+The phone screens in `app/` are unedited 780×1688 captures of the Parkdex flag game (Kip `staging` at `ba11e31`), taken October 16, 2026 from a local copy of the app with fictional test players and badges off. `app/README.md` lists each screen, its alt text and how it was made. Map © Protomaps and OpenStreetMap contributors.
 
 `kip/kip-wave.webp`, `kip/kip-cheer.webp` and `kip/kip-idle.webp` are copies of the field app's Kip the oystercatcher art (`parkdex-badge-mockup/public/art/kip/`).
 

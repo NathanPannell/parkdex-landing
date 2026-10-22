@@ -18,16 +18,19 @@ test("both copies of the steps link to the tester group, then the Play testing p
   assert.equal(lists.length, 2);
   for (const list of lists) {
     const links = [...list.matchAll(/<a class="beta-step-button" href="([^"]+)" target="_blank" rel="noopener" data-beta-link="(\d)"/g)];
-    assert.deepEqual(links.map((link) => [link[1], link[2]]), [
-      ["https://groups.google.com/g/parkdex-testers/about", "1"],
-      ["https://play.google.com/apps/testing/app.parkdex", "2"],
-    ]);
+    assert.deepEqual(
+      links.map((link) => [link[1], link[2]]),
+      [
+        ["https://groups.google.com/g/parkdex-testers/about", "1"],
+        ["https://play.google.com/apps/testing/app.parkdex", "2"],
+      ],
+    );
     assert.match(list, /1<\/span>\s*<span class="beta-step-label">Join the tester group/);
     assert.match(list, /2<\/span>\s*<span class="beta-step-label">Install Parkdex/);
   }
 });
 
 test("the App Store waitlist still posts only to its own list", () => {
-  assert.match(script, /const list = 'app_store';/);
+  assert.match(script, /const list = ["']app_store["'];/);
   assert.match(page, /data-signup-open="app_store"/);
 });

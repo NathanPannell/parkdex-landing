@@ -1,4 +1,4 @@
-@import './replacement-frame.css';
+@import "./replacement-frame.css";
 
 /*
  * Reusable Parkdex device frame contract.
@@ -64,7 +64,13 @@
   overflow: hidden;
 }
 
+/* A <picture> that offers a moving version of the screen lays out as its <img>. */
+.device-frame__media > picture {
+  display: contents;
+}
+
 .device-frame__media > img,
+.device-frame__media > picture > img,
 .device-frame__media > video,
 .device-frame__media > iframe {
   display: block;
