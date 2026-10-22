@@ -6,8 +6,24 @@ const privacyPage = await readFile(new URL("../privacy/index.html", import.meta.
 
 test("privacy policy covers the public Android app and describes its photo storage", () => {
   assert.match(privacyPage, /This policy covers the Parkdex web app, the public Parkdex Android app, and this landing page\./);
-  assert.match(privacyPage, /The Parkdex Android app stores visit photos privately with Cloudflare R2 through the Parkdex API\./);
+  assert.match(
+    privacyPage,
+    /Visit photos from earlier versions of the app are stored privately with Cloudflare R2 through the Parkdex API\./,
+  );
   assert.doesNotMatch(privacyPage, /the test version being prepared for Android|The Android test version/i);
+});
+
+test("privacy policy describes crews and visit photos as retired, not as live features", () => {
+  assert.match(privacyPage, /The app no longer has crews\./);
+  assert.match(privacyPage, /The only photo you take in the current app is the founding photo of a park\./);
+  assert.match(privacyPage, /The current app doesn’t take or show visit photos/);
+  // Older Android installs can still upload until the over-the-air update lands, so the policy must say so.
+  assert.match(privacyPage, /an Android app that hasn’t received the October 22, 2026 update yet still can/);
+  assert.match(privacyPage, /Once you are signed in on that device, Parkdex uploads/);
+  assert.doesNotMatch(
+    privacyPage,
+    /When you join a crew|crewmates you add|When you save a visit photo|postcard|claim a park|Parkdex no longer takes visit photos|New feedback can’t include/,
+  );
 });
 
 test("privacy policy describes the App Store list and the Google-run Android beta", () => {
@@ -47,4 +63,5 @@ test("delete-account page lists what stays after deletion, like the privacy poli
   const deletePage = await readFile(new URL("../delete-account/index.html", import.meta.url), "utf8");
   assert.match(deletePage, /analytics already sent to PostHog and feedback you sent are not deleted/);
   assert.match(deletePage, /Parks you founded stay on the map without your name or cover photo\./);
+  assert.match(deletePage, /any crew memberships or visit photos from earlier versions of the app/);
 });

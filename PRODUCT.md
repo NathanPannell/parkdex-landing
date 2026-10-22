@@ -12,10 +12,10 @@ Delegated. A standalone static web application with one Vercel serverless signup
 People exploring Vancouver Island and nearby islands who want to discover parks and keep a record of visits.
 
 ## Product Purpose
-Introduce the Parkdex flag game: go to a real park, plant your flag, earn a point every hour it flies, take parks from other players, hold them as a crew and found new ones. Send Android visitors through the self-service beta (Parkdex Testers Google Group, then Google Play testing opt-in and install), register email addresses for the App Store waitlist, and allow direct waitlist removal, which also clears the retired Android beta list.
+Introduce the Parkdex flag game: go to a real park, plant your flag, earn a point every hour it flies, take parks from other walkers and found new ones with a photo of the park. Send Android visitors through the self-service beta (Parkdex Testers Google Group, then Google Play testing opt-in and install), register email addresses for the App Store waitlist, and allow direct waitlist removal, which also clears the retired Android beta list.
 
 ## Positioning
-Parkdex is capture the flag for every park around you. Every park on the map can fly one player's flag; you take it by standing inside the boundary. It is social: handles, generated flags, crews, friends and leaderboards. Badges are off in production and are not part of the pitch.
+Parkdex is capture the flag for every park around you. Every park on the map can fly one player's flag; you take it by standing inside the boundary. It is for dog walkers who walk the same local parks every day and take them from each other: handles, generated flags, friends and leaderboards. Crews and personal photos are retired in the app; the only photo is the founder's photo of a park. Badges are off in production and are not part of the pitch.
 
 ## Capabilities and Constraints
 Use real app screenshots in phone and laptop mockups. Android is in open beta: visitors join the Parkdex Testers Google Group, then opt in on Google Play. iPhone has an App Store waitlist with no promised launch date. Keep the landing application independent of the current Parkdex app. The cutover target is landing at `parkdex.app` with the production app at `web.parkdex.app`, and landing at `staging.parkdex.app` with the staging app at `staging.web.parkdex.app`. Store signup email durably in the landing environment's own database and do not wake the existing app database.
