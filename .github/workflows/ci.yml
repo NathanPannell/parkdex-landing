@@ -1,12 +1,13 @@
 name: CI
 
-# The gate for every PR to staging and main. Deploys stay on the Vercel Git
+# The gate for every PR to main. CI runs only for main (owner's decision, 2026-10-24);
+# PRs into staging are gated by running these checks locally. Deploys stay on the Vercel Git
 # integration (vercel.json), so this workflow only checks; it never deploys.
 on:
   pull_request:
-    branches: [staging, main]
+    branches: [main]
   push:
-    branches: [staging, main]
+    branches: [main]
 
 concurrency:
   group: ci-${{ github.ref }}
